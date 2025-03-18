@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE8622EB2D89CBB100A36236 /* Tide_ItApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8622EA2D89CBB100A36236 /* Tide_ItApp.swift */; };
+		BE8622ED2D89CBB100A36236 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8622EC2D89CBB100A36236 /* ContentView.swift */; };
+		BE8622EF2D89CBB400A36236 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8622EE2D89CBB400A36236 /* Assets.xcassets */; };
+		BE8622F22D89CBB400A36236 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8622F12D89CBB400A36236 /* Preview Assets.xcassets */; };
+		BE8622FC2D89CBB400A36236 /* Tide_ItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8622FB2D89CBB400A36236 /* Tide_ItTests.swift */; };
+		BE8623062D89CBB400A36236 /* Tide_ItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8623052D89CBB400A36236 /* Tide_ItUITests.swift */; };
+		BE8623082D89CBB400A36236 /* Tide_ItUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8623072D89CBB400A36236 /* Tide_ItUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BE8622F82D89CBB400A36236 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE8622DF2D89CBB100A36236 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE8622E62D89CBB100A36236;
+			remoteInfo = "Tide It";
+		};
+		BE8623022D89CBB400A36236 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE8622DF2D89CBB100A36236 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE8622E62D89CBB100A36236;
+			remoteInfo = "Tide It";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BE8622E72D89CBB100A36236 /* Tide It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tide It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE8622EA2D89CBB100A36236 /* Tide_ItApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tide_ItApp.swift; sourceTree = "<group>"; };
+		BE8622EC2D89CBB100A36236 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BE8622EE2D89CBB400A36236 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BE8622F12D89CBB400A36236 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BE8622F72D89CBB400A36236 /* Tide ItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tide ItTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE8622FB2D89CBB400A36236 /* Tide_ItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tide_ItTests.swift; sourceTree = "<group>"; };
+		BE8623012D89CBB400A36236 /* Tide ItUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tide ItUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE8623052D89CBB400A36236 /* Tide_ItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tide_ItUITests.swift; sourceTree = "<group>"; };
+		BE8623072D89CBB400A36236 /* Tide_ItUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tide_ItUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BE8622E42D89CBB100A36236 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE8622F42D89CBB400A36236 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE8622FE2D89CBB400A36236 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE8622DE2D89CBB100A36236 = {
+			isa = PBXGroup;
+			children = (
+				BE8622E92D89CBB100A36236 /* Tide It */,
+				BE8622FA2D89CBB400A36236 /* Tide ItTests */,
+				BE8623042D89CBB400A36236 /* Tide ItUITests */,
+				BE8622E82D89CBB100A36236 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BE8622E82D89CBB100A36236 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE8622E72D89CBB100A36236 /* Tide It.app */,
+				BE8622F72D89CBB400A36236 /* Tide ItTests.xctest */,
+				BE8623012D89CBB400A36236 /* Tide ItUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE8622E92D89CBB100A36236 /* Tide It */ = {
+			isa = PBXGroup;
+			children = (
+				BE8622EA2D89CBB100A36236 /* Tide_ItApp.swift */,
+				BE8622EC2D89CBB100A36236 /* ContentView.swift */,
+				BE8622EE2D89CBB400A36236 /* Assets.xcassets */,
+				BE8622F02D89CBB400A36236 /* Preview Content */,
+			);
+			path = "Tide It";
+			sourceTree = "<group>";
+		};
+		BE8622F02D89CBB400A36236 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BE8622F12D89CBB400A36236 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BE8622FA2D89CBB400A36236 /* Tide ItTests */ = {
+			isa = PBXGroup;
+			children = (
+				BE8622FB2D89CBB400A36236 /* Tide_ItTests.swift */,
+			);
+			path = "Tide ItTests";
+			sourceTree = "<group>";
+		};
+		BE8623042D89CBB400A36236 /* Tide ItUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BE8623052D89CBB400A36236 /* Tide_ItUITests.swift */,
+				BE8623072D89CBB400A36236 /* Tide_ItUITestsLaunchTests.swift */,
+			);
+			path = "Tide ItUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BE8622E62D89CBB100A36236 /* Tide It */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE86230B2D89CBB400A36236 /* Build configuration list for PBXNativeTarget "Tide It" */;
+			buildPhases = (
+				BE8622E32D89CBB100A36236 /* Sources */,
+				BE8622E42D89CBB100A36236 /* Frameworks */,
+				BE8622E52D89CBB100A36236 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Tide It";
+			productName = "Tide It";
+			productReference = BE8622E72D89CBB100A36236 /* Tide It.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BE8622F62D89CBB400A36236 /* Tide ItTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE86230E2D89CBB400A36236 /* Build configuration list for PBXNativeTarget "Tide ItTests" */;
+			buildPhases = (
+				BE8622F32D89CBB400A36236 /* Sources */,
+				BE8622F42D89CBB400A36236 /* Frameworks */,
+				BE8622F52D89CBB400A36236 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE8622F92D89CBB400A36236 /* PBXTargetDependency */,
+			);
+			name = "Tide ItTests";
+			productName = "Tide ItTests";
+			productReference = BE8622F72D89CBB400A36236 /* Tide ItTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BE8623002D89CBB400A36236 /* Tide ItUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE8623112D89CBB400A36236 /* Build configuration list for PBXNativeTarget "Tide ItUITests" */;
+			buildPhases = (
+				BE8622FD2D89CBB400A36236 /* Sources */,
+				BE8622FE2D89CBB400A36236 /* Frameworks */,
+				BE8622FF2D89CBB400A36236 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE8623032D89CBB400A36236 /* PBXTargetDependency */,
+			);
+			name = "Tide ItUITests";
+			productName = "Tide ItUITests";
+			productReference = BE8623012D89CBB400A36236 /* Tide ItUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BE8622DF2D89CBB100A36236 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					BE8622E62D89CBB100A36236 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					BE8622F62D89CBB400A36236 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = BE8622E62D89CBB100A36236;
+					};
+					BE8623002D89CBB400A36236 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = BE8622E62D89CBB100A36236;
+					};
+				};
+			};
+			buildConfigurationList = BE8622E22D89CBB100A36236 /* Build configuration list for PBXProject "Tide It" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BE8622DE2D89CBB100A36236;
+			productRefGroup = BE8622E82D89CBB100A36236 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BE8622E62D89CBB100A36236 /* Tide It */,
+				BE8622F62D89CBB400A36236 /* Tide ItTests */,
+				BE8623002D89CBB400A36236 /* Tide ItUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BE8622E52D89CBB100A36236 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE8622F22D89CBB400A36236 /* Preview Assets.xcassets in Resources */,
+				BE8622EF2D89CBB400A36236 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE8622F52D89CBB400A36236 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE8622FF2D89CBB400A36236 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BE8622E32D89CBB100A36236 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE8622ED2D89CBB100A36236 /* ContentView.swift in Sources */,
+				BE8622EB2D89CBB100A36236 /* Tide_ItApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE8622F32D89CBB400A36236 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE8622FC2D89CBB400A36236 /* Tide_ItTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE8622FD2D89CBB400A36236 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE8623062D89CBB400A36236 /* Tide_ItUITests.swift in Sources */,
+				BE8623082D89CBB400A36236 /* Tide_ItUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BE8622F92D89CBB400A36236 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE8622E62D89CBB100A36236 /* Tide It */;
+			targetProxy = BE8622F82D89CBB400A36236 /* PBXContainerItemProxy */;
+		};
+		BE8623032D89CBB400A36236 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE8622E62D89CBB100A36236 /* Tide It */;
+			targetProxy = BE8623022D89CBB400A36236 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BE8623092D89CBB400A36236 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BE86230A2D89CBB400A36236 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BE86230C2D89CBB400A36236 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tide It/Preview Content\"";
+				DEVELOPMENT_TEAM = T6ZX9KN644;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BE86230D2D89CBB400A36236 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tide It/Preview Content\"";
+				DEVELOPMENT_TEAM = T6ZX9KN644;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BE86230F2D89CBB400A36236 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T6ZX9KN644;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tide It.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tide It";
+			};
+			name = Debug;
+		};
+		BE8623102D89CBB400A36236 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T6ZX9KN644;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tide It.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tide It";
+			};
+			name = Release;
+		};
+		BE8623122D89CBB400A36236 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T6ZX9KN644;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Tide It";
+			};
+			name = Debug;
+		};
+		BE8623132D89CBB400A36236 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T6ZX9KN644;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Tide It";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BE8622E22D89CBB100A36236 /* Build configuration list for PBXProject "Tide It" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE8623092D89CBB400A36236 /* Debug */,
+				BE86230A2D89CBB400A36236 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE86230B2D89CBB400A36236 /* Build configuration list for PBXNativeTarget "Tide It" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE86230C2D89CBB400A36236 /* Debug */,
+				BE86230D2D89CBB400A36236 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE86230E2D89CBB400A36236 /* Build configuration list for PBXNativeTarget "Tide ItTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE86230F2D89CBB400A36236 /* Debug */,
+				BE8623102D89CBB400A36236 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE8623112D89CBB400A36236 /* Build configuration list for PBXNativeTarget "Tide ItUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE8623122D89CBB400A36236 /* Debug */,
+				BE8623132D89CBB400A36236 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BE8622DF2D89CBB100A36236 /* Project object */;
+}
