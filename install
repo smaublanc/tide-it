@@ -1,0 +1,3 @@
+# Creer un repo sur github.com, puis :
+git remote add origin https://github.com/TON_USERNAME/tide-it.git
+git push -u origin main
