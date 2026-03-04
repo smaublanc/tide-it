@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tide It — Marees en temps reel</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+            background: #0a0a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: linear-gradient(180deg, #0d1b2a 0%, #0a0a1a 100%);
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7b61ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #8899aa;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+        .badge {
+            display: inline-block;
+            height: 50px;
+        }
+        .features {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 24px;
+        }
+        .feature-card .icon { font-size: 2rem; margin-bottom: 12px; }
+        .feature-card h3 { color: #fff; font-size: 1rem; margin-bottom: 6px; }
+        .feature-card p { color: #8899aa; font-size: 0.85rem; }
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            color: #556677;
+            font-size: 0.85rem;
+        }
+        .footer a { color: #00d4ff; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Tide It</h1>
+        <p>Votre compagnon marees pour les 230 ports francais. Horaires, coefficients, meteo et activites nautiques.</p>
+    </div>
+
+    <div class="features">
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon">🌊</div>
+                <h3>Marees en temps reel</h3>
+                <p>Horaires, hauteurs et coefficients pour 230 ports francais.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔔</div>
+                <h3>Alertes intelligentes</h3>
+                <p>Soyez prevenu des meilleures conditions selon vos criteres.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🗺️</div>
+                <h3>Carte interactive</h3>
+                <p>Explorez les ports et visualisez l'etat des marees en direct.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🏄</div>
+                <h3>Scores d'activites</h3>
+                <p>Surf, peche, kayak, plongee : trouvez le meilleur creneau.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">⌚</div>
+                <h3>Apple Watch</h3>
+                <p>Consultez les marees depuis votre poignet.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📱</div>
+                <h3>Dynamic Island</h3>
+                <p>Suivez la maree en direct sur votre ecran de verrouillage.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><a href="privacy.html">Politique de confidentialite</a> · <a href="support.html">Support</a></p>
+        <p style="margin-top: 10px;">&copy; 2026 Tide It. Tous droits reserves.</p>
+    </div>
+</body>
+</html>
