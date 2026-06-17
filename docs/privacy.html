@@ -51,7 +51,7 @@
     <div class="container">
         <a href="index.html" class="back">&larr; Retour</a>
         <h1>Politique de Confidentialite</h1>
-        <p class="updated">Derniere mise a jour : mars 2026</p>
+        <p class="updated">Derniere mise a jour : juin 2026</p>
 
         <h2>1. Introduction</h2>
         <p>Tide It respecte votre vie privee. Cette politique explique quelles donnees sont collectees et comment elles sont utilisees.</p>
@@ -59,10 +59,10 @@
         <h2>2. Donnees collectees</h2>
         <p>Tide It collecte uniquement votre <strong>position geographique</strong> lorsque vous l'autorisez, et ce uniquement pour :</p>
         <ul>
-            <li>Identifier les ports de marees a proximite</li>
-            <li>Afficher les donnees meteorologiques locales via Apple WeatherKit</li>
+            <li>Identifier les ports de marees et les balises de vent a proximite</li>
+            <li>Recuperer la meteo et les conditions de vent locales (voir section 4)</li>
         </ul>
-        <p>Votre position n'est <strong>jamais stockee sur un serveur</strong> ni partagee avec des tiers.</p>
+        <p>Votre position n'est <strong>jamais stockee sur un serveur</strong> ni associee a votre identite. Pour afficher le vent et la meteo, seules des <strong>coordonnees</strong> (celles du spot que vous consultez) sont transmises aux sources de donnees publiques listees en section 4, sans aucune donnee personnelle.</p>
 
         <h2>3. Donnees stockees localement</h2>
         <p>Les donnees suivantes sont stockees uniquement sur votre appareil :</p>
@@ -79,7 +79,16 @@
             <li><strong>Apple StoreKit</strong> : gestion des abonnements Premium</li>
             <li><strong>Apple MapKit</strong> : affichage de la carte interactive</li>
         </ul>
-        <p>Aucun autre service tiers, SDK analytique ou reseau publicitaire n'est integre.</p>
+        <p>Pour afficher le vent et les conditions marines, l'application interroge des sources de donnees publiques en lecture seule. Seules les <strong>coordonnees du spot consulte</strong> (ou votre position si vous l'autorisez) leur sont transmises, afin de recuperer les mesures locales. Aucune donnee personnelle, identifiant ou compte n'est envoye, et aucune de ces sources ne depose de traceur :</p>
+        <ul>
+            <li><strong>Open-Meteo</strong> : previsions de vent et de mer</li>
+            <li><strong>Pioupiou / OpenWindMap</strong> : anemometres communautaires (licence CC-BY)</li>
+            <li><strong>winds.mobi</strong> : reseau de balises agregees (Holfuy, FFVL, Romma...)</li>
+            <li><strong>aviationweather.gov</strong> (NOAA) : observations METAR des aeroports</li>
+            <li><strong>NDBC</strong> (NOAA) : bouees meteo-oceaniques</li>
+            <li><strong>Weameter</strong> : stations meteo cotieres</li>
+        </ul>
+        <p>Aucun SDK analytique, outil de mesure d'audience ou reseau publicitaire n'est integre.</p>
 
         <h2>5. Tracking et publicite</h2>
         <p>Tide It n'utilise <strong>aucun outil de tracking</strong>, d'analytique, de publicite ou de collecte de donnees a des fins commerciales. L'application ne contient aucune publicite.</p>
