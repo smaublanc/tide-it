@@ -1,0 +1,49 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+
+# macOS
+.DS_Store
+*.swp
+
+# SPM
+.swiftpm/
+.build/
+Packages/
+Package.pins
+Package.resolved
+*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+
+# CocoaPods / Carthage (si jamais)
+Pods/
+Carthage/Build/
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Secrets — NE PAS COMMITER
+Tide It/Services/APIKeys.swift
+*.xcconfig.local
+Secrets.plist
+*.p8
+fastlane/key.json
+.appstoreconnect/
+
+# Gros artefacts de travail (gardés en local, hors git)
+build/
+previews/
+tex/
+go appstore v5/
+scripts 2/
+swell-illustration-mode-surf/
+*.zip
+
+# Config locale Claude / agents
+.claude/

@@ -12,6 +12,7 @@ struct Tide_Watch_Watch_AppApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(.dark)
         }
     }
 }

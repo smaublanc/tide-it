@@ -1,0 +1,1 @@
+litoral,coeficiente,kitesurf,wing,windsurf,wingfoil,swell,ondulacao,pesca,vela,nautica,mare

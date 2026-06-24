@@ -1,0 +1,26 @@
+Tide It — tides, wind and surf, built around one obsession: precision, honesty and your battery.
+
+Made for riders (kitesurf, wing, sailing, surf) and anyone who reads the sea.
+
+TIDES
+• Times, heights and coefficients worldwide, even offline.
+• Elegant curve, sunrise/sunset, moonrise/set and moon phase.
+
+WIND (real-time)
+• The wind observed by the nearest station — not just a forecast.
+• Wind mode: wind and gusts layered over the tide curve.
+
+SURF (new)
+• Surf spots worldwide, dominant swell (height, period, direction).
+• Tide-aware surf GO windows. Data from a broad (offshore) model — honest, never oversold as a spot-grade reading.
+
+YOUR GO WINDOWS
+• The app finds your best slots per sport, crossing wind, tide, swell and sun.
+• Rider level (beginner → expert): the app adapts to you.
+• 7-day calendar, with the day's best window highlighted.
+
+EVERYWHERE WITH YOU
+• Tide, wind and surf widgets. Apple Watch. Live Activity & Dynamic Island.
+
+FREE: create your activities, worldwide offline tides, favorites, iCloud and Apple Watch.
+PREMIUM: notifications (perfect sessions + alerts), readable 7-day GO calendar, real-time wind, 30-day forecast, wind & surf mode, Live Activity, PDF/card export.

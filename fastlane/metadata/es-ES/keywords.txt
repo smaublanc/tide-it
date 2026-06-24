@@ -1,0 +1,1 @@
+tabla,kitesurf,wingfoil,windsurf,oleaje,vela,pesca,marina,mar,costa,coeficiente,spot,mareas

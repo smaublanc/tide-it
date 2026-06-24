@@ -1,0 +1,44 @@
+//
+//  APIKeys.swift.example
+//  Tide It
+//
+//  Copier ce fichier en `APIKeys.swift` et y coller vos vraies clés API.
+//  `APIKeys.swift` est gitignoré — ne pas le commiter.
+//
+
+import Foundation
+
+enum APIKeys {
+
+    private enum Defaults {
+        static let worldTides = "YOUR_WORLDTIDES_KEY_HERE"
+        static let tideCheck  = "YOUR_TIDECHECK_KEY_HERE"
+    }
+
+    static var worldTides: String {
+        resolve(userDefaultsKey: "worldTidesAPIKey",
+                infoPlistKey: "WorldTidesAPIKey",
+                fallback: Defaults.worldTides)
+    }
+
+    static var tideCheck: String {
+        resolve(userDefaultsKey: "tideCheckAPIKey",
+                infoPlistKey: "TideCheckAPIKey",
+                fallback: Defaults.tideCheck)
+    }
+
+    private static func resolve(userDefaultsKey: String,
+                                infoPlistKey: String,
+                                fallback: String) -> String {
+        if let custom = UserDefaults.standard.string(forKey: userDefaultsKey)?
+            .trimmingCharacters(in: .whitespacesAndNewlines),
+           !custom.isEmpty {
+            return custom
+        }
+        if let fromPlist = Bundle.main.object(forInfoDictionaryKey: infoPlistKey) as? String,
+           !fromPlist.isEmpty, fromPlist != "$(\(infoPlistKey))" {
+            return fromPlist
+        }
+        return fallback
+    }
+}

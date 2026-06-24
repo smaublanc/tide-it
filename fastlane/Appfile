@@ -1,0 +1,4 @@
+app_identifier("seb.Tide-It")
+# Renseigne ton Apple ID (compte App Store Connect) :
+# apple_id("ton@email.com")
+# (Recommandé : clé API App Store Connect — voir README_DELIVER.md)

@@ -1,0 +1,23 @@
+DER SURF-MODUS IST DA
+• Surf-Spots weltweit (114 und es werden mehr).
+• Dünungskurve: Höhe, Periode und Richtung der dominanten Dünung.
+• Surf-GO-Fenster im Takt der Gezeiten + ein eigenes Surf-Widget.
+• Surf-Bedingungen von Hand einstellbar (Dünung, Periode, Wind, Gezeiten) + Presets.
+• Benachrichtigung, sobald dein Spot anspringt.
+
+RIDER-LEVEL
+• Ersetzt „Anspruch": wähl dein Level (Anfänger → Profi) und der Auto-Modus passt sich an — er verrechnet alle Daten und zeigt dir dein bestes Fenster.
+
+DAS BESTE FENSTER DES TAGES
+• Das Tageshoch wird jetzt auf der Kurve gekrönt.
+
+SEGELN
+• Eigenes Windprofil (breiterer und niedrigerer Bereich als beim Kite).
+
+AUSSERDEM
+• Heller Modus neu gestaltet für echte Lesbarkeit.
+• Klarere Periodenkurve (von Orange zu Grün je nach Qualität).
+• Verschwommene Vorschau des GO-Kalenders für Gratis-Accounts.
+• Korrekturen und Feinschliff.
+
+Guten Wind und schöne Sessions.

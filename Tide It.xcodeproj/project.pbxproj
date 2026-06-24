@@ -3,20 +3,136 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0192A7E98B1243E297B1D2DB /* PioupiouService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7EBCFDEFE048489FBECA9A /* PioupiouService.swift */; };
+		029A91DF65154119B90BC01F /* SharedFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69164E8212F348DEBDA6D135 /* SharedFormatters.swift */; };
+		061728394A5B6C7D8E0A1324 /* SportSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBFAF9E8D7C6B5A49382718 /* SportSetupView.swift */; };
+		0756B37C9BC7455C93A58F76 /* TideCardExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAC562F7E344DC89EE7D897 /* TideCardExportService.swift */; };
+		0841EFFE8DCB9A6CD2C3D597 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0979C3007FC8C05E764F4E7A /* NotificationScheduler.swift */; };
+		17B2F900FD603E120919A0DA /* TideLiveActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5B9551DAF9C5B037A5C28E /* TideLiveActivityAttributes.swift */; };
+		2D970F387C163D673798E4A7 /* WorldTidesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A173643E49F2FD388AF9FC68 /* WorldTidesService.swift */; };
+		3F1C09392F334F0400FE60B4 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1C09372F334F0400FE60B4 /* ColorExtensions.swift */; };
+		3F1C093A2F334F0400FE60B4 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1C09382F334F0400FE60B4 /* DateExtensions.swift */; };
+		3F33FD852F4785AB00DD5CED /* Tide Watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3F89356E2F46F912006F21C9 /* Tide Watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3F4F6A122F3A754B008882A5 /* MarineWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A0B2F3A754B008882A5 /* MarineWeatherService.swift */; };
+		3F4F6A132F3A754B008882A5 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A102F3A754B008882A5 /* WeatherService.swift */; };
+		3F4F6A142F3A754B008882A5 /* TideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A0F2F3A754B008882A5 /* TideService.swift */; };
+		3F4F6A152F3A754B008882A5 /* PDFExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A0C2F3A754B008882A5 /* PDFExportService.swift */; };
+		3F4F6A162F3A754B008882A5 /* TideCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A0D2F3A754B008882A5 /* TideCache.swift */; };
+		3F4F6A172F3A754B008882A5 /* TideCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A0E2F3A754B008882A5 /* TideCalculator.swift */; };
+		3F4F6A182F3A754B008882A5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A0A2F3A754B008882A5 /* LocationManager.swift */; };
+		3F4F6A192F3A754B008882A5 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A092F3A754B008882A5 /* HapticManager.swift */; };
+		3F4F6A1A2F3A754B008882A5 /* ActivityScoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A082F3A754B008882A5 /* ActivityScoreService.swift */; };
+		3F4F6A1C2F3A7591008882A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A1B2F3A7591008882A5 /* ContentView.swift */; };
+		3F4F6A1E2F3A7600008882A5 /* ShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A1D2F3A7600008882A5 /* ShareService.swift */; };
+		3F4F6A202F3A7600008882A5 /* CalendarExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A1F2F3A7600008882A5 /* CalendarExportService.swift */; };
+		3F4F6A242F3A7600008882A5 /* TideError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A232F3A7600008882A5 /* TideError.swift */; };
+		3F5100012F3D300000BB2244 /* WidgetSharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5100022F3D300000BB2244 /* WidgetSharedData.swift */; };
+		3F5100032F3D300000BB2244 /* WidgetDataWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5100042F3D300000BB2244 /* WidgetDataWriter.swift */; };
+		3F5100062F3D300000BB2244 /* WidgetSharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5100022F3D300000BB2244 /* WidgetSharedData.swift */; };
+		3F519E762F3C7BA400AF313B /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E6D2F3C7BA400AF313B /* FavoritesView.swift */; };
+		3F519E772F3C7BA400AF313B /* AlertConditionBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E582F3C7BA400AF313B /* AlertConditionBuilderView.swift */; };
+		3F519E782F3C7BA400AF313B /* AlertsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E5B2F3C7BA400AF313B /* AlertsListView.swift */; };
+		3F519E792F3C7BA400AF313B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E652F3C7BA400AF313B /* OnboardingView.swift */; };
+		3F519E7B2F3C7BA400AF313B /* ExportButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E5F2F3C7BA400AF313B /* ExportButton.swift */; };
+		3F519E7C2F3C7BA400AF313B /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E602F3C7BA400AF313B /* GlassCard.swift */; };
+		3F519E7E2F3C7BA400AF313B /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E6B2F3C7BA400AF313B /* CalendarView.swift */; };
+		3F519E7F2F3C7BA400AF313B /* AlertPresetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E5A2F3C7BA400AF313B /* AlertPresetsView.swift */; };
+		3F519E802F3C7BA400AF313B /* AlertEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E592F3C7BA400AF313B /* AlertEditorView.swift */; };
+		3F519E812F3C7BA400AF313B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E702F3C7BA400AF313B /* SettingsView.swift */; };
+		3F519E822F3C7BA400AF313B /* ExtendedForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E6C2F3C7BA400AF313B /* ExtendedForecastView.swift */; };
+		3F519E832F3C7BA400AF313B /* CoefficientBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E5D2F3C7BA400AF313B /* CoefficientBadgeView.swift */; };
+		3F519E862F3C7BA400AF313B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E6E2F3C7BA400AF313B /* MapView.swift */; };
+		3F519E882F3C7BA400AF313B /* PortPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E6F2F3C7BA400AF313B /* PortPickerView.swift */; };
+		3F519E8A2F3C7BA400AF313B /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E5E2F3C7BA400AF313B /* EmptyStateView.swift */; };
+		3F519E8B2F3C7BA400AF313B /* NextTideCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E612F3C7BA400AF313B /* NextTideCard.swift */; };
+		3F519E8C2F3C7BA400AF313B /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E732F3C7BA400AF313B /* TodayView.swift */; };
+		3F519E8D2F3C7BA400AF313B /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E622F3C7BA400AF313B /* SkeletonView.swift */; };
+		3F519E902F3C7BA400AF313B /* WindDirectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E912F3C7BA400AF313B /* WindDirectionPicker.swift */; };
+		3F54FB013462433C8AD3D701 /* WindStationAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F57B0A81B4CAEA0AFDA63 /* WindStationAggregator.swift */; };
+		3F64889A2F3FDA8E00BA5DE7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6488992F3FDA8D00BA5DE7 /* WidgetKit.framework */; };
+		3F64889C2F3FDA8E00BA5DE7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F64889B2F3FDA8E00BA5DE7 /* SwiftUI.framework */; };
+		3F6488AD2F3FDA9200BA5DE7 /* TideItWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3F6488972F3FDA8D00BA5DE7 /* TideItWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3FA1B0012F3C100000AA1122 /* HarmonicTideEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1B0002F3C100000AA1122 /* HarmonicTideEngine.swift */; };
+		3FA1B0052F3D200000BB2244 /* MareeInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1B0042F3D200000BB2244 /* MareeInfoService.swift */; };
+		3FWC00012F478A0000DD5CED /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FWC00022F478A0000DD5CED /* WatchSessionManager.swift */; };
+		5236FB147575B614F0445F40 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D324063DE03557F2B3D566D4 /* ThemeManager.swift */; };
+		59646B8B2D94005900527D45 /* TideAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59646B6F2D94005900527D45 /* TideAlert.swift */; };
+		59646B972D94005900527D45 /* CalendarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59646B6C2D94005900527D45 /* CalendarExtension.swift */; };
+		59646B982D94005900527D45 /* TideData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59646B702D94005900527D45 /* TideData.swift */; };
+		59646B9C2D94005900527D45 /* Port.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59646B6E2D94005900527D45 /* Port.swift */; };
+		5C8F2A0100000000000000F2 /* SurfMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8F2A0100000000000000F1 /* SurfMetrics.swift */; };
+		5C8F2A0100000000000000F4 /* SurfSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8F2A0100000000000000F3 /* SurfSpot.swift */; };
+		5C8F2A0100000000000000F6 /* SurfSpotCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8F2A0100000000000000F5 /* SurfSpotCatalog.swift */; };
+		5C8F2A0100000000000000F8 /* surf_spots.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C8F2A0100000000000000F7 /* surf_spots.json */; };
+		6B00EB59CDC64DBD8653BB04 /* NotificationDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5152AF9CA0B429BA2840695 /* NotificationDispatcher.swift */; };
+		7407D482AA594F8CAD37E83C /* WindTideRibbon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B53C4D36A498A856BF862 /* WindTideRibbon.swift */; };
+		7A8B9C0D1E2F3A4B5C6D7EFF /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7A8B9C0D1E2F3A4B5C6D7E8F /* Localizable.xcstrings */; };
+		7DF7C4160B6D44D49D19BD38 /* TideRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657E3BCB06444443AFB2608B /* TideRepository.swift */; };
+		84EFBDA629BB440985F51908 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F5C1371A734BF3975A8D69 /* APIKeys.swift */; };
+		862F27E0CD154A0FA611ACD1 /* PortCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220BF4F32AF34A4C850D0488 /* PortCatalog.swift */; };
+		A0425A0DB8D74DD3BF5F5C1F /* WindmillIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E002F74FE3C9471383DA8E86 /* WindmillIcon.swift */; };
+		A1B2C30000000000000000A1 /* PecheAPied.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C30000000000000000B1 /* PecheAPied.swift */; };
+		A1B2C30000000000000000A2 /* PecheAPiedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C30000000000000000B2 /* PecheAPiedService.swift */; };
+		A1B2C30000000000000000A3 /* PecheAPiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C30000000000000000B3 /* PecheAPiedView.swift */; };
+		B1D2E3F405162738495A6B7C /* WindEstablishingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6B5A4938271605F4E3D2C1 /* WindEstablishingService.swift */; };
 		BE8622EB2D89CBB100A36236 /* Tide_ItApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8622EA2D89CBB100A36236 /* Tide_ItApp.swift */; };
-		BE8622ED2D89CBB100A36236 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8622EC2D89CBB100A36236 /* ContentView.swift */; };
 		BE8622EF2D89CBB400A36236 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8622EE2D89CBB400A36236 /* Assets.xcassets */; };
 		BE8622F22D89CBB400A36236 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8622F12D89CBB400A36236 /* Preview Assets.xcassets */; };
 		BE8622FC2D89CBB400A36236 /* Tide_ItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8622FB2D89CBB400A36236 /* Tide_ItTests.swift */; };
 		BE8623062D89CBB400A36236 /* Tide_ItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8623052D89CBB400A36236 /* Tide_ItUITests.swift */; };
 		BE8623082D89CBB400A36236 /* Tide_ItUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8623072D89CBB400A36236 /* Tide_ItUITestsLaunchTests.swift */; };
+		BE86231E2D89D53D00A36236 /* shom_ports.txt in Resources */ = {isa = PBXBuildFile; fileRef = BE86231D2D89D53D00A36236 /* shom_ports.txt */; };
+		C139EB79939E46CFB41DC9A2 /* ObservedWindCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD4026E21CA479D9399F7F2 /* ObservedWindCard.swift */; };
+		C2B1A0F9E8D7C6B5A4F3E2D1 /* CloudSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E2F3A4B5C6D7E8F9A0B1C2 /* CloudSyncService.swift */; };
+		C2E3F4051627384950A6B7D8 /* AlertForecaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7C6B5A4938271605F4E3D3 /* AlertForecaster.swift */; };
+		C79DEDD9824749DF904E102E /* ErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CB9D8857DF483FB9FA4353 /* ErrorBanner.swift */; };
+		CAFE255381DD63986BC5F938 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B5CCC5CA59D49E4284610 /* LiveActivityManager.swift */; };
+		COMP00000002 /* TideComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = COMP00000001 /* TideComparisonView.swift */; };
+		D1978E88B6E545CCA5C24FF5 /* AviationWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED82DEB1532A4300BAA82F40 /* AviationWeatherService.swift */; };
+		D3F4A5061728394A5B6C7E91 /* ActivityGoPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8D7C6B5A4938271605F4E5 /* ActivityGoPlanner.swift */; };
+		D4C3B2A1F0E9D8C7B6A5F4E3 /* PremiumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F4A5B6C7D8E9F0A1B2C3D4 /* PremiumManager.swift */; };
+		DFB28AD05C3D4E25B2EE02F0 /* TideAlertEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24A90B4B6843BB80B4342A /* TideAlertEvaluator.swift */; };
+		E104973B104BEB89D7925D23 /* TideLiveActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5B9551DAF9C5B037A5C28E /* TideLiveActivityAttributes.swift */; };
+		E3CAE85CC0614D67BC096959 /* FontScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BD4B2A6AA94B87A611EA56 /* FontScaling.swift */; };
+		E4A5B6071839405B6C7D8F02 /* ActivityCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E8D7C6B5A493827160506 /* ActivityCalendarView.swift */; };
+		F0F73B22F33B4F92B81C2A7D /* WindStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1912AC8568D4D988DC980B5 /* WindStation.swift */; };
+		F2E1D0C9B8A7F6E5D4C3B2A1 /* TideAppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* TideAppIntents.swift */; };
+		F5061728394A5B6C7D8E0A13 /* SportSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAF9E8D7C6B5A4938271607 /* SportSetup.swift */; };
+		F692C91DB7F342458E8C79EF /* TideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9963B6F7CF542C2A54864AB /* TideCardView.swift */; };
+		NOAA00010002000000000001 /* NOAAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = NOAA00010001000000000001 /* NOAAService.swift */; };
+		NOAA00020002000000000001 /* noaa_stations.json in Resources */ = {isa = PBXBuildFile; fileRef = NOAA00020001000000000001 /* noaa_stations.json */; };
+		PCCV00000002 /* PremiumCurveCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = PCCV00000001 /* PremiumCurveCanvas.swift */; };
+		REVW00000002000000000001 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = REVW00000001000000000001 /* ReviewManager.swift */; };
+		SPRING00000002 /* SpringTideRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = SPRING00000001 /* SpringTideRecord.swift */; };
+		SPRING00000004 /* SpringTideTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = SPRING00000003 /* SpringTideTracker.swift */; };
+		SPRING00000006 /* SpringTideHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SPRING00000005 /* SpringTideHistoryView.swift */; };
+		TCHK00010002000000000001 /* TideCheckService.swift in Sources */ = {isa = PBXBuildFile; fileRef = TCHK00010001000000000001 /* TideCheckService.swift */; };
+		TICO00020002000000000001 /* ticon_stations.json in Resources */ = {isa = PBXBuildFile; fileRef = TICO00020001000000000001 /* ticon_stations.json */; };
+		TPF000000000000000000A1 /* TideParticleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = TPF000000000000000000B1 /* TideParticleField.swift */; };
+		TWW000000D2F5A000000001 /* TideWatchWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = TWW000000012F5A00000001 /* TideWatchWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		TWW000000E2F5A000000001 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6488992F3FDA8D00BA5DE7 /* WidgetKit.framework */; };
+		TWW000000F2F5A000000001 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F64889B2F3FDA8E00BA5DE7 /* SwiftUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3F33FD862F4785AB00DD5CED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE8622DF2D89CBB100A36236 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F89356D2F46F912006F21C9;
+			remoteInfo = "Tide Watch Watch App";
+		};
+		3F6488AB2F3FDA9200BA5DE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE8622DF2D89CBB100A36236 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F6488962F3FDA8D00BA5DE7;
+			remoteInfo = TideItWidgetExtension;
+		};
 		BE8622F82D89CBB400A36236 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BE8622DF2D89CBB100A36236 /* Project object */;
@@ -31,12 +147,132 @@
 			remoteGlobalIDString = BE8622E62D89CBB100A36236;
 			remoteInfo = "Tide It";
 		};
+		TWW000000A2F5A000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE8622DF2D89CBB100A36236 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = TWW000000022F5A00000001;
+			remoteInfo = TideWatchWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3F33FD882F4785AB00DD5CED /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				3F33FD852F4785AB00DD5CED /* Tide Watch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F6488AE2F3FDA9200BA5DE7 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3F6488AD2F3FDA9200BA5DE7 /* TideItWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		TWW000000C2F5A000000001 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				TWW000000D2F5A000000001 /* TideWatchWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0979C3007FC8C05E764F4E7A /* NotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
+		220BF4F32AF34A4C850D0488 /* PortCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortCatalog.swift; sourceTree = "<group>"; };
+		2E5B5CCC5CA59D49E4284610 /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
+		32BD4B2A6AA94B87A611EA56 /* FontScaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontScaling.swift; sourceTree = "<group>"; };
+		3F1C09372F334F0400FE60B4 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		3F1C09382F334F0400FE60B4 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		3F4F6A082F3A754B008882A5 /* ActivityScoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityScoreService.swift; sourceTree = "<group>"; };
+		3F4F6A092F3A754B008882A5 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		3F4F6A0A2F3A754B008882A5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		3F4F6A0B2F3A754B008882A5 /* MarineWeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarineWeatherService.swift; sourceTree = "<group>"; };
+		3F4F6A0C2F3A754B008882A5 /* PDFExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExportService.swift; sourceTree = "<group>"; };
+		3F4F6A0D2F3A754B008882A5 /* TideCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideCache.swift; sourceTree = "<group>"; };
+		3F4F6A0E2F3A754B008882A5 /* TideCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideCalculator.swift; sourceTree = "<group>"; };
+		3F4F6A0F2F3A754B008882A5 /* TideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideService.swift; sourceTree = "<group>"; };
+		3F4F6A102F3A754B008882A5 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		3F4F6A1B2F3A7591008882A5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3F4F6A1D2F3A7600008882A5 /* ShareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareService.swift; sourceTree = "<group>"; };
+		3F4F6A1F2F3A7600008882A5 /* CalendarExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExportService.swift; sourceTree = "<group>"; };
+		3F4F6A232F3A7600008882A5 /* TideError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideError.swift; sourceTree = "<group>"; };
+		3F5100022F3D300000BB2244 /* WidgetSharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSharedData.swift; sourceTree = "<group>"; };
+		3F5100042F3D300000BB2244 /* WidgetDataWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDataWriter.swift; sourceTree = "<group>"; };
+		3F519E582F3C7BA400AF313B /* AlertConditionBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConditionBuilderView.swift; sourceTree = "<group>"; };
+		3F519E592F3C7BA400AF313B /* AlertEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertEditorView.swift; sourceTree = "<group>"; };
+		3F519E5A2F3C7BA400AF313B /* AlertPresetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresetsView.swift; sourceTree = "<group>"; };
+		3F519E5B2F3C7BA400AF313B /* AlertsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsListView.swift; sourceTree = "<group>"; };
+		3F519E5D2F3C7BA400AF313B /* CoefficientBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoefficientBadgeView.swift; sourceTree = "<group>"; };
+		3F519E5E2F3C7BA400AF313B /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		3F519E5F2F3C7BA400AF313B /* ExportButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportButton.swift; sourceTree = "<group>"; };
+		3F519E602F3C7BA400AF313B /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCard.swift; sourceTree = "<group>"; };
+		3F519E612F3C7BA400AF313B /* NextTideCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTideCard.swift; sourceTree = "<group>"; };
+		3F519E622F3C7BA400AF313B /* SkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonView.swift; sourceTree = "<group>"; };
+		3F519E652F3C7BA400AF313B /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		3F519E6B2F3C7BA400AF313B /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		3F519E6C2F3C7BA400AF313B /* ExtendedForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedForecastView.swift; sourceTree = "<group>"; };
+		3F519E6D2F3C7BA400AF313B /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		3F519E6E2F3C7BA400AF313B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		3F519E6F2F3C7BA400AF313B /* PortPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortPickerView.swift; sourceTree = "<group>"; };
+		3F519E702F3C7BA400AF313B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		3F519E732F3C7BA400AF313B /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		3F519E912F3C7BA400AF313B /* WindDirectionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindDirectionPicker.swift; sourceTree = "<group>"; };
+		3F6488972F3FDA8D00BA5DE7 /* TideItWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TideItWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F6488992F3FDA8D00BA5DE7 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		3F64889B2F3FDA8E00BA5DE7 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		3F89356E2F46F912006F21C9 /* Tide Watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tide Watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FA1B0002F3C100000AA1122 /* HarmonicTideEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonicTideEngine.swift; sourceTree = "<group>"; };
+		3FA1B0042F3D200000BB2244 /* MareeInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MareeInfoService.swift; sourceTree = "<group>"; };
+		3FD91B272F589E0900DDE842 /* TideIt.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; name = TideIt.storekit; path = "Tide It/TideIt.storekit"; sourceTree = "<group>"; };
+		3FWC00022F478A0000DD5CED /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
+		474F57B0A81B4CAEA0AFDA63 /* WindStationAggregator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindStationAggregator.swift; sourceTree = "<group>"; };
+		54CB9D8857DF483FB9FA4353 /* ErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBanner.swift; sourceTree = "<group>"; };
+		59646B6C2D94005900527D45 /* CalendarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtension.swift; sourceTree = "<group>"; };
+		59646B6E2D94005900527D45 /* Port.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Port.swift; sourceTree = "<group>"; };
+		59646B6F2D94005900527D45 /* TideAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideAlert.swift; sourceTree = "<group>"; };
+		59646B702D94005900527D45 /* TideData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideData.swift; sourceTree = "<group>"; };
+		5C8F2A0100000000000000F1 /* SurfMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfMetrics.swift; sourceTree = "<group>"; };
+		5C8F2A0100000000000000F3 /* SurfSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfSpot.swift; sourceTree = "<group>"; };
+		5C8F2A0100000000000000F5 /* SurfSpotCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfSpotCatalog.swift; sourceTree = "<group>"; };
+		5C8F2A0100000000000000F7 /* surf_spots.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = surf_spots.json; sourceTree = "<group>"; };
+		657E3BCB06444443AFB2608B /* TideRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideRepository.swift; sourceTree = "<group>"; };
+		69164E8212F348DEBDA6D135 /* SharedFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFormatters.swift; sourceTree = "<group>"; };
+		6F24A90B4B6843BB80B4342A /* TideAlertEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideAlertEvaluator.swift; sourceTree = "<group>"; };
+		78F5C1371A734BF3975A8D69 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		7A8B9C0D1E2F3A4B5C6D7E8F /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		7BD4026E21CA479D9399F7F2 /* ObservedWindCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedWindCard.swift; sourceTree = "<group>"; };
+		7C6B5A4938271605F4E3D2C1 /* WindEstablishingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindEstablishingService.swift; sourceTree = "<group>"; };
+		8D7C6B5A4938271605F4E3D3 /* AlertForecaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertForecaster.swift; sourceTree = "<group>"; };
+		949B53C4D36A498A856BF862 /* WindTideRibbon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindTideRibbon.swift; sourceTree = "<group>"; };
+		9E8D7C6B5A4938271605F4E5 /* ActivityGoPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityGoPlanner.swift; sourceTree = "<group>"; };
+		A173643E49F2FD388AF9FC68 /* WorldTidesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTidesService.swift; sourceTree = "<group>"; };
+		A1B2C30000000000000000B1 /* PecheAPied.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PecheAPied.swift; sourceTree = "<group>"; };
+		A1B2C30000000000000000B2 /* PecheAPiedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PecheAPiedService.swift; sourceTree = "<group>"; };
+		A1B2C30000000000000000B3 /* PecheAPiedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PecheAPiedView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F6A7B8C9D0E1F2 /* TideAppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideAppIntents.swift; sourceTree = "<group>"; };
+		A5152AF9CA0B429BA2840695 /* NotificationDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDispatcher.swift; sourceTree = "<group>"; };
+		AB7EBCFDEFE048489FBECA9A /* PioupiouService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PioupiouService.swift; sourceTree = "<group>"; };
+		AC5B9551DAF9C5B037A5C28E /* TideLiveActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideLiveActivityAttributes.swift; sourceTree = "<group>"; };
+		AF9E8D7C6B5A493827160506 /* ActivityCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCalendarView.swift; sourceTree = "<group>"; };
+		AFAC562F7E344DC89EE7D897 /* TideCardExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideCardExportService.swift; sourceTree = "<group>"; };
 		BE8622E72D89CBB100A36236 /* Tide It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tide It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8622EA2D89CBB100A36236 /* Tide_ItApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tide_ItApp.swift; sourceTree = "<group>"; };
-		BE8622EC2D89CBB100A36236 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BE8622EE2D89CBB400A36236 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE8622F12D89CBB400A36236 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BE8622F72D89CBB400A36236 /* Tide ItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tide ItTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,9 +280,71 @@
 		BE8623012D89CBB400A36236 /* Tide ItUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tide ItUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8623052D89CBB400A36236 /* Tide_ItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tide_ItUITests.swift; sourceTree = "<group>"; };
 		BE8623072D89CBB400A36236 /* Tide_ItUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tide_ItUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BE86231D2D89D53D00A36236 /* shom_ports.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shom_ports.txt; sourceTree = "<group>"; };
+		BE8623232D89F7CA00A36236 /* Tide It.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tide It.entitlements"; sourceTree = "<group>"; };
+		BFAF9E8D7C6B5A4938271607 /* SportSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportSetup.swift; sourceTree = "<group>"; };
+		C1912AC8568D4D988DC980B5 /* WindStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindStation.swift; sourceTree = "<group>"; };
+		CFBFAF9E8D7C6B5A49382718 /* SportSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportSetupView.swift; sourceTree = "<group>"; };
+		COMP00000001 /* TideComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideComparisonView.swift; sourceTree = "<group>"; };
+		D1E2F3A4B5C6D7E8F9A0B1C2 /* CloudSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSyncService.swift; sourceTree = "<group>"; };
+		D324063DE03557F2B3D566D4 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		E002F74FE3C9471383DA8E86 /* WindmillIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindmillIcon.swift; sourceTree = "<group>"; };
+		E3F4A5B6C7D8E9F0A1B2C3D4 /* PremiumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumManager.swift; sourceTree = "<group>"; };
+		E9963B6F7CF542C2A54864AB /* TideCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideCardView.swift; sourceTree = "<group>"; };
+		ED82DEB1532A4300BAA82F40 /* AviationWeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AviationWeatherService.swift; sourceTree = "<group>"; };
+		NOAA00010001000000000001 /* NOAAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOAAService.swift; sourceTree = "<group>"; };
+		NOAA00020001000000000001 /* noaa_stations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = noaa_stations.json; sourceTree = "<group>"; };
+		PCCV00000001 /* PremiumCurveCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumCurveCanvas.swift; sourceTree = "<group>"; };
+		REVW00000001000000000001 /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
+		SPRING00000001 /* SpringTideRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringTideRecord.swift; sourceTree = "<group>"; };
+		SPRING00000003 /* SpringTideTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringTideTracker.swift; sourceTree = "<group>"; };
+		SPRING00000005 /* SpringTideHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringTideHistoryView.swift; sourceTree = "<group>"; };
+		TCHK00010001000000000001 /* TideCheckService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideCheckService.swift; sourceTree = "<group>"; };
+		TICO00020001000000000001 /* ticon_stations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ticon_stations.json; sourceTree = "<group>"; };
+		TPF000000000000000000B1 /* TideParticleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideParticleField.swift; sourceTree = "<group>"; };
+		TWW000000012F5A00000001 /* TideWatchWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TideWatchWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		3F6488B12F3FDA9200BA5DE7 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 3F6488962F3FDA8D00BA5DE7 /* TideItWidgetExtension */;
+		};
+		TWW000000B12F5A000000001 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = TWW000000022F5A00000001 /* TideWatchWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		3F64889D2F3FDA8E00BA5DE7 /* TideItWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (3F6488B12F3FDA9200BA5DE7 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = TideItWidget; sourceTree = "<group>"; };
+		3F89356F2F46F912006F21C9 /* Tide Watch Watch App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Tide Watch Watch App"; sourceTree = "<group>"; };
+		TWW000000092F5A000000001 /* TideWatchWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (TWW000000B12F5A000000001 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = TideWatchWidget; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		3F6488942F3FDA8D00BA5DE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F64889C2F3FDA8E00BA5DE7 /* SwiftUI.framework in Frameworks */,
+				3F64889A2F3FDA8E00BA5DE7 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F89356B2F46F912006F21C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE8622E42D89CBB100A36236 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -68,15 +366,201 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		TWW000000042F5A000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				TWW000000F2F5A000000001 /* SwiftUI.framework in Frameworks */,
+				TWW000000E2F5A000000001 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F4F6A112F3A754B008882A5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3F4F6A082F3A754B008882A5 /* ActivityScoreService.swift */,
+				3F5100042F3D300000BB2244 /* WidgetDataWriter.swift */,
+				3F4F6A092F3A754B008882A5 /* HapticManager.swift */,
+				D324063DE03557F2B3D566D4 /* ThemeManager.swift */,
+				3F4F6A0A2F3A754B008882A5 /* LocationManager.swift */,
+				3F4F6A0B2F3A754B008882A5 /* MarineWeatherService.swift */,
+				5C8F2A0100000000000000F1 /* SurfMetrics.swift */,
+				5C8F2A0100000000000000F5 /* SurfSpotCatalog.swift */,
+				3F4F6A0C2F3A754B008882A5 /* PDFExportService.swift */,
+				3F4F6A1D2F3A7600008882A5 /* ShareService.swift */,
+				AFAC562F7E344DC89EE7D897 /* TideCardExportService.swift */,
+				3F4F6A1F2F3A7600008882A5 /* CalendarExportService.swift */,
+				3F4F6A0D2F3A754B008882A5 /* TideCache.swift */,
+				2E5B5CCC5CA59D49E4284610 /* LiveActivityManager.swift */,
+				0979C3007FC8C05E764F4E7A /* NotificationScheduler.swift */,
+				A1B2C3D4E5F6A7B8C9D0E1F2 /* TideAppIntents.swift */,
+				D1E2F3A4B5C6D7E8F9A0B1C2 /* CloudSyncService.swift */,
+				E3F4A5B6C7D8E9F0A1B2C3D4 /* PremiumManager.swift */,
+				REVW00000001000000000001 /* ReviewManager.swift */,
+				3F4F6A0E2F3A754B008882A5 /* TideCalculator.swift */,
+				3F4F6A0F2F3A754B008882A5 /* TideService.swift */,
+				AB7EBCFDEFE048489FBECA9A /* PioupiouService.swift */,
+				A1B2C30000000000000000B2 /* PecheAPiedService.swift */,
+				ED82DEB1532A4300BAA82F40 /* AviationWeatherService.swift */,
+				474F57B0A81B4CAEA0AFDA63 /* WindStationAggregator.swift */,
+				3F4F6A102F3A754B008882A5 /* WeatherService.swift */,
+				3FA1B0002F3C100000AA1122 /* HarmonicTideEngine.swift */,
+				3FA1B0042F3D200000BB2244 /* MareeInfoService.swift */,
+				3FWC00022F478A0000DD5CED /* WatchSessionManager.swift */,
+				NOAA00010001000000000001 /* NOAAService.swift */,
+				A173643E49F2FD388AF9FC68 /* WorldTidesService.swift */,
+				TCHK00010001000000000001 /* TideCheckService.swift */,
+				78F5C1371A734BF3975A8D69 /* APIKeys.swift */,
+				A5152AF9CA0B429BA2840695 /* NotificationDispatcher.swift */,
+				8D7C6B5A4938271605F4E3D3 /* AlertForecaster.swift */,
+				9E8D7C6B5A4938271605F4E5 /* ActivityGoPlanner.swift */,
+				7C6B5A4938271605F4E3D2C1 /* WindEstablishingService.swift */,
+				657E3BCB06444443AFB2608B /* TideRepository.swift */,
+				6F24A90B4B6843BB80B4342A /* TideAlertEvaluator.swift */,
+				220BF4F32AF34A4C850D0488 /* PortCatalog.swift */,
+				SPRING00000003 /* SpringTideTracker.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3F5100052F3D300000BB2244 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				3F5100022F3D300000BB2244 /* WidgetSharedData.swift */,
+				AC5B9551DAF9C5B037A5C28E /* TideLiveActivityAttributes.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		3F519E572F3C7BA400AF313B /* Activities */ = {
+			isa = PBXGroup;
+			children = (
+				AF9E8D7C6B5A493827160506 /* ActivityCalendarView.swift */,
+				CFBFAF9E8D7C6B5A49382718 /* SportSetupView.swift */,
+			);
+			path = Activities;
+			sourceTree = "<group>";
+		};
+		3F519E5C2F3C7BA400AF313B /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				3F519E582F3C7BA400AF313B /* AlertConditionBuilderView.swift */,
+				3F519E592F3C7BA400AF313B /* AlertEditorView.swift */,
+				3F519E5A2F3C7BA400AF313B /* AlertPresetsView.swift */,
+				3F519E5B2F3C7BA400AF313B /* AlertsListView.swift */,
+				3F519E912F3C7BA400AF313B /* WindDirectionPicker.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
+		3F519E642F3C7BA400AF313B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3F519E5D2F3C7BA400AF313B /* CoefficientBadgeView.swift */,
+				3F519E5E2F3C7BA400AF313B /* EmptyStateView.swift */,
+				54CB9D8857DF483FB9FA4353 /* ErrorBanner.swift */,
+				3F519E5F2F3C7BA400AF313B /* ExportButton.swift */,
+				E9963B6F7CF542C2A54864AB /* TideCardView.swift */,
+				3F519E602F3C7BA400AF313B /* GlassCard.swift */,
+				3F519E612F3C7BA400AF313B /* NextTideCard.swift */,
+				3F519E622F3C7BA400AF313B /* SkeletonView.swift */,
+				7BD4026E21CA479D9399F7F2 /* ObservedWindCard.swift */,
+				949B53C4D36A498A856BF862 /* WindTideRibbon.swift */,
+				PCCV00000001 /* PremiumCurveCanvas.swift */,
+				E002F74FE3C9471383DA8E86 /* WindmillIcon.swift */,
+				TPF000000000000000000B1 /* TideParticleField.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		3F519E662F3C7BA400AF313B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				3F519E652F3C7BA400AF313B /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		3F519E6A2F3C7BA400AF313B /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		3F519E742F3C7BA400AF313B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3F519E572F3C7BA400AF313B /* Activities */,
+				3F519E5C2F3C7BA400AF313B /* Alerts */,
+				3F519E642F3C7BA400AF313B /* Components */,
+				3F519E662F3C7BA400AF313B /* Onboarding */,
+				3F519E6A2F3C7BA400AF313B /* Weather */,
+				3F519E6B2F3C7BA400AF313B /* CalendarView.swift */,
+				3F519E6C2F3C7BA400AF313B /* ExtendedForecastView.swift */,
+				3F519E6D2F3C7BA400AF313B /* FavoritesView.swift */,
+				3F519E6E2F3C7BA400AF313B /* MapView.swift */,
+				A1B2C30000000000000000B3 /* PecheAPiedView.swift */,
+				COMP00000001 /* TideComparisonView.swift */,
+				3F519E6F2F3C7BA400AF313B /* PortPickerView.swift */,
+				3F519E702F3C7BA400AF313B /* SettingsView.swift */,
+				SPRING00000005 /* SpringTideHistoryView.swift */,
+				3F519E732F3C7BA400AF313B /* TodayView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3F6488982F3FDA8D00BA5DE7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F6488992F3FDA8D00BA5DE7 /* WidgetKit.framework */,
+				3F64889B2F3FDA8E00BA5DE7 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		59646B6D2D94005900527D45 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3F1C09372F334F0400FE60B4 /* ColorExtensions.swift */,
+				3F1C09382F334F0400FE60B4 /* DateExtensions.swift */,
+				69164E8212F348DEBDA6D135 /* SharedFormatters.swift */,
+				32BD4B2A6AA94B87A611EA56 /* FontScaling.swift */,
+				59646B6C2D94005900527D45 /* CalendarExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		59646B722D94005900527D45 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				59646B6E2D94005900527D45 /* Port.swift */,
+				5C8F2A0100000000000000F3 /* SurfSpot.swift */,
+				SPRING00000001 /* SpringTideRecord.swift */,
+				59646B6F2D94005900527D45 /* TideAlert.swift */,
+				BFAF9E8D7C6B5A4938271607 /* SportSetup.swift */,
+				59646B702D94005900527D45 /* TideData.swift */,
+				C1912AC8568D4D988DC980B5 /* WindStation.swift */,
+				A1B2C30000000000000000B1 /* PecheAPied.swift */,
+				3F4F6A232F3A7600008882A5 /* TideError.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		BE8622DE2D89CBB100A36236 = {
 			isa = PBXGroup;
 			children = (
+				3FD91B272F589E0900DDE842 /* TideIt.storekit */,
 				BE8622E92D89CBB100A36236 /* Tide It */,
 				BE8622FA2D89CBB400A36236 /* Tide ItTests */,
 				BE8623042D89CBB400A36236 /* Tide ItUITests */,
+				3F64889D2F3FDA8E00BA5DE7 /* TideItWidget */,
+				3F89356F2F46F912006F21C9 /* Tide Watch Watch App */,
+				TWW000000092F5A000000001 /* TideWatchWidget */,
+				3F6488982F3FDA8D00BA5DE7 /* Frameworks */,
 				BE8622E82D89CBB100A36236 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,6 +571,9 @@
 				BE8622E72D89CBB100A36236 /* Tide It.app */,
 				BE8622F72D89CBB400A36236 /* Tide ItTests.xctest */,
 				BE8623012D89CBB400A36236 /* Tide ItUITests.xctest */,
+				3F6488972F3FDA8D00BA5DE7 /* TideItWidgetExtension.appex */,
+				3F89356E2F46F912006F21C9 /* Tide Watch Watch App.app */,
+				TWW000000012F5A00000001 /* TideWatchWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,8 +581,19 @@
 		BE8622E92D89CBB100A36236 /* Tide It */ = {
 			isa = PBXGroup;
 			children = (
+				3F519E742F3C7BA400AF313B /* Views */,
+				3F4F6A1B2F3A7591008882A5 /* ContentView.swift */,
+				3F4F6A112F3A754B008882A5 /* Services */,
+				59646B6D2D94005900527D45 /* Extensions */,
+				3F5100052F3D300000BB2244 /* Shared */,
+				59646B722D94005900527D45 /* Models */,
+				BE8623232D89F7CA00A36236 /* Tide It.entitlements */,
+				BE86231D2D89D53D00A36236 /* shom_ports.txt */,
+				NOAA00020001000000000001 /* noaa_stations.json */,
+				5C8F2A0100000000000000F7 /* surf_spots.json */,
+				TICO00020001000000000001 /* ticon_stations.json */,
 				BE8622EA2D89CBB100A36236 /* Tide_ItApp.swift */,
-				BE8622EC2D89CBB100A36236 /* ContentView.swift */,
+				7A8B9C0D1E2F3A4B5C6D7E8F /* Localizable.xcstrings */,
 				BE8622EE2D89CBB400A36236 /* Assets.xcassets */,
 				BE8622F02D89CBB400A36236 /* Preview Content */,
 			);
@@ -130,6 +628,52 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3F6488962F3FDA8D00BA5DE7 /* TideItWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F6488B22F3FDA9200BA5DE7 /* Build configuration list for PBXNativeTarget "TideItWidgetExtension" */;
+			buildPhases = (
+				3F6488932F3FDA8D00BA5DE7 /* Sources */,
+				3F6488942F3FDA8D00BA5DE7 /* Frameworks */,
+				3F6488952F3FDA8D00BA5DE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				3F64889D2F3FDA8E00BA5DE7 /* TideItWidget */,
+			);
+			name = TideItWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = TideItWidgetExtension;
+			productReference = 3F6488972F3FDA8D00BA5DE7 /* TideItWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		3F89356D2F46F912006F21C9 /* Tide Watch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F8935782F46F917006F21C9 /* Build configuration list for PBXNativeTarget "Tide Watch Watch App" */;
+			buildPhases = (
+				3F89356A2F46F912006F21C9 /* Sources */,
+				3F89356B2F46F912006F21C9 /* Frameworks */,
+				3F89356C2F46F912006F21C9 /* Resources */,
+				TWW000000C2F5A000000001 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				TWW000000B2F5A000000001 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				3F89356F2F46F912006F21C9 /* Tide Watch Watch App */,
+			);
+			name = "Tide Watch Watch App";
+			packageProductDependencies = (
+			);
+			productName = "Tide Watch Watch App";
+			productReference = 3F89356E2F46F912006F21C9 /* Tide Watch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 		BE8622E62D89CBB100A36236 /* Tide It */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE86230B2D89CBB400A36236 /* Build configuration list for PBXNativeTarget "Tide It" */;
@@ -137,10 +681,14 @@
 				BE8622E32D89CBB100A36236 /* Sources */,
 				BE8622E42D89CBB100A36236 /* Frameworks */,
 				BE8622E52D89CBB100A36236 /* Resources */,
+				3F6488AE2F3FDA9200BA5DE7 /* Embed Foundation Extensions */,
+				3F33FD882F4785AB00DD5CED /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3F6488AC2F3FDA9200BA5DE7 /* PBXTargetDependency */,
+				3F33FD872F4785AB00DD5CED /* PBXTargetDependency */,
 			);
 			name = "Tide It";
 			productName = "Tide It";
@@ -183,6 +731,28 @@
 			productReference = BE8623012D89CBB400A36236 /* Tide ItUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		TWW000000022F5A00000001 /* TideWatchWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = TWW000000082F5A000000001 /* Build configuration list for PBXNativeTarget "TideWatchWidgetExtension" */;
+			buildPhases = (
+				TWW000000032F5A000000001 /* Sources */,
+				TWW000000042F5A000000001 /* Frameworks */,
+				TWW000000052F5A000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				TWW000000092F5A000000001 /* TideWatchWidget */,
+			);
+			name = TideWatchWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = TideWatchWidgetExtension;
+			productReference = TWW000000012F5A00000001 /* TideWatchWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -190,9 +760,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastSwiftUpdateCheck = 2630;
+				LastUpgradeCheck = 2630;
 				TargetAttributes = {
+					3F6488962F3FDA8D00BA5DE7 = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					3F89356D2F46F912006F21C9 = {
+						CreatedOnToolsVersion = 26.3;
+					};
 					BE8622E62D89CBB100A36236 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -204,6 +780,9 @@
 						CreatedOnToolsVersion = 15.2;
 						TestTargetID = BE8622E62D89CBB100A36236;
 					};
+					TWW000000022F5A00000001 = {
+						CreatedOnToolsVersion = 26.3;
+					};
 				};
 			};
 			buildConfigurationList = BE8622E22D89CBB100A36236 /* Build configuration list for PBXProject "Tide It" */;
@@ -212,7 +791,11 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				fr,
 				Base,
+				de,
+				es,
+				it,
 			);
 			mainGroup = BE8622DE2D89CBB100A36236;
 			productRefGroup = BE8622E82D89CBB100A36236 /* Products */;
@@ -222,17 +805,39 @@
 				BE8622E62D89CBB100A36236 /* Tide It */,
 				BE8622F62D89CBB400A36236 /* Tide ItTests */,
 				BE8623002D89CBB400A36236 /* Tide ItUITests */,
+				3F6488962F3FDA8D00BA5DE7 /* TideItWidgetExtension */,
+				3F89356D2F46F912006F21C9 /* Tide Watch Watch App */,
+				TWW000000022F5A00000001 /* TideWatchWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3F6488952F3FDA8D00BA5DE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F89356C2F46F912006F21C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE8622E52D89CBB100A36236 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				BE8622F22D89CBB400A36236 /* Preview Assets.xcassets in Resources */,
 				BE8622EF2D89CBB400A36236 /* Assets.xcassets in Resources */,
+				BE86231E2D89D53D00A36236 /* shom_ports.txt in Resources */,
+				NOAA00020002000000000001 /* noaa_stations.json in Resources */,
+				5C8F2A0100000000000000F8 /* surf_spots.json in Resources */,
+				TICO00020002000000000001 /* ticon_stations.json in Resources */,
+				7A8B9C0D1E2F3A4B5C6D7EFF /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,15 +855,126 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		TWW000000052F5A000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3F6488932F3FDA8D00BA5DE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F5100062F3D300000BB2244 /* WidgetSharedData.swift in Sources */,
+				E104973B104BEB89D7925D23 /* TideLiveActivityAttributes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F89356A2F46F912006F21C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE8622E32D89CBB100A36236 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE8622ED2D89CBB100A36236 /* ContentView.swift in Sources */,
+				3F519E762F3C7BA400AF313B /* FavoritesView.swift in Sources */,
+				3F519E772F3C7BA400AF313B /* AlertConditionBuilderView.swift in Sources */,
+				3F519E902F3C7BA400AF313B /* WindDirectionPicker.swift in Sources */,
+				3F519E782F3C7BA400AF313B /* AlertsListView.swift in Sources */,
+				3F519E792F3C7BA400AF313B /* OnboardingView.swift in Sources */,
+				3F519E7B2F3C7BA400AF313B /* ExportButton.swift in Sources */,
+				3F519E7C2F3C7BA400AF313B /* GlassCard.swift in Sources */,
+				3F519E7E2F3C7BA400AF313B /* CalendarView.swift in Sources */,
+				3F519E7F2F3C7BA400AF313B /* AlertPresetsView.swift in Sources */,
+				3F519E802F3C7BA400AF313B /* AlertEditorView.swift in Sources */,
+				3F519E812F3C7BA400AF313B /* SettingsView.swift in Sources */,
+				3F519E822F3C7BA400AF313B /* ExtendedForecastView.swift in Sources */,
+				3F519E832F3C7BA400AF313B /* CoefficientBadgeView.swift in Sources */,
+				3F519E862F3C7BA400AF313B /* MapView.swift in Sources */,
+				COMP00000002 /* TideComparisonView.swift in Sources */,
+				3F519E882F3C7BA400AF313B /* PortPickerView.swift in Sources */,
+				E4A5B6071839405B6C7D8F02 /* ActivityCalendarView.swift in Sources */,
+				061728394A5B6C7D8E0A1324 /* SportSetupView.swift in Sources */,
+				3F519E8A2F3C7BA400AF313B /* EmptyStateView.swift in Sources */,
+				C79DEDD9824749DF904E102E /* ErrorBanner.swift in Sources */,
+				3F519E8B2F3C7BA400AF313B /* NextTideCard.swift in Sources */,
+				3F519E8C2F3C7BA400AF313B /* TodayView.swift in Sources */,
+				3F519E8D2F3C7BA400AF313B /* SkeletonView.swift in Sources */,
+				3FA1B0012F3C100000AA1122 /* HarmonicTideEngine.swift in Sources */,
+				3FA1B0052F3D200000BB2244 /* MareeInfoService.swift in Sources */,
 				BE8622EB2D89CBB100A36236 /* Tide_ItApp.swift in Sources */,
+				59646B8B2D94005900527D45 /* TideAlert.swift in Sources */,
+				F5061728394A5B6C7D8E0A13 /* SportSetup.swift in Sources */,
+				59646B972D94005900527D45 /* CalendarExtension.swift in Sources */,
+				59646B982D94005900527D45 /* TideData.swift in Sources */,
+				3F4F6A122F3A754B008882A5 /* MarineWeatherService.swift in Sources */,
+				5C8F2A0100000000000000F2 /* SurfMetrics.swift in Sources */,
+				5C8F2A0100000000000000F6 /* SurfSpotCatalog.swift in Sources */,
+				3F4F6A132F3A754B008882A5 /* WeatherService.swift in Sources */,
+				3F4F6A142F3A754B008882A5 /* TideService.swift in Sources */,
+				F0F73B22F33B4F92B81C2A7D /* WindStation.swift in Sources */,
+				0192A7E98B1243E297B1D2DB /* PioupiouService.swift in Sources */,
+				A1B2C30000000000000000A1 /* PecheAPied.swift in Sources */,
+				A1B2C30000000000000000A2 /* PecheAPiedService.swift in Sources */,
+				A1B2C30000000000000000A3 /* PecheAPiedView.swift in Sources */,
+				D1978E88B6E545CCA5C24FF5 /* AviationWeatherService.swift in Sources */,
+				3F54FB013462433C8AD3D701 /* WindStationAggregator.swift in Sources */,
+				C139EB79939E46CFB41DC9A2 /* ObservedWindCard.swift in Sources */,
+				7407D482AA594F8CAD37E83C /* WindTideRibbon.swift in Sources */,
+				PCCV00000002 /* PremiumCurveCanvas.swift in Sources */,
+				A0425A0DB8D74DD3BF5F5C1F /* WindmillIcon.swift in Sources */,
+				TPF000000000000000000A1 /* TideParticleField.swift in Sources */,
+				3F5100012F3D300000BB2244 /* WidgetSharedData.swift in Sources */,
+				17B2F900FD603E120919A0DA /* TideLiveActivityAttributes.swift in Sources */,
+				3F5100032F3D300000BB2244 /* WidgetDataWriter.swift in Sources */,
+				3FWC00012F478A0000DD5CED /* WatchSessionManager.swift in Sources */,
+				3F4F6A152F3A754B008882A5 /* PDFExportService.swift in Sources */,
+				3F4F6A162F3A754B008882A5 /* TideCache.swift in Sources */,
+				CAFE255381DD63986BC5F938 /* LiveActivityManager.swift in Sources */,
+				0841EFFE8DCB9A6CD2C3D597 /* NotificationScheduler.swift in Sources */,
+				F2E1D0C9B8A7F6E5D4C3B2A1 /* TideAppIntents.swift in Sources */,
+				C2B1A0F9E8D7C6B5A4F3E2D1 /* CloudSyncService.swift in Sources */,
+				D4C3B2A1F0E9D8C7B6A5F4E3 /* PremiumManager.swift in Sources */,
+				REVW00000002000000000001 /* ReviewManager.swift in Sources */,
+				3F4F6A172F3A754B008882A5 /* TideCalculator.swift in Sources */,
+				3F4F6A182F3A754B008882A5 /* LocationManager.swift in Sources */,
+				3F4F6A192F3A754B008882A5 /* HapticManager.swift in Sources */,
+				5236FB147575B614F0445F40 /* ThemeManager.swift in Sources */,
+				3F4F6A1A2F3A754B008882A5 /* ActivityScoreService.swift in Sources */,
+				59646B9C2D94005900527D45 /* Port.swift in Sources */,
+				5C8F2A0100000000000000F4 /* SurfSpot.swift in Sources */,
+				3F1C09392F334F0400FE60B4 /* ColorExtensions.swift in Sources */,
+				3F1C093A2F334F0400FE60B4 /* DateExtensions.swift in Sources */,
+				029A91DF65154119B90BC01F /* SharedFormatters.swift in Sources */,
+				E3CAE85CC0614D67BC096959 /* FontScaling.swift in Sources */,
+				3F4F6A1C2F3A7591008882A5 /* ContentView.swift in Sources */,
+				3F4F6A1E2F3A7600008882A5 /* ShareService.swift in Sources */,
+				3F4F6A202F3A7600008882A5 /* CalendarExportService.swift in Sources */,
+				3F4F6A242F3A7600008882A5 /* TideError.swift in Sources */,
+				F692C91DB7F342458E8C79EF /* TideCardView.swift in Sources */,
+				0756B37C9BC7455C93A58F76 /* TideCardExportService.swift in Sources */,
+				NOAA00010002000000000001 /* NOAAService.swift in Sources */,
+				2D970F387C163D673798E4A7 /* WorldTidesService.swift in Sources */,
+				TCHK00010002000000000001 /* TideCheckService.swift in Sources */,
+				84EFBDA629BB440985F51908 /* APIKeys.swift in Sources */,
+				6B00EB59CDC64DBD8653BB04 /* NotificationDispatcher.swift in Sources */,
+				C2E3F4051627384950A6B7D8 /* AlertForecaster.swift in Sources */,
+				D3F4A5061728394A5B6C7E91 /* ActivityGoPlanner.swift in Sources */,
+				B1D2E3F405162738495A6B7C /* WindEstablishingService.swift in Sources */,
+				7DF7C4160B6D44D49D19BD38 /* TideRepository.swift in Sources */,
+				DFB28AD05C3D4E25B2EE02F0 /* TideAlertEvaluator.swift in Sources */,
+				862F27E0CD154A0FA611ACD1 /* PortCatalog.swift in Sources */,
+				SPRING00000002 /* SpringTideRecord.swift in Sources */,
+				SPRING00000004 /* SpringTideTracker.swift in Sources */,
+				SPRING00000006 /* SpringTideHistoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,9 +995,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		TWW000000032F5A000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3F33FD872F4785AB00DD5CED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F89356D2F46F912006F21C9 /* Tide Watch Watch App */;
+			targetProxy = 3F33FD862F4785AB00DD5CED /* PBXContainerItemProxy */;
+		};
+		3F6488AC2F3FDA9200BA5DE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F6488962F3FDA8D00BA5DE7 /* TideItWidgetExtension */;
+			targetProxy = 3F6488AB2F3FDA9200BA5DE7 /* PBXContainerItemProxy */;
+		};
 		BE8622F92D89CBB400A36236 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BE8622E62D89CBB100A36236 /* Tide It */;
@@ -292,9 +1025,150 @@
 			target = BE8622E62D89CBB100A36236 /* Tide It */;
 			targetProxy = BE8623022D89CBB400A36236 /* PBXContainerItemProxy */;
 		};
+		TWW000000B2F5A000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = TWW000000022F5A00000001 /* TideWatchWidgetExtension */;
+			targetProxy = TWW000000A2F5A000000001 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3F6488AF2F3FDA9200BA5DE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = TideItWidget/TideItWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TideItWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TideItWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 5.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.TideItWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		3F6488B02F3FDA9200BA5DE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = TideItWidget/TideItWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TideItWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TideItWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 5.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.TideItWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		3F8935762F46F917006F21C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Tide Watch Watch App/Tide Watch Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tide Watch";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "seb.Tide-It";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 5.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		3F8935772F46F917006F21C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Tide Watch Watch App/Tide Watch Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tide Watch";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "seb.Tide-It";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 5.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 		BE8623092D89CBB400A36236 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -330,6 +1204,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = T6ZX9KN644;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -347,12 +1222,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -393,6 +1269,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T6ZX9KN644;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -404,11 +1281,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -419,27 +1297,39 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Tide It/Tide It.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Tide It/Preview Content\"";
-				DEVELOPMENT_TEAM = T6ZX9KN644;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tide It/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
+				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "Tide It peut ajouter les horaires de marées à votre calendrier pour ne rien manquer.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Nous avons besoin de votre localisation pour afficher les données météorologiques et les marées pour votre position actuelle.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Nous avons besoin de votre position pour vous montrer les ports à proximité et vous permettre de créer un port personnalisé à votre emplacement actuel.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 5.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -448,41 +1338,51 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Tide It/Tide It.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Tide It/Preview Content\"";
-				DEVELOPMENT_TEAM = T6ZX9KN644;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tide It/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
+				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "Tide It peut ajouter les horaires de marées à votre calendrier pour ne rien manquer.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Nous avons besoin de votre localisation pour afficher les données météorologiques et les marées pour votre position actuelle.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Nous avons besoin de votre position pour vous montrer les ports à proximité et vous permettre de créer un port personnalisé à votre emplacement actuel.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 5.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		BE86230F2D89CBB400A36236 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T6ZX9KN644;
+				CURRENT_PROJECT_VERSION = 5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
-				MARKETING_VERSION = 1.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MARKETING_VERSION = 5.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -495,14 +1395,12 @@
 		BE8623102D89CBB400A36236 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T6ZX9KN644;
+				CURRENT_PROJECT_VERSION = 5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
-				MARKETING_VERSION = 1.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MARKETING_VERSION = 5.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -515,12 +1413,10 @@
 		BE8623122D89CBB400A36236 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T6ZX9KN644;
+				CURRENT_PROJECT_VERSION = 5;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 5.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -533,12 +1429,10 @@
 		BE8623132D89CBB400A36236 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T6ZX9KN644;
+				CURRENT_PROJECT_VERSION = 5;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 5.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -548,9 +1442,87 @@
 			};
 			name = Release;
 		};
+		TWW000000062F5A000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TideWatchWidget/TideWatchWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TideWatchWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TideWatchWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 5.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.watchkitapp.TideWatchWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		TWW000000072F5A000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TideWatchWidget/TideWatchWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TideWatchWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TideWatchWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 5.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.watchkitapp.TideWatchWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3F6488B22F3FDA9200BA5DE7 /* Build configuration list for PBXNativeTarget "TideItWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F6488AF2F3FDA9200BA5DE7 /* Debug */,
+				3F6488B02F3FDA9200BA5DE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F8935782F46F917006F21C9 /* Build configuration list for PBXNativeTarget "Tide Watch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F8935762F46F917006F21C9 /* Debug */,
+				3F8935772F46F917006F21C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BE8622E22D89CBB100A36236 /* Build configuration list for PBXProject "Tide It" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -583,6 +1555,15 @@
 			buildConfigurations = (
 				BE8623122D89CBB400A36236 /* Debug */,
 				BE8623132D89CBB400A36236 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		TWW000000082F5A000000001 /* Build configuration list for PBXNativeTarget "TideWatchWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				TWW000000062F5A000000001 /* Debug */,
+				TWW000000072F5A000000001 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

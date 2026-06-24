@@ -1,0 +1,26 @@
+Tide It — marées, vent et surf, avec une obsession : la précision, l'honnêteté et ta batterie.
+
+Conçu pour les riders (kitesurf, wing, voile, surf) et tous ceux qui lisent la mer.
+
+MARÉES
+• Horaires, hauteurs et coefficients partout dans le monde, même hors-ligne.
+• Courbe élégante, lever/coucher du soleil et de la lune, phase lunaire.
+
+VENT (temps réel)
+• Le vent observé par la balise la plus proche — pas seulement une prévision.
+• Mode vent : vent et rafales superposés à la courbe de marée.
+
+SURF (nouveau)
+• Spots de surf du monde entier, houle dominante (hauteur, période, direction).
+• Fenêtres GO surf calées sur la marée. Données issues d'un modèle large (au large) — honnête, jamais survendu comme une lecture du spot.
+
+TES FENÊTRES GO
+• L'app calcule tes meilleurs créneaux par sport, en croisant vent, marée, houle et soleil.
+• Niveau du rider (débutant → expert) : l'app s'adapte à toi.
+• Calendrier 7 jours, la meilleure fenêtre du jour mise en avant.
+
+PARTOUT AVEC TOI
+• Widgets marée, vent et surf. Apple Watch. Live Activity & Dynamic Island.
+
+GRATUIT : crée tes activités, marées du monde entier hors-ligne, favoris, iCloud et Apple Watch.
+PREMIUM : notifications (sorties parfaites + alertes), calendrier GO 7 jours lisible, vent temps réel, prédictions J+30, mode vent & surf, Live Activity, export PDF/carte.

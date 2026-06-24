@@ -1,0 +1,26 @@
+# Candidats à tester pour compléter shom_ports.txt
+# Un ID par ligne (comme sur maree.shom.fr/harbor/ID). Lignes vides et # ignorés.
+# Exemples (décommenter ou ajouter les vôtres) :
+
+# ARRADON
+# LOCMARIAQUER
+# BRIGNOGAN
+# LARMOR-PLAGE
+# ARZAL
+# SENE
+# ILE-AUX-MOINES
+# PLOUGASTEL
+# PLOUHINEC
+# LEZARDRIEUX
+# LOGUIVY-DE-LA-MER
+# PLESTIN-LES-GREVES
+# PLOUESCAT
+# PONT-CROIX
+# NEVEZ
+# RIEC-SUR-BELON
+# ILE-TUDY
+# BEG-MEIL
+# PORT-LA-FORET
+# TREVOU-TREGUIGNEC
+# PONT-LABBE
+# TREFFIAGAT

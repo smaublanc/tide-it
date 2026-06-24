@@ -1,0 +1,1 @@
+kitesurf,wingfoil,wing,windsurf,vela,pesca,coefficiente,meteo,spot,nodi,swell,maree,onda,litorale
