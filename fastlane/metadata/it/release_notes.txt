@@ -1,23 +1,9 @@
-ARRIVA LA MODALITÀ SURF
-• Spot di surf di tutto il mondo (114 e continuano a crescere).
-• Curva dell'onda: altezza, periodo e direzione dell'onda dominante.
-• Finestre GO surf tarate sulla marea + widget surf dedicato.
-• Condizioni surf regolabili a mano (onda, periodo, vento, marea) + preset.
-• Notifiche quando il tuo spot si accende.
+Tide It ora parla 7 lingue: l'app è completamente tradotta in tedesco, spagnolo, italiano, neerlandese e portoghese.
 
-LIVELLO DEL RIDER
-• Sostituisce "Esigenza": scegli il tuo livello (principiante → esperto) e la modalità auto si adatta — incrocia tutti i dati per proporti la finestra migliore.
+Inoltre in questo aggiornamento:
+- Numeri e unità nel formato locale.
+- Vento in tempo reale più affidabile: non mostriamo più una misura con orario sconosciuto.
+- Sincronizzazione iCloud più solida per i tuoi spot e le impostazioni.
+- Varie correzioni e rifiniture.
 
-LA FINESTRA MIGLIORE DELLA GIORNATA
-• Il picco del giorno è ora incoronato sulla curva.
-
-VELA
-• Profilo di vento dedicato (range più ampio e più basso rispetto al kite).
-
-INOLTRE
-• Modalità chiara ridisegnata per una leggibilità vera.
-• Curva del periodo più parlante (dall'arancione al verde a seconda della qualità).
-• Anteprima sfocata del calendario GO per gli account gratuiti.
-• Correzioni e rifiniture.
-
-Buon vento e belle sessioni.
+Buon vento e buone onde!

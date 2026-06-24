@@ -1,23 +1,9 @@
-SURF MODE IS HERE
-• Surf spots worldwide (114 and counting).
-• Swell curve: height, period and direction of the dominant swell.
-• Tide-aware surf GO windows + a dedicated surf widget.
-• Hand-tune your surf conditions (swell, period, wind, tide) + presets.
-• Get notified when your spot turns on.
+Tide It now speaks 7 languages: the app is fully translated into German, Spanish, Italian, Dutch and Portuguese.
 
-RIDER LEVEL
-• Replaces "Strictness": pick your level (beginner → expert) and auto mode adapts — crossing all the data to surface your best window.
+Also in this update:
+- Numbers and units in your local format.
+- More reliable live wind: we no longer show a reading with an unknown time.
+- Sturdier iCloud sync for your spots and settings.
+- Various reliability fixes and polish.
 
-THE DAY'S BEST WINDOW
-• The day's peak is now crowned on the curve.
-
-SAILING
-• Dedicated wind profile (wider, lower range than kite).
-
-ALSO
-• Redesigned light mode for real readability.
-• Clearer period curve (orange to green by quality).
-• Blurred GO-calendar preview for free accounts.
-• Fixes and polish.
-
-Fair winds and good sessions.
+Fair winds and good waves!

@@ -1,23 +1,9 @@
-DER SURF-MODUS IST DA
-• Surf-Spots weltweit (114 und es werden mehr).
-• Dünungskurve: Höhe, Periode und Richtung der dominanten Dünung.
-• Surf-GO-Fenster im Takt der Gezeiten + ein eigenes Surf-Widget.
-• Surf-Bedingungen von Hand einstellbar (Dünung, Periode, Wind, Gezeiten) + Presets.
-• Benachrichtigung, sobald dein Spot anspringt.
+Tide It spricht jetzt 7 Sprachen: Die App ist nun vollständig auf Deutsch, Spanisch, Italienisch, Niederländisch und Portugiesisch übersetzt.
 
-RIDER-LEVEL
-• Ersetzt „Anspruch": wähl dein Level (Anfänger → Profi) und der Auto-Modus passt sich an — er verrechnet alle Daten und zeigt dir dein bestes Fenster.
+Außerdem in diesem Update:
+- Zahlen und Einheiten im lokalen Format.
+- Zuverlässigerer Echtzeit-Wind: Messwerte mit unbekannter Uhrzeit werden nicht mehr angezeigt.
+- Robustere iCloud-Synchronisierung für deine Spots und Einstellungen.
+- Diverse Verbesserungen und Feinschliff.
 
-DAS BESTE FENSTER DES TAGES
-• Das Tageshoch wird jetzt auf der Kurve gekrönt.
-
-SEGELN
-• Eigenes Windprofil (breiterer und niedrigerer Bereich als beim Kite).
-
-AUSSERDEM
-• Heller Modus neu gestaltet für echte Lesbarkeit.
-• Klarere Periodenkurve (von Orange zu Grün je nach Qualität).
-• Verschwommene Vorschau des GO-Kalenders für Gratis-Accounts.
-• Korrekturen und Feinschliff.
-
-Guten Wind und schöne Sessions.
+Guten Wind und gute Wellen!
