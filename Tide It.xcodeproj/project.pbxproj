@@ -71,6 +71,7 @@
 		6B00EB59CDC64DBD8653BB04 /* NotificationDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5152AF9CA0B429BA2840695 /* NotificationDispatcher.swift */; };
 		7407D482AA594F8CAD37E83C /* WindTideRibbon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949B53C4D36A498A856BF862 /* WindTideRibbon.swift */; };
 		7A8B9C0D1E2F3A4B5C6D7EFF /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7A8B9C0D1E2F3A4B5C6D7E8F /* Localizable.xcstrings */; };
+		1F0E1F0E1F0E1F0E1F0E0012 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1F0E1F0E1F0E1F0E1F0E0011 /* PrivacyInfo.xcprivacy */; };
 		1F0E1F0E1F0E1F0E1F0E0002 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1F0E1F0E1F0E1F0E1F0E0001 /* InfoPlist.xcstrings */; };
 		7DF7C4160B6D44D49D19BD38 /* TideRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657E3BCB06444443AFB2608B /* TideRepository.swift */; };
 		84EFBDA629BB440985F51908 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F5C1371A734BF3975A8D69 /* APIKeys.swift */; };
@@ -257,6 +258,7 @@
 		6F24A90B4B6843BB80B4342A /* TideAlertEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideAlertEvaluator.swift; sourceTree = "<group>"; };
 		78F5C1371A734BF3975A8D69 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		7A8B9C0D1E2F3A4B5C6D7E8F /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		1F0E1F0E1F0E1F0E1F0E0011 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1F0E1F0E1F0E1F0E1F0E0001 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		7BD4026E21CA479D9399F7F2 /* ObservedWindCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedWindCard.swift; sourceTree = "<group>"; };
 		7C6B5A4938271605F4E3D2C1 /* WindEstablishingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindEstablishingService.swift; sourceTree = "<group>"; };
@@ -596,6 +598,7 @@
 				TICO00020001000000000001 /* ticon_stations.json */,
 				BE8622EA2D89CBB100A36236 /* Tide_ItApp.swift */,
 				7A8B9C0D1E2F3A4B5C6D7E8F /* Localizable.xcstrings */,
+				1F0E1F0E1F0E1F0E1F0E0011 /* PrivacyInfo.xcprivacy */,
 				1F0E1F0E1F0E1F0E1F0E0001 /* InfoPlist.xcstrings */,
 				BE8622EE2D89CBB400A36236 /* Assets.xcassets */,
 				BE8622F02D89CBB400A36236 /* Preview Content */,
@@ -843,6 +846,7 @@
 				5C8F2A0100000000000000F8 /* surf_spots.json in Resources */,
 				TICO00020002000000000001 /* ticon_stations.json in Resources */,
 				7A8B9C0D1E2F3A4B5C6D7EFF /* Localizable.xcstrings in Resources */,
+				1F0E1F0E1F0E1F0E1F0E0012 /* PrivacyInfo.xcprivacy in Resources */,
 				1F0E1F0E1F0E1F0E1F0E0002 /* InfoPlist.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
