@@ -218,7 +218,7 @@ struct ObservedWindCard: View, Equatable {
                         .lineLimit(1)
                     Text("·")
                         .font(.scaled(size: 10))
-                    Text(String(format: "%.1f km", distanceKm))
+                    Text(String(format: "%.1f km", locale: Locale.current, distanceKm))
                         .font(.scaled(size: 10, weight: .medium))
                     Text("·")
                         .font(.scaled(size: 10))
@@ -315,7 +315,7 @@ struct ObservedWindCard: View, Equatable {
     private var accessibilityLabel: String {
         var s = "Vent observé \(displaySpeed) \(unitLabel), direction \(reading.directionCardinal), force \(beaufortScale) Beaufort"
         if let gust = displayGust { s += ", rafales \(gust)" }
-        s += ". Station \(station.name) à \(String(format: "%.1f", distanceKm)) km, \(reading.ageLabel)."
+        s += ". Station \(station.name) à \(String(format: "%.1f", locale: Locale.current, distanceKm)) km, \(reading.ageLabel)."
         return s
     }
 }

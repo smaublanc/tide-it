@@ -326,9 +326,16 @@ class TideService: ObservableObject {
         do {
             let encoder = JSONEncoder()
             let data = try encoder.encode(customPorts)
-            UserDefaults.standard.set(data, forKey: customPortsKey)
-            // Sync iCloud (comme les favoris) → les spots perso survivent à la réinstallation.
-            CloudSyncService.shared.saveCustomPorts(data)
+            UserDefaults.standard.set(data, forKey: customPortsKey)   // local : tout, sans limite
+            // iCloud KVS est plafonné (~1 Mo) : on borne ce qu'on pousse (nombre + taille) pour ne
+            // jamais saturer le store et casser TOUTE la sync. Le surplus reste disponible en local.
+            let bounded = Array(customPorts.suffix(300))
+            let cloudData = try encoder.encode(bounded)
+            if cloudData.count <= 700_000 {
+                CloudSyncService.shared.saveCustomPorts(cloudData)
+            } else {
+                appLogger.warning("[TideService] Ports perso trop volumineux pour iCloud (\(cloudData.count) o) — push ignoré, données conservées en local.")
+            }
         } catch {
             appLogger.error("Erreur lors de la sauvegarde des ports personnalisés: \(error)")
         }

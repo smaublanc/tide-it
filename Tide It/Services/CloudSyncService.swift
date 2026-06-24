@@ -30,7 +30,7 @@ final class CloudSyncService: ObservableObject {
     static let syncedSettingKeys = [
         "appearanceMode", "windMode", "curveMode", "tideParticlesEnabled",
         "measureSystem", "windSpeedUnit", "preferredActivities",
-        "riderMinWindKmh", "spotConfigs",
+        "riderMinWindKmh", "riderMaxWindKmh", "spotConfigs",
         "pwAlertsEnabled",
         "sportSetupsBySpot_v1",   // « Mes sports » PAR SPOT : conditions + suivi + toggle notif par port.
         "sportSetups",            // (hérité — sert encore de template par défaut à la migration)
@@ -173,6 +173,12 @@ final class CloudSyncService: ObservableObject {
     private func handleExternalChange(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
               let reason = userInfo[NSUbiquitousKeyValueStoreChangeReasonKey] as? Int else { return }
+
+        // Quota iCloud dépassé : sans cette observation, la sync mourait silencieusement.
+        if reason == NSUbiquitousKeyValueStoreQuotaViolationChange {
+            appLogger.error("[CloudSync] ⚠️ Quota iCloud KVS dépassé — synchronisation bloquée. On réduit ce qui est poussé (ports perso bornés).")
+            return
+        }
 
         // Ne traiter que les changements serveur ou initiaux
         guard reason == NSUbiquitousKeyValueStoreServerChange ||

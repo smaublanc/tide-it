@@ -260,9 +260,9 @@ enum SharedUnitFormatter {
 
     static func height(_ meters: Double, decimals: Int = 1) -> String {
         if isImperial {
-            return String(format: "%.\(decimals)f ft", meters * 3.28084)
+            return String(format: "%.\(decimals)f ft", locale: Locale.current, meters * 3.28084)
         }
-        return String(format: "%.\(decimals)f m", meters)
+        return String(format: "%.\(decimals)f m", locale: Locale.current, meters)
     }
 
     static func temp(_ celsius: Double) -> String {
@@ -288,7 +288,9 @@ enum SharedUnitFormatter {
     /// Direction cardinale FR (N, NE, E, SE, S, SO, O, NO) depuis un cap en degrés.
     static func windCardinal(_ deg: Double) -> String {
         let dirs = ["N", "NE", "E", "SE", "S", "SO", "O", "NO"]
-        let idx = Int((deg + 22.5).truncatingRemainder(dividingBy: 360) / 45)
+        // Normalise d'abord dans [0, 360) pour gérer les caps négatifs.
+        let norm = (deg.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
+        let idx = Int((norm + 22.5).truncatingRemainder(dividingBy: 360) / 45)
         return dirs[max(0, min(idx, 7))]
     }
 }

@@ -614,7 +614,7 @@ struct TodayView: View {
                             .foregroundStyle(.primary)
                         Image(systemName: "lock.fill").font(.system(size: 10)).foregroundStyle(.orange)
                     }
-                    Text("Balise « \(station.name) » à \(String(format: "%.1f", distanceKm)) km · Premium")
+                    Text("Balise « \(station.name) » à \(String(format: "%.1f", locale: Locale.current, distanceKm)) km · Premium")
                         .font(.scaled(size: DS.fontCaption))
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
@@ -1039,13 +1039,13 @@ struct PremiumTideGraphView: View {
         // Unité de l'utilisateur (m/ft) — VoiceOver annonçait toujours des « mètres ».
         let sys = themeManager.measureSystem
         let unitWord = sys == .imperial ? "pieds" : "mètres"
-        var summary = "Hauteur actuelle : \(String(format: "%.1f", UnitFormatter.heightValue(state.currentHeight, system: sys))) \(unitWord), \(trend)."
+        var summary = "Hauteur actuelle : \(String(format: "%.1f", locale: Locale.current, UnitFormatter.heightValue(state.currentHeight, system: sys))) \(unitWord), \(trend)."
         let nextTides = tideData.filter { $0.date > currentTime }.prefix(3)
         for tide in nextTides {
             let fmt = SharedFormatters.time.copy(timeZone: portTimeZone)
             let type = tide.isHighTide ? "pleine mer" : "basse mer"
             let time = fmt.string(from: tide.date)
-            var line = " Prochaine \(type) à \(time), \(String(format: "%.1f", UnitFormatter.heightValue(tide.height, system: sys))) \(unitWord)"
+            var line = " Prochaine \(type) à \(time), \(String(format: "%.1f", locale: Locale.current, UnitFormatter.heightValue(tide.height, system: sys))) \(unitWord)"
             if let coef = tide.coefficient {
                 line += ", coefficient \(coef)"
             }
@@ -1290,7 +1290,7 @@ struct WeatherBand7Days: View, Equatable {
         }
         if forecasts.contains(where: { $0.waveHeight != nil }) {
             rows.append(WRow(id: "wave", icon: "water.waves", tint: .teal, isWeather: false,
-                 text: { $0.waveHeight.map { String(format: "%.1f", UnitFormatter.heightValue($0, system: self.themeManager.measureSystem)) } ?? "·" }, color: { _ in .teal }))
+                 text: { $0.waveHeight.map { String(format: "%.1f", locale: Locale.current, UnitFormatter.heightValue($0, system: self.themeManager.measureSystem)) } ?? "·" }, color: { _ in .teal }))
         }
         return rows
     }
@@ -1489,7 +1489,7 @@ struct TidePointWithLabel: View {
         .accessibilityLabel("\(tide.isHighTide ? "Pleine mer" : "Basse mer") à \(formatTime(tide.date))")
         .accessibilityValue({
             let sys = MeasureSystem(rawValue: UserDefaults.standard.string(forKey: "measureSystem") ?? "") ?? .metric
-            return "\(String(format: "%.2f", UnitFormatter.heightValue(tide.height, system: sys))) \(sys == .imperial ? "pieds" : "mètres")"
+            return "\(String(format: "%.2f", locale: Locale.current, UnitFormatter.heightValue(tide.height, system: sys))) \(sys == .imperial ? "pieds" : "mètres")"
         }())
     }
 
@@ -2503,7 +2503,7 @@ struct OceanDashboardCard: View, Equatable {
                     // reste de la carte — sinon le plus gros chiffre de l'app restait en m
                     // pour les utilisateurs impériaux).
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        Text(String(format: "%.1f", UnitFormatter.heightValue(state.currentHeight, system: themeManager.measureSystem)))
+                        Text(String(format: "%.1f", locale: Locale.current, UnitFormatter.heightValue(state.currentHeight, system: themeManager.measureSystem)))
                             .font(.system(size: 64, weight: .bold, design: .rounded))
                             .foregroundStyle(.primary)
                         Text(themeManager.measureSystem.heightUnit)

@@ -161,7 +161,7 @@ struct PecheAPiedView: View {
                     icon: "arrow.down.to.line",
                     title: "Basse mer",
                     value: timeFmt.string(from: s.lowTideDate),
-                    subtitle: String(format: "%.2f m", s.lowTideHeight),
+                    subtitle: String(format: "%.2f m", locale: Locale.current, s.lowTideHeight),
                     color: .tideLow
                 )
                 if let start = s.windowStart, let end = s.windowEnd {
@@ -252,7 +252,7 @@ struct PecheAPiedView: View {
                     .foregroundStyle(.primary)
                 HStack(spacing: 4) {
                     Image(systemName: "arrow.down.to.line").font(.system(size: 9))
-                    Text("BM \(timeFmt.string(from: s.lowTideDate)) · \(String(format: "%.2f m", s.lowTideHeight))")
+                    Text("BM \(timeFmt.string(from: s.lowTideDate)) · \(String(format: "%.2f m", locale: Locale.current, s.lowTideHeight))")
                 }
                 .font(.scaled(size: DS.fontCaption, weight: .medium))
                 .foregroundStyle(.secondary)

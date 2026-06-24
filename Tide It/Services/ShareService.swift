@@ -68,7 +68,7 @@ class ShareService {
         let parts = todayTides.map { tide -> String in
             let type = tide.isHighTide ? "↑" : "↓"
             let time = timeFormatter.string(from: tide.date)
-            return "\(type)\(time) \(String(format: "%.1fm", tide.height))"
+            return "\(type)\(time) \(String(format: "%.1fm", locale: Locale.current, tide.height))"
         }
 
         return "🌊 \(portName): \(parts.joined(separator: " | "))"

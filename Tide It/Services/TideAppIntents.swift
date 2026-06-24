@@ -98,14 +98,14 @@ struct GetCurrentTideIntent: AppIntent {
             return .result(dialog: "Impossible de calculer l'état actuel de la marée à \(portName).")
         }
 
-        let height = String(format: "%.1f", state.currentHeight)
+        let height = String(format: "%.1f", locale: Locale.current, state.currentHeight)
         let trend = state.trend.description.lowercased()
         var response = "À \(portName), la marée est \(trend) à \(height) m."
 
         if let next = state.nextTide {
             let type = next.isHighTide ? "pleine mer" : "basse mer"
             let time = intentTime(next.date, tz: intentPortTimeZone(for: portId))
-            let nextHeight = String(format: "%.1f", next.height)
+            let nextHeight = String(format: "%.1f", locale: Locale.current, next.height)
             response += " Prochaine \(type) à \(time) (\(nextHeight) m)"
             if let coef = next.coefficient {
                 response += ", coef \(coef)"
@@ -163,7 +163,7 @@ struct GetNextTideIntent: AppIntent {
 
         let type = next.isHighTide ? "Pleine mer" : "Basse mer"
         let time = intentTime(next.date, tz: intentPortTimeZone(for: portId), weekday: true)
-        let height = String(format: "%.1f", next.height)
+        let height = String(format: "%.1f", locale: Locale.current, next.height)
         var msg = "\(type) à \(portName) : \(time), \(height) m."
         if let coef = next.coefficient {
             msg += " Coefficient \(coef)."

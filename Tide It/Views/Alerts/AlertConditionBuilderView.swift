@@ -215,7 +215,7 @@ struct AlertConditionBuilderView: View {
             HStack {
                 Text("Heures avant").font(.scaled(size: DS.fontSubheadline)).foregroundStyle(.gray)
                 Spacer()
-                Text(String(format: "%.1f h", value1))
+                Text(String(format: "%.1f h", locale: Locale.current, value1))
                     .font(.scaled(size: DS.fontTitle2, weight: .bold, design: .rounded)).foregroundStyle(.cyan)
             }
             Slider(value: $value1, in: 0...8, step: 0.5).tint(.cyan)
@@ -223,7 +223,7 @@ struct AlertConditionBuilderView: View {
             HStack {
                 Text("Heures après").font(.scaled(size: DS.fontSubheadline)).foregroundStyle(.gray)
                 Spacer()
-                Text(String(format: "%.1f h", value2))
+                Text(String(format: "%.1f h", locale: Locale.current, value2))
                     .font(.scaled(size: DS.fontTitle2, weight: .bold, design: .rounded)).foregroundStyle(.purple)
             }
             Slider(value: $value2, in: 0...8, step: 0.5).tint(.purple)
@@ -506,9 +506,9 @@ struct AlertConditionBuilderView: View {
         // value1/value2 sont désormais en display unit (slider opère en unité utilisateur)
         switch selectedType {
         case .tideHeight:
-            return String(format: "%.1f %@", v, themeManager.measureSystem.heightUnit)
+            return String(format: "%.1f %@", locale: Locale.current, v, themeManager.measureSystem.heightUnit)
         case .tideCoefficient: return "\(Int(v))"
-        case .timeBeforeTide, .timeAfterTide, .tideWindow: return String(format: "%.1f h", v)
+        case .timeBeforeTide, .timeAfterTide, .tideWindow: return String(format: "%.1f h", locale: Locale.current, v)
         case .windSpeed, .windEstablishing:
             return "\(Int(v.rounded())) \(themeManager.windUnit.label)"
         case .windDirection: return "\(Int(v))°"
@@ -534,7 +534,7 @@ struct AlertConditionBuilderView: View {
 
         case .tideWindow:
             let ref = tideType == true ? "la pleine mer" : (tideType == false ? "la basse mer" : "la marée")
-            return "Navigable de \(String(format: "%.1f", value1)) h avant à \(String(format: "%.1f", value2)) h après \(ref)"
+            return "Navigable de \(String(format: "%.1f", locale: Locale.current, value1)) h avant à \(String(format: "%.1f", locale: Locale.current, value2)) h après \(ref)"
 
         default:
             let typeStr = selectedType.rawValue.lowercased()

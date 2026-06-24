@@ -104,9 +104,12 @@ final class AviationWeatherService: ObservableObject {
             // wspd peut être Int (nœuds) ou null ; wdir peut être "VRB" (variable) → on ignore
             guard let wspdKt = entry.wspd?.doubleValue, wspdKt >= 0 else { return nil }
             guard let heading = entry.wdir?.degreesValue else { return nil }
+            // Sans heure d'observation réelle, on ne peut pas juger la fraîcheur :
+            // mieux vaut ignorer le relevé que le faire passer pour "maintenant".
+            guard let obsTime = entry.obsTime else { return nil }
 
             let reading = WindReading(
-                date: Date(timeIntervalSince1970: TimeInterval(entry.obsTime ?? Int(Date().timeIntervalSince1970))),
+                date: Date(timeIntervalSince1970: TimeInterval(obsTime)),
                 speedAvgKmh: wspdKt * 1.852,
                 gustKmh: entry.wgst?.doubleValue.map { $0 * 1.852 },
                 minKmh: nil,

@@ -335,7 +335,7 @@ final class WindEstablishingService {
            let f = forecasts.min(by: { abs($0.time.timeIntervalSince(now)) < abs($1.time.timeIntervalSince(now)) }),
            let h = f.swellHeight ?? f.waveHeight {
             let p = Int((f.swellPeriod ?? f.wavePeriod ?? 0).rounded())
-            detail = String(format: "%.1f m", h) + (p > 0 ? " · \(p) s" : "")
+            detail = String(format: "%.1f m", locale: Locale.current, h) + (p > 0 ? " · \(p) s" : "")
         }
         await NotificationDispatcher.shared.send(
             title: String(localized: "Fenêtre de GO — \(setup.sport.localizedName)"),

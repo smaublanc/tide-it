@@ -732,11 +732,11 @@ private struct ConditionRow: View {
         switch condition.type {
         case .tideHeight:
             let v = UnitFormatter.heightValue(stored, system: themeManager.measureSystem)
-            return String(format: "%.1f %@", v, themeManager.measureSystem.heightUnit)
+            return String(format: "%.1f %@", locale: Locale.current, v, themeManager.measureSystem.heightUnit)
         case .tideCoefficient:
             return "\(Int(stored.rounded()))"
         case .timeBeforeTide, .timeAfterTide, .tideWindow:
-            return String(format: "%.1f h", stored)
+            return String(format: "%.1f h", locale: Locale.current, stored)
         case .windSpeed, .windEstablishing:
             let displayInt = UnitFormatter.windSpeedInt(stored, unit: themeManager.windUnit)
             return "\(displayInt) \(themeManager.windUnit.label)"

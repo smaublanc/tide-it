@@ -491,7 +491,15 @@ class MarineWeatherService: ObservableObject {
         ]
         guard let url = components.url else { return nil }
         do {
-            let (data, _) = try await session.data(from: url)
+            let (data, response) = try await session.data(from: url)
+            if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
+                if http.statusCode == 429 {
+                    appLogger.warning("Open-Meteo: limite de débit (429) — réessai différé, cache conservé")
+                } else {
+                    appLogger.error("Open-Meteo: statut HTTP \(http.statusCode)")
+                }
+                return nil
+            }
             return try JSONDecoder().decode(WindEnsembleResponse.self, from: data)
         } catch {
             // L'annulation (changement de port rapide) n'est pas une erreur.
@@ -516,7 +524,15 @@ class MarineWeatherService: ObservableObject {
         ]
         guard let url = components.url else { return nil }
         do {
-            let (data, _) = try await session.data(from: url)
+            let (data, response) = try await session.data(from: url)
+            if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
+                if http.statusCode == 429 {
+                    appLogger.warning("Open-Meteo: limite de débit (429) — réessai différé, cache conservé")
+                } else {
+                    appLogger.error("Open-Meteo: statut HTTP \(http.statusCode)")
+                }
+                return nil
+            }
             return try JSONDecoder().decode(WeatherExtrasResponse.self, from: data)
         } catch {
             if (error as? URLError)?.code != .cancelled && !(error is CancellationError) {
@@ -588,7 +604,15 @@ class MarineWeatherService: ObservableObject {
         ]
         guard let url = components.url else { return nil }
         do {
-            let (data, _) = try await session.data(from: url)
+            let (data, response) = try await session.data(from: url)
+            if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
+                if http.statusCode == 429 {
+                    appLogger.warning("Open-Meteo: limite de débit (429) — réessai différé, cache conservé")
+                } else {
+                    appLogger.error("Open-Meteo: statut HTTP \(http.statusCode)")
+                }
+                return nil
+            }
             return try JSONDecoder().decode(MarineHourlyResponse.self, from: data)
         } catch {
             appLogger.error("Erreur prévisions marine: \(error.localizedDescription)")

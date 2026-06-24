@@ -296,7 +296,7 @@ struct SpringTideHistoryView: View {
                 }
                 .foregroundStyle(Color.tideHigh)
 
-                Text(String(format: "%.1f → %.1f", record.highTideHeight, record.lowTideHeight))
+                Text(String(format: "%.1f → %.1f", locale: Locale.current, record.highTideHeight, record.lowTideHeight))
                     .font(.scaled(size: DS.fontCaption2))
                     .foregroundStyle(.secondary)
             }

@@ -191,7 +191,7 @@ struct TideCardView: View {
         let unitWord = sys == .imperial ? "pieds" : "mètres"
         let lines: [String] = data.tideData.map { tide in
             let type = tide.isHighTide ? "pleine mer" : "basse mer"
-            return "\(type) à \(timeFmt.string(from: tide.date)), \(String(format: "%.1f", UnitFormatter.heightValue(tide.height, system: sys))) \(unitWord)"
+            return "\(type) à \(timeFmt.string(from: tide.date)), \(String(format: "%.1f", locale: Locale.current, UnitFormatter.heightValue(tide.height, system: sys))) \(unitWord)"
         }
         return lines.isEmpty ? "aucune donnée" : lines.joined(separator: ", ")
     }

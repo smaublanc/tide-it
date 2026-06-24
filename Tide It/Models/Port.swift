@@ -166,7 +166,7 @@ struct Port: Identifiable, Hashable, Codable {
         let distance = self.distance(to: location)
         
         if distance >= 1000 {
-            return String(format: "%.1f km", distance / 1000)
+            return String(format: "%.1f km", locale: Locale.current, distance / 1000)
         } else {
             return String(format: "%.0f m", distance)
         }

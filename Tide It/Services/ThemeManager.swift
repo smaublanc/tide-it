@@ -76,10 +76,10 @@ enum UnitFormatter {
     static func height(_ meters: Double, system: MeasureSystem, decimals: Int = 1) -> String {
         switch system {
         case .metric:
-            return String(format: "%.\(decimals)f m", meters)
+            return String(format: "%.\(decimals)f m", locale: Locale.current, meters)
         case .imperial:
             let ft = meters * 3.28084
-            return String(format: "%.\(decimals)f ft", ft)
+            return String(format: "%.\(decimals)f ft", locale: Locale.current, ft)
         }
     }
 
@@ -119,7 +119,7 @@ enum UnitFormatter {
         case .kmh:   return kmh
         case .knots: return kmh / 1.852
         case .ms:    return kmh / 3.6
-        case .mph:   return kmh / 1.60934
+        case .mph:   return kmh / 1.609344
         }
     }
 
@@ -129,7 +129,7 @@ enum UnitFormatter {
         case .kmh:   return displayValue
         case .knots: return displayValue * 1.852
         case .ms:    return displayValue * 3.6
-        case .mph:   return displayValue * 1.60934
+        case .mph:   return displayValue * 1.609344
         }
     }
 

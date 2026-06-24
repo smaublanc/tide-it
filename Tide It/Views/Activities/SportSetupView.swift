@@ -285,14 +285,14 @@ struct SportSetupView: View {
             return "vent de \(center)° ±\(spread)°"
         case .tideHeight:
             let v = UnitFormatter.heightValue(c.value1, system: themeManager.measureSystem)
-            return "\(c.operator1.operatorSymbol) \(String(format: "%.1f", v)) \(themeManager.measureSystem.heightUnit)"
+            return "\(c.operator1.operatorSymbol) \(String(format: "%.1f", locale: Locale.current, v)) \(themeManager.measureSystem.heightUnit)"
         case .timeBeforeTide, .timeAfterTide:
             let ref = c.tideType == nil ? "marée" : (c.tideType == true ? "pleine mer" : "basse mer")
             let dir = c.type == .timeBeforeTide ? "avant" : "après"
-            return "\(String(format: "%.1f", c.value1)) h \(dir) \(ref)"
+            return "\(String(format: "%.1f", locale: Locale.current, c.value1)) h \(dir) \(ref)"
         case .tideWindow:
             let ref = c.tideType == nil ? "marée" : (c.tideType == true ? "PM" : "BM")
-            return "\(String(format: "%.1f", c.value1)) h avant → \(String(format: "%.1f", c.value2 ?? c.value1)) h après \(ref)"
+            return "\(String(format: "%.1f", locale: Locale.current, c.value1)) h avant → \(String(format: "%.1f", locale: Locale.current, c.value2 ?? c.value1)) h après \(ref)"
         case .tideCoefficient:
             return "\(c.operator1.operatorSymbol) \(Int(c.value1))"
         case .sunriseSunset, .windEstablishing:
@@ -365,7 +365,7 @@ private struct SurfConditionsEditor: View {
             }
 
             sliderRow(title: "Houle mini", value: $sc.minSwellHeight, range: 0.3...3.0, step: 0.1,
-                      label: String(format: "%.1f m", sc.minSwellHeight))
+                      label: String(format: "%.1f m", locale: Locale.current, sc.minSwellHeight))
             maxHeightRow
             sliderRow(title: "Période mini", value: $sc.minSwellPeriod, range: 5...16, step: 1,
                       label: "\(Int(sc.minSwellPeriod)) s")
@@ -394,7 +394,7 @@ private struct SurfConditionsEditor: View {
             HStack {
                 Text("Houle maxi").font(.scaled(size: DS.fontCaption)).foregroundStyle(.gray)
                 Spacer()
-                Text(sc.maxSwellHeight.map { String(format: "%.1f m", $0) } ?? String(localized: "illimité"))
+                Text(sc.maxSwellHeight.map { String(format: "%.1f m", locale: Locale.current, $0) } ?? String(localized: "illimité"))
                     .font(.scaled(size: DS.fontFootnote, weight: .semibold)).foregroundStyle(.primary).monospacedDigit()
             }
             HStack(spacing: DS.spacingSM) {
