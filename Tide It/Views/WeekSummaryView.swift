@@ -2,10 +2,11 @@
 //  WeekSummaryView.swift
 //  Tide It
 //
-//  Petite fenêtre flottante « Résumé 7 jours » — verre liquide de forme PAYSAGE, posée
-//  par-dessus la TodayView (qui reste en PORTRAIT, visible au travers du liquid glass et
-//  autour). Aucune rotation. Rubans couleur pleine largeur (vent + houle si spot surf)
-//  façon app de vent. Données = cache MarineWeatherService partagé → présentation pure.
+//  « Résumé 7 jours » — bottom sheet COURTE (comme les autres fenêtres de l'app, qui sortent
+//  du bas), pas plein écran. Rubans couleur pleine largeur (vent + houle si spot surf) façon
+//  app de vent, segmentés par jour, pour lire la tendance de la semaine d'un coup d'œil.
+//  Données = cache MarineWeatherService partagé → présentation pure. Couleurs vent réutilisées
+//  de PremiumCurveCanvas. Le fond/grabber/glisse sont fournis par la sheet (.sheetBackground).
 //
 
 import SwiftUI
@@ -14,34 +15,7 @@ struct WeekSummaryView: View {
     let forecasts: [HourlyForecast]
     let portName: String
     let isSurfSpot: Bool
-    @Binding var isPresented: Bool
-
-    var body: some View {
-        ZStack {
-            // Voile TRÈS léger : on garde la TodayView bien visible derrière + au travers du verre.
-            Color.black.opacity(0.12)
-                .ignoresSafeArea()
-                .contentShape(Rectangle())
-                .onTapGesture { dismiss() }
-
-            WeekSummaryCard(forecasts: forecasts, portName: portName, isSurfSpot: isSurfSpot, onClose: dismiss)
-                .padding(.horizontal, 14)
-                .transition(.scale(scale: 0.94).combined(with: .opacity))
-        }
-    }
-
-    private func dismiss() {
-        withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) { isPresented = false }
-    }
-}
-
-// MARK: - Carte verre (forme paysage, compacte, rubans pleine largeur)
-
-private struct WeekSummaryCard: View {
-    let forecasts: [HourlyForecast]
-    let portName: String
-    let isSurfSpot: Bool
-    let onClose: () -> Void
+    @Environment(\.dismiss) private var dismiss
 
     private let days = 7
 
@@ -62,32 +36,30 @@ private struct WeekSummaryCard: View {
     }
 
     var body: some View {
-        Group {
-            if window.count >= 2 { content } else { unavailable }
-        }
-        .frame(maxWidth: 460)
-    }
-
-    private var content: some View {
         VStack(alignment: .leading, spacing: 14) {
             header
-            // Bloc Vent : jours COLLÉS au-dessus du ruban, légende dessous.
-            VStack(alignment: .leading, spacing: 4) {
-                dayHeader
-                band(title: "Vent", icon: "wind", tint: Color(red: 0.5, green: 0.84, blue: 0.9),
-                     colors: window.map { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) }, trailing: windRange)
+            if window.count >= 2 {
+                // Bloc Vent : jours COLLÉS au-dessus du ruban, légende dessous.
+                VStack(alignment: .leading, spacing: 4) {
+                    dayHeader
+                    band(title: "Vent", icon: "wind", tint: Color(red: 0.5, green: 0.84, blue: 0.9),
+                         colors: window.map { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) }, trailing: windRange)
+                }
+                if isSurfSpot {
+                    band(title: "Houle", icon: "water.waves", tint: Color(red: 0.37, green: 0.79, blue: 0.65),
+                         colors: window.map { swellColor($0.swellHeight ?? $0.waveHeight ?? 0) }, trailing: swellRange)
+                }
+                footnote
+            } else {
+                unavailable
             }
-            if isSurfSpot {
-                band(title: "Houle", icon: "water.waves", tint: Color(red: 0.37, green: 0.79, blue: 0.65),
-                     colors: window.map { swellColor($0.swellHeight ?? $0.waveHeight ?? 0) }, trailing: swellRange)
-            }
-            footnote
         }
-        .fixedSize(horizontal: false, vertical: true)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 14)
-        .liquidGlass(in: RoundedRectangle(cornerRadius: 26, style: .continuous))
-        .shadow(color: .black.opacity(0.3), radius: 22, y: 10)
+        .padding(.horizontal, 20)
+        .padding(.top, 18)
+        .padding(.bottom, 20)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .presentationDetents([.height(isSurfSpot ? 358 : 278)])
+        .presentationDragIndicator(.visible)
     }
 
     // MARK: pièces
@@ -95,17 +67,15 @@ private struct WeekSummaryCard: View {
     private var header: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 1) {
-                Text("Résumé 7 jours").font(.system(size: 15, weight: .semibold)).foregroundStyle(.white)
+                Text("Résumé 7 jours").font(.system(size: 17, weight: .semibold)).foregroundStyle(.primary)
                 Text(isSurfSpot ? "\(portName) · spot de surf" : portName)
-                    .font(.system(size: 11)).foregroundStyle(.white.opacity(0.55)).lineLimit(1)
+                    .font(.system(size: 12)).foregroundStyle(.secondary).lineLimit(1)
             }
             Spacer(minLength: 8)
-            Button(action: onClose) {
-                Image(systemName: "xmark")
-                    .font(.system(size: 11, weight: .bold))
-                    .foregroundStyle(.white.opacity(0.75))
-                    .frame(width: 26, height: 26)
-                    .background(Circle().fill(.white.opacity(0.12)))
+            Button { dismiss() } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 24))
+                    .foregroundStyle(Color.secondary, Color.gray.opacity(0.22))
             }
             .buttonStyle(.plain)
         }
@@ -117,50 +87,47 @@ private struct WeekSummaryCard: View {
             ForEach(dayLabels) { lbl in
                 VStack(spacing: 0) {
                     Text(lbl.wd).font(.system(size: 10, weight: .semibold))
-                        .foregroundStyle(lbl.weekend ? accent : .white.opacity(0.8))
+                        .foregroundStyle(lbl.weekend ? accent : Color.primary.opacity(0.85))
                     Text(lbl.day).font(.system(size: 10))
-                        .foregroundStyle(lbl.weekend ? accent.opacity(0.7) : .white.opacity(0.42))
+                        .foregroundStyle(lbl.weekend ? accent.opacity(0.7) : .secondary)
                 }
                 .frame(maxWidth: .infinity)
             }
         }
-        .padding(.bottom, 1)
     }
 
     private func band(title: String, icon: String, tint: Color, colors: [Color], trailing: String) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             ForecastRibbon(colors: colors, cursorFrac: cursorFrac, daySegments: days)
-                .frame(height: 40)
+                .frame(height: 42)
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(.white.opacity(0.08), lineWidth: 1))
-            // Titre + plage SOUS le ruban (les jours restent collés au-dessus).
             HStack(spacing: 6) {
                 Image(systemName: icon).font(.system(size: 13, weight: .medium)).foregroundStyle(tint)
-                Text(title).font(.system(size: 12, weight: .medium)).foregroundStyle(.white.opacity(0.9))
+                Text(title).font(.system(size: 13, weight: .medium)).foregroundStyle(.primary)
                 Spacer()
-                Text(trailing).font(.system(size: 11, weight: .medium)).foregroundStyle(.white.opacity(0.6)).monospacedDigit()
+                Text(trailing).font(.system(size: 12, weight: .medium)).foregroundStyle(.secondary).monospacedDigit()
             }
         }
     }
 
     private var footnote: some View {
         HStack(spacing: 6) {
-            Circle().stroke(.white, lineWidth: 1.8).frame(width: 8, height: 8)
-            Text("maintenant").font(.system(size: 10)).foregroundStyle(.white.opacity(0.45))
+            Circle().stroke(Color.primary.opacity(0.8), lineWidth: 1.8).frame(width: 8, height: 8)
+            Text("maintenant").font(.system(size: 11)).foregroundStyle(.secondary)
             Spacer()
-            Text("tendance · 7 j").font(.system(size: 10)).foregroundStyle(.white.opacity(0.35))
+            Text("tendance · 7 j").font(.system(size: 11)).foregroundStyle(.tertiary)
         }
     }
 
     private var unavailable: some View {
         VStack(spacing: 8) {
-            Image(systemName: "wind.snow").font(.system(size: 26)).foregroundStyle(.white.opacity(0.4))
-            Text("Prévisions indisponibles").font(.system(size: 14, weight: .medium)).foregroundStyle(.white.opacity(0.85))
-            Text("Ouvre le spot un instant, puis reviens.").font(.system(size: 11)).foregroundStyle(.white.opacity(0.5))
-            Button("Fermer", action: onClose).font(.system(size: 12, weight: .semibold)).foregroundStyle(.cyan).padding(.top, 2)
+            Image(systemName: "wind.snow").font(.system(size: 28)).foregroundStyle(.secondary)
+            Text("Prévisions indisponibles").font(.system(size: 15, weight: .medium)).foregroundStyle(.primary)
+            Text("Ouvre le spot un instant, puis reviens.").font(.system(size: 12)).foregroundStyle(.secondary)
         }
-        .padding(26)
-        .liquidGlass(in: RoundedRectangle(cornerRadius: 26, style: .continuous))
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 20)
     }
 
     // MARK: données dérivées
@@ -226,7 +193,7 @@ private struct ForecastRibbon: View {
                 }
             }
             let cx = CGFloat(cursorFrac) * size.width
-            ctx.fill(Path(CGRect(x: cx - 0.5, y: 0, width: 1, height: size.height)), with: .color(.white.opacity(0.18)))
+            ctx.fill(Path(CGRect(x: cx - 0.5, y: 0, width: 1, height: size.height)), with: .color(.white.opacity(0.2)))
             let r: CGFloat = 7
             let ring = CGRect(x: cx - r, y: size.height / 2 - r, width: 2 * r, height: 2 * r)
             ctx.fill(Path(ellipseIn: ring), with: .color(.black.opacity(0.42)))

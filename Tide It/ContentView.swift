@@ -55,19 +55,16 @@ struct ContentView: View {
         .sheet(isPresented: $showActivities) { activitiesSheet }
         .sheet(isPresented: $showSettings) { settingsSheet }
         .sheet(isPresented: $showPorts) { portsSheet }
-        // Fenêtre flottante « Résumé 7 jours » : overlay (PAS de plein écran) pour que le
-        // liquid glass floute la vraie TodayView derrière ; l'app reste en portrait.
-        .overlay {
-            if showWeekSummary {
-                let port = tideService.selectedPort
-                WeekSummaryView(
-                    forecasts: port.flatMap { MarineWeatherService.shared.cachedForecast(for: $0) } ?? [],
-                    portName: port?.name ?? "",
-                    isSurfSpot: SurfSpotCatalog.shared.spot(id: port?.id ?? "") != nil,
-                    isPresented: $showWeekSummary
-                )
-                .zIndex(20)
-            }
+        // « Résumé 7 jours » : bottom sheet COURTE (comme les autres fenêtres de l'app),
+        // hauteur calée sur le contenu via .presentationDetents (dans la vue).
+        .sheet(isPresented: $showWeekSummary) {
+            let port = tideService.selectedPort
+            WeekSummaryView(
+                forecasts: port.flatMap { MarineWeatherService.shared.cachedForecast(for: $0) } ?? [],
+                portName: port?.name ?? "",
+                isSurfSpot: SurfSpotCatalog.shared.spot(id: port?.id ?? "") != nil
+            )
+            .sheetBackground()
         }
         .onAppear {
             setupTideService()
@@ -229,7 +226,7 @@ struct ContentView: View {
             // Résumé 7 jours — tendance vent (+ houle si spot surf) en paysage, d'un coup d'œil.
             Button {
                 HapticManager.shared.impact(.light)
-                withAnimation(.spring(response: 0.34, dampingFraction: 0.85)) { showWeekSummary = true }
+                showWeekSummary = true
             } label: {
                 Label("Résumé 7 jours", systemImage: "calendar.day.timeline.left")
             }
