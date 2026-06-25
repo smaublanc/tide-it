@@ -87,6 +87,9 @@ private struct WeekSummaryCard: View {
             }
             footnote
         }
+        // Indispensable : sans ça les séparateurs Color.clear (gloutons en hauteur) étirent
+        // la carte sur tout l'écran. On force la carte à épouser la hauteur de son contenu.
+        .fixedSize(horizontal: false, vertical: true)
         .padding(14)
         .background(glassBackground)
         .overlay(
@@ -123,7 +126,7 @@ private struct WeekSummaryCard: View {
     private var dayHeader: some View {
         let accent = Color(red: 0.37, green: 0.79, blue: 0.65)
         return HStack(spacing: 8) {
-            Color.clear.frame(width: 52)
+            Color.clear.frame(width: 58, height: 1)
             HStack(spacing: 0) {
                 ForEach(dayLabels) { lbl in
                     VStack(spacing: 0) {
@@ -137,7 +140,7 @@ private struct WeekSummaryCard: View {
                     .frame(maxWidth: .infinity)
                 }
             }
-            Color.clear.frame(width: 46)
+            Color.clear.frame(width: 46, height: 1)
         }
     }
 
@@ -145,9 +148,9 @@ private struct WeekSummaryCard: View {
         HStack(spacing: 8) {
             HStack(spacing: 5) {
                 Image(systemName: icon).font(.system(size: 14, weight: .medium)).foregroundStyle(tint)
-                Text(title).font(.system(size: 12)).foregroundStyle(.white.opacity(0.88))
+                Text(title).font(.system(size: 12)).foregroundStyle(.white.opacity(0.88)).lineLimit(1).fixedSize()
             }
-            .frame(width: 52, alignment: .leading)
+            .frame(width: 58, alignment: .leading)
 
             ForecastRibbon(colors: colors, cursorFrac: cursorFrac)
                 .frame(height: 38)
