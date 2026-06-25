@@ -15,7 +15,6 @@ struct WeekSummaryView: View {
     let forecasts: [HourlyForecast]
     let portName: String
     let isSurfSpot: Bool
-    @Environment(\.dismiss) private var dismiss
 
     private let days = 7
 
@@ -65,20 +64,13 @@ struct WeekSummaryView: View {
     // MARK: pièces
 
     private var header: some View {
-        HStack(alignment: .top) {
-            VStack(alignment: .leading, spacing: 1) {
-                Text("Résumé 7 jours").font(.system(size: 17, weight: .semibold)).foregroundStyle(.primary)
-                Text(isSurfSpot ? "\(portName) · spot de surf" : portName)
-                    .font(.system(size: 12)).foregroundStyle(.secondary).lineLimit(1)
-            }
-            Spacer(minLength: 8)
-            Button { dismiss() } label: {
-                Image(systemName: "xmark.circle.fill")
-                    .font(.system(size: 24))
-                    .foregroundStyle(Color.secondary, Color.gray.opacity(0.22))
-            }
-            .buttonStyle(.plain)
+        VStack(alignment: .leading, spacing: 1) {
+            Text("Résumé 7 jours").font(.system(size: 17, weight: .semibold)).foregroundStyle(.primary)
+            // Suffixe « spot de surf » localisé via String(localized:) (le nom du port reste tel quel).
+            Text(isSurfSpot ? "\(portName) · \(String(localized: "spot de surf"))" : portName)
+                .font(.system(size: 12)).foregroundStyle(.secondary).lineLimit(1)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var dayHeader: some View {
@@ -104,7 +96,7 @@ struct WeekSummaryView: View {
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(.white.opacity(0.08), lineWidth: 1))
             HStack(spacing: 6) {
                 Image(systemName: icon).font(.system(size: 13, weight: .medium)).foregroundStyle(tint)
-                Text(title).font(.system(size: 13, weight: .medium)).foregroundStyle(.primary)
+                Text(LocalizedStringKey(title)).font(.system(size: 13, weight: .medium)).foregroundStyle(.primary)
                 Spacer()
                 Text(trailing).font(.system(size: 12, weight: .medium)).foregroundStyle(.secondary).monospacedDigit()
             }
@@ -135,11 +127,14 @@ struct WeekSummaryView: View {
     private var dayLabels: [DayCol] {
         let cal = Calendar.current
         let start = cal.startOfDay(for: Date())
-        let wd = ["", "DI", "LU", "MA", "ME", "JE", "VE", "SA"]
+        // Jour court LOCALISÉ (≈ 2 lettres) : JE/VE en fr, Mo/Di en de, Th/Fr en en…
+        let fmt = DateFormatter()
+        fmt.locale = .current
+        fmt.setLocalizedDateFormatFromTemplate("EEEEEE")
         return (0..<days).compactMap { off in
             guard let d = cal.date(byAdding: .day, value: off, to: start) else { return nil }
-            let w = cal.component(.weekday, from: d)
-            return DayCol(id: off, wd: wd[w], day: "\(cal.component(.day, from: d))", weekend: cal.isDateInWeekend(d))
+            let wd = fmt.string(from: d).uppercased().replacingOccurrences(of: ".", with: "")
+            return DayCol(id: off, wd: wd, day: "\(cal.component(.day, from: d))", weekend: cal.isDateInWeekend(d))
         }
     }
 
