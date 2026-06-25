@@ -4,9 +4,8 @@
 //
 //  Petite fenêtre flottante « Résumé 7 jours » — verre liquide de forme PAYSAGE, posée
 //  par-dessus la TodayView (qui reste en PORTRAIT, visible au travers du liquid glass et
-//  autour). Aucune rotation de l'appareil. Rubans couleur (vent + houle) façon app de vent
-//  pour lire la tendance de la semaine d'un coup d'œil. Données = cache MarineWeatherService
-//  partagé → couche de présentation pure. Couleurs vent réutilisées de PremiumCurveCanvas.
+//  autour). Aucune rotation. Rubans couleur pleine largeur (vent + houle si spot surf)
+//  façon app de vent. Données = cache MarineWeatherService partagé → présentation pure.
 //
 
 import SwiftUI
@@ -14,18 +13,19 @@ import SwiftUI
 struct WeekSummaryView: View {
     let forecasts: [HourlyForecast]
     let portName: String
+    let isSurfSpot: Bool
     @Binding var isPresented: Bool
 
     var body: some View {
         ZStack {
-            // Voile léger : la TodayView reste VISIBLE derrière (on ne fait que l'assombrir un peu).
-            Color.black.opacity(0.22)
+            // Voile TRÈS léger : on garde la TodayView bien visible derrière + au travers du verre.
+            Color.black.opacity(0.12)
                 .ignoresSafeArea()
                 .contentShape(Rectangle())
                 .onTapGesture { dismiss() }
 
-            WeekSummaryCard(forecasts: forecasts, portName: portName, onClose: dismiss)
-                .padding(.horizontal, 16)
+            WeekSummaryCard(forecasts: forecasts, portName: portName, isSurfSpot: isSurfSpot, onClose: dismiss)
+                .padding(.horizontal, 14)
                 .transition(.scale(scale: 0.94).combined(with: .opacity))
         }
     }
@@ -35,11 +35,12 @@ struct WeekSummaryView: View {
     }
 }
 
-// MARK: - Carte verre (forme paysage, compacte)
+// MARK: - Carte verre (forme paysage, compacte, rubans pleine largeur)
 
 private struct WeekSummaryCard: View {
     let forecasts: [HourlyForecast]
     let portName: String
+    let isSurfSpot: Bool
     let onClose: () -> Void
 
     private let days = 7
@@ -50,8 +51,6 @@ private struct WeekSummaryCard: View {
         guard let end = cal.date(byAdding: .day, value: days, to: start) else { return [] }
         return forecasts.filter { $0.time >= start && $0.time < end }.sorted { $0.time < $1.time }
     }
-
-    private var hasSwell: Bool { window.contains { ($0.swellHeight ?? $0.waveHeight) != nil } }
 
     private var cursorFrac: Double {
         let cal = Calendar.current
@@ -66,58 +65,49 @@ private struct WeekSummaryCard: View {
         Group {
             if window.count >= 2 { content } else { unavailable }
         }
-        .frame(maxWidth: 380)
+        .frame(maxWidth: 460)
+        .environment(\.colorScheme, .dark)
     }
 
     private var content: some View {
-        VStack(spacing: 10) {
+        VStack(alignment: .leading, spacing: 12) {
             header
             dayHeader
-            ribbonRow(
-                title: "Vent", icon: "wind", tint: Color(red: 0.5, green: 0.84, blue: 0.9),
-                colors: window.map { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) },
-                trailing: windRange
-            )
-            if hasSwell {
-                ribbonRow(
-                    title: "Houle", icon: "water.waves", tint: Color(red: 0.37, green: 0.79, blue: 0.65),
-                    colors: window.map { swellColor($0.swellHeight ?? $0.waveHeight ?? 0) },
-                    trailing: swellRange
-                )
+            band(title: "Vent", icon: "wind", tint: Color(red: 0.5, green: 0.84, blue: 0.9),
+                 colors: window.map { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) }, trailing: windRange)
+            if isSurfSpot {
+                band(title: "Houle", icon: "water.waves", tint: Color(red: 0.37, green: 0.79, blue: 0.65),
+                     colors: window.map { swellColor($0.swellHeight ?? $0.waveHeight ?? 0) }, trailing: swellRange)
             }
             footnote
         }
-        // Indispensable : sans ça les séparateurs Color.clear (gloutons en hauteur) étirent
-        // la carte sur tout l'écran. On force la carte à épouser la hauteur de son contenu.
         .fixedSize(horizontal: false, vertical: true)
-        .padding(14)
-        .background(glassBackground)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 14)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 26, style: .continuous))
         .overlay(
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .stroke(Color.white.opacity(0.18), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 26, style: .continuous)
+                .stroke(.white.opacity(0.2), lineWidth: 1)
         )
-        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-        .shadow(color: .black.opacity(0.4), radius: 26, y: 12)
+        .shadow(color: .black.opacity(0.38), radius: 26, y: 12)
     }
+
+    // MARK: pièces
 
     private var header: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 1) {
-                Text("Résumé 7 jours")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundStyle(.white)
-                Text(hasSwell ? "\(portName) · spot de surf" : portName)
-                    .font(.system(size: 11))
-                    .foregroundStyle(.white.opacity(0.5))
-                    .lineLimit(1)
+                Text("Résumé 7 jours").font(.system(size: 15, weight: .semibold)).foregroundStyle(.white)
+                Text(isSurfSpot ? "\(portName) · spot de surf" : portName)
+                    .font(.system(size: 11)).foregroundStyle(.white.opacity(0.55)).lineLimit(1)
             }
             Spacer(minLength: 8)
             Button(action: onClose) {
                 Image(systemName: "xmark")
                     .font(.system(size: 11, weight: .bold))
-                    .foregroundStyle(.white.opacity(0.7))
+                    .foregroundStyle(.white.opacity(0.75))
                     .frame(width: 26, height: 26)
-                    .background(Circle().fill(Color.white.opacity(0.1)))
+                    .background(Circle().fill(.white.opacity(0.12)))
             }
             .buttonStyle(.plain)
         }
@@ -125,54 +115,42 @@ private struct WeekSummaryCard: View {
 
     private var dayHeader: some View {
         let accent = Color(red: 0.37, green: 0.79, blue: 0.65)
-        return HStack(spacing: 8) {
-            Color.clear.frame(width: 58, height: 1)
-            HStack(spacing: 0) {
-                ForEach(dayLabels) { lbl in
-                    VStack(spacing: 0) {
-                        Text(lbl.wd)
-                            .font(.system(size: 10, weight: .semibold))
-                            .foregroundStyle(lbl.weekend ? accent : .white.opacity(0.8))
-                        Text(lbl.day)
-                            .font(.system(size: 10))
-                            .foregroundStyle(lbl.weekend ? accent.opacity(0.7) : .white.opacity(0.42))
-                    }
-                    .frame(maxWidth: .infinity)
+        return HStack(spacing: 0) {
+            ForEach(dayLabels) { lbl in
+                VStack(spacing: 0) {
+                    Text(lbl.wd).font(.system(size: 10, weight: .semibold))
+                        .foregroundStyle(lbl.weekend ? accent : .white.opacity(0.8))
+                    Text(lbl.day).font(.system(size: 10))
+                        .foregroundStyle(lbl.weekend ? accent.opacity(0.7) : .white.opacity(0.42))
                 }
+                .frame(maxWidth: .infinity)
             }
-            Color.clear.frame(width: 46, height: 1)
         }
+        .padding(.bottom, 1)
     }
 
-    private func ribbonRow(title: String, icon: String, tint: Color, colors: [Color], trailing: (String, String)) -> some View {
-        HStack(spacing: 8) {
-            HStack(spacing: 5) {
-                Image(systemName: icon).font(.system(size: 14, weight: .medium)).foregroundStyle(tint)
-                Text(title).font(.system(size: 12)).foregroundStyle(.white.opacity(0.88)).lineLimit(1).fixedSize()
+    private func band(title: String, icon: String, tint: Color, colors: [Color], trailing: String) -> some View {
+        VStack(alignment: .leading, spacing: 5) {
+            HStack(spacing: 6) {
+                Image(systemName: icon).font(.system(size: 13, weight: .medium)).foregroundStyle(tint)
+                Text(title).font(.system(size: 12, weight: .medium)).foregroundStyle(.white.opacity(0.9))
+                Spacer()
+                Text(trailing).font(.system(size: 11, weight: .medium)).foregroundStyle(.white.opacity(0.6)).monospacedDigit()
             }
-            .frame(width: 58, alignment: .leading)
-
             ForecastRibbon(colors: colors, cursorFrac: cursorFrac)
-                .frame(height: 38)
-                .clipShape(RoundedRectangle(cornerRadius: 9, style: .continuous))
-                .overlay(RoundedRectangle(cornerRadius: 9).stroke(Color.white.opacity(0.08), lineWidth: 1))
-
-            VStack(alignment: .trailing, spacing: 0) {
-                Text(trailing.0).font(.system(size: 11, weight: .medium)).foregroundStyle(.white.opacity(0.72))
-                Text(trailing.1).font(.system(size: 9)).foregroundStyle(.white.opacity(0.42))
-            }
-            .frame(width: 46, alignment: .trailing)
+                .frame(height: 40)
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke(.white.opacity(0.08), lineWidth: 1))
         }
     }
 
     private var footnote: some View {
         HStack(spacing: 6) {
-            Circle().stroke(Color.white, lineWidth: 1.8).frame(width: 8, height: 8)
-            Text("maintenant").font(.system(size: 10)).foregroundStyle(.white.opacity(0.42))
+            Circle().stroke(.white, lineWidth: 1.8).frame(width: 8, height: 8)
+            Text("maintenant").font(.system(size: 10)).foregroundStyle(.white.opacity(0.45))
             Spacer()
-            Text("tendance · 7 j").font(.system(size: 10)).foregroundStyle(.white.opacity(0.34))
+            Text("tendance · 7 j").font(.system(size: 10)).foregroundStyle(.white.opacity(0.35))
         }
-        .padding(.horizontal, 2)
     }
 
     private var unavailable: some View {
@@ -182,16 +160,9 @@ private struct WeekSummaryCard: View {
             Text("Ouvre le spot un instant, puis reviens.").font(.system(size: 11)).foregroundStyle(.white.opacity(0.5))
             Button("Fermer", action: onClose).font(.system(size: 12, weight: .semibold)).foregroundStyle(.cyan).padding(.top, 2)
         }
-        .padding(28)
-        .background(glassBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-    }
-
-    private var glassBackground: some View {
-        RoundedRectangle(cornerRadius: 24, style: .continuous)
-            .fill(.ultraThinMaterial)
-            .overlay(RoundedRectangle(cornerRadius: 24).fill(Color.white.opacity(0.03)))
-            .environment(\.colorScheme, .dark)
+        .padding(26)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 26, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 26).stroke(.white.opacity(0.2), lineWidth: 1))
     }
 
     // MARK: données dérivées
@@ -207,21 +178,21 @@ private struct WeekSummaryCard: View {
         }
     }
 
-    private var windRange: (String, String) {
+    private var windRange: String {
         let unit = ThemeManager.shared.windUnit
         let vals = window.map { $0.windSpeedKmh }
         let lo = UnitFormatter.windSpeedInt(vals.min() ?? 0, unit: unit)
         let hi = UnitFormatter.windSpeedInt(vals.max() ?? 0, unit: unit)
-        return ("\(lo)–\(hi)", unit.label)
+        return "\(lo)–\(hi) \(unit.label)"
     }
 
-    private var swellRange: (String, String) {
+    private var swellRange: String {
         let sys = ThemeManager.shared.measureSystem
         let vals = window.compactMap { $0.swellHeight ?? $0.waveHeight }
         let unit = sys == .imperial ? "ft" : "m"
         let lo = UnitFormatter.height(vals.min() ?? 0, system: sys, decimals: 1).replacingOccurrences(of: " \(unit)", with: "")
         let hi = UnitFormatter.height(vals.max() ?? 0, system: sys, decimals: 1).replacingOccurrences(of: " \(unit)", with: "")
-        return ("\(lo)–\(hi)", unit)
+        return "\(lo)–\(hi) \(unit)"
     }
 }
 

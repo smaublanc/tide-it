@@ -63,6 +63,7 @@ struct ContentView: View {
                 WeekSummaryView(
                     forecasts: port.flatMap { MarineWeatherService.shared.cachedForecast(for: $0) } ?? [],
                     portName: port?.name ?? "",
+                    isSurfSpot: SurfSpotCatalog.shared.spot(id: port?.id ?? "") != nil,
                     isPresented: $showWeekSummary
                 )
                 .zIndex(20)
