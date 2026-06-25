@@ -460,9 +460,10 @@ class TideService: ObservableObject {
         SportSetupStore.shared.removePort(portId)
         // 3. Machines à états background (GO + vent s'établit) + snapshot coords.
         WindEstablishingService.shared.purge(portId: portId, alertIds: removedAlertIds)
-        // 4. Config spot (orientation…) + cache marée.
+        // 4. Config spot (orientation…) + cache marée + buffer de biais (jauge de confiance).
         SpotConfigStore.shared.remove(for: portId)
         TideCache.shared.invalidate(portId: portId)
+        ForecastBiasService.shared.purge(portId: portId)
         // 5. Données widget par-port + registre des ports disponibles.
         WidgetDataWriter.removePort(portId: portId)
         // 6. Notifs marée/forecast PROGRAMMÉES de ces alertes (annulables par id) + cooldowns forecast.

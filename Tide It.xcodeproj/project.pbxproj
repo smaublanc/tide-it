@@ -22,6 +22,7 @@
 		3F4F6A142F3A754B008882A5 /* TideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A0F2F3A754B008882A5 /* TideService.swift */; };
 		3F4F6A152F3A754B008882A5 /* PDFExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A0C2F3A754B008882A5 /* PDFExportService.swift */; };
 		3F4F6A162F3A754B008882A5 /* TideCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A0D2F3A754B008882A5 /* TideCache.swift */; };
+		3FB1A50000000000000C0002 /* ForecastBiasService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1A50000000000000C0001 /* ForecastBiasService.swift */; };
 		3F4F6A172F3A754B008882A5 /* TideCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A0E2F3A754B008882A5 /* TideCalculator.swift */; };
 		3F4F6A182F3A754B008882A5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A0A2F3A754B008882A5 /* LocationManager.swift */; };
 		3F4F6A192F3A754B008882A5 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F6A092F3A754B008882A5 /* HapticManager.swift */; };
@@ -208,6 +209,7 @@
 		3F4F6A0B2F3A754B008882A5 /* MarineWeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarineWeatherService.swift; sourceTree = "<group>"; };
 		3F4F6A0C2F3A754B008882A5 /* PDFExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExportService.swift; sourceTree = "<group>"; };
 		3F4F6A0D2F3A754B008882A5 /* TideCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideCache.swift; sourceTree = "<group>"; };
+		3FB1A50000000000000C0001 /* ForecastBiasService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastBiasService.swift; sourceTree = "<group>"; };
 		3F4F6A0E2F3A754B008882A5 /* TideCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideCalculator.swift; sourceTree = "<group>"; };
 		3F4F6A0F2F3A754B008882A5 /* TideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideService.swift; sourceTree = "<group>"; };
 		3F4F6A102F3A754B008882A5 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 				AFAC562F7E344DC89EE7D897 /* TideCardExportService.swift */,
 				3F4F6A1F2F3A7600008882A5 /* CalendarExportService.swift */,
 				3F4F6A0D2F3A754B008882A5 /* TideCache.swift */,
+				3FB1A50000000000000C0001 /* ForecastBiasService.swift */,
 				2E5B5CCC5CA59D49E4284610 /* LiveActivityManager.swift */,
 				0979C3007FC8C05E764F4E7A /* NotificationScheduler.swift */,
 				A1B2C3D4E5F6A7B8C9D0E1F2 /* TideAppIntents.swift */,
@@ -952,6 +955,7 @@
 				3FWC00012F478A0000DD5CED /* WatchSessionManager.swift in Sources */,
 				3F4F6A152F3A754B008882A5 /* PDFExportService.swift in Sources */,
 				3F4F6A162F3A754B008882A5 /* TideCache.swift in Sources */,
+				3FB1A50000000000000C0002 /* ForecastBiasService.swift in Sources */,
 				CAFE255381DD63986BC5F938 /* LiveActivityManager.swift in Sources */,
 				0841EFFE8DCB9A6CD2C3D597 /* NotificationScheduler.swift in Sources */,
 				F2E1D0C9B8A7F6E5D4C3B2A1 /* TideAppIntents.swift in Sources */,

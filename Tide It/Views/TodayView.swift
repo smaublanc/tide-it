@@ -271,6 +271,11 @@ struct TodayView: View {
                                 .padding(.horizontal, DS.pagePadding)
                                 .staggeredAppearance(index: 1, appeared: dashboardAppeared)
                         }
+                        // Jauge de confiance (biais modèle vs réel) — GRATUITE : teaser d'honnêteté
+                        // qui incite au premium (voir le vent réel + corriger les fenêtres GO).
+                        ForecastTrustBadge(portId: tideService.selectedPort?.id ?? "", unit: themeManager.windUnit)
+                            .padding(.horizontal, DS.pagePadding)
+                            .staggeredAppearance(index: 2, appeared: dashboardAppeared)
                     }
 
                     // Météo 7 jours — un seul bandeau scrollable, dense et color-codé
@@ -412,6 +417,11 @@ struct TodayView: View {
                     reading: observedWind?.reading,
                     portId: tideService.selectedPort?.id,
                     portName: tideService.selectedPort?.name)
+            }
+            // Jauge de confiance : échantillon modèle-vs-réel pour ce spot (biais local appris).
+            if let obs = observedWind, let model = predictedWindKmh, let pid = tideService.selectedPort?.id {
+                ForecastBiasService.shared.record(portId: pid, modelKmh: model,
+                    observedKmh: obs.reading.speedAvgKmh, distanceKm: obs.distanceKm, at: obs.reading.date)
             }
         }
         // Activer/désactiver un sport — ou éditer ses conditions / sa sensibilité — doit recalculer

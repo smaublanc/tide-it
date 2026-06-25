@@ -396,3 +396,51 @@ private struct LivePulseDot: View {
         .accessibilityHidden(true)
     }
 }
+
+// MARK: - Jauge de confiance (biais modèle vs réel)
+
+/// Verdict d'HONNÊTETÉ sur la prévision pour ce spot : le modèle tape-t-il juste ICI, ces
+/// derniers relevés ? Appris des écarts balise/modèle accumulés (ForecastBiasService).
+/// GRATUIT (teaser premium → voir le réel + corriger les fenêtres GO). Réactif au service.
+struct ForecastTrustBadge: View {
+    let portId: String
+    let unit: WindSpeedUnit
+    @ObservedObject private var bias = ForecastBiasService.shared
+
+    var body: some View {
+        if let r = bias.readout(for: portId), r.isReliable {
+            let v = UnitFormatter.windSpeedInt(abs(r.meanBiasKmh), unit: unit)
+            if r.meanBiasKmh > 2.5 {
+                pill(icon: "arrow.down.right.circle.fill", color: .orange,
+                     title: "Modèle optimiste",
+                     detail: "+\(v) \(unit.label) " + String(localized: "vs réel"))
+            } else if r.meanBiasKmh < -2.5 {
+                pill(icon: "arrow.up.right.circle.fill", color: .cyan,
+                     title: "Modèle prudent",
+                     detail: "−\(v) \(unit.label) " + String(localized: "vs réel"))
+            } else {
+                pill(icon: "checkmark.seal.fill", color: .green,
+                     title: "Prévision fiable ici", detail: nil)
+            }
+        } else if bias.sampleCount(for: portId) >= 1 {
+            pill(icon: "gauge.medium", color: .gray,
+                 title: "Calibration en cours", detail: "(\(bias.sampleCount(for: portId)))")
+        }
+    }
+
+    private func pill(icon: String, color: Color, title: LocalizedStringKey, detail: String?) -> some View {
+        HStack(spacing: 7) {
+            Image(systemName: icon).font(.system(size: 13, weight: .semibold)).foregroundStyle(color)
+            Text(title).font(.system(size: 13, weight: .medium)).foregroundStyle(.primary)
+            if let detail {
+                Text(detail).font(.system(size: 12, weight: .medium)).foregroundStyle(.secondary).monospacedDigit()
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(color.opacity(0.12), in: Capsule())
+        .overlay(Capsule().stroke(color.opacity(0.25), lineWidth: 1))
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .combine)
+    }
+}
