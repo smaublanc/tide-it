@@ -69,11 +69,14 @@ private struct WeekSummaryCard: View {
     }
 
     private var content: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 14) {
             header
-            dayHeader
-            band(title: "Vent", icon: "wind", tint: Color(red: 0.5, green: 0.84, blue: 0.9),
-                 colors: window.map { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) }, trailing: windRange)
+            // Bloc Vent : jours COLLÉS au-dessus du ruban, légende dessous.
+            VStack(alignment: .leading, spacing: 4) {
+                dayHeader
+                band(title: "Vent", icon: "wind", tint: Color(red: 0.5, green: 0.84, blue: 0.9),
+                     colors: window.map { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) }, trailing: windRange)
+            }
             if isSurfSpot {
                 band(title: "Houle", icon: "water.waves", tint: Color(red: 0.37, green: 0.79, blue: 0.65),
                      colors: window.map { swellColor($0.swellHeight ?? $0.waveHeight ?? 0) }, trailing: swellRange)
@@ -125,17 +128,18 @@ private struct WeekSummaryCard: View {
     }
 
     private func band(title: String, icon: String, tint: Color, colors: [Color], trailing: String) -> some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 4) {
+            ForecastRibbon(colors: colors, cursorFrac: cursorFrac, daySegments: days)
+                .frame(height: 40)
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke(.white.opacity(0.08), lineWidth: 1))
+            // Titre + plage SOUS le ruban (les jours restent collés au-dessus).
             HStack(spacing: 6) {
                 Image(systemName: icon).font(.system(size: 13, weight: .medium)).foregroundStyle(tint)
                 Text(title).font(.system(size: 12, weight: .medium)).foregroundStyle(.white.opacity(0.9))
                 Spacer()
                 Text(trailing).font(.system(size: 11, weight: .medium)).foregroundStyle(.white.opacity(0.6)).monospacedDigit()
             }
-            ForecastRibbon(colors: colors, cursorFrac: cursorFrac)
-                .frame(height: 40)
-                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(.white.opacity(0.08), lineWidth: 1))
         }
     }
 
@@ -202,6 +206,7 @@ private struct DayCol: Identifiable {
 private struct ForecastRibbon: View {
     let colors: [Color]
     let cursorFrac: Double
+    var daySegments: Int = 7
 
     var body: some View {
         Canvas { ctx, size in
@@ -211,6 +216,14 @@ private struct ForecastRibbon: View {
             for i in 0..<n {
                 ctx.fill(Path(CGRect(x: CGFloat(i) * cw, y: 0, width: cw + 0.8, height: size.height)),
                          with: .color(colors[i]))
+            }
+            // Traits fins de séparation par jour (6 frontières pour 7 jours).
+            if daySegments > 1 {
+                for k in 1..<daySegments {
+                    let x = CGFloat(k) / CGFloat(daySegments) * size.width
+                    ctx.fill(Path(CGRect(x: x - 0.5, y: 0, width: 1, height: size.height)),
+                             with: .color(.white.opacity(0.28)))
+                }
             }
             let cx = CGFloat(cursorFrac) * size.width
             ctx.fill(Path(CGRect(x: cx - 0.5, y: 0, width: 1, height: size.height)), with: .color(.white.opacity(0.18)))
