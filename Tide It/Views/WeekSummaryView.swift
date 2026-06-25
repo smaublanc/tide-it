@@ -66,7 +66,6 @@ private struct WeekSummaryCard: View {
             if window.count >= 2 { content } else { unavailable }
         }
         .frame(maxWidth: 460)
-        .environment(\.colorScheme, .dark)
     }
 
     private var content: some View {
