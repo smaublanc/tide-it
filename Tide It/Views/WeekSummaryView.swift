@@ -83,7 +83,7 @@ private struct WeekSummaryCard: View {
         .fixedSize(horizontal: false, vertical: true)
         .padding(.horizontal, 16)
         .padding(.vertical, 14)
-        .cardGlass(cornerRadius: 26)
+        .liquidGlass(in: RoundedRectangle(cornerRadius: 26, style: .continuous))
         .shadow(color: .black.opacity(0.3), radius: 22, y: 10)
     }
 
@@ -156,7 +156,7 @@ private struct WeekSummaryCard: View {
             Button("Fermer", action: onClose).font(.system(size: 12, weight: .semibold)).foregroundStyle(.cyan).padding(.top, 2)
         }
         .padding(26)
-        .cardGlass(cornerRadius: 26)
+        .liquidGlass(in: RoundedRectangle(cornerRadius: 26, style: .continuous))
     }
 
     // MARK: données dérivées
@@ -243,21 +243,4 @@ private func swellColor(_ meters: Double) -> Color {
     }
     let c = stops[stops.count - 1].1
     return Color(red: c.0, green: c.1, blue: c.2)
-}
-
-// MARK: - Verre : Liquid Glass natif (iOS 26) avec repli matériau (iOS < 26)
-
-private extension View {
-    @ViewBuilder
-    func cardGlass(cornerRadius: CGFloat) -> some View {
-        let shape = RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-        if #available(iOS 26.0, *) {
-            // Même verre que le Menu natif : translucide, réfraction, bord lumineux.
-            self.glassEffect(in: shape)
-        } else {
-            self
-                .background(.ultraThinMaterial, in: shape)
-                .overlay(shape.stroke(.white.opacity(0.18), lineWidth: 1))
-        }
-    }
 }
