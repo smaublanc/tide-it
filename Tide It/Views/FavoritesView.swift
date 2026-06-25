@@ -91,12 +91,15 @@ struct FavoritesView: View {
                 emptyFavoritesView
             } else {
                 ForEach(Array(favoritePorts.enumerated()), id: \.element.id) { i, port in
-                    FavoritePortRow(
-                        port: port,
-                        tideService: tideService,
-                        selectedTab: $selectedTab,
-                        isSelected: tideService.selectedPort?.id == port.id
-                    )
+                    SwipeToRemoveRow(label: "Retirer", icon: "star.slash.fill",
+                                     onRemove: { tideService.toggleFavorite(port: port) }) {
+                        FavoritePortRow(
+                            port: port,
+                            tideService: tideService,
+                            selectedTab: $selectedTab,
+                            isSelected: tideService.selectedPort?.id == port.id
+                        )
+                    }
                     if i < favoritePorts.count - 1 { rowDivider }
                 }
             }
@@ -120,12 +123,15 @@ struct FavoritesView: View {
                 emptyCustomPortsView
             } else {
                 ForEach(Array(nonSurfCustomPorts.enumerated()), id: \.element.id) { i, port in
-                    CustomPortRow(
-                        port: port,
-                        tideService: tideService,
-                        selectedTab: $selectedTab,
-                        isSelected: tideService.selectedPort?.id == port.id
-                    )
+                    SwipeToRemoveRow(label: "Supprimer", icon: "trash.fill",
+                                     onRemove: { tideService.removeCustomPort(portId: port.id) }) {
+                        CustomPortRow(
+                            port: port,
+                            tideService: tideService,
+                            selectedTab: $selectedTab,
+                            isSelected: tideService.selectedPort?.id == port.id
+                        )
+                    }
                     if i < nonSurfCustomPorts.count - 1 { rowDivider }
                 }
             }
@@ -148,13 +154,16 @@ struct FavoritesView: View {
                 .frame(maxWidth: .infinity).padding(.vertical, 40)
             } else {
                 ForEach(Array(surfCustomPorts.enumerated()), id: \.element.id) { i, port in
-                    CustomPortRow(
-                        port: port,
-                        tideService: tideService,
-                        selectedTab: $selectedTab,
-                        isSelected: tideService.selectedPort?.id == port.id,
-                        isSurf: true
-                    )
+                    SwipeToRemoveRow(label: "Supprimer", icon: "trash.fill",
+                                     onRemove: { tideService.removeCustomPort(portId: port.id) }) {
+                        CustomPortRow(
+                            port: port,
+                            tideService: tideService,
+                            selectedTab: $selectedTab,
+                            isSelected: tideService.selectedPort?.id == port.id,
+                            isSurf: true
+                        )
+                    }
                     if i < surfCustomPorts.count - 1 { rowDivider }
                 }
             }
@@ -292,21 +301,10 @@ struct FavoritePortRow: View {
 
             Spacer()
 
-            // Actions
-            HStack(spacing: 14) {
-                Button {
-                    tideService.toggleFavorite(port: port)
-                } label: {
-                    Image(systemName: "star.fill")
-                        .font(.system(size: 18))
-                        .foregroundStyle(.yellow)
-                }
-                .buttonStyle(.plain)
-
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundStyle(.tertiary)
-            }
+            // Suppression = swipe-vers-la-gauche (uniforme avec surf / perso).
+            Image(systemName: "chevron.right")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(.tertiary)
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 4)
@@ -345,7 +343,6 @@ struct CustomPortRow: View {
     /// AUCUNE mention (ref/décalage) pour un alignement net. false = port perso classique (pin violet).
     var isSurf: Bool = false
     @ObservedObject private var sportStore = SportSetupStore.shared
-    @State private var showDeleteConfirm = false
     @State private var showEditor = false
 
     /// Accent de la rangée : orange pour un spot surf, violet pour un port perso.
@@ -424,15 +421,10 @@ struct CustomPortRow: View {
             .buttonStyle(.plain)
             .padding(.trailing, 4)
 
-            // Delete button
-            Button {
-                showDeleteConfirm = true
-            } label: {
-                Image(systemName: "trash")
-                    .font(.system(size: 16))
-                    .foregroundStyle(.red.opacity(0.7))
-            }
-            .buttonStyle(.plain)
+            // Suppression = swipe-vers-la-gauche (uniforme avec les favoris).
+            Image(systemName: "chevron.right")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(.tertiary)
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 4)
@@ -454,17 +446,69 @@ struct CustomPortRow: View {
                 selectedTab = .today
             }
         }
-        .alert("Supprimer le port", isPresented: $showDeleteConfirm) {
-            Button("Annuler", role: .cancel) { }
-            Button("Supprimer", role: .destructive) {
-                tideService.removeCustomPort(portId: port.id)
-            }
-        } message: {
-            Text("Voulez-vous vraiment supprimer \(port.name) ?")
-        }
         .sheet(isPresented: $showEditor) {
             SpotEditorView(tideService: tideService, editingPort: port)
         }
+    }
+}
+
+// MARK: - Swipe-to-remove (geste natif moderne, uniforme favoris / surf / perso)
+
+/// Enveloppe une ligne de la liste « maison » d'un swipe-vers-la-gauche révélant une action
+/// « Retirer ». Layout côte-à-côte (contenu + bouton rouge adjacents) → aucun fond opaque requis
+/// malgré le dégradé d'arrière-plan. Le tap normal de la ligne reste actif (minimumDistance).
+struct SwipeToRemoveRow<Content: View>: View {
+    let label: String
+    let icon: String
+    let onRemove: () -> Void
+    @ViewBuilder var content: () -> Content
+
+    @State private var offset: CGFloat = 0
+    @State private var committed: CGFloat = 0
+    private let actionWidth: CGFloat = 92
+
+    var body: some View {
+        ZStack(alignment: .trailing) {
+            Button {
+                HapticManager.shared.notification(.warning)
+                close()
+                onRemove()
+            } label: {
+                VStack(spacing: 3) {
+                    Image(systemName: icon).font(.system(size: 16, weight: .semibold))
+                    Text(label).font(.system(size: 11, weight: .semibold)).lineLimit(1).minimumScaleFactor(0.8)
+                }
+                .foregroundStyle(.white)
+                .frame(width: actionWidth, maxHeight: .infinity)
+                .background(Color.red, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+            }
+            .buttonStyle(.plain)
+            .opacity(offset < -6 ? 1 : 0)
+            .offset(x: actionWidth + offset)   // caché hors écran à droite au repos, glisse à 0
+
+            content()
+                .offset(x: offset)
+        }
+        .clipped()
+        .gesture(
+            DragGesture(minimumDistance: 18)
+                .onChanged { v in
+                    guard abs(v.translation.width) > abs(v.translation.height) else { return }
+                    offset = max(-actionWidth, min(0, committed + v.translation.width))
+                }
+                .onEnded { _ in
+                    let open = offset < -actionWidth / 2
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.85)) {
+                        offset = open ? -actionWidth : 0
+                    }
+                    committed = offset
+                }
+        )
+    }
+
+    private func close() {
+        withAnimation(.spring(response: 0.3, dampingFraction: 0.85)) { offset = 0 }
+        committed = 0
     }
 }
 
