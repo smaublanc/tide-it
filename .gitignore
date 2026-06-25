@@ -47,3 +47,5 @@ swell-illustration-mode-surf/
 
 # Config locale Claude / agents
 .claude/
+fastlane/screenshots/
+fastlane/app_previews/

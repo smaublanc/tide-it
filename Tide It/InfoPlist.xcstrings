@@ -1,147 +1,159 @@
 {
-  "sourceLanguage": "en",
-  "version": "1.0",
-  "strings": {
-    "NSLocationWhenInUseUsageDescription": {
-      "extractionState": "manual",
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nous avons besoin de votre position pour vous montrer les ports à proximité et vous permettre de créer un port personnalisé à votre emplacement actuel."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "We need your location to show nearby ports and let you create a custom port at your current spot."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wir brauchen deinen Standort, um Häfen in der Nähe anzuzeigen und dir zu ermöglichen, an deinem aktuellen Ort einen eigenen Hafen zu erstellen."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Necesitamos tu ubicación para mostrarte los puertos cercanos y permitirte crear un puerto personalizado en tu posición actual."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abbiamo bisogno della tua posizione per mostrarti i porti vicini e permetterti di creare un porto personalizzato nel punto in cui ti trovi."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "We hebben je locatie nodig om havens in de buurt te tonen en je een eigen haven op je huidige plek te laten maken."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Precisamos da tua localização para mostrar os portos próximos e permitir-te criar um porto personalizado no teu local atual."
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Tide It"
           }
         }
       }
     },
-    "NSLocationAlwaysAndWhenInUseUsageDescription": {
-      "extractionState": "manual",
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nous avons besoin de votre localisation pour afficher les données météorologiques et les marées pour votre position actuelle."
+    "NSCalendarsWriteOnlyAccessUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It kann Gezeitenzeiten zu deinem Kalender hinzufügen, damit du nichts verpasst."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "We need your location to show weather and tide data for your current position."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It can add tide times to your calendar so you don't miss a thing."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wir brauchen deinen Standort, um Wetter- und Gezeitendaten für deinen aktuellen Standort anzuzeigen."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It puede añadir los horarios de marea a tu calendario para que no te pierdas nada."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Necesitamos tu ubicación para mostrar los datos meteorológicos y de mareas de tu posición actual."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It peut ajouter les horaires de marées à votre calendrier pour ne rien manquer."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abbiamo bisogno della tua posizione per mostrare i dati meteo e di marea per la tua posizione attuale."
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It può aggiungere gli orari delle maree al tuo calendario così non ti perdi nulla."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "We hebben je locatie nodig om weer- en getijgegevens voor je huidige positie te tonen."
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It kan getijtijden aan je agenda toevoegen zodat je niets mist."
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Precisamos da tua localização para mostrar os dados meteorológicos e de marés da tua posição atual."
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Tide It pode adicionar os horários das marés ao teu calendário para não perderes nada."
           }
         }
       }
     },
-    "NSCalendarsWriteOnlyAccessUsageDescription": {
-      "extractionState": "manual",
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tide It peut ajouter les horaires de marées à votre calendrier pour ne rien manquer."
+    "NSLocationAlwaysAndWhenInUseUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wir brauchen deinen Standort, um Wetter- und Gezeitendaten für deinen aktuellen Standort anzuzeigen."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tide It can add tide times to your calendar so you don't miss a thing."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We need your location to show weather and tide data for your current position."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tide It kann Gezeitenzeiten zu deinem Kalender hinzufügen, damit du nichts verpasst."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Necesitamos tu ubicación para mostrar los datos meteorológicos y de mareas de tu posición actual."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tide It puede añadir los horarios de marea a tu calendario para que no te pierdas nada."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nous avons besoin de votre localisation pour afficher les données météorologiques et les marées pour votre position actuelle."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tide It può aggiungere gli orari delle maree al tuo calendario così non ti perdi nulla."
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbiamo bisogno della tua posizione per mostrare i dati meteo e di marea per la tua posizione attuale."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tide It kan getijtijden aan je agenda toevoegen zodat je niets mist."
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We hebben je locatie nodig om weer- en getijgegevens voor je huidige positie te tonen."
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O Tide It pode adicionar os horários das marés ao teu calendário para não perderes nada."
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precisamos da tua localização para mostrar os dados meteorológicos e de marés da tua posição atual."
+          }
+        }
+      }
+    },
+    "NSLocationWhenInUseUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wir brauchen deinen Standort, um Häfen in der Nähe anzuzeigen und dir zu ermöglichen, an deinem aktuellen Ort einen eigenen Hafen zu erstellen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We need your location to show nearby ports and let you create a custom port at your current spot."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Necesitamos tu ubicación para mostrarte los puertos cercanos y permitirte crear un puerto personalizado en tu posición actual."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nous avons besoin de votre position pour vous montrer les ports à proximité et vous permettre de créer un port personnalisé à votre emplacement actuel."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbiamo bisogno della tua posizione per mostrarti i porti vicini e permetterti di creare un porto personalizzato nel punto in cui ti trovi."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We hebben je locatie nodig om havens in de buurt te tonen en je een eigen haven op je huidige plek te laten maken."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precisamos da tua localização para mostrar os portos próximos e permitir-te criar um porto personalizado no teu local atual."
           }
         }
       }
     }
-  }
+  },
+  "version" : "1.0"
 }
