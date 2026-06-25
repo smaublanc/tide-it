@@ -25,6 +25,7 @@ struct ContentView: View {
     @State private var showActivities = false
     @State private var showSettings = false
     @State private var showPorts = false
+    @State private var showWeekSummary = false
     /// Pastille de feedback éphémère affichée au-dessus du bouton de mode courbe
     /// quand on cycle marée → vent → surf (couleur = accent néon du mode).
     @State private var curvePillVisible = false
@@ -54,6 +55,13 @@ struct ContentView: View {
         .sheet(isPresented: $showActivities) { activitiesSheet }
         .sheet(isPresented: $showSettings) { settingsSheet }
         .sheet(isPresented: $showPorts) { portsSheet }
+        .fullScreenCover(isPresented: $showWeekSummary) {
+            let port = tideService.selectedPort
+            WeekSummaryView(
+                forecasts: port.flatMap { MarineWeatherService.shared.cachedForecast(for: $0) } ?? [],
+                portName: port?.name ?? ""
+            )
+        }
         .onAppear {
             setupTideService()
             // Économie d'énergie : ne jamais bloquer la mise en veille de l'écran.
@@ -210,6 +218,13 @@ struct ContentView: View {
             } label: {
                 // Badge du nombre de fenêtres GO à venir pour le port actif (« Activités : N »).
                 Label(goBadge.count > 0 ? "Activités : \(goBadge.count)" : "Activités", systemImage: "sparkles")
+            }
+            // Résumé 7 jours — tendance vent (+ houle si spot surf) en paysage, d'un coup d'œil.
+            Button {
+                HapticManager.shared.impact(.light)
+                showWeekSummary = true
+            } label: {
+                Label("Résumé 7 jours", systemImage: "calendar.day.timeline.left")
             }
             // swiftlint:disable:next force_unwrapping — URL littérale, ne peut pas échouer
             ShareLink(item: URL(string: "https://apps.apple.com/fr/app/tide-it-mar%C3%A9es-vent-r%C3%A9el/id6743555259")!) {

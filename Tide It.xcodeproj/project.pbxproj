@@ -46,6 +46,7 @@
 		3F519E822F3C7BA400AF313B /* ExtendedForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E6C2F3C7BA400AF313B /* ExtendedForecastView.swift */; };
 		3F519E832F3C7BA400AF313B /* CoefficientBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E5D2F3C7BA400AF313B /* CoefficientBadgeView.swift */; };
 		3F519E862F3C7BA400AF313B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E6E2F3C7BA400AF313B /* MapView.swift */; };
+		3FAA00010000000000000002 /* WeekSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAA00010000000000000001 /* WeekSummaryView.swift */; };
 		3F519E882F3C7BA400AF313B /* PortPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E6F2F3C7BA400AF313B /* PortPickerView.swift */; };
 		3F519E8A2F3C7BA400AF313B /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E5E2F3C7BA400AF313B /* EmptyStateView.swift */; };
 		3F519E8B2F3C7BA400AF313B /* NextTideCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E612F3C7BA400AF313B /* NextTideCard.swift */; };
@@ -231,6 +232,7 @@
 		3F519E6C2F3C7BA400AF313B /* ExtendedForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedForecastView.swift; sourceTree = "<group>"; };
 		3F519E6D2F3C7BA400AF313B /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		3F519E6E2F3C7BA400AF313B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		3FAA00010000000000000001 /* WeekSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekSummaryView.swift; sourceTree = "<group>"; };
 		3F519E6F2F3C7BA400AF313B /* PortPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortPickerView.swift; sourceTree = "<group>"; };
 		3F519E702F3C7BA400AF313B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3F519E732F3C7BA400AF313B /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
@@ -507,6 +509,7 @@
 				3F519E6C2F3C7BA400AF313B /* ExtendedForecastView.swift */,
 				3F519E6D2F3C7BA400AF313B /* FavoritesView.swift */,
 				3F519E6E2F3C7BA400AF313B /* MapView.swift */,
+				3FAA00010000000000000001 /* WeekSummaryView.swift */,
 				A1B2C30000000000000000B3 /* PecheAPiedView.swift */,
 				COMP00000001 /* TideComparisonView.swift */,
 				3F519E6F2F3C7BA400AF313B /* PortPickerView.swift */,
@@ -909,6 +912,7 @@
 				3F519E822F3C7BA400AF313B /* ExtendedForecastView.swift in Sources */,
 				3F519E832F3C7BA400AF313B /* CoefficientBadgeView.swift in Sources */,
 				3F519E862F3C7BA400AF313B /* MapView.swift in Sources */,
+				3FAA00010000000000000002 /* WeekSummaryView.swift in Sources */,
 				COMP00000002 /* TideComparisonView.swift in Sources */,
 				3F519E882F3C7BA400AF313B /* PortPickerView.swift in Sources */,
 				E4A5B6071839405B6C7D8F02 /* ActivityCalendarView.swift in Sources */,
