@@ -479,7 +479,8 @@ struct SwipeToRemoveRow<Content: View>: View {
                     Text(label).font(.system(size: 11, weight: .semibold)).lineLimit(1).minimumScaleFactor(0.8)
                 }
                 .foregroundStyle(.white)
-                .frame(width: actionWidth, maxHeight: .infinity)
+                .frame(width: actionWidth)
+                .frame(maxHeight: .infinity)
                 .background(Color.red, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
             }
             .buttonStyle(.plain)
