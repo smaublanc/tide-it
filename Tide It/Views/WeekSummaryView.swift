@@ -2,11 +2,11 @@
 //  WeekSummaryView.swift
 //  Tide It
 //
-//  Fenêtre flottante « Résumé 7 jours » — verre liquide en paysage, rubans couleur
-//  (vent + houle) façon app de vent, pour lire la tendance de la semaine d'un coup d'œil.
-//  Présentée en plein écran depuis le menu de TodayView ; le contenu est tourné en paysage
-//  (l'utilisateur tourne l'iPhone). Données = openMeteoForecasts (déjà 14 j) → couche de
-//  présentation pure, pas de nouveau moteur. Couleurs vent réutilisées de PremiumCurveCanvas.
+//  Petite fenêtre flottante « Résumé 7 jours » — verre liquide de forme PAYSAGE, posée
+//  par-dessus la TodayView (qui reste en PORTRAIT, visible au travers du liquid glass et
+//  autour). Aucune rotation de l'appareil. Rubans couleur (vent + houle) façon app de vent
+//  pour lire la tendance de la semaine d'un coup d'œil. Données = cache MarineWeatherService
+//  partagé → couche de présentation pure. Couleurs vent réutilisées de PremiumCurveCanvas.
 //
 
 import SwiftUI
@@ -14,48 +14,36 @@ import SwiftUI
 struct WeekSummaryView: View {
     let forecasts: [HourlyForecast]
     let portName: String
-    @Environment(\.dismiss) private var dismiss
+    @Binding var isPresented: Bool
 
     var body: some View {
-        GeometryReader { proxy in
-            ZStack {
-                backdrop
-                // Contenu présenté en PAYSAGE : on échange les dimensions puis on tourne de 90°.
-                // L'utilisateur tourne le téléphone pour lire la tendance sur toute la largeur.
-                WeekSummaryPanel(forecasts: forecasts, portName: portName) { dismiss() }
-                    .frame(width: proxy.size.height, height: proxy.size.width)
-                    .rotationEffect(.degrees(90))
-                    .frame(width: proxy.size.width, height: proxy.size.height)
-            }
+        ZStack {
+            // Voile léger : la TodayView reste VISIBLE derrière (on ne fait que l'assombrir un peu).
+            Color.black.opacity(0.22)
+                .ignoresSafeArea()
+                .contentShape(Rectangle())
+                .onTapGesture { dismiss() }
+
+            WeekSummaryCard(forecasts: forecasts, portName: portName, onClose: dismiss)
+                .padding(.horizontal, 16)
+                .transition(.scale(scale: 0.94).combined(with: .opacity))
         }
-        .ignoresSafeArea()
-        .statusBarHidden(true)
     }
 
-    private var backdrop: some View {
-        ZStack {
-            Color(red: 0.04, green: 0.055, blue: 0.086)
-            Circle().fill(Color(red: 0.18, green: 0.63, blue: 0.72))
-                .frame(width: 300).blur(radius: 90).opacity(0.32).offset(x: -90, y: -50)
-            Circle().fill(Color(red: 0.91, green: 0.47, blue: 0.18))
-                .frame(width: 260).blur(radius: 96).opacity(0.22).offset(x: 110, y: 100)
-        }
-        .ignoresSafeArea()
-        .contentShape(Rectangle())
-        .onTapGesture { dismiss() }
+    private func dismiss() {
+        withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) { isPresented = false }
     }
 }
 
-// MARK: - Panneau (carte verre, format paysage)
+// MARK: - Carte verre (forme paysage, compacte)
 
-private struct WeekSummaryPanel: View {
+private struct WeekSummaryCard: View {
     let forecasts: [HourlyForecast]
     let portName: String
     let onClose: () -> Void
 
     private let days = 7
 
-    /// Fenêtre = début du jour courant → +7 jours, triée.
     private var window: [HourlyForecast] {
         let cal = Calendar.current
         let start = cal.startOfDay(for: Date())
@@ -63,11 +51,8 @@ private struct WeekSummaryPanel: View {
         return forecasts.filter { $0.time >= start && $0.time < end }.sorted { $0.time < $1.time }
     }
 
-    private var hasSwell: Bool {
-        window.contains { ($0.swellHeight ?? $0.waveHeight) != nil }
-    }
+    private var hasSwell: Bool { window.contains { ($0.swellHeight ?? $0.waveHeight) != nil } }
 
-    /// Position du curseur « maintenant » dans la fenêtre [0…1].
     private var cursorFrac: Double {
         let cal = Calendar.current
         let start = cal.startOfDay(for: Date())
@@ -79,18 +64,13 @@ private struct WeekSummaryPanel: View {
 
     var body: some View {
         Group {
-            if window.count >= 2 {
-                content
-            } else {
-                unavailable
-            }
+            if window.count >= 2 { content } else { unavailable }
         }
-        .frame(maxWidth: 660)
-        .padding(.horizontal, 26)
+        .frame(maxWidth: 380)
     }
 
     private var content: some View {
-        VStack(spacing: 13) {
+        VStack(spacing: 10) {
             header
             dayHeader
             ribbonRow(
@@ -107,36 +87,34 @@ private struct WeekSummaryPanel: View {
             }
             footnote
         }
-        .padding(.vertical, 16)
-        .padding(.horizontal, 20)
+        .padding(14)
         .background(glassBackground)
         .overlay(
-            RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .stroke(Color.white.opacity(0.15), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .stroke(Color.white.opacity(0.18), lineWidth: 1)
         )
-        .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
-        .shadow(color: .black.opacity(0.45), radius: 30, y: 16)
+        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+        .shadow(color: .black.opacity(0.4), radius: 26, y: 12)
     }
-
-    // MARK: pièces
 
     private var header: some View {
         HStack(alignment: .top) {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 1) {
                 Text("Résumé 7 jours")
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.system(size: 14, weight: .semibold))
                     .foregroundStyle(.white)
                 Text(hasSwell ? "\(portName) · spot de surf" : portName)
-                    .font(.system(size: 12))
+                    .font(.system(size: 11))
                     .foregroundStyle(.white.opacity(0.5))
+                    .lineLimit(1)
             }
-            Spacer()
+            Spacer(minLength: 8)
             Button(action: onClose) {
                 Image(systemName: "xmark")
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(.system(size: 11, weight: .bold))
                     .foregroundStyle(.white.opacity(0.7))
-                    .frame(width: 30, height: 30)
-                    .background(Circle().fill(Color.white.opacity(0.09)))
+                    .frame(width: 26, height: 26)
+                    .background(Circle().fill(Color.white.opacity(0.1)))
             }
             .buttonStyle(.plain)
         }
@@ -144,75 +122,72 @@ private struct WeekSummaryPanel: View {
 
     private var dayHeader: some View {
         let accent = Color(red: 0.37, green: 0.79, blue: 0.65)
-        return HStack(spacing: 10) {
-            Color.clear.frame(width: 62)
+        return HStack(spacing: 8) {
+            Color.clear.frame(width: 52)
             HStack(spacing: 0) {
                 ForEach(dayLabels) { lbl in
-                    VStack(spacing: 1) {
+                    VStack(spacing: 0) {
                         Text(lbl.wd)
-                            .font(.system(size: 11, weight: .semibold))
-                            .foregroundStyle(lbl.weekend ? accent : .white.opacity(0.82))
+                            .font(.system(size: 10, weight: .semibold))
+                            .foregroundStyle(lbl.weekend ? accent : .white.opacity(0.8))
                         Text(lbl.day)
-                            .font(.system(size: 11))
-                            .foregroundStyle(lbl.weekend ? accent.opacity(0.7) : .white.opacity(0.45))
+                            .font(.system(size: 10))
+                            .foregroundStyle(lbl.weekend ? accent.opacity(0.7) : .white.opacity(0.42))
                     }
                     .frame(maxWidth: .infinity)
                 }
             }
-            Color.clear.frame(width: 56)
+            Color.clear.frame(width: 46)
         }
     }
 
     private func ribbonRow(title: String, icon: String, tint: Color, colors: [Color], trailing: (String, String)) -> some View {
-        HStack(spacing: 10) {
-            HStack(spacing: 6) {
-                Image(systemName: icon).font(.system(size: 16, weight: .medium)).foregroundStyle(tint)
-                Text(title).font(.system(size: 13)).foregroundStyle(.white.opacity(0.88))
+        HStack(spacing: 8) {
+            HStack(spacing: 5) {
+                Image(systemName: icon).font(.system(size: 14, weight: .medium)).foregroundStyle(tint)
+                Text(title).font(.system(size: 12)).foregroundStyle(.white.opacity(0.88))
             }
-            .frame(width: 62, alignment: .leading)
+            .frame(width: 52, alignment: .leading)
 
             ForecastRibbon(colors: colors, cursorFrac: cursorFrac)
-                .frame(height: 48)
-                .clipShape(RoundedRectangle(cornerRadius: 11, style: .continuous))
-                .overlay(RoundedRectangle(cornerRadius: 11).stroke(Color.white.opacity(0.07), lineWidth: 1))
+                .frame(height: 38)
+                .clipShape(RoundedRectangle(cornerRadius: 9, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: 9).stroke(Color.white.opacity(0.08), lineWidth: 1))
 
             VStack(alignment: .trailing, spacing: 0) {
-                Text(trailing.0).font(.system(size: 12, weight: .medium)).foregroundStyle(.white.opacity(0.7))
-                Text(trailing.1).font(.system(size: 10)).foregroundStyle(.white.opacity(0.4))
+                Text(trailing.0).font(.system(size: 11, weight: .medium)).foregroundStyle(.white.opacity(0.72))
+                Text(trailing.1).font(.system(size: 9)).foregroundStyle(.white.opacity(0.42))
             }
-            .frame(width: 56, alignment: .trailing)
+            .frame(width: 46, alignment: .trailing)
         }
     }
 
     private var footnote: some View {
-        HStack {
-            HStack(spacing: 7) {
-                Circle().stroke(Color.white, lineWidth: 2).frame(width: 9, height: 9)
-                Text("maintenant").font(.system(size: 11)).foregroundStyle(.white.opacity(0.42))
-            }
+        HStack(spacing: 6) {
+            Circle().stroke(Color.white, lineWidth: 1.8).frame(width: 8, height: 8)
+            Text("maintenant").font(.system(size: 10)).foregroundStyle(.white.opacity(0.42))
             Spacer()
-            Text("tendance · 7 prochains jours")
-                .font(.system(size: 11)).foregroundStyle(.white.opacity(0.35))
+            Text("tendance · 7 j").font(.system(size: 10)).foregroundStyle(.white.opacity(0.34))
         }
-        .padding(.top, 2)
+        .padding(.horizontal, 2)
     }
 
     private var unavailable: some View {
-        VStack(spacing: 10) {
-            Image(systemName: "wind.snow").font(.system(size: 30)).foregroundStyle(.white.opacity(0.4))
-            Text("Prévisions indisponibles").font(.system(size: 15, weight: .medium)).foregroundStyle(.white.opacity(0.8))
-            Text("Reviens une fois les données chargées.").font(.system(size: 12)).foregroundStyle(.white.opacity(0.5))
-            Button("Fermer", action: onClose).font(.system(size: 13, weight: .semibold)).foregroundStyle(.cyan).padding(.top, 4)
+        VStack(spacing: 8) {
+            Image(systemName: "wind.snow").font(.system(size: 26)).foregroundStyle(.white.opacity(0.4))
+            Text("Prévisions indisponibles").font(.system(size: 14, weight: .medium)).foregroundStyle(.white.opacity(0.85))
+            Text("Ouvre le spot un instant, puis reviens.").font(.system(size: 11)).foregroundStyle(.white.opacity(0.5))
+            Button("Fermer", action: onClose).font(.system(size: 12, weight: .semibold)).foregroundStyle(.cyan).padding(.top, 2)
         }
-        .padding(40)
+        .padding(28)
         .background(glassBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
     }
 
     private var glassBackground: some View {
-        RoundedRectangle(cornerRadius: 28, style: .continuous)
+        RoundedRectangle(cornerRadius: 24, style: .continuous)
             .fill(.ultraThinMaterial)
-            .overlay(RoundedRectangle(cornerRadius: 28).fill(Color.white.opacity(0.04)))
+            .overlay(RoundedRectangle(cornerRadius: 24).fill(Color.white.opacity(0.03)))
             .environment(\.colorScheme, .dark)
     }
 
@@ -240,13 +215,10 @@ private struct WeekSummaryPanel: View {
     private var swellRange: (String, String) {
         let sys = ThemeManager.shared.measureSystem
         let vals = window.compactMap { $0.swellHeight ?? $0.waveHeight }
-        let lo = UnitFormatter.height(vals.min() ?? 0, system: sys, decimals: 1)
-        let hi = UnitFormatter.height(vals.max() ?? 0, system: sys, decimals: 1)
-        // lo contient déjà l'unité (« 0.6 m ») → on garde la valeur et l'unité au pied
         let unit = sys == .imperial ? "ft" : "m"
-        let loN = lo.replacingOccurrences(of: " \(unit)", with: "")
-        let hiN = hi.replacingOccurrences(of: " \(unit)", with: "")
-        return ("\(loN)–\(hiN)", unit)
+        let lo = UnitFormatter.height(vals.min() ?? 0, system: sys, decimals: 1).replacingOccurrences(of: " \(unit)", with: "")
+        let hi = UnitFormatter.height(vals.max() ?? 0, system: sys, decimals: 1).replacingOccurrences(of: " \(unit)", with: "")
+        return ("\(lo)–\(hi)", unit)
     }
 }
 
@@ -269,16 +241,15 @@ private struct ForecastRibbon: View {
             guard n > 1 else { return }
             let cw = size.width / CGFloat(n)
             for i in 0..<n {
-                let x = CGFloat(i) * cw
-                ctx.fill(Path(CGRect(x: x, y: 0, width: cw + 0.8, height: size.height)), with: .color(colors[i]))
+                ctx.fill(Path(CGRect(x: CGFloat(i) * cw, y: 0, width: cw + 0.8, height: size.height)),
+                         with: .color(colors[i]))
             }
-            // Curseur « maintenant » : fine règle + anneau verre sombre cerclé de blanc.
             let cx = CGFloat(cursorFrac) * size.width
             ctx.fill(Path(CGRect(x: cx - 0.5, y: 0, width: 1, height: size.height)), with: .color(.white.opacity(0.18)))
-            let r: CGFloat = 9
+            let r: CGFloat = 7
             let ring = CGRect(x: cx - r, y: size.height / 2 - r, width: 2 * r, height: 2 * r)
             ctx.fill(Path(ellipseIn: ring), with: .color(.black.opacity(0.42)))
-            ctx.stroke(Path(ellipseIn: ring), with: .color(.white), lineWidth: 2.5)
+            ctx.stroke(Path(ellipseIn: ring), with: .color(.white), lineWidth: 2.2)
         }
     }
 }
