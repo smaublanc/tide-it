@@ -1,9 +1,5 @@
-Tide It parle maintenant 7 langues : l'app est désormais entièrement traduite en allemand, espagnol, italien, néerlandais et portugais.
+🎁 Pour te remercier d'être parmi les premiers : 1 mois de Premium offert à tout le monde — profite de tout, sans limite.
 
-Au programme aussi :
-- Nombres et unités au format local (2,5 m, virgule décimale).
-- Vent réel plus fiable : on n'affiche plus une mesure dont l'heure est inconnue.
-- Synchronisation iCloud plus robuste pour tes spots et réglages.
-- Fiabilité et finitions diverses.
+Nouveau — Jauge de confiance : Tide It compare la prévision de vent au vent réellement mesuré près de ton spot. Tu vois si le modèle voit juste, et tu peux corriger tes fenêtres GO en conséquence.
 
-Bon vent, bonnes vagues !
+Toujours aussi précis, honnête et économe en batterie. Bon vent, bonnes vagues !

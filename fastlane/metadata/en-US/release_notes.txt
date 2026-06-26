@@ -1,9 +1,5 @@
-Tide It now speaks 7 languages: the app is fully translated into German, Spanish, Italian, Dutch and Portuguese.
+🎁 To thank you for being one of the first: 1 month of Premium, free for everyone — enjoy it all, no limits.
 
-Also in this update:
-- Numbers and units in your local format.
-- More reliable live wind: we no longer show a reading with an unknown time.
-- Sturdier iCloud sync for your spots and settings.
-- Various reliability fixes and polish.
+New — Confidence gauge: Tide It compares the wind forecast to the wind actually measured near your spot. See whether the model is on point, and correct your GO windows accordingly.
 
-Fair winds and good waves!
+Still as precise, honest and easy on your battery. Fair winds and good waves!

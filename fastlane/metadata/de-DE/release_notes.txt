@@ -1,9 +1,5 @@
-Tide It spricht jetzt 7 Sprachen: Die App ist nun vollständig auf Deutsch, Spanisch, Italienisch, Niederländisch und Portugiesisch übersetzt.
+🎁 Als Dankeschön dafür, dass du von Anfang an dabei bist: 1 Monat Premium gratis für alle — genieße alles, ohne Limit.
 
-Außerdem in diesem Update:
-- Zahlen und Einheiten im lokalen Format.
-- Zuverlässigerer Echtzeit-Wind: Messwerte mit unbekannter Uhrzeit werden nicht mehr angezeigt.
-- Robustere iCloud-Synchronisierung für deine Spots und Einstellungen.
-- Diverse Verbesserungen und Feinschliff.
+Neu — Vertrauensanzeige: Tide It vergleicht die Windvorhersage mit dem real gemessenen Wind in der Nähe deines Spots. Sieh, ob das Modell richtig liegt, und korrigiere deine GO-Fenster entsprechend.
 
-Guten Wind und gute Wellen!
+Weiterhin präzise, ehrlich und schonend für deinen Akku. Guten Wind und gute Wellen!

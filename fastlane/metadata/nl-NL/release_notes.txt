@@ -1,9 +1,5 @@
-Tide It spreekt nu 7 talen: de app is volledig vertaald naar het Duits, Spaans, Italiaans, Nederlands en Portugees.
+🎁 Als dank dat je een van de eersten bent: 1 maand Premium cadeau voor iedereen — geniet van alles, zonder limiet.
 
-Verder in deze update:
-- Getallen en eenheden in je lokale notatie.
-- Betrouwbaardere live wind: we tonen geen meting meer met een onbekend tijdstip.
-- Stevigere iCloud-synchronisatie voor je spots en instellingen.
-- Diverse verbeteringen en afwerking.
+Nieuw — Betrouwbaarheidsmeter: Tide It vergelijkt de windvoorspelling met de wind die echt gemeten wordt bij jouw spot. Zie of het model klopt en pas je GO-momenten daarop aan.
 
-Goede wind en mooie golven!
+Nog steeds net zo nauwkeurig, eerlijk en zuinig voor je batterij. Goede wind en mooie golven!
