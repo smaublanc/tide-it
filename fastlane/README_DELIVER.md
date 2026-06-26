@@ -1,5 +1,29 @@
 # Pousser les textes App Store (7 langues) en une commande — Fastlane `deliver`
 
+## 🚀 PROCHAINE MAJ — 5.2.1 (build 7) : mois Premium offert + jauge de confiance
+
+**Séquence (App Store Connect n'autorise qu'UNE version éditable à la fois) :**
+1. La **5.2.0 (build 6)** finit sa review et **sort** (mode surf). Tant qu'elle est en review, impossible de créer la 5.2.1.
+2. Archive le **build 7** dans Xcode (Product ▸ Archive ▸ Distribute ▸ App Store Connect). Il monte comme build 7 / 5.2.1.
+3. Une fois la 5.2.0 **en ligne**, crée la version **5.2.1** dans App Store Connect (ou laisse `--app_version "5.2.1"` la créer), attache le build 7.
+4. Pousse les textes (7 langues) — **promo « 1 mois offert » + Nouveautés 5.2.1 + sous-titres/mots-clés optimisés** :
+```
+cd "/Users/maublanc/Desktop/Tide It 18"
+export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+fastlane deliver --api_key_path "$HOME/.appstoreconnect/key.json" \
+  --app_version "5.2.1" --skip_binary_upload --skip_screenshots \
+  --run_precheck_before_submit false --force
+```
+5. Dans App Store Connect : vérifie, sélectionne le build 7, **soumets** (ou ajoute `--submit_for_review` à la commande).
+
+**Garde-fous (déjà respectés dans les .txt) :**
+- ✅ **Aucun emoji dans `release_notes.txt`** (Apple rejette) — le 🎁 ne vit que dans `promotional_text.txt` (autorisé).
+- ✅ Le **promo « 1 mois offert » ne doit PAS être poussé sur la 5.2.0** (build 6 n'a pas le mois offert → fausse promesse). Il part avec 5.2.1 seulement. (Le promo est éditable en direct, donc OK dès que 5.2.1 est en ligne.)
+- ✅ `name.txt` absent = nom inchangé ; sous-titre/mots-clés présents = ré-affirmés (identiques à 5.2.0, no-op).
+- ✅ Aucune source de données citée.
+
+---
+
 ## ✅ COMMANDE QUI MARCHE (validée juin 2026) — à réutiliser
 La clé API est déjà configurée dans `~/.appstoreconnect/key.json`. Pour repousser après avoir édité un .txt :
 ```
