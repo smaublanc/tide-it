@@ -26,7 +26,9 @@ final class PremiumManager: ObservableObject {
 
     // MARK: - Published State
 
-    @Published var isPremium = false
+    /// Entitlement RÉEL : abonnement actif / achat vérifié par StoreKit. NE PAS lire directement pour
+    /// verrouiller une feature — passer par `isPremium`, qui inclut le mois Premium offert.
+    @Published private(set) var paidPremium = false
     @Published var products: [Product] = []
     @Published var purchaseError: String?
     @Published var isLoading = false
@@ -34,6 +36,45 @@ final class PremiumManager: ObservableObject {
     /// introductive jamais consommée). Calculé après le chargement des produits → le paywall
     /// ne promet l'essai qu'à ceux qui y ont vraiment droit (exigence App Review).
     @Published var introEligibleProductIDs: Set<String> = []
+
+    // MARK: - Mois Premium offert (cadeau d'accueil → puis retour au mode gratuit)
+
+    /// On fait goûter TOUT le premium pendant `welcomeTrialDays` à partir du 1er lancement de cette
+    /// version, puis l'app repasse en mode gratuit (« classic »). AUCUN paiement, AUCUNE reconduction :
+    /// c'est un cadeau d'accueil local, distinct de l'essai StoreKit (1 sem.) géré par Apple au paywall.
+    static let welcomeTrialDays = 30
+    private let welcomeTrialKey = "welcomeTrialStart_v1"
+
+    private var welcomeTrialStart: Date? {
+        UserDefaults.standard.object(forKey: welcomeTrialKey) as? Date
+    }
+
+    /// Démarre le compteur au tout premier lancement (clé absente). Idempotent → un seul mois par
+    /// appareil. (Réinstaller réarme le cadeau : toléré pour une app indé ; durcissable via iCloud KVS.)
+    private func startWelcomeTrialIfNeeded() {
+        guard welcomeTrialStart == nil else { return }
+        UserDefaults.standard.set(Date(), forKey: welcomeTrialKey)
+        appLogger.info("[Premium] Mois offert démarré (\(Self.welcomeTrialDays) j)")
+    }
+
+    /// Le mois offert court-il encore ? (indépendant de l'achat).
+    var welcomeTrialActive: Bool {
+        guard let start = welcomeTrialStart else { return false }
+        return Date().timeIntervalSince(start) < Double(Self.welcomeTrialDays) * 86_400
+    }
+
+    /// Jours restants du mois offert (0 si terminé / absent) — pour le bandeau « offert ».
+    var welcomeTrialDaysRemaining: Int {
+        guard let start = welcomeTrialStart else { return 0 }
+        let elapsedDays = Date().timeIntervalSince(start) / 86_400
+        return max(0, Int(ceil(Double(Self.welcomeTrialDays) - elapsedDays)))
+    }
+
+    /// L'utilisateur profite du mois offert SANS avoir payé → bandeau « offert », pas « abonné ».
+    var isInWelcomeTrial: Bool { !paidPremium && welcomeTrialActive }
+
+    /// Accès premium EFFECTIF = abonnement payé OU mois offert en cours. TOUTES les features lisent ceci.
+    var isPremium: Bool { paidPremium || welcomeTrialActive }
 
     // Feature gates
     var canUseExtendedForecast: Bool { isPremium }
@@ -60,6 +101,7 @@ final class PremiumManager: ObservableObject {
     private var transactionListener: Task<Void, Never>?
 
     private init() {
+        startWelcomeTrialIfNeeded()
         transactionListener = listenForTransactions()
         Task { await checkEntitlement() }
     }
@@ -133,7 +175,7 @@ final class PremiumManager: ObservableObject {
             case .success(let verification):
                 let transaction = try checkVerified(verification)
                 await transaction.finish()
-                isPremium = true
+                paidPremium = true
                 appLogger.info("[Premium] Achat réussi: \(product.id)")
 
             case .pending:
@@ -161,11 +203,12 @@ final class PremiumManager: ObservableObject {
             try await AppStore.sync()
             await checkEntitlement()
             // Feedback explicite (attendu par l'App Review) : « Restaurer » ne doit pas
-            // rester un no-op silencieux quand il n'y a rien à restaurer.
-            if !isPremium {
+            // rester un no-op silencieux quand il n'y a rien à restaurer. On teste l'achat RÉEL
+            // (paidPremium) — le mois offert n'est pas un achat « restaurable ».
+            if !paidPremium {
                 purchaseError = String(localized: "Aucun achat à restaurer")
             }
-            appLogger.info("[Premium] Restauration terminée, premium=\(self.isPremium)")
+            appLogger.info("[Premium] Restauration terminée, payé=\(self.paidPremium)")
         } catch {
             purchaseError = error.localizedDescription
             appLogger.error("[Premium] Erreur restauration: \(error.localizedDescription)")
@@ -179,19 +222,19 @@ final class PremiumManager: ObservableObject {
         // Débogage : permet de tester les features premium sans achat (StoreKit en
         // environnement Xcode est capricieux). Jamais compilé dans le build App Store.
         if UserDefaults.standard.bool(forKey: Self.debugForcePremiumKey) {
-            isPremium = true
+            paidPremium = true
             return
         }
         #endif
         for await result in Transaction.currentEntitlements {
             if let transaction = try? checkVerified(result) {
                 if ProductID.allCases.map(\.rawValue).contains(transaction.productID) {
-                    isPremium = true
+                    paidPremium = true
                     return
                 }
             }
         }
-        isPremium = false
+        paidPremium = false
     }
 
     #if DEBUG
@@ -201,7 +244,7 @@ final class PremiumManager: ObservableObject {
     func setDebugPremium(_ on: Bool) {
         UserDefaults.standard.set(on, forKey: Self.debugForcePremiumKey)
         if on {
-            isPremium = true
+            paidPremium = true
         } else {
             Task { await checkEntitlement() }  // revenir à l'état réel
         }

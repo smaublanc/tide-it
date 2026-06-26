@@ -21,7 +21,11 @@ struct SettingsView: View {
         ScrollView(showsIndicators: false) {
             LazyVStack(spacing: DS.spacingXL) {
                 headerSection
-                if !premiumManager.isPremium { premiumSection }
+                if premiumManager.isInWelcomeTrial {
+                    welcomeTrialSection          // mois offert en cours → décompte + conversion
+                } else if !premiumManager.isPremium {
+                    premiumSection               // gratuit (offert terminé ou jamais éligible)
+                }
                 appearanceModeSection
                 unitsSection          // unités + vent minimum (fusionnés)
                 portsSection          // spots + données (fusionnés)
@@ -171,6 +175,56 @@ struct SettingsView: View {
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
+    }
+
+    // MARK: - Mois Premium offert
+    private var welcomeTrialSection: some View {
+        Button {
+            showPaywall = true
+        } label: {
+            HStack(spacing: DS.spacingMD) {
+                Image(systemName: "gift.fill")
+                    .font(.system(size: 24))
+                    .foregroundStyle(
+                        LinearGradient(colors: [.green, .teal],
+                                       startPoint: .topLeading, endPoint: .bottomTrailing)
+                    )
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Premium offert")
+                        .font(.scaled(size: DS.fontCallout, weight: .bold))
+                        .foregroundStyle(.primary)
+                    Text("\(premiumManager.welcomeTrialDaysRemaining) jours restants")
+                        .font(.scaled(size: DS.fontSubheadline, weight: .semibold))
+                        .foregroundStyle(Color.tideHigh)
+                    Text("Puis retour au mode gratuit — sans engagement")
+                        .font(.scaled(size: DS.fontCaption))
+                        .foregroundStyle(.gray)
+                }
+
+                Spacer()
+
+                Image(systemName: "chevron.right")
+                    .font(.scaled(size: DS.fontCallout, weight: .semibold))
+                    .foregroundStyle(.green)
+            }
+            .padding(DS.spacingMD)
+            .background(
+                RoundedRectangle(cornerRadius: DS.radiusLG)
+                    .fill(
+                        LinearGradient(
+                            colors: [Color.green.opacity(0.08), Color.teal.opacity(0.05)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: DS.radiusLG)
+                            .stroke(Color.green.opacity(0.25), lineWidth: 1)
+                    )
+            )
+        }
+        .buttonStyle(.plain)
     }
 
     // MARK: - Premium Section
