@@ -28,6 +28,7 @@ struct SettingsView: View {
                 }
                 appearanceModeSection
                 unitsSection          // unités + vent minimum (fusionnés)
+                if premiumManager.isPremium { forecastCorrectionSection }   // jauge de confiance (premium)
                 portsSection          // spots + données (fusionnés)
                 aboutSection
                 #if DEBUG
@@ -159,6 +160,27 @@ struct SettingsView: View {
                 .animation(DS.defaultSpring, value: themeManager.windUnit)
                 // Limite de vent générale retirée : le vent mini/maxi se règle PAR SPORT
                 // dans « Mes sports ».
+            }
+            .padding(.horizontal, DS.spacingLG + 2)
+            .padding(.vertical, DS.spacingMD + 2)
+        }
+    }
+
+    // MARK: - Précision (jauge de confiance — correction par le vent réel)
+    private var forecastCorrectionSection: some View {
+        SettingsSectionView(title: "Précision", icon: "wand.and.rays", accentColor: .green) {
+            VStack(spacing: DS.spacingMD) {
+                Toggle(isOn: $themeManager.debiasGoEnabled) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Corriger le vent avec le réel")
+                            .font(.scaled(size: DS.fontCallout, weight: .medium))
+                            .foregroundStyle(.primary)
+                        Text("Ajuste la courbe et les fenêtres GO selon le vent réellement mesuré près de toi, quand une station proche est fiable.")
+                            .font(.scaled(size: DS.fontCaption))
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .tint(.green)
             }
             .padding(.horizontal, DS.spacingLG + 2)
             .padding(.vertical, DS.spacingMD + 2)

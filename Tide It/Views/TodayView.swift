@@ -283,19 +283,11 @@ struct TodayView: View {
                         }
                         // Jauge de confiance (biais modèle vs réel) — GRATUITE : teaser d'honnêteté
                         // qui incite au premium (voir le vent réel + corriger les fenêtres GO).
+                        // Badge informatif du biais local (gratuit) — la PREUVE visible du différenciateur.
+                        // L'INTERRUPTEUR de correction vit dans Réglages ▸ Précision (activé par défaut).
                         ForecastTrustBadge(portId: tideService.selectedPort?.id ?? "", unit: themeManager.windUnit)
                             .padding(.horizontal, DS.pagePadding)
                             .staggeredAppearance(index: 2, appeared: dashboardAppeared)
-                        // Correction du vent prévu par le biais réel (stage 2). Premium : interrupteur ;
-                        // gratuit : verrou → paywall. N'apparaît que si un biais corrigeable existe.
-                        ForecastCorrectionRow(
-                            portId: tideService.selectedPort?.id ?? "",
-                            isPremium: premiumManager.isPremium,
-                            enabled: $themeManager.debiasGoEnabled,
-                            onUpsell: { showPremiumPaywall = true }
-                        )
-                        .padding(.horizontal, DS.pagePadding)
-                        .staggeredAppearance(index: 2, appeared: dashboardAppeared)
                     }
 
                     // Météo 7 jours — un seul bandeau scrollable, dense et color-codé

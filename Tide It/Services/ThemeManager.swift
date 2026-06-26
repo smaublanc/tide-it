@@ -269,9 +269,10 @@ class ThemeManager: ObservableObject {
     }
 
     /// Jauge de confiance — corriger le vent prévu (courbe + fenêtres GO) par le BIAIS LOCAL appris
-    /// (modèle vs balise). Premium. Opt-in (false par défaut) : on ne déforme JAMAIS la prévision sans
-    /// l'accord explicite du rider. N'a d'effet que si le biais mesuré est fiable et significatif.
-    @AppStorage("debiasGoEnabled") var debiasGoEnabled: Bool = false {
+    /// (modèle vs vent réel mesuré). Premium. ACTIVÉ par défaut : c'est le comportement le plus juste
+    /// (on s'appuie sur la mesure réelle) ; réglable dans Réglages ▸ Précision. N'a d'effet QUE si une
+    /// station proche est fiable ET le biais significatif — sinon no-op (prévision brute), donc sûr.
+    @AppStorage("debiasGoEnabled") var debiasGoEnabled: Bool = true {
         didSet {
             objectWillChange.send()
             CloudSyncService.shared.saveSettings()

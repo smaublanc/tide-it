@@ -4392,6 +4392,52 @@
         }
       }
     },
+    "Ajuste la courbe et les fenêtres GO selon le vent réellement mesuré près de toi, quand une station proche est fiable." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adjusts the curve and GO windows to the wind actually measured near you, when a nearby station is reliable."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passt die Kurve und die GO-Fenster an den real gemessenen Wind in deiner Nähe an, sobald eine Station in der Nähe zuverlässig ist."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajusta la curva y las ventanas GO al viento realmente medido cerca de ti, cuando una estación cercana es fiable."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adatta la curva e le finestre GO al vento realmente misurato vicino a te, quando una stazione vicina è affidabile."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Past de curve en GO-momenten aan op de wind die echt bij jou in de buurt wordt gemeten, als een station in de buurt betrouwbaar is."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajusta a curva e as janelas GO ao vento realmente medido perto de ti, quando uma estação próxima é fiável."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajuste la courbe et les fenêtres GO selon le vent réellement mesuré près de toi, quand une station proche est fiable."
+          }
+        }
+      }
+    },
     "Ajuste la prévision avec le vent réel · Premium" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10753,6 +10799,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Corrigir com o real"
+          }
+        }
+      }
+    },
+    "Corriger le vent avec le réel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correct wind with real data"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind mit Echtdaten korrigieren"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Corregir el viento con datos reales"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correggi il vento con i dati reali"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind corrigeren met echte data"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Corrigir o vento com dados reais"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Corriger le vent avec le réel"
           }
         }
       }
