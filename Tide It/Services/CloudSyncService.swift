@@ -32,6 +32,7 @@ final class CloudSyncService: ObservableObject {
         "measureSystem", "windSpeedUnit", "preferredActivities",
         "riderMinWindKmh", "riderMaxWindKmh", "spotConfigs",
         "pwAlertsEnabled",
+        "debiasGoEnabled",        // Jauge de confiance : correction du vent prévu par le biais local appris (premium).
         "sportSetupsBySpot_v1",   // « Mes sports » PAR SPOT : conditions + suivi + toggle notif par port.
         "sportSetups",            // (hérité — sert encore de template par défaut à la migration)
         // "pecheAlertsEnabled" retiré : pêche à pied hors périmètre (cf. ThemeManager.pecheAPiedEnabled).

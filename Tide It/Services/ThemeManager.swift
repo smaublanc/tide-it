@@ -268,6 +268,16 @@ class ThemeManager: ObservableObject {
         }
     }
 
+    /// Jauge de confiance — corriger le vent prévu (courbe + fenêtres GO) par le BIAIS LOCAL appris
+    /// (modèle vs balise). Premium. Opt-in (false par défaut) : on ne déforme JAMAIS la prévision sans
+    /// l'accord explicite du rider. N'a d'effet que si le biais mesuré est fiable et significatif.
+    @AppStorage("debiasGoEnabled") var debiasGoEnabled: Bool = false {
+        didSet {
+            objectWillChange.send()
+            CloudSyncService.shared.saveSettings()
+        }
+    }
+
     /// ColorScheme résolu (nil = système)
     var resolvedColorScheme: ColorScheme? {
         appearance.colorScheme

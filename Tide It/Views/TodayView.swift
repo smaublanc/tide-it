@@ -137,6 +137,16 @@ struct TodayView: View {
         }
     }
 
+    /// Série de prévisions vue par la COURBE et le MOTEUR GO (jauge de confiance, stage 2). Premium +
+    /// toggle « corriger avec le réel » + biais corrigeable → on retire le biais local appris (modèle
+    /// vs balise) de tout l'horizon. Sinon série BRUTE. Source UNIQUE → courbe et fenêtres GO restent
+    /// cohérentes. ⚠️ Jamais réinjectée dans l'apprentissage (`record` lit `closestForecastNow` = brut).
+    private var forecastsForDisplay: [HourlyForecast] {
+        guard themeManager.debiasGoEnabled, premiumManager.isPremium,
+              let pid = tideService.selectedPort?.id else { return openMeteoForecasts }
+        return ForecastBiasService.shared.debiasedSeries(openMeteoForecasts, portId: pid)
+    }
+
     /// Message d'erreur à afficher en haut de l'écran, ou nil si tout va bien.
     private var currentErrorMessage: String? {
         if let tideError = tideService.error {
@@ -191,7 +201,7 @@ struct TodayView: View {
                             },
                             portTimeZone: portTimeZone,
                             curveMode: themeManager.curveMode,
-                            openMeteoForecasts: openMeteoForecasts,
+                            openMeteoForecasts: forecastsForDisplay,
                             observedWindKmh: observedWind?.reading.speedAvgKmh,
                             observedGustKmh: observedWind?.reading.gustKmh,
                             observedWindDirection: observedWind?.reading.directionDegrees,
@@ -276,6 +286,16 @@ struct TodayView: View {
                         ForecastTrustBadge(portId: tideService.selectedPort?.id ?? "", unit: themeManager.windUnit)
                             .padding(.horizontal, DS.pagePadding)
                             .staggeredAppearance(index: 2, appeared: dashboardAppeared)
+                        // Correction du vent prévu par le biais réel (stage 2). Premium : interrupteur ;
+                        // gratuit : verrou → paywall. N'apparaît que si un biais corrigeable existe.
+                        ForecastCorrectionRow(
+                            portId: tideService.selectedPort?.id ?? "",
+                            isPremium: premiumManager.isPremium,
+                            enabled: $themeManager.debiasGoEnabled,
+                            onUpsell: { showPremiumPaywall = true }
+                        )
+                        .padding(.horizontal, DS.pagePadding)
+                        .staggeredAppearance(index: 2, appeared: dashboardAppeared)
                     }
 
                     // Météo 7 jours — un seul bandeau scrollable, dense et color-codé
@@ -419,9 +439,14 @@ struct TodayView: View {
                     portName: tideService.selectedPort?.name)
             }
             // Jauge de confiance : échantillon modèle-vs-réel pour ce spot (biais local appris).
-            if let obs = observedWind, let model = predictedWindKmh, let pid = tideService.selectedPort?.id {
+            // Le modèle = la prévision « maintenant » d'Open-Meteo (`closestForecastNow`), CAR c'est
+            // CE modèle que la courbe + les fenêtres GO consomment et que la correction premium ajuste.
+            // ⚠️ TOUJOURS le flux BRUT (jamais `forecastsForDisplay`) sinon boucle de feedback → biais → 0.
+            if let obs = observedWind, let model = closestForecastNow()?.windSpeedKmh,
+               let pid = tideService.selectedPort?.id {
                 ForecastBiasService.shared.record(portId: pid, modelKmh: model,
                     observedKmh: obs.reading.speedAvgKmh, distanceKm: obs.distanceKm, at: obs.reading.date)
+                if themeManager.debiasGoEnabled { recomputeGoWindows() }   // garde courbe ↔ fenêtres GO en phase
             }
         }
         // Activer/désactiver un sport — ou éditer ses conditions / sa sensibilité — doit recalculer
@@ -433,6 +458,9 @@ struct TodayView: View {
         // sur `tideData` vide), on recalcule dès qu'elles sont là. `recomputeGoWindows` a ses propres
         // gardes et lit `allTideData`, indépendamment du early-return de `updateActivityScores`.
         .onChange(of: openMeteoForecasts.count) { _, _ in recomputeGoWindows() }
+        // Bascule de la correction premium « avec le réel » → recalcule les fenêtres GO (la courbe, elle,
+        // se redessine seule car `forecastsForDisplay` est relue dans le body).
+        .onChange(of: themeManager.debiasGoEnabled) { _, _ in recomputeGoWindows() }
         .onAppear {
             loadPortData()
             // Staggered animation
@@ -677,9 +705,12 @@ struct TodayView: View {
         guard !openMeteoForecasts.isEmpty, !activeSportSetups.isEmpty else { goWindows = []; return }
         let tide = tideService.allTideData
         let spot = tideService.selectedPort.flatMap { SpotConfigStore.shared.config(for: $0.id) }
+        // Série corrigée par le biais réel SI premium + toggle (sinon brute) → source UNIQUE pour le
+        // plan, l'affinage et les étoiles, afin que les fenêtres GO collent à la courbe affichée.
+        let baseSeries = forecastsForDisplay
         let plan = ActivityGoPlanner.plan(
             setups: activeSportSetups,
-            forecasts: openMeteoForecasts, sunTimes: sunTimes,
+            forecasts: baseSeries, sunTimes: sunTimes,
             tideData: tide,
             from: Date(), days: 7, calendar: calendar,
             scorer: { sport, f, lvl in
@@ -694,7 +725,7 @@ struct TodayView: View {
             .flatMap { WindStationAggregator.shared.nearestWaveReading(for: $0) }
             .map { (wave: $0.wave, distanceKm: $0.distanceKm) }
         let refinedSeries = ActivityScoreService.shared.refinedForecasts(
-            openMeteoForecasts, observedWind: obsWind, buoyWave: buoy, now: now)
+            baseSeries, observedWind: obsWind, buoyWave: buoy, now: now)
         let imminentHorizon = now.addingTimeInterval(2 * 3600)
 
         goWindows = plan.flatMap { day in
@@ -707,7 +738,7 @@ struct TodayView: View {
                     let stars = isAuto
                         ? ActivityScoreService.shared.sessionStars(
                             sport: lane.sport, window: (w.start, w.end),
-                            forecasts: openMeteoForecasts, tideData: tide, spot: spot)
+                            forecasts: baseSeries, tideData: tide, spot: spot)
                         : nil
                     // Réinterprétation le jour J : fenêtre imminente (≤ 2 h) + un relevé réel dispo.
                     // (Surf affine houle+vent ; sports de vent affinent le vent — la houle est ignorée

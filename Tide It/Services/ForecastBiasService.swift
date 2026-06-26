@@ -40,9 +40,14 @@ final class ForecastBiasService: ObservableObject {
                 && stationDistanceKm <= Self.maxStationKm
                 && lastSampleAge < Self.maxAge
         }
+        /// Biais assez net pour qu'une correction ait du sens (sinon le modèle est déjà bon → on ne
+        /// propose pas de « corriger » et on ne déforme pas la courbe pour un écart négligeable).
+        var isCorrectable: Bool { isReliable && abs(meanBiasKmh) >= Self.meaningfulBiasKmh }
+
         static let minSamples = 4
         static let maxStationKm = 25.0
         static let maxAge: TimeInterval = 3 * 3600   // 3 h
+        static let meaningfulBiasKmh = 2.5           // seuil verdict amber/cyan ET correction (source unique)
     }
 
     private var buffers: [String: [Sample]] = [:]
@@ -94,10 +99,24 @@ final class ForecastBiasService: ObservableObject {
     func sampleCount(for portId: String) -> Int { buffers[portId]?.count ?? 0 }
 
     /// Corrige une valeur prévue (km/h) avec le biais appris — SI fiable. Sinon valeur brute.
-    /// (Utilisé par la correction premium des fenêtres GO en phase 2.)
     func debiased(_ kmh: Double, portId: String) -> Double {
         guard let r = readout(for: portId), r.isReliable else { return kmh }
         return max(0, kmh - r.meanBiasKmh)
+    }
+
+    /// Corrige TOUTE une série de prévisions (vent moyen + rafale) par le biais local appris — SI
+    /// corrigeable. Décale moyen ET rafale du MÊME offset → préserve le facteur de rafale (un biais
+    /// SYSTÉMATIQUE du modèle se reporte aussi sur la rafale). Direction inchangée. Sinon série brute.
+    /// Alimente la correction premium de la courbe + des fenêtres GO. ⚠️ Ne JAMAIS reboucler vers
+    /// l'apprentissage (`record` lit toujours le modèle BRUT) : sinon le biais s'effondrerait à zéro.
+    func debiasedSeries(_ series: [HourlyForecast], portId: String) -> [HourlyForecast] {
+        guard let r = readout(for: portId), r.isCorrectable else { return series }
+        let b = r.meanBiasKmh
+        return series.map { f in
+            f.withWind(speed: max(0, f.windSpeedKmh - b),
+                       gust: f.windGustKmh.map { max(0, $0 - b) },
+                       direction: f.windDirection)
+        }
     }
 
     // MARK: - Persistance (locale, bornée)

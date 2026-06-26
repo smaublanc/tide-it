@@ -410,11 +410,11 @@ struct ForecastTrustBadge: View {
     var body: some View {
         if let r = bias.readout(for: portId), r.isReliable {
             let v = UnitFormatter.windSpeedInt(abs(r.meanBiasKmh), unit: unit)
-            if r.meanBiasKmh > 2.5 {
+            if r.meanBiasKmh > ForecastBiasService.BiasReadout.meaningfulBiasKmh {
                 pill(icon: "arrow.down.right.circle.fill", color: .orange,
                      title: "Modèle optimiste",
                      detail: "+\(v) \(unit.label) " + String(localized: "vs réel"))
-            } else if r.meanBiasKmh < -2.5 {
+            } else if r.meanBiasKmh < -ForecastBiasService.BiasReadout.meaningfulBiasKmh {
                 pill(icon: "arrow.up.right.circle.fill", color: .cyan,
                      title: "Modèle prudent",
                      detail: "−\(v) \(unit.label) " + String(localized: "vs réel"))
@@ -442,5 +442,74 @@ struct ForecastTrustBadge: View {
         .overlay(Capsule().stroke(color.opacity(0.25), lineWidth: 1))
         .frame(maxWidth: .infinity, alignment: .leading)
         .accessibilityElement(children: .combine)
+    }
+}
+
+/// Contrôle de CORRECTION (jauge de confiance, stage 2). N'apparaît QUE quand un biais local fiable
+/// ET significatif a été mesuré (`isCorrectable`) — sinon rien (on ne propose pas de corriger un
+/// modèle déjà juste, honnêteté). Premium : interrupteur réel câblé sur `debiasGoEnabled` (la courbe
+/// + les fenêtres GO se décalent du biais appris). Gratuit : ligne verrouillée → paywall.
+struct ForecastCorrectionRow: View {
+    let portId: String
+    let isPremium: Bool
+    @Binding var enabled: Bool
+    let onUpsell: () -> Void
+    @ObservedObject private var bias = ForecastBiasService.shared
+
+    var body: some View {
+        if let r = bias.readout(for: portId), r.isCorrectable {
+            if isPremium {
+                Toggle(isOn: $enabled) {
+                    rowLabel(locked: false)
+                }
+                .tint(.green)
+                .padding(DS.spacingLG)
+                .sectionCard(cornerRadius: DS.radiusXL)
+            } else {
+                Button {
+                    HapticManager.shared.impact(.light)
+                    onUpsell()
+                } label: {
+                    HStack(spacing: DS.spacingMD) {
+                        rowLabel(locked: true)
+                        Spacer(minLength: 0)
+                        Image(systemName: "chevron.right")
+                            .font(.scaled(size: DS.fontSubheadline, weight: .semibold))
+                            .foregroundStyle(.tertiary)
+                    }
+                    .padding(DS.spacingLG)
+                    .sectionCard(cornerRadius: DS.radiusXL)
+                }
+                .buttonStyle(.plain)
+            }
+        }
+    }
+
+    private func rowLabel(locked: Bool) -> some View {
+        HStack(spacing: DS.spacingMD) {
+            Image(systemName: "wand.and.rays")
+                .font(.system(size: 20, weight: .semibold))
+                .foregroundStyle(.green)
+                .frame(width: 40, height: 40)
+                .background(RoundedRectangle(cornerRadius: DS.radiusSM).fill(Color.green.opacity(0.15)))
+            VStack(alignment: .leading, spacing: 3) {
+                HStack(spacing: 5) {
+                    Text("Corriger avec le réel")
+                        .font(.scaled(size: DS.fontHeadline, weight: .bold, design: .rounded))
+                        .foregroundStyle(.primary)
+                    if locked {
+                        Image(systemName: "lock.fill").font(.system(size: 10)).foregroundStyle(.orange)
+                    }
+                }
+                // ⚠️ Chaque branche porte son PROPRE `Text("littéral")` → résout en LocalizedStringKey
+                // (localisé + auto-extrait). `Text(ternaire-de-String)` prendrait l'init non localisé.
+                (locked ? Text("Ajuste la prévision avec le vent réel · Premium")
+                        : Text("Courbe & fenêtres GO ajustées du biais mesuré"))
+                    .font(.scaled(size: DS.fontCaption))
+                    .foregroundStyle(.secondary)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
     }
 }
