@@ -2604,6 +2604,52 @@
         }
       }
     },
+    "1 mois de Premium offert" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 month of Premium, free"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 Monat Premium gratis"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 mes de Premium gratis"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 mese di Premium in regalo"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 maand Premium cadeau"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 mês de Premium grátis"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 mois de Premium offert"
+          }
+        }
+      }
+    },
     "1er croissant" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5342,6 +5388,52 @@
         }
       }
     },
+    "Au bout de 30 jours, l'app repasse en gratuit — tu gardes les marées du monde entier, tes favoris et l'Apple Watch." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After 30 days, the app goes back to free — you keep tides worldwide, your favorites and the Apple Watch."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach 30 Tagen wird die App wieder kostenlos — du behältst die Gezeiten weltweit, deine Favoriten und die Apple Watch."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tras 30 días, la app vuelve a ser gratuita — conservas las mareas de todo el mundo, tus favoritos y el Apple Watch."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopo 30 giorni l'app torna gratuita — mantieni le maree di tutto il mondo, i tuoi preferiti e l'Apple Watch."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na 30 dagen wordt de app weer gratis — je houdt de getijden wereldwijd, je favorieten en de Apple Watch."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ao fim de 30 dias, a app volta a ser gratuita — ficas com as marés do mundo inteiro, os teus favoritos e o Apple Watch."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Au bout de 30 jours, l'app repasse en gratuit — tu gardes les marées du monde entier, tes favoris et l'Apple Watch."
+          }
+        }
+      }
+    },
     "Au moins une de ces conditions suffit." : {
       "localizations" : {
         "de" : {
@@ -7734,6 +7826,52 @@
         }
       }
     },
+    "C'est parti" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let's go"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los geht's"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Vamos!"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si parte"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We gaan"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vamos lá"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C'est parti"
+          }
+        }
+      }
+    },
     "CETTE SEMAINE" : {
       "localizations" : {
         "de" : {
@@ -7994,6 +8132,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Calendário"
+          }
+        }
+      }
+    },
+    "Calendrier GO 7 jours" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7-day GO calendar"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7-Tage-GO-Kalender"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calendario GO de 7 días"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calendario GO 7 giorni"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7-daagse GO-kalender"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calendário GO de 7 dias"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calendrier GO 7 jours"
           }
         }
       }
@@ -14049,6 +14233,52 @@
         }
       }
     },
+    "Exporte tes horaires en PDF ou en belle carte à partager" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export your schedules as a PDF or a slick shareable card"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportiere deine Zeiten als PDF oder schicke Karte zum Teilen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporta tus horarios en PDF o en una bonita tarjeta para compartir"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esporta i tuoi orari in PDF o in una bella scheda da condividere"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporteer je tijden als PDF of een mooie kaart om te delen"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporta os teus horários em PDF ou num cartão bonito para partilhar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporte tes horaires en PDF ou en belle carte à partager"
+          }
+        }
+      }
+    },
     "Exporter en PDF" : {
       "localizations" : {
         "de" : {
@@ -16519,6 +16749,52 @@
         }
       }
     },
+    "Jauge de confiance" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confidence gauge"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vertrauensanzeige"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indicador de confianza"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indicatore di affidabilità"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betrouwbaarheidsmeter"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medidor de confiança"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jauge de confiance"
+          }
+        }
+      }
+    },
     "Je navigue à partir de" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -16977,6 +17253,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A ondulação forte será assinalada como perigosa."
+          }
+        }
+      }
+    },
+    "La marée en direct sur ton écran verrouillé" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The tide live on your lock screen"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Gezeiten live auf deinem Sperrbildschirm"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La marea en directo en tu pantalla de bloqueo"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La marea in diretta sulla schermata di blocco"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het getij live op je vergrendelscherm"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A maré em direto no teu ecrã bloqueado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La marée en direct sur ton écran verrouillé"
           }
         }
       }
@@ -17807,6 +18129,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Live Activity"
+          }
+        }
+      }
+    },
+    "Live Activity & Dynamic Island" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activity & Dynamic Island"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activity & Dynamic Island"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activity & Dynamic Island"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activity & Dynamic Island"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activity & Dynamic Island"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activity & Dynamic Island"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activity & Dynamic Island"
           }
         }
       }
@@ -19572,6 +19940,12 @@
             "state" : "translated",
             "value" : "Modo vento"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode vent"
+          }
         }
       }
     },
@@ -21144,6 +21518,52 @@
         }
       }
     },
+    "Notifications" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benachrichtigungen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notificaciones"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifiche"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meldingen"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notificações"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        }
+      }
+    },
     "Notifications activées" : {
       "localizations" : {
         "de" : {
@@ -21878,6 +22298,52 @@
         }
       }
     },
+    "On compare la prévision au vent réel mesuré pour révéler le biais local" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We compare the forecast to real measured wind to reveal the local bias"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wir vergleichen die Vorhersage mit dem real gemessenen Wind, um den lokalen Bias aufzudecken"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comparamos la previsión con el viento real medido para revelar el sesgo local"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confrontiamo la previsione con il vento reale misurato per svelare lo scarto locale"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We vergelijken de voorspelling met de echt gemeten wind om de lokale afwijking te tonen"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comparamos a previsão com o vento real medido para revelar o desvio local"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On compare la prévision au vent réel mesuré pour révéler le biais local"
+          }
+        }
+      }
+    },
     "On t'alerte à l'avance dès qu'une fenêtre idéale approche, sans ouvrir l'app. 1 alerte offerte par mois, illimité en premium." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -22582,6 +23048,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Por dia"
+          }
+        }
+      }
+    },
+    "Partage PDF & carte" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF & card sharing"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF- & Karten-Sharing"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartir PDF y tarjeta"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Condivisione PDF e scheda"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF & kaart delen"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partilha PDF e cartão"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partage PDF & carte"
           }
         }
       }
@@ -23324,6 +23836,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Planeador inteligente"
+          }
+        }
+      }
+    },
+    "Planifie tes marées un mois à l'avance" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plan your tides a month ahead"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plane deine Gezeiten einen Monat im Voraus"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planifica tus mareas con un mes de antelación"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pianifica le tue maree con un mese di anticipo"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plan je getijden een maand vooruit"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planeia as tuas marés com um mês de antecedência"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planifie tes marées un mois à l'avance"
           }
         }
       }
@@ -24726,6 +25284,52 @@
         }
       }
     },
+    "Profite de tout, sans engagement." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enjoy it all, no strings attached."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genieße alles, ohne Verpflichtung."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disfruta de todo, sin compromiso."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Goditi tutto, senza impegno."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geniet van alles, zonder verplichting."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aproveita tudo, sem compromisso."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profite de tout, sans engagement."
+          }
+        }
+      }
+    },
     "Précision faible" : {
       "localizations" : {
         "de" : {
@@ -25090,6 +25694,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Previsões"
+          }
+        }
+      }
+    },
+    "Prédictions J+30" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "J+30 predictions"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorhersagen bis T+30"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Predicciones a D+30"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previsioni a G+30"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voorspellingen tot D+30"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previsões a D+30"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prédictions J+30"
           }
         }
       }
@@ -27102,6 +27752,98 @@
         }
       }
     },
+    "Sois prévenu·e des sorties parfaites et de tes alertes marée — sans limite" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get notified of perfect sessions and your tide alerts — no limits"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Werde über perfekte Sessions und deine Gezeiten-Alarme informiert — ohne Limit"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recibe avisos de las salidas perfectas y de tus alertas de marea — sin límite"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ricevi una notifica per le uscite perfette e i tuoi avvisi marea — senza limiti"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krijg een melding bij perfecte sessies en je getijdenwaarschuwingen — zonder limiet"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recebe aviso das saídas perfeitas e dos teus alertas de maré — sem limite"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sois prévenu·e des sorties parfaites et de tes alertes marée — sans limite"
+          }
+        }
+      }
+    },
+    "Sois prévenu·e des sorties parfaites et de tes alertes — sans limite" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get notified of perfect sessions and your alerts — no limits"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Werde über perfekte Sessions und deine Alarme informiert — ohne Limit"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recibe avisos de las salidas perfectas y de tus alertas — sin límite"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ricevi una notifica per le uscite perfette e i tuoi avvisi — senza limiti"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krijg een melding bij perfecte sessies en je waarschuwingen — zonder limiet"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recebe aviso das saídas perfeitas e dos teus alertas — sem limite"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sois prévenu·e des sorties parfaites et de tes alertes — sans limite"
+          }
+        }
+      }
+    },
     "Sois prévenu·e quand c'est parfait" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -27578,6 +28320,52 @@
         }
       }
     },
+    "Spots de surf, fenêtres GO surf, hauteur · période · direction de houle" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surf spots, surf GO windows, swell height · period · direction"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surfspots, Surf-GO-Fenster, Wellenhöhe · Periode · Richtung"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spots de surf, ventanas GO surf, altura · periodo · dirección de la ola"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spot di surf, finestre GO surf, altezza · periodo · direzione dell'onda"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surfspots, surf-GO-momenten, deininghoogte · periode · richting"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spots de surf, janelas GO surf, altura · período · direção da ondulação"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spots de surf, fenêtres GO surf, hauteur · période · direction de houle"
+          }
+        }
+      }
+    },
     "Spots de surf, fenêtres GO surf, hauteur · période · direction de houle et widget dédié" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -27615,6 +28403,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spots de surf, janelas GO de surf, altura · período · direção da ondulação e widget dedicado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spots de surf, fenêtres GO surf, hauteur · période · direction de houle et widget dédié"
           }
         }
       }
@@ -29073,6 +29867,52 @@
         }
       }
     },
+    "Toutes tes fenêtres idéales de la semaine, par sport" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All your ideal windows of the week, by sport"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle deine idealen Zeitfenster der Woche, nach Sportart"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todas tus ventanas ideales de la semana, por deporte"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutte le tue finestre ideali della settimana, per sport"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al je ideale momenten van de week, per sport"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todas as tuas janelas ideais da semana, por desporto"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toutes tes fenêtres idéales de la semaine, par sport"
+          }
+        }
+      }
+    },
     "Toutes tes fenêtres idéales de la semaine, par sport (gratuit : aperçu flouté)" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -29110,6 +29950,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Todas as tuas janelas ideais da semana, por desporto (grátis: pré-visualização desfocada)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toutes tes fenêtres idéales de la semaine, par sport (gratuit : aperçu flouté)"
           }
         }
       }
@@ -30211,6 +31057,52 @@
         }
       }
     },
+    "Vent et rafales superposés à la courbe de marée" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind and gusts overlaid on the tide curve"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind und Böen über der Gezeitenkurve"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viento y rachas superpuestos a la curva de marea"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vento e raffiche sovrapposti alla curva di marea"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind en vlagen over de getijdencurve"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vento e rajadas sobrepostos à curva de maré"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vent et rafales superposés à la courbe de marée"
+          }
+        }
+      }
+    },
     "Vent fort" : {
       "localizations" : {
         "de" : {
@@ -30990,6 +31882,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ver em modo vento"
+          }
+        }
+      }
+    },
+    "Voir l'abonnement" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See subscription"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abo ansehen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver suscripción"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vedi abbonamento"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abonnement bekijken"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver subscrição"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir l'abonnement"
           }
         }
       }

@@ -19,6 +19,8 @@ struct ContentView: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var showOnboarding = !UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
     @State private var showPaywall = false
+    /// Annonce « 1 mois offert » : affichée une seule fois, après l'onboarding, à qui a le cadeau.
+    @State private var showWelcomeOffer = false
     // Navigation sans barre d'onglets : Today = le hub plein écran, le reste en sheets.
     @State private var showMap = false
     @State private var showCalendar = false
@@ -70,6 +72,7 @@ struct ContentView: View {
             setupTideService()
             // Économie d'énergie : ne jamais bloquer la mise en veille de l'écran.
             UIApplication.shared.isIdleTimerDisabled = false
+            maybeShowWelcomeOffer()   // utilisateurs existants : pas d'onboarding → au lancement
         }
         .onChange(of: locationManager.location) { _, newLocation in
             if let location = newLocation {
@@ -92,6 +95,13 @@ struct ContentView: View {
         }
         .fullScreenCover(isPresented: $showOnboarding) {
             OnboardingView(isPresented: $showOnboarding, locationManager: locationManager)
+        }
+        // Annonce « 1 mois offert » : après la fin de l'onboarding (nouveaux) ou au lancement (existants).
+        .onChange(of: showOnboarding) { _, isShowing in
+            if !isShowing { maybeShowWelcomeOffer() }
+        }
+        .fullScreenCover(isPresented: $showWelcomeOffer) {
+            WelcomeOfferView(isPresented: $showWelcomeOffer)
         }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
@@ -433,6 +443,15 @@ struct ContentView: View {
             await tideService.fetchTideData()
             tideService.refreshWidgetData()
         }
+    }
+
+    /// Présente l'annonce « 1 mois offert » UNE seule fois, après l'onboarding, à qui profite du cadeau.
+    private func maybeShowWelcomeOffer() {
+        guard !showOnboarding else { return }                          // attendre la fin de l'onboarding
+        guard PremiumManager.shared.isInWelcomeTrial else { return }   // seulement pendant le mois offert
+        guard !UserDefaults.standard.bool(forKey: "welcomeOfferShown_v1") else { return }
+        UserDefaults.standard.set(true, forKey: "welcomeOfferShown_v1")
+        showWelcomeOffer = true
     }
 
     private func setupTideService() {

@@ -413,8 +413,10 @@ struct PremiumPaywallView: View {
 
 private struct FeatureRow: View {
     let icon: String
-    let title: String
-    let subtitle: String
+    // LocalizedStringKey (pas String) → `Text` localise réellement. En String, `Text(title)`
+    // prenait l'init verbatim → libellés figés en FR (bug i18n du paywall, corrigé ici).
+    let title: LocalizedStringKey
+    let subtitle: LocalizedStringKey
 
     var body: some View {
         HStack(spacing: DS.spacingMD) {
@@ -540,5 +542,95 @@ struct PremiumGateModifier: ViewModifier {
 extension View {
     func premiumGate(_ feature: String) -> some View {
         modifier(PremiumGateModifier(feature: feature))
+    }
+}
+
+// MARK: - Welcome Offer (annonce plein écran du mois Premium offert)
+
+/// Affiché UNE fois au 1er lancement de cette version (après l'onboarding), aux utilisateurs qui
+/// profitent du mois offert. Objectif : qu'ils SACHENT qu'ils ont le cadeau + découvrent les features
+/// à essayer (le bandeau Réglages seul est trop passif). Honnête sur le retour au gratuit ensuite.
+struct WelcomeOfferView: View {
+    @Binding var isPresented: Bool
+    @ObservedObject private var manager = PremiumManager.shared
+    @State private var showPaywall = false
+
+    var body: some View {
+        ScrollView {
+            VStack(spacing: DS.spacingXL) {
+                // Hero
+                VStack(spacing: DS.spacingMD) {
+                    Image(systemName: "gift.fill")
+                        .font(.system(size: 56))
+                        .foregroundStyle(
+                            LinearGradient(colors: [.green, .teal],
+                                           startPoint: .topLeading, endPoint: .bottomTrailing)
+                        )
+                        .padding(.top, DS.spacingXXL)
+
+                    Text("1 mois de Premium offert")
+                        .font(.scaled(size: DS.fontLargeTitle, weight: .bold))
+                        .foregroundStyle(.primary)
+                        .multilineTextAlignment(.center)
+
+                    Text("Profite de tout, sans engagement.")
+                        .font(.scaled(size: DS.fontBody))
+                        .foregroundStyle(.gray)
+                }
+
+                // Ce qu'il y a à tester (réutilise FeatureRow ; libellés alignés sur le paywall).
+                VStack(alignment: .leading, spacing: DS.spacingLG) {
+                    FeatureRow(icon: "dot.radiowaves.left.and.right", title: "Vent en temps réel",
+                               subtitle: "Le vent observé par la balise la plus proche, pas juste une prévision")
+                    FeatureRow(icon: "gauge.medium", title: "Jauge de confiance",
+                               subtitle: "On compare la prévision au vent réel mesuré pour révéler le biais local")
+                    FeatureRow(icon: "calendar.badge.clock", title: "Calendrier GO 7 jours",
+                               subtitle: "Toutes tes fenêtres idéales de la semaine, par sport")
+                    FeatureRow(icon: "water.waves", title: "Mode surf & houle",
+                               subtitle: "Spots de surf, fenêtres GO surf, hauteur · période · direction de houle")
+                    FeatureRow(icon: "bell.badge", title: "Notifications",
+                               subtitle: "Sois prévenu·e des sorties parfaites et de tes alertes — sans limite")
+                }
+                .padding(.horizontal, DS.pagePadding)
+
+                // Honnêteté : ce qui se passe après, et ce qui reste gratuit.
+                Text("Au bout de 30 jours, l'app repasse en gratuit — tu gardes les marées du monde entier, tes favoris et l'Apple Watch.")
+                    .font(.scaled(size: DS.fontCaption))
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, DS.pagePadding)
+
+                // CTA principal : explorer (le premium est déjà actif).
+                Button {
+                    HapticManager.shared.impact(.light)
+                    isPresented = false
+                } label: {
+                    Text("C'est parti")
+                        .font(.scaled(size: DS.fontHeadline, weight: .bold))
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, DS.spacingMD)
+                        .background(
+                            LinearGradient(colors: [.green, .teal],
+                                           startPoint: .leading, endPoint: .trailing),
+                            in: RoundedRectangle(cornerRadius: DS.radiusLG)
+                        )
+                }
+                .padding(.horizontal, DS.pagePadding)
+
+                // Secondaire : pour ceux déjà convaincus.
+                Button("Voir l'abonnement") { showPaywall = true }
+                    .font(.scaled(size: DS.fontCallout))
+                    .foregroundStyle(Color.tideHigh)
+
+                Spacer(minLength: DS.spacingXL)
+            }
+        }
+        .sheetBackground()
+        .sheet(isPresented: $showPaywall) {
+            PremiumPaywallView()
+                .presentationDetents([.large])
+                .sheetBackground()
+        }
     }
 }
