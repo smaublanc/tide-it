@@ -14,6 +14,7 @@ struct ContentView: View {
     @StateObject private var marineService = MarineWeatherService.shared
     @ObservedObject private var liveActivityManager = LiveActivityManager.shared
     @ObservedObject private var goBadge = GoWindowBadge.shared
+    @ObservedObject private var premiumManager = PremiumManager.shared
     @EnvironmentObject var alertService: AlertService
     @EnvironmentObject var themeManager: ThemeManager
     @Environment(\.scenePhase) private var scenePhase
@@ -102,6 +103,11 @@ struct ContentView: View {
         // Annonce « 1 mois offert » : après la fin de l'onboarding (nouveaux) ou au lancement (existants).
         .onChange(of: showOnboarding) { _, isShowing in
             if !isShowing { maybeShowWelcomeOffer() }
+        }
+        // La vérif d'abonnement vient de se résoudre → on (ré)évalue l'offre maintenant que l'état
+        // payé est fiable (un abonné existant ne verra donc jamais l'offre).
+        .onChange(of: premiumManager.entitlementChecked) { _, done in
+            if done { maybeShowWelcomeOffer(); maybeShowTrialWeekReminder() }
         }
         .fullScreenCover(isPresented: $showWelcomeOffer) {
             WelcomeOfferView(isPresented: $showWelcomeOffer)
@@ -459,9 +465,13 @@ struct ContentView: View {
     }
 
     /// Présente l'annonce « 1 mois offert » UNE seule fois, après l'onboarding, à qui profite du cadeau.
+    /// ⚠️ N'agit qu'APRÈS la vérification d'abonnement (`entitlementChecked`) : un abonné existant a
+    /// `paidPremium = true` → `isInWelcomeTrial = false` → JAMAIS l'offre. Sans ce gate, la course
+    /// StoreKit pourrait la lui montrer avant que son abonnement soit résolu.
     private func maybeShowWelcomeOffer() {
+        guard premiumManager.entitlementChecked else { return }        // état payé fiable d'abord
         guard !showOnboarding else { return }                          // attendre la fin de l'onboarding
-        guard PremiumManager.shared.isInWelcomeTrial else { return }   // seulement pendant le mois offert
+        guard premiumManager.isInWelcomeTrial else { return }          // pas d'offre si déjà abonné
         guard !UserDefaults.standard.bool(forKey: "welcomeOfferShown_v1") else { return }
         UserDefaults.standard.set(true, forKey: "welcomeOfferShown_v1")
         showWelcomeOffer = true
@@ -470,8 +480,9 @@ struct ContentView: View {
     /// Rappel « plus qu'une semaine » du mois offert : une seule fois, quand il reste ≤ 7 j (et que
     /// l'utilisateur n'a pas encore pris l'abonnement). Après, le Premium passe sur abonnement.
     private func maybeShowTrialWeekReminder() {
+        guard premiumManager.entitlementChecked else { return }
         guard !showOnboarding, !showWelcomeOffer else { return }
-        let pm = PremiumManager.shared
+        let pm = premiumManager
         guard pm.isInWelcomeTrial, pm.welcomeTrialDaysRemaining <= 7 else { return }
         guard !UserDefaults.standard.bool(forKey: "welcomeTrialWeekReminderShown_v1") else { return }
         UserDefaults.standard.set(true, forKey: "welcomeTrialWeekReminderShown_v1")

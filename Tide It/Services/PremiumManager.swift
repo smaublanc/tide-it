@@ -29,6 +29,10 @@ final class PremiumManager: ObservableObject {
     /// Entitlement RÉEL : abonnement actif / achat vérifié par StoreKit. NE PAS lire directement pour
     /// verrouiller une feature — passer par `isPremium`, qui inclut le mois Premium offert.
     @Published private(set) var paidPremium = false
+    /// Le 1er `checkEntitlement()` est-il terminé ? Tant que false, l'état payé n'est pas FIABLE
+    /// (requête StoreKit async). On n'affiche l'offre « mois offert » qu'APRÈS, sinon un abonné
+    /// pourrait la voir pendant la course (paidPremium pas encore résolu).
+    @Published private(set) var entitlementChecked = false
     @Published var products: [Product] = []
     @Published var purchaseError: String?
     @Published var isLoading = false
@@ -218,6 +222,7 @@ final class PremiumManager: ObservableObject {
     // MARK: - Entitlement Check
 
     func checkEntitlement() async {
+        defer { entitlementChecked = true }   // état payé fiable sur TOUS les chemins de sortie
         #if DEBUG
         // Débogage : permet de tester les features premium sans achat (StoreKit en
         // environnement Xcode est capricieux). Jamais compilé dans le build App Store.
