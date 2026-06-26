@@ -119,10 +119,11 @@
             "value" : " · %lld s"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "#%lld" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -246,7 +247,8 @@
             "value" : "%@ %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@ %lld°" : {
       "localizations" : {
@@ -292,7 +294,8 @@
             "value" : "%@ %lld°"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@ / %@" : {
       "localizations" : {
@@ -338,10 +341,11 @@
             "value" : "%@ / %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@ / an (1 semaine d'essai gratuit)" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -382,7 +386,7 @@
       }
     },
     "%@ / mois" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -466,7 +470,8 @@
             "value" : "%@ : %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@ soutenu à %@. C'est parti." : {
       "localizations" : {
@@ -512,10 +517,11 @@
             "value" : "%@ constante a %@. Vamos lá."
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@ · %@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -605,7 +611,8 @@
             "value" : "%@ · %lld dias"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@ · %lld s" : {
       "localizations" : {
@@ -651,10 +658,11 @@
             "value" : "%@ · %lld s"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@ · 7 jours" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -738,7 +746,8 @@
             "value" : "%@ · limite ultrapassado há %lld min — a confirmar se aguenta"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@ à %@" : {
       "localizations" : {
@@ -784,7 +793,8 @@
             "value" : "%@ às %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@ à %@ — c'est le moment de surfer (prévision)." : {
       "localizations" : {
@@ -824,10 +834,11 @@
             "value" : "%@ às %@ — é o momento de surfar (previsão)."
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@ à %@, %@ mètres%@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -917,10 +928,11 @@
             "value" : "%@ às %@, %@%@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@ à %lld %@, Beaufort %lld%@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1010,7 +1022,8 @@
             "value" : "%@ estável a %@ (estação). É agora."
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@ — %@" : {
       "localizations" : {
@@ -1056,7 +1069,8 @@
             "value" : "%@ — %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@ → %@ · %@–%@ (estim. modèle)" : {
       "localizations" : {
@@ -1102,7 +1116,8 @@
             "value" : "%@ → %@ · %@–%@ (estim. modelo)"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@%@%@" : {
       "localizations" : {
@@ -1148,7 +1163,8 @@
             "value" : "%@%@%@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@%@%lldmin vs %@" : {
       "localizations" : {
@@ -1194,7 +1210,8 @@
             "value" : "%@%@%lldmin vs %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@%lld vs prévu" : {
       "localizations" : {
@@ -1240,7 +1257,8 @@
             "value" : "%@%lld vs previsto"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@, %@" : {
       "localizations" : {
@@ -1286,7 +1304,8 @@
             "value" : "%@, %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@, puis %@ / %@" : {
       "localizations" : {
@@ -1332,7 +1351,8 @@
             "value" : "%@, depois %@ / %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%@–%@" : {
       "localizations" : {
@@ -1378,7 +1398,8 @@
             "value" : "%@–%@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld" : {
       "localizations" : {
@@ -1418,7 +1439,8 @@
             "value" : "%lld"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld " : {
       "localizations" : {
@@ -1458,7 +1480,8 @@
             "value" : "%lld "
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld %@" : {
       "localizations" : {
@@ -1504,7 +1527,8 @@
             "value" : "%lld %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld condition%@" : {
       "localizations" : {
@@ -1550,10 +1574,11 @@
             "value" : "%lld condição%@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld créneau%@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1600,7 +1625,7 @@
       }
     },
     "%lld douzièmes du marnage" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1678,7 +1703,8 @@
             "value" : "%lld marés vivas"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld jour%@" : {
       "localizations" : {
@@ -1724,14 +1750,15 @@
             "value" : "%lld dia%@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld jours restants" : {
       "localizations" : {
-        "fr" : {
+        "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld jours restants"
+            "value" : "Noch %lld Tage"
           }
         },
         "en" : {
@@ -1740,16 +1767,16 @@
             "value" : "%lld days left"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch %lld Tage"
-          }
-        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld días restantes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld jours restants"
           }
         },
         "it" : {
@@ -1770,7 +1797,8 @@
             "value" : "%lld dias restantes"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld marées" : {
       "localizations" : {
@@ -1810,10 +1838,11 @@
             "value" : "%lld marés"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld perso" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1854,7 +1883,7 @@
       }
     },
     "%lld ports" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1932,7 +1961,8 @@
             "value" : "%lld portos guardados"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld s" : {
       "localizations" : {
@@ -1972,10 +2002,11 @@
             "value" : "%lld s"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld suivi%@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2059,10 +2090,11 @@
             "value" : "%lld de 120"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld sélectionné%@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2109,7 +2141,7 @@
       }
     },
     "%lld ★" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2187,10 +2219,11 @@
             "value" : "%lld%%"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld/%lld alertes gratuites" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2237,7 +2270,7 @@
       }
     },
     "%lld/100" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2278,7 +2311,7 @@
       }
     },
     "%lld/12" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2356,7 +2389,8 @@
             "value" : "%lldh"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lldmin" : {
       "localizations" : {
@@ -2396,7 +2430,8 @@
             "value" : "%lldmin"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld°" : {
       "localizations" : {
@@ -2436,7 +2471,8 @@
             "value" : "%lld°"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "%lld–%lld %@" : {
       "localizations" : {
@@ -2482,7 +2518,8 @@
             "value" : "%lld–%lld %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "+" : {
       "localizations" : {
@@ -2606,22 +2643,28 @@
     },
     "1 mois de Premium offert" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1 month of Premium, free"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 Monat Premium gratis"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 month of Premium, free"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 mes de Premium gratis"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 mois de Premium offert"
           }
         },
         "it" : {
@@ -2640,12 +2683,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 mês de Premium grátis"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1 mois de Premium offert"
           }
         }
       }
@@ -2825,7 +2862,7 @@
       }
     },
     "7 PROCHAINS JOURS" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2912,7 +2949,7 @@
       }
     },
     "ACTIVITÉ" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3126,7 +3163,7 @@
       }
     },
     "Active les sports que tu pratiques et règle leurs conditions. Le calendrier ne suivra que les sports activés." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3377,10 +3414,11 @@
             "value" : "Atividades: %lld"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Activités nautiques" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3427,7 +3465,7 @@
       }
     },
     "Activé" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3515,7 +3553,7 @@
       }
     },
     "Actuel" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3556,7 +3594,7 @@
       }
     },
     "Affiche la courbe de hauteur d'eau sur la journée" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3677,7 +3715,7 @@
       }
     },
     "Ajoute des spots en favori, active ta localisation, ou choisis d'autres activités pour élargir la recherche." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4259,7 +4297,7 @@
       }
     },
     "Ajoutez des ports en favoris pour les scanner" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4394,22 +4432,28 @@
     },
     "Ajuste la courbe et les fenêtres GO selon le vent réellement mesuré près de toi, quand une station proche est fiable." : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adjusts the curve and GO windows to the wind actually measured near you, when a nearby station is reliable."
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Passt die Kurve und die GO-Fenster an den real gemessenen Wind in deiner Nähe an, sobald eine Station in der Nähe zuverlässig ist."
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adjusts the curve and GO windows to the wind actually measured near you, when a nearby station is reliable."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajusta la curva y las ventanas GO al viento realmente medido cerca de ti, cuando una estación cercana es fiable."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajuste la courbe et les fenêtres GO selon le vent réellement mesuré près de toi, quand une station proche est fiable."
           }
         },
         "it" : {
@@ -4429,28 +4473,22 @@
             "state" : "translated",
             "value" : "Ajusta a curva e as janelas GO ao vento realmente medido perto de ti, quando uma estação próxima é fiável."
           }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajuste la courbe et les fenêtres GO selon le vent réellement mesuré près de toi, quand une station proche est fiable."
-          }
         }
       }
     },
     "Ajuste la prévision avec le vent réel · Premium" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adjusts the forecast with real wind · Premium"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Passt die Vorhersage an den echten Wind an · Premium"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adjusts the forecast with real wind · Premium"
           }
         },
         "es" : {
@@ -4523,7 +4561,8 @@
             "value" : "Alerta %@, %@, %lld condição%@, %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Alerte globale" : {
       "extractionState" : "manual",
@@ -4619,7 +4658,7 @@
       }
     },
     "Alertes" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4666,7 +4705,7 @@
       }
     },
     "Alertes Sorties Parfaites activées" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4883,10 +4922,11 @@
             "value" : "Análise de %lld componentes astronómicas"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Analyse de tes spots…" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4967,7 +5007,7 @@
       }
     },
     "Analyse en cours…" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5266,7 +5306,7 @@
       }
     },
     "Appui long : nouveau spot" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5307,7 +5347,7 @@
       }
     },
     "Appuyez pour zoomer sur ce groupe" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5435,23 +5475,30 @@
       }
     },
     "Au bout de 30 jours, l'app repasse en gratuit — tu gardes les marées du monde entier, tes favoris et l'Apple Watch." : {
+      "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "After 30 days, the app goes back to free — you keep tides worldwide, your favorites and the Apple Watch."
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nach 30 Tagen wird die App wieder kostenlos — du behältst die Gezeiten weltweit, deine Favoriten und die Apple Watch."
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After 30 days, the app goes back to free — you keep tides worldwide, your favorites and the Apple Watch."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tras 30 días, la app vuelve a ser gratuita — conservas las mareas de todo el mundo, tus favoritos y el Apple Watch."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Au bout de 30 jours, l'app repasse en gratuit — tu gardes les marées du monde entier, tes favoris et l'Apple Watch."
           }
         },
         "it" : {
@@ -5470,12 +5517,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ao fim de 30 dias, a app volta a ser gratuita — ficas com as marés do mundo inteiro, os teus favoritos e o Apple Watch."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Au bout de 30 jours, l'app repasse en gratuit — tu gardes les marées du monde entier, tes favoris et l'Apple Watch."
           }
         }
       }
@@ -5693,7 +5734,7 @@
       }
     },
     "Aucun créneau trouvé" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6131,7 +6172,7 @@
       }
     },
     "Aucune donnée pour ce jour" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6178,7 +6219,7 @@
       }
     },
     "Aucune fenêtre idéale dans les 3 prochains jours" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6394,7 +6435,8 @@
             "value" : "Nenhuma maré disponível para %@ às %@."
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Aucune marée trouvée dans les prochains jours pour %@." : {
       "localizations" : {
@@ -6434,7 +6476,8 @@
             "value" : "Nenhuma maré encontrada nos próximos dias para %@."
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Aujourd'hui" : {
       "localizations" : {
@@ -6615,7 +6658,7 @@
       }
     },
     "Autres bonnes fenêtres" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6826,7 +6869,8 @@
             "value" : "BM %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "BM %@ · %@" : {
       "localizations" : {
@@ -6872,7 +6916,8 @@
             "value" : "BM %@ · %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Baignade" : {
       "extractionState" : "manual",
@@ -6965,7 +7010,8 @@
             "value" : "Estação « %@ » a %@ km · Premium"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Basse mer" : {
       "localizations" : {
@@ -7232,7 +7278,7 @@
       }
     },
     "Beaufort" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7365,7 +7411,7 @@
       }
     },
     "Bon" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7412,7 +7458,7 @@
       }
     },
     "Bon (60+)" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7459,7 +7505,7 @@
       }
     },
     "Bon marnage" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7598,7 +7644,7 @@
       }
     },
     "Boussole du vent" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7870,26 +7916,33 @@
             "value" : "C%lld"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "C'est parti" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Let's go"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Los geht's"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let's go"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "¡Vamos!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C'est parti"
           }
         },
         "it" : {
@@ -7908,12 +7961,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vamos lá"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C'est parti"
           }
         }
       }
@@ -8184,22 +8231,28 @@
     },
     "Calendrier GO 7 jours" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "7-day GO calendar"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "7-Tage-GO-Kalender"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7-day GO calendar"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Calendario GO de 7 días"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calendrier GO 7 jours"
           }
         },
         "it" : {
@@ -8218,12 +8271,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Calendário GO de 7 dias"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Calendrier GO 7 jours"
           }
         }
       }
@@ -8323,16 +8370,16 @@
     "Calibration en cours" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Calibrating…"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kalibrierung…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calibrating…"
           }
         },
         "es" : {
@@ -8574,7 +8621,7 @@
       }
     },
     "Cette semaine" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8707,7 +8754,7 @@
       }
     },
     "Chargement météo..." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8801,7 +8848,7 @@
       }
     },
     "Choisis ce que tu pratiques : on te trouvera la prochaine fenêtre parfaite, au bon endroit et au bon moment." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9109,7 +9156,7 @@
       }
     },
     "Classique" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9196,7 +9243,7 @@
       }
     },
     "Coef %lld favorable" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9243,7 +9290,7 @@
       }
     },
     "Coef %lld fort" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9290,7 +9337,7 @@
       }
     },
     "Coef %lld moyen" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9429,7 +9476,7 @@
       }
     },
     "Coef faible = calme" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9522,7 +9569,7 @@
       }
     },
     "Coef modéré" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9652,7 +9699,8 @@
             "value" : "Coeficiente %lld"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Coefficient %lld, %@" : {
       "localizations" : {
@@ -9698,7 +9746,8 @@
             "value" : "Coeficiente %lld, %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Coefficient du jour : %lld" : {
       "localizations" : {
@@ -9738,7 +9787,8 @@
             "value" : "Coeficiente do dia: %lld"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Coefficient inférieur à 45" : {
       "localizations" : {
@@ -10052,7 +10102,7 @@
       }
     },
     "Commencer avec les modèles" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -10136,7 +10186,8 @@
             "value" : "Como combinar as %lld condições?"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Comparer" : {
       "localizations" : {
@@ -10448,7 +10499,8 @@
             "value" : "Condições de surf reunidas em %@ (previsão)."
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Conditions idéales pour la pêche" : {
       "localizations" : {
@@ -10544,7 +10596,7 @@
       }
     },
     "Configuration de l'application" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -10765,16 +10817,16 @@
     "Corriger avec le réel" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Correct with real wind"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mit Echtdaten korrigieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correct with real wind"
           }
         },
         "es" : {
@@ -10805,22 +10857,28 @@
     },
     "Corriger le vent avec le réel" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Correct wind with real data"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wind mit Echtdaten korrigieren"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correct wind with real data"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Corregir el viento con datos reales"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Corriger le vent avec le réel"
           }
         },
         "it" : {
@@ -10840,17 +10898,11 @@
             "state" : "translated",
             "value" : "Corrigir o vento com dados reais"
           }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Corriger le vent avec le réel"
-          }
         }
       }
     },
     "Costaud" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -10978,7 +11030,7 @@
       }
     },
     "Courant de marée" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -11027,16 +11079,16 @@
     "Courbe & fenêtres GO ajustées du biais mesuré" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Curve & GO windows adjusted for measured bias"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kurve & GO-Fenster um gemessene Abweichung korrigiert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Curve & GO windows adjusted for measured bias"
           }
         },
         "es" : {
@@ -11103,7 +11155,8 @@
             "value" : "Curva de maré de %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Courbe des marées" : {
       "localizations" : {
@@ -11152,7 +11205,7 @@
       }
     },
     "Crée tes alertes librement — les notifications nécessitent Premium" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -11285,7 +11338,7 @@
       }
     },
     "Créer le port" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -11645,7 +11698,7 @@
       }
     },
     "Côté mer" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -11732,7 +11785,7 @@
       }
     },
     "DONNÉES OFFICIELLES" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -12186,7 +12239,7 @@
       }
     },
     "Direction vers laquelle s'ouvre l'eau — sert à repérer le vent de terre (dangereux en kite/wing)." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -12486,7 +12539,7 @@
       }
     },
     "Données limitées" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -12573,7 +12626,7 @@
       }
     },
     "Dynamic Island" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -12666,7 +12719,7 @@
       }
     },
     "Débit :" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -13017,7 +13070,7 @@
       }
     },
     "Déconseillé" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -13104,7 +13157,7 @@
       }
     },
     "Défavorable" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -13151,7 +13204,7 @@
       }
     },
     "Définissez les conditions de déclenchement" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -13244,7 +13297,7 @@
       }
     },
     "Désactivé" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -13372,7 +13425,7 @@
       }
     },
     "Eau praticable à partir de" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -13895,7 +13948,8 @@
             "value" : "Erro: %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Erreur de date." : {
       "localizations" : {
@@ -13975,7 +14029,8 @@
             "value" : "Espécies da época · %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Essai gratuit d'une semaine — sans engagement, annulable à tout moment." : {
       "localizations" : {
@@ -14018,7 +14073,7 @@
       }
     },
     "Essayez d'élargir la période ou de relâcher les filtres." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -14105,7 +14160,7 @@
       }
     },
     "Excellent" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -14152,7 +14207,7 @@
       }
     },
     "Excellent (80+)" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -14245,7 +14300,7 @@
       }
     },
     "Exigence" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -14327,22 +14382,28 @@
     },
     "Exporte tes horaires en PDF ou en belle carte à partager" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Export your schedules as a PDF or a slick shareable card"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exportiere deine Zeiten als PDF oder schicke Karte zum Teilen"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export your schedules as a PDF or a slick shareable card"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exporta tus horarios en PDF o en una bonita tarjeta para compartir"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporte tes horaires en PDF ou en belle carte à partager"
           }
         },
         "it" : {
@@ -14361,12 +14422,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exporta os teus horários em PDF ou num cartão bonito para partilhar"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Exporte tes horaires en PDF ou en belle carte à partager"
           }
         }
       }
@@ -14458,7 +14513,7 @@
       }
     },
     "F%lld" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -14536,7 +14591,8 @@
             "value" : "F%lld Beaufort"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Favoris" : {
       "localizations" : {
@@ -14669,7 +14725,8 @@
             "value" : "Janela GO — %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Fenêtres GO" : {
       "localizations" : {
@@ -14758,7 +14815,7 @@
       }
     },
     "Filtres avancés" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -14886,7 +14943,7 @@
       }
     },
     "Fort marnage" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -15331,7 +15388,8 @@
             "value" : "Go %lld%%"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Grande marée" : {
       "localizations" : {
@@ -15564,7 +15622,7 @@
       }
     },
     "Gratuit : crée tes activités et tes alertes, aperçu flouté du calendrier GO, marées hors-ligne dans le monde entier." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -15605,7 +15663,7 @@
       }
     },
     "Gratuit : crée tes activités et tes alertes, calendrier GO sur 2 jours, marées hors-ligne dans le monde entier." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -15686,7 +15744,7 @@
       }
     },
     "Gratuit : marées du monde entier hors-ligne + favoris." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -15727,7 +15785,7 @@
       }
     },
     "Groupe de %lld ports%@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -15811,7 +15869,8 @@
             "value" : "H%lld"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "HAUTEUR DE LA HOULE" : {
       "localizations" : {
@@ -16033,7 +16092,7 @@
       }
     },
     "Heure %lld/6" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -16074,7 +16133,7 @@
       }
     },
     "Heure H%lld%@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -16250,16 +16309,16 @@
     "Houle" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Swell"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dünung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swell"
           }
         },
         "es" : {
@@ -16329,7 +16388,7 @@
       }
     },
     "Houle mini" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -16527,7 +16586,8 @@
             "value" : "Não foi possível calcular o estado atual da maré em %@."
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Impossible de charger les offres. Vérifie ta connexion et réessaie." : {
       "localizations" : {
@@ -16749,7 +16809,7 @@
       }
     },
     "Itinéraire" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -16843,22 +16903,28 @@
     },
     "Jauge de confiance" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Confidence gauge"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vertrauensanzeige"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confidence gauge"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Indicador de confianza"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jauge de confiance"
           }
         },
         "it" : {
@@ -16878,17 +16944,11 @@
             "state" : "translated",
             "value" : "Medidor de confiança"
           }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jauge de confiance"
-          }
         }
       }
     },
     "Je navigue à partir de" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -17019,10 +17079,11 @@
             "value" : "Dia %lld%@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Jour uniquement" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -17266,7 +17327,8 @@
             "value" : "A água sobe depressa: volta a subir antes das **%@**."
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "La balise franchit le seuil et le vent tient ~20 min" : {
       "localizations" : {
@@ -17309,7 +17371,7 @@
       }
     },
     "La houle forte sera signalée comme dangereuse." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -17351,22 +17413,28 @@
     },
     "La marée en direct sur ton écran verrouillé" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The tide live on your lock screen"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Die Gezeiten live auf deinem Sperrbildschirm"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The tide live on your lock screen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "La marea en directo en tu pantalla de bloqueo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La marée en direct sur ton écran verrouillé"
           }
         },
         "it" : {
@@ -17385,12 +17453,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A maré em direto no teu ecrã bloqueado"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La marée en direct sur ton écran verrouillé"
           }
         }
       }
@@ -17482,7 +17544,7 @@
       }
     },
     "Le paiement sera débité sur votre compte Apple à la confirmation de l'achat. L'abonnement se renouvelle automatiquement sauf annulation au moins 24h avant la fin de la période en cours. Le renouvellement est facturé au tarif en vigueur. Gérez ou annulez vos abonnements dans Réglages > votre compte Apple > Abonnements." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -17562,6 +17624,7 @@
         }
       }
     },
+    "Le vent observé par la balise la plus proche, pas juste une prévision" : {},
     "Le vent s'établit" : {
       "localizations" : {
         "de" : {
@@ -17850,7 +17913,7 @@
       }
     },
     "Les fenêtres suivent la météo et tes réglages : ajuste un sport dans « Mes sports »." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -18065,7 +18128,7 @@
       }
     },
     "Limite atteinte · Passez Premium pour plus d'alertes" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -18227,19 +18290,25 @@
     },
     "Live Activity & Dynamic Island" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Live Activity & Dynamic Island"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Live Activity & Dynamic Island"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activity & Dynamic Island"
+          }
+        },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activity & Dynamic Island"
+          }
+        },
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Live Activity & Dynamic Island"
@@ -18258,12 +18327,6 @@
           }
         },
         "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Live Activity & Dynamic Island"
-          }
-        },
-        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Live Activity & Dynamic Island"
@@ -18411,7 +18474,7 @@
       }
     },
     "M'alerter quand TOUS mes spots alignent vent + eau + météo pour mes activités, où que je sois." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -18625,7 +18688,7 @@
       }
     },
     "Marée" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -18743,7 +18806,8 @@
             "value" : "Maré atual em ${port}"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Marée basse" : {
       "localizations" : {
@@ -19084,7 +19148,8 @@
             "value" : "Marés de ${date} em ${port}"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Marées du jour" : {
       "localizations" : {
@@ -19227,7 +19292,7 @@
       }
     },
     "Mauvais" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -19274,7 +19339,7 @@
       }
     },
     "Max" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -19315,7 +19380,7 @@
       }
     },
     "Meilleur moment : %@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -19484,22 +19549,28 @@
     },
     "Merci de faire partie des premiers riders 🙏" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Thanks for being one of our first riders 🙏"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Danke, dass du einer unserer ersten Rider bist 🙏"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thanks for being one of our first riders 🙏"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gracias por ser uno de nuestros primeros riders 🙏"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merci de faire partie des premiers riders 🙏"
           }
         },
         "it" : {
@@ -19518,12 +19589,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Obrigado por seres um dos nossos primeiros riders 🙏"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Merci de faire partie des premiers riders 🙏"
           }
         }
       }
@@ -19747,7 +19812,7 @@
       }
     },
     "Min" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -20000,7 +20065,6 @@
       }
     },
     "Mode surf & houle" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -20041,7 +20105,6 @@
       }
     },
     "Mode vent" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -20061,6 +20124,12 @@
             "value" : "Modo viento"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode vent"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20077,12 +20146,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modo vento"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mode vent"
           }
         }
       }
@@ -20354,16 +20417,16 @@
     "Modèle optimiste" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Model runs high"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modell zu hoch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Model runs high"
           }
         },
         "es" : {
@@ -20395,16 +20458,16 @@
     "Modèle prudent" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Model runs low"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modell zu niedrig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Model runs low"
           }
         },
         "es" : {
@@ -20712,7 +20775,7 @@
       }
     },
     "Moyen" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -20759,7 +20822,7 @@
       }
     },
     "Moyen (40+)" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -20945,7 +21008,7 @@
       }
     },
     "Météo indisponible" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -21205,7 +21268,7 @@
       }
     },
     "Niveau suffisant" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -21252,7 +21315,7 @@
       }
     },
     "Niveau élevé" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -21658,22 +21721,28 @@
     },
     "Notifications" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Notifications"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Benachrichtigungen"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notificaciones"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
           }
         },
         "it" : {
@@ -21692,12 +21761,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notificações"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Notifications"
           }
         }
       }
@@ -21915,7 +21978,7 @@
       }
     },
     "Nouveau port" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -22309,7 +22372,7 @@
       }
     },
     "Océan" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -22390,7 +22453,7 @@
       }
     },
     "Officielles" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -22438,22 +22501,28 @@
     },
     "On compare la prévision au vent réel mesuré pour révéler le biais local" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "We compare the forecast to real measured wind to reveal the local bias"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wir vergleichen die Vorhersage mit dem real gemessenen Wind, um den lokalen Bias aufzudecken"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We compare the forecast to real measured wind to reveal the local bias"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comparamos la previsión con el viento real medido para revelar el sesgo local"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On compare la prévision au vent réel mesuré pour révéler le biais local"
           }
         },
         "it" : {
@@ -22473,17 +22542,11 @@
             "state" : "translated",
             "value" : "Comparamos a previsão com o vento real medido para revelar o desvio local"
           }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "On compare la prévision au vent réel mesuré pour révéler le biais local"
-          }
         }
       }
     },
     "On t'alerte à l'avance dès qu'une fenêtre idéale approche, sans ouvrir l'app. 1 alerte offerte par mois, illimité en premium." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -22524,7 +22587,7 @@
       }
     },
     "On vérifiera qu'il y a assez d'eau (kite/foil)." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -22659,16 +22722,16 @@
     },
     "Ouvre le spot un instant, puis reviens." : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open the spot for a moment, then come back."
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Öffne den Spot kurz, dann komm zurück."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the spot for a moment, then come back."
           }
         },
         "es" : {
@@ -22922,7 +22985,8 @@
             "value" : "PM %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "POPULAIRE" : {
       "localizations" : {
@@ -22971,7 +23035,7 @@
       }
     },
     "PORTS" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -23192,22 +23256,28 @@
     },
     "Partage PDF & carte" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PDF & card sharing"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "PDF- & Karten-Sharing"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF & card sharing"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Compartir PDF y tarjeta"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partage PDF & carte"
           }
         },
         "it" : {
@@ -23226,12 +23296,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Partilha PDF e cartão"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Partage PDF & carte"
           }
         }
       }
@@ -23550,7 +23614,7 @@
       }
     },
     "Pas de données de marée" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -23634,7 +23698,8 @@
             "value" : "Sem dados de maré disponíveis para %@. Abre a app para os atualizar."
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Pas de données pour %@. Ouvre l'app." : {
       "localizations" : {
@@ -23674,7 +23739,8 @@
             "value" : "Sem dados para %@. Abre a app."
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Passer" : {
       "localizations" : {
@@ -23816,7 +23882,7 @@
       }
     },
     "Petit propre" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -23894,10 +23960,11 @@
             "value" : "Fase lunar: %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Planificateur" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -23938,7 +24005,7 @@
       }
     },
     "Planificateur intelligent" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -23980,22 +24047,28 @@
     },
     "Planifie tes marées un mois à l'avance" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Plan your tides a month ahead"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Plane deine Gezeiten einen Monat im Voraus"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plan your tides a month ahead"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Planifica tus mareas con un mes de antelación"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planifie tes marées un mois à l'avance"
           }
         },
         "it" : {
@@ -24015,17 +24088,11 @@
             "state" : "translated",
             "value" : "Planeia as tuas marés com um mês de antecedência"
           }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Planifie tes marées un mois à l'avance"
-          }
         }
       }
     },
     "Planifier" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -24350,7 +24417,7 @@
       }
     },
     "Plus d'infos" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -24398,22 +24465,28 @@
     },
     "Plus qu'une semaine de Premium offert" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Only one week of free Premium left"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nur noch eine Woche Premium gratis"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only one week of free Premium left"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Solo queda una semana de Premium gratis"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus qu'une semaine de Premium offert"
           }
         },
         "it" : {
@@ -24433,33 +24506,33 @@
             "state" : "translated",
             "value" : "Resta só uma semana de Premium grátis"
           }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Plus qu'une semaine de Premium offert"
-          }
         }
       }
     },
     "Plus tard" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Later"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Später"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Later"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Más tarde"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus tard"
           }
         },
         "it" : {
@@ -24478,12 +24551,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mais tarde"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Plus tard"
           }
         }
       }
@@ -24739,7 +24806,8 @@
             "value" : "Porto: %@. Menu de navegação"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Port actuel" : {
       "extractionState" : "manual",
@@ -24918,10 +24986,11 @@
             "value" : "Porto mais seguido: %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Port sélectionné : %@. Changer de port" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -25263,10 +25332,10 @@
     },
     "Premium offert" : {
       "localizations" : {
-        "fr" : {
+        "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Premium offert"
+            "value" : "Premium geschenkt"
           }
         },
         "en" : {
@@ -25275,16 +25344,16 @@
             "value" : "Free Premium"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Premium geschenkt"
-          }
-        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Premium de regalo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium offert"
           }
         },
         "it" : {
@@ -25345,7 +25414,8 @@
             "value" : "Próxima ${tideType} em ${port}"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Prochaine %@" : {
       "localizations" : {
@@ -25385,7 +25455,8 @@
             "value" : "Próxima %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Prochaine marée" : {
       "localizations" : {
@@ -25515,23 +25586,30 @@
       }
     },
     "Profite de tout, sans engagement." : {
+      "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enjoy it all, no strings attached."
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genieße alles, ohne Verpflichtung."
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enjoy it all, no strings attached."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Disfruta de todo, sin compromiso."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profite de tout, sans engagement."
           }
         },
         "it" : {
@@ -25551,33 +25629,33 @@
             "state" : "translated",
             "value" : "Aproveita tudo, sem compromisso."
           }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Profite de tout, sans engagement."
-          }
         }
       }
     },
     "Profite-en encore quelques jours. Ensuite, le Premium passe sur abonnement — tu pourras continuer quand tu veux." : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enjoy it a few more days. After that, Premium moves to subscription — you can continue whenever you like."
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genieße es noch ein paar Tage. Danach läuft Premium per Abo — du kannst jederzeit weitermachen."
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enjoy it a few more days. After that, Premium moves to subscription — you can continue whenever you like."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Disfrútalo unos días más. Después, el Premium pasa a suscripción — puedes continuar cuando quieras."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profite-en encore quelques jours. Ensuite, le Premium passe sur abonnement — tu pourras continuer quand tu veux."
           }
         },
         "it" : {
@@ -25597,33 +25675,33 @@
             "state" : "translated",
             "value" : "Aproveita mais uns dias. Depois, o Premium passa a subscrição — podes continuar quando quiseres."
           }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Profite-en encore quelques jours. Ensuite, le Premium passe sur abonnement — tu pourras continuer quand tu veux."
-          }
         }
       }
     },
     "Profites-en pendant 30 jours. Ensuite, l'app reste gratuite — le Premium continue sur abonnement, quand tu veux." : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enjoy it for 30 days. After that the app stays free — Premium continues via subscription, whenever you like."
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genieße es 30 Tage lang. Danach bleibt die App kostenlos — Premium läuft per Abo weiter, wann du willst."
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enjoy it for 30 days. After that the app stays free — Premium continues via subscription, whenever you like."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Disfrútalo durante 30 días. Después la app sigue gratis — el Premium continúa por suscripción, cuando quieras."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profites-en pendant 30 jours. Ensuite, l'app reste gratuite — le Premium continue sur abonnement, quand tu veux."
           }
         },
         "it" : {
@@ -25642,12 +25720,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aproveita durante 30 dias. Depois a app continua grátis — o Premium segue por subscrição, quando quiseres."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Profites-en pendant 30 jours. Ensuite, l'app reste gratuite — le Premium continue sur abonnement, quand tu veux."
           }
         }
       }
@@ -26022,22 +26094,28 @@
     },
     "Prédictions J+30" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "J+30 predictions"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vorhersagen bis T+30"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "J+30 predictions"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Predicciones a D+30"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prédictions J+30"
           }
         },
         "it" : {
@@ -26057,17 +26135,11 @@
             "state" : "translated",
             "value" : "Previsões a D+30"
           }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Prédictions J+30"
-          }
         }
       }
     },
     "Prédictions J+30, export, alertes illimitées" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -26202,16 +26274,16 @@
     "Prévision fiable ici" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Forecast reliable here"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vorhersage hier zuverlässig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forecast reliable here"
           }
         },
         "es" : {
@@ -26241,7 +26313,7 @@
       }
     },
     "Prévisions horaires" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -26289,16 +26361,16 @@
     },
     "Prévisions indisponibles" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Forecast unavailable"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vorhersage nicht verfügbar"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forecast unavailable"
           }
         },
         "es" : {
@@ -26329,10 +26401,10 @@
     },
     "Puis retour au mode gratuit — sans engagement" : {
       "localizations" : {
-        "fr" : {
+        "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Puis retour au mode gratuit — sans engagement"
+            "value" : "Danach zurück zum Gratis-Modus — unverbindlich"
           }
         },
         "en" : {
@@ -26341,16 +26413,16 @@
             "value" : "Then back to the free plan — no commitment"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Danach zurück zum Gratis-Modus — unverbindlich"
-          }
-        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Luego vuelve al modo gratuito, sin compromiso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puis retour au mode gratuit — sans engagement"
           }
         },
         "it" : {
@@ -26374,7 +26446,7 @@
       }
     },
     "PÉRIODE" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -26452,7 +26524,8 @@
             "value" : "Período: %lld s"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Période de mortes-eaux" : {
       "localizations" : {
@@ -26547,7 +26620,7 @@
       }
     },
     "Période mini" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -26773,7 +26846,7 @@
       }
     },
     "Rafales" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -26820,7 +26893,7 @@
       }
     },
     "Recevez des alertes pour les grandes marées, les conditions idéales de pêche, et plus encore." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -27030,7 +27103,8 @@
             "value" : "Ref: %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Repérez les meilleures basses mers, votre fenêtre d'estran découvert et l'heure de retour de l'eau." : {
       "localizations" : {
@@ -27120,7 +27194,7 @@
       }
     },
     "Ressenti %@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -27293,7 +27367,7 @@
       }
     },
     "RÉSULTATS" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -27334,7 +27408,7 @@
       }
     },
     "Règle des douzièmes : 1-2-3-3-2-1" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -27594,16 +27668,16 @@
     },
     "Résumé 7 jours" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "7-day summary"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "7-Tage-Übersicht"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7-day summary"
           }
         },
         "es" : {
@@ -27893,7 +27967,7 @@
       }
     },
     "Score %lld sur 100, %@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -27987,7 +28061,7 @@
       }
     },
     "Select date" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -28028,7 +28102,7 @@
       }
     },
     "Semaine pro" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -28076,22 +28150,28 @@
     },
     "Sois prévenu·e des sorties parfaites et de tes alertes marée — sans limite" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Get notified of perfect sessions and your tide alerts — no limits"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Werde über perfekte Sessions und deine Gezeiten-Alarme informiert — ohne Limit"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get notified of perfect sessions and your tide alerts — no limits"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recibe avisos de las salidas perfectas y de tus alertas de marea — sin límite"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sois prévenu·e des sorties parfaites et de tes alertes marée — sans limite"
           }
         },
         "it" : {
@@ -28111,33 +28191,33 @@
             "state" : "translated",
             "value" : "Recebe aviso das saídas perfeitas e dos teus alertas de maré — sem limite"
           }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sois prévenu·e des sorties parfaites et de tes alertes marée — sans limite"
-          }
         }
       }
     },
     "Sois prévenu·e des sorties parfaites et de tes alertes — sans limite" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Get notified of perfect sessions and your alerts — no limits"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Werde über perfekte Sessions und deine Alarme informiert — ohne Limit"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get notified of perfect sessions and your alerts — no limits"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recibe avisos de las salidas perfectas y de tus alertas — sin límite"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sois prévenu·e des sorties parfaites et de tes alertes — sans limite"
           }
         },
         "it" : {
@@ -28157,17 +28237,11 @@
             "state" : "translated",
             "value" : "Recebe aviso das saídas perfeitas e dos teus alertas — sem limite"
           }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sois prévenu·e des sorties parfaites et de tes alertes — sans limite"
-          }
         }
       }
     },
     "Sois prévenu·e quand c'est parfait" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -28347,7 +28421,7 @@
       }
     },
     "Sorties Parfaites" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -28428,7 +28502,7 @@
       }
     },
     "Sorties Parfaites quand le vent et la marée s'alignent, grandes marées pour la pêche à pied, et tes alertes perso." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -28469,7 +28543,7 @@
       }
     },
     "Sorties parfaites" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -28640,26 +28714,33 @@
             "value" : "Spot de surf %@, %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Spots de surf, fenêtres GO surf, hauteur · période · direction de houle" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Surf spots, surf GO windows, swell height · period · direction"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Surfspots, Surf-GO-Fenster, Wellenhöhe · Periode · Richtung"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surf spots, surf GO windows, swell height · period · direction"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spots de surf, ventanas GO surf, altura · periodo · dirección de la ola"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spots de surf, fenêtres GO surf, hauteur · période · direction de houle"
           }
         },
         "it" : {
@@ -28679,17 +28760,10 @@
             "state" : "translated",
             "value" : "Spots de surf, janelas GO surf, altura · período · direção da ondulação"
           }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spots de surf, fenêtres GO surf, hauteur · période · direction de houle"
-          }
         }
       }
     },
     "Spots de surf, fenêtres GO surf, hauteur · période · direction de houle et widget dédié" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -28709,6 +28783,12 @@
             "value" : "Spots de surf, ventanas GO surf, altura · periodo · dirección del oleaje y widget dedicado"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spots de surf, fenêtres GO surf, hauteur · période · direction de houle et widget dédié"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28725,12 +28805,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spots de surf, janelas GO de surf, altura · período · direção da ondulação e widget dedicado"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spots de surf, fenêtres GO surf, hauteur · période · direction de houle et widget dédié"
           }
         }
       }
@@ -28902,7 +28976,7 @@
       }
     },
     "Supprimer le port" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -29248,7 +29322,7 @@
       }
     },
     "Sélectionnez votre activité, vos ports et la période pour découvrir les meilleures fenêtres." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -29289,7 +29363,7 @@
       }
     },
     "Tableau des marées" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -29590,7 +29664,7 @@
       }
     },
     "Tes activités" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -29671,7 +29745,7 @@
       }
     },
     "Tide Graph Preview" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -29884,7 +29958,7 @@
       }
     },
     "Ton plancher de vent (selon ton quiver). Sert à juger tes sorties kite/wing." : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -30191,22 +30265,28 @@
     },
     "Toutes tes fenêtres idéales de la semaine, par sport" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All your ideal windows of the week, by sport"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alle deine idealen Zeitfenster der Woche, nach Sportart"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All your ideal windows of the week, by sport"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Todas tus ventanas ideales de la semana, por deporte"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toutes tes fenêtres idéales de la semaine, par sport"
           }
         },
         "it" : {
@@ -30226,17 +30306,10 @@
             "state" : "translated",
             "value" : "Todas as tuas janelas ideais da semana, por desporto"
           }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toutes tes fenêtres idéales de la semaine, par sport"
-          }
         }
       }
     },
     "Toutes tes fenêtres idéales de la semaine, par sport (gratuit : aperçu flouté)" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -30256,6 +30329,12 @@
             "value" : "Todas tus ventanas ideales de la semana, por sport (gratis: vista previa difuminada)"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toutes tes fenêtres idéales de la semaine, par sport (gratuit : aperçu flouté)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30272,12 +30351,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Todas as tuas janelas ideais da semana, por desporto (grátis: pré-visualização desfocada)"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toutes tes fenêtres idéales de la semaine, par sport (gratuit : aperçu flouté)"
           }
         }
       }
@@ -30323,7 +30396,7 @@
       }
     },
     "Trouver les meilleurs créneaux" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -30364,7 +30437,7 @@
       }
     },
     "Trouvez le créneau parfait" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -30776,7 +30849,7 @@
       }
     },
     "Type de spot" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -31121,7 +31194,8 @@
             "value" : "Valor%@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Variable" : {
       "extractionState" : "manual",
@@ -31171,7 +31245,7 @@
       }
     },
     "Variation cette heure : ~%@ m" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -31259,7 +31333,7 @@
       }
     },
     "Vent" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -31381,22 +31455,28 @@
     },
     "Vent et rafales superposés à la courbe de marée" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wind and gusts overlaid on the tide curve"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wind und Böen über der Gezeitenkurve"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind and gusts overlaid on the tide curve"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Viento y rachas superpuestos a la curva de marea"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vent et rafales superposés à la courbe de marée"
           }
         },
         "it" : {
@@ -31415,12 +31495,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vento e rajadas sobrepostos à curva de maré"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vent et rafales superposés à la courbe de marée"
           }
         }
       }
@@ -31564,7 +31638,7 @@
       }
     },
     "Vent max" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -31605,7 +31679,7 @@
       }
     },
     "Vent maxi" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -32001,7 +32075,7 @@
       }
     },
     "Visibilité %@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -32210,22 +32284,28 @@
     },
     "Voir l'abonnement" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "See subscription"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abo ansehen"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See subscription"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ver suscripción"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir l'abonnement"
           }
         },
         "it" : {
@@ -32244,12 +32324,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ver subscrição"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voir l'abonnement"
           }
         }
       }
@@ -32292,10 +32366,11 @@
             "value" : "Ver a maré de %@"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Voir les marées" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -32342,7 +32417,7 @@
       }
     },
     "Voir les marées de ce spot" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -32420,10 +32495,11 @@
             "value" : "O teu companheiro de marés para mais de 3 500 portos no mundo.\nHorários, coeficientes, meteorologia e atividades náuticas."
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Voulez-vous vraiment supprimer %@ ?" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -32504,7 +32580,7 @@
       }
     },
     "Week-end" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -32863,7 +32939,7 @@
       }
     },
     "de marée" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -32904,7 +32980,7 @@
       }
     },
     "du marnage" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -33437,7 +33513,7 @@
       }
     },
     "m" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -33485,16 +33561,16 @@
     },
     "maintenant" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "now"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "jetzt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "now"
           }
         },
         "es" : {
@@ -33524,7 +33600,7 @@
       }
     },
     "marées" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -33875,7 +33951,8 @@
             "value" : "rajada %lld"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "rafales %lld" : {
       "localizations" : {
@@ -33915,7 +33992,8 @@
             "value" : "rajadas %lld"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "restant" : {
       "extractionState" : "manual",
@@ -34047,16 +34125,16 @@
     "spot de surf" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "surf spot"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Surfspot"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "surf spot"
           }
         },
         "es" : {
@@ -34180,16 +34258,16 @@
     },
     "tendance · 7 j" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "trend · 7 d"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trend · 7 T"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "trend · 7 d"
           }
         },
         "es" : {
@@ -34261,16 +34339,16 @@
     "vs réel" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "vs actual"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "vs. real"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "vs actual"
           }
         },
         "es" : {
@@ -34337,7 +34415,8 @@
             "value" : "±%lld°"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "·" : {
       "localizations" : {
@@ -34554,7 +34633,7 @@
       }
     },
     "Étale" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -34738,7 +34817,8 @@
             "value" : "Passo %lld de %lld"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "États-Unis" : {
       "extractionState" : "manual",
@@ -35046,7 +35126,7 @@
       }
     },
     "→ Basse mer" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -35087,7 +35167,7 @@
       }
     },
     "→ Pleine mer" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
