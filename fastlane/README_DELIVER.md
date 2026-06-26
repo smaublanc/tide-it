@@ -17,7 +17,7 @@ fastlane deliver --api_key_path "$HOME/.appstoreconnect/key.json" \
 5. Dans App Store Connect : vérifie, sélectionne le build 7, **soumets** (ou ajoute `--submit_for_review` à la commande).
 
 **Garde-fous (déjà respectés dans les .txt) :**
-- ✅ **Aucun emoji dans `release_notes.txt`** (Apple rejette) — le 🎁 ne vit que dans `promotional_text.txt` (autorisé).
+- ✅ **AUCUN emoji dans `release_notes.txt` NI `promotional_text.txt`** — Apple rejette l'emoji dans LES DEUX (vérifié : « Promotional Text can't contain 🎁 »). Texte brut uniquement.
 - ✅ Le **promo « 1 mois offert » ne doit PAS être poussé sur la 5.2.0** (build 6 n'a pas le mois offert → fausse promesse). Il part avec 5.2.1 seulement. (Le promo est éditable en direct, donc OK dès que 5.2.1 est en ligne.)
 - ✅ `name.txt` absent = nom inchangé ; sous-titre/mots-clés présents = ré-affirmés (identiques à 5.2.0, no-op).
 - ✅ Aucune source de données citée.
@@ -35,7 +35,7 @@ fastlane deliver --api_key_path "$HOME/.appstoreconnect/key.json" \
 ```
 **2 pièges rencontrés (déjà réglés ici) :**
 - ❌ Login Apple ID + mot de passe ne marche PLUS pour les métadonnées (erreurs 500 / `@token.refresh!`). → Il FAUT la clé API App Store Connect (.p8).
-- ❌ Apple refuse les **emoji** dans le champ « Nouveautés » (`release_notes.txt`). → Aucun emoji dans ces fichiers. (Promo et description : OK.)
+- ❌ Apple refuse les **emoji** dans « Nouveautés » (`release_notes.txt`) **ET** dans le **Texte promotionnel** (`promotional_text.txt`) — vérifié juin 2026 (« Promotional Text can't contain 🎁 »). → Aucun emoji dans ces deux fichiers.
 - Le `key.json` contient la clé privée → ne JAMAIS le committer (il est hors du repo, dans `~/.appstoreconnect/`).
 
 ---
