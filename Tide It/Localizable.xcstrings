@@ -19390,6 +19390,52 @@
         }
       }
     },
+    "Merci de faire partie des premiers riders 🙏" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thanks for being one of our first riders 🙏"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Danke, dass du einer unserer ersten Rider bist 🙏"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gracias por ser uno de nuestros primeros riders 🙏"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grazie di essere tra i nostri primi rider 🙏"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bedankt dat je een van onze eerste riders bent 🙏"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obrigado por seres um dos nossos primeiros riders 🙏"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merci de faire partie des premiers riders 🙏"
+          }
+        }
+      }
+    },
     "Mes alertes" : {
       "localizations" : {
         "de" : {
@@ -24258,6 +24304,98 @@
         }
       }
     },
+    "Plus qu'une semaine de Premium offert" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only one week of free Premium left"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur noch eine Woche Premium gratis"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo queda una semana de Premium gratis"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resta solo una settimana di Premium in regalo"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nog maar één week Premium cadeau"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resta só uma semana de Premium grátis"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus qu'une semaine de Premium offert"
+          }
+        }
+      }
+    },
+    "Plus tard" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Later"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Später"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más tarde"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Più tardi"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Later"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mais tarde"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus tard"
+          }
+        }
+      }
+    },
     "Plutôt dégagé" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -25326,6 +25464,98 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Profite de tout, sans engagement."
+          }
+        }
+      }
+    },
+    "Profite-en encore quelques jours. Ensuite, le Premium passe sur abonnement — tu pourras continuer quand tu veux." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enjoy it a few more days. After that, Premium moves to subscription — you can continue whenever you like."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genieße es noch ein paar Tage. Danach läuft Premium per Abo — du kannst jederzeit weitermachen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disfrútalo unos días más. Después, el Premium pasa a suscripción — puedes continuar cuando quieras."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Goditelo ancora qualche giorno. Poi il Premium passa in abbonamento — puoi continuare quando vuoi."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geniet er nog een paar dagen van. Daarna gaat Premium via een abonnement — je kunt doorgaan wanneer je wilt."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aproveita mais uns dias. Depois, o Premium passa a subscrição — podes continuar quando quiseres."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profite-en encore quelques jours. Ensuite, le Premium passe sur abonnement — tu pourras continuer quand tu veux."
+          }
+        }
+      }
+    },
+    "Profites-en pendant 30 jours. Ensuite, l'app reste gratuite — le Premium continue sur abonnement, quand tu veux." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enjoy it for 30 days. After that the app stays free — Premium continues via subscription, whenever you like."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genieße es 30 Tage lang. Danach bleibt die App kostenlos — Premium läuft per Abo weiter, wann du willst."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disfrútalo durante 30 días. Después la app sigue gratis — el Premium continúa por suscripción, cuando quieras."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Goditelo per 30 giorni. Poi l'app resta gratuita — il Premium continua in abbonamento, quando vuoi."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geniet er 30 dagen van. Daarna blijft de app gratis — Premium gaat verder via een abonnement, wanneer je wilt."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aproveita durante 30 dias. Depois a app continua grátis — o Premium segue por subscrição, quando quiseres."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profites-en pendant 30 jours. Ensuite, l'app reste gratuite — le Premium continue sur abonnement, quand tu veux."
           }
         }
       }

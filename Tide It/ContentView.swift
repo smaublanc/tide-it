@@ -21,6 +21,8 @@ struct ContentView: View {
     @State private var showPaywall = false
     /// Annonce « 1 mois offert » : affichée une seule fois, après l'onboarding, à qui a le cadeau.
     @State private var showWelcomeOffer = false
+    /// Rappel J-7 : « plus qu'une semaine de Premium offert » (une seule fois).
+    @State private var showTrialWeekReminder = false
     // Navigation sans barre d'onglets : Today = le hub plein écran, le reste en sheets.
     @State private var showMap = false
     @State private var showCalendar = false
@@ -72,7 +74,8 @@ struct ContentView: View {
             setupTideService()
             // Économie d'énergie : ne jamais bloquer la mise en veille de l'écran.
             UIApplication.shared.isIdleTimerDisabled = false
-            maybeShowWelcomeOffer()   // utilisateurs existants : pas d'onboarding → au lancement
+            maybeShowWelcomeOffer()        // utilisateurs existants : pas d'onboarding → au lancement
+            maybeShowTrialWeekReminder()   // rappel J-7 du mois offert
         }
         .onChange(of: locationManager.location) { _, newLocation in
             if let location = newLocation {
@@ -103,6 +106,13 @@ struct ContentView: View {
         .fullScreenCover(isPresented: $showWelcomeOffer) {
             WelcomeOfferView(isPresented: $showWelcomeOffer)
         }
+        // Rappel J-7 : « plus qu'une semaine de Premium offert » → ensuite, abonnement.
+        .alert("Plus qu'une semaine de Premium offert", isPresented: $showTrialWeekReminder) {
+            Button("Voir l'abonnement") { showPaywall = true }
+            Button("Plus tard", role: .cancel) { }
+        } message: {
+            Text("Profite-en encore quelques jours. Ensuite, le Premium passe sur abonnement — tu pourras continuer quand tu veux.")
+        }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
                 // Rafraîchir le widget quand l'app revient au premier plan
@@ -110,6 +120,9 @@ struct ContentView: View {
                 // Re-vérifier l'abonnement Premium : récupère l'état si un achat/restaure
                 // n'a pas été reflété immédiatement (sandbox, relance depuis Xcode…).
                 Task { await PremiumManager.shared.checkEntitlement() }
+                // Mois offert : annonce d'accueil si pas encore vue, puis rappel J-7 le moment venu.
+                maybeShowWelcomeOffer()
+                maybeShowTrialWeekReminder()
                 // Scan « Pêche à pied » (retiré du périmètre — gardé sous flag).
                 if ThemeManager.pecheAPiedEnabled {
                     Task { await PecheAPiedNotifier.maybeScanAndSchedule(tideService: tideService) }
@@ -452,6 +465,17 @@ struct ContentView: View {
         guard !UserDefaults.standard.bool(forKey: "welcomeOfferShown_v1") else { return }
         UserDefaults.standard.set(true, forKey: "welcomeOfferShown_v1")
         showWelcomeOffer = true
+    }
+
+    /// Rappel « plus qu'une semaine » du mois offert : une seule fois, quand il reste ≤ 7 j (et que
+    /// l'utilisateur n'a pas encore pris l'abonnement). Après, le Premium passe sur abonnement.
+    private func maybeShowTrialWeekReminder() {
+        guard !showOnboarding, !showWelcomeOffer else { return }
+        let pm = PremiumManager.shared
+        guard pm.isInWelcomeTrial, pm.welcomeTrialDaysRemaining <= 7 else { return }
+        guard !UserDefaults.standard.bool(forKey: "welcomeTrialWeekReminderShown_v1") else { return }
+        UserDefaults.standard.set(true, forKey: "welcomeTrialWeekReminderShown_v1")
+        showTrialWeekReminder = true
     }
 
     private func setupTideService() {

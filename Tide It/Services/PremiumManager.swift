@@ -573,9 +573,10 @@ struct WelcomeOfferView: View {
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)
 
-                    Text("Profite de tout, sans engagement.")
+                    Text("Merci de faire partie des premiers riders 🙏")
                         .font(.scaled(size: DS.fontBody))
                         .foregroundStyle(.gray)
+                        .multilineTextAlignment(.center)
                 }
 
                 // Ce qu'il y a à tester (réutilise FeatureRow ; libellés alignés sur le paywall).
@@ -594,7 +595,7 @@ struct WelcomeOfferView: View {
                 .padding(.horizontal, DS.pagePadding)
 
                 // Honnêteté : ce qui se passe après, et ce qui reste gratuit.
-                Text("Au bout de 30 jours, l'app repasse en gratuit — tu gardes les marées du monde entier, tes favoris et l'Apple Watch.")
+                Text("Profites-en pendant 30 jours. Ensuite, l'app reste gratuite — le Premium continue sur abonnement, quand tu veux.")
                     .font(.scaled(size: DS.fontCaption))
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
