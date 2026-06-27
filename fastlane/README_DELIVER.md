@@ -1,20 +1,28 @@
 # Pousser les textes App Store (7 langues) en une commande — Fastlane `deliver`
 
-## 🚀 PROCHAINE MAJ — 5.2.1 (build 7) : mois Premium offert + jauge de confiance
+## 🚀 PROCHAINE MAJ — 5.2.2 (build 8) : +5 langues mondiales (zh-Hans, zh-Hant, ja, ko, hi)
+
+> La 5.2.1 (build 7, mois offert + jauge) est **déjà soumise**. La 5.2.2 ajoute la localisation
+> COMPLÈTE (app + fiche) en chinois simplifié, chinois traditionnel, japonais, coréen, hindi →
+> **12 langues** au total. Asie + Inde = le gros du volume mondial.
 
 **Séquence (App Store Connect n'autorise qu'UNE version éditable à la fois) :**
-1. La **5.2.0 (build 6)** finit sa review et **sort** (mode surf). Tant qu'elle est en review, impossible de créer la 5.2.1.
-2. Archive le **build 7** dans Xcode (Product ▸ Archive ▸ Distribute ▸ App Store Connect). Il monte comme build 7 / 5.2.1.
-3. Une fois la 5.2.0 **en ligne**, crée la version **5.2.1** dans App Store Connect (ou laisse `--app_version "5.2.1"` la créer), attache le build 7.
-4. Pousse les textes (7 langues) — **promo « 1 mois offert » + Nouveautés 5.2.1 + sous-titres/mots-clés optimisés** :
+1. La **5.2.1 (build 7)** finit sa review et **sort**. Tant qu'elle est en review, impossible de créer la 5.2.2.
+2. Archive le **build 8** dans Xcode (Product ▸ Archive ▸ Distribute ▸ App Store Connect) → build 8 / 5.2.2.
+3. Une fois la 5.2.1 **en ligne**, crée la version **5.2.2** (ou laisse `--app_version "5.2.2"` la créer), attache le build 8.
+4. Pousse les textes des **12 langues** d'un coup (les 5 nouvelles incluses) :
 ```
 cd "/Users/maublanc/Desktop/Tide It 18"
 export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 fastlane deliver --api_key_path "$HOME/.appstoreconnect/key.json" \
-  --app_version "5.2.1" --skip_binary_upload --skip_screenshots \
+  --app_version "5.2.2" --skip_binary_upload --skip_screenshots \
   --run_precheck_before_submit false --force
 ```
-5. Dans App Store Connect : vérifie, sélectionne le build 7, **soumets** (ou ajoute `--submit_for_review` à la commande).
+5. Dans App Store Connect : vérifie, sélectionne le build 8, **soumets** (ou ajoute `--submit_for_review`).
+
+> ⚠️ Captures d'écran : les 5 nouvelles langues n'ont PAS encore de screenshots localisés. L'App Store
+> affichera alors les captures de la langue par défaut (anglais) pour ces marchés — acceptable au lancement,
+> à localiser plus tard. (Le `--skip_screenshots` ne pousse aucune capture ; rien n'est cassé.)
 
 **Garde-fous (déjà respectés dans les .txt) :**
 - ✅ **AUCUN emoji dans `release_notes.txt` NI `promotional_text.txt`** — Apple rejette l'emoji dans LES DEUX (vérifié : « Promotional Text can't contain 🎁 »). Texte brut uniquement.
