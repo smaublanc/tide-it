@@ -40,6 +40,8 @@ struct PremiumCurveCanvas: View {
     var openMeteoForecasts: [HourlyForecast] = []
     var observedWindKmh: Double? = nil
     var observedGustKmh: Double? = nil
+    /// Creux (lull) réel de l'instant — brin bas de la moustache rafale. nil si la source ne le fournit pas.
+    var observedMinKmh: Double? = nil
     var observedWindDirection: Double? = nil
     var observedWindAgeMinutes: Int? = nil
     /// Une balise de vent réel est disponible pour ce spot → active le label « Go X% » vivant.
@@ -1071,16 +1073,28 @@ struct PremiumCurveCanvas: View {
                     let py = wy(obs)
                     let v = Color(red: 0.61, green: 0.5, blue: 0.88)
 
-                    // Rafale MAX réelle : petit point secondaire AU-DESSUS du point vent,
-                    // relié par un trait pointillé (écho du tracé rafale).
+                    // MOUSTACHE rafale — « I-beam » INSTANTANÉ et mesuré : tige verticale
+                    // creux ↔ moyen ↔ rafale au « maintenant ». La zone de rafale (moyen→rafale)
+                    // s'efface vers le haut (drapeau de vent), mais HONNÊTE : que des valeurs réelles
+                    // de l'instant — aucun historique fabriqué (décision « pas de comète »).
+                    let capW: CGFloat = 7
+                    // Brin RAFALE (moyen → rafale), dégradé qui s'estompe vers le haut.
                     if let g = observedGustKmh, g > obs {
                         let gy = wy(g)
-                        Path { p in
-                            p.move(to: CGPoint(x: nowX, y: py))
-                            p.addLine(to: CGPoint(x: nowX, y: gy))
-                        }
-                        .stroke(v.opacity(0.55), style: StrokeStyle(lineWidth: 1, lineCap: .round, dash: [2, 2]))
-                        Circle().stroke(v, lineWidth: 1.5).frame(width: 6, height: 6).position(x: nowX, y: gy)
+                        Path { p in p.move(to: CGPoint(x: nowX, y: py)); p.addLine(to: CGPoint(x: nowX, y: gy)) }
+                            .stroke(LinearGradient(colors: [v.opacity(0.85), v.opacity(0.10)],
+                                                   startPoint: .bottom, endPoint: .top),
+                                    style: StrokeStyle(lineWidth: 2, lineCap: .round))
+                        Path { p in p.move(to: CGPoint(x: nowX - capW / 2, y: gy)); p.addLine(to: CGPoint(x: nowX + capW / 2, y: gy)) }
+                            .stroke(v.opacity(0.5), style: StrokeStyle(lineWidth: 1.5, lineCap: .round))
+                    }
+                    // Brin CREUX (lull → moyen), discret, seulement si la source le mesure.
+                    if let m = observedMinKmh, m < obs {
+                        let my = wy(m)
+                        Path { p in p.move(to: CGPoint(x: nowX, y: py)); p.addLine(to: CGPoint(x: nowX, y: my)) }
+                            .stroke(v.opacity(0.35), style: StrokeStyle(lineWidth: 1.5, lineCap: .round))
+                        Path { p in p.move(to: CGPoint(x: nowX - capW / 2, y: my)); p.addLine(to: CGPoint(x: nowX + capW / 2, y: my)) }
+                            .stroke(v.opacity(0.28), style: StrokeStyle(lineWidth: 1.5, lineCap: .round))
                     }
 
                     // Étiquette en BAS-gauche du point.

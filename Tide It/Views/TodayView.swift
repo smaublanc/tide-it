@@ -204,6 +204,7 @@ struct TodayView: View {
                             openMeteoForecasts: forecastsForDisplay,
                             observedWindKmh: observedWind?.reading.speedAvgKmh,
                             observedGustKmh: observedWind?.reading.gustKmh,
+                            observedMinKmh: observedWind?.reading.minKmh,
                             observedWindDirection: observedWind?.reading.directionDegrees,
                             observedWindAgeMinutes: observedWind?.reading.ageMinutes,
                             hasBalise: observedWind != nil,
@@ -830,6 +831,7 @@ struct PremiumTideGraphView: View {
     var openMeteoForecasts: [HourlyForecast] = []
     var observedWindKmh: Double? = nil
     var observedGustKmh: Double? = nil
+    var observedMinKmh: Double? = nil
     var observedWindDirection: Double? = nil
     var observedWindAgeMinutes: Int? = nil
     var hasBalise: Bool = false
@@ -936,6 +938,7 @@ struct PremiumTideGraphView: View {
                             openMeteoForecasts: openMeteoForecasts,
                             observedWindKmh: observedWindKmh,
                             observedGustKmh: observedGustKmh,
+                            observedMinKmh: observedMinKmh,
                             observedWindDirection: observedWindDirection,
                             observedWindAgeMinutes: observedWindAgeMinutes,
                             hasBalise: hasBalise,
