@@ -1077,24 +1077,32 @@ struct PremiumCurveCanvas: View {
                     // creux ↔ moyen ↔ rafale au « maintenant ». La zone de rafale (moyen→rafale)
                     // s'efface vers le haut (drapeau de vent), mais HONNÊTE : que des valeurs réelles
                     // de l'instant — aucun historique fabriqué (décision « pas de comète »).
-                    let capW: CGFloat = 7
-                    // Brin RAFALE (moyen → rafale), dégradé qui s'estompe vers le haut.
+                    let capW: CGFloat = 9
+                    // PENNON rafale : triangle PLEIN moyen(base) → rafale(pointe) qui s'estompe vers
+                    // le haut — le « drapeau de vent » voulu, avec du CORPS même à faible amplitude
+                    // (un trait fin disparaissait en vent calme). Amplitude réelle de l'instant.
                     if let g = observedGustKmh, g > obs {
                         let gy = wy(g)
-                        Path { p in p.move(to: CGPoint(x: nowX, y: py)); p.addLine(to: CGPoint(x: nowX, y: gy)) }
-                            .stroke(LinearGradient(colors: [v.opacity(0.85), v.opacity(0.10)],
-                                                   startPoint: .bottom, endPoint: .top),
-                                    style: StrokeStyle(lineWidth: 2, lineCap: .round))
-                        Path { p in p.move(to: CGPoint(x: nowX - capW / 2, y: gy)); p.addLine(to: CGPoint(x: nowX + capW / 2, y: gy)) }
-                            .stroke(v.opacity(0.5), style: StrokeStyle(lineWidth: 1.5, lineCap: .round))
+                        Path { p in
+                            p.move(to: CGPoint(x: nowX - capW / 2, y: py))
+                            p.addLine(to: CGPoint(x: nowX, y: gy))
+                            p.addLine(to: CGPoint(x: nowX + capW / 2, y: py))
+                            p.closeSubpath()
+                        }
+                        .fill(LinearGradient(colors: [v.opacity(0.95), v.opacity(0.12)],
+                                             startPoint: .bottom, endPoint: .top))
                     }
-                    // Brin CREUX (lull → moyen), discret, seulement si la source le mesure.
+                    // PENNON creux (lull → moyen) vers le bas, discret, seulement si la source le mesure.
                     if let m = observedMinKmh, m < obs {
                         let my = wy(m)
-                        Path { p in p.move(to: CGPoint(x: nowX, y: py)); p.addLine(to: CGPoint(x: nowX, y: my)) }
-                            .stroke(v.opacity(0.35), style: StrokeStyle(lineWidth: 1.5, lineCap: .round))
-                        Path { p in p.move(to: CGPoint(x: nowX - capW / 2, y: my)); p.addLine(to: CGPoint(x: nowX + capW / 2, y: my)) }
-                            .stroke(v.opacity(0.28), style: StrokeStyle(lineWidth: 1.5, lineCap: .round))
+                        Path { p in
+                            p.move(to: CGPoint(x: nowX - capW / 2, y: py))
+                            p.addLine(to: CGPoint(x: nowX, y: my))
+                            p.addLine(to: CGPoint(x: nowX + capW / 2, y: py))
+                            p.closeSubpath()
+                        }
+                        .fill(LinearGradient(colors: [v.opacity(0.5), v.opacity(0.05)],
+                                             startPoint: .top, endPoint: .bottom))
                     }
 
                     // Étiquette en BAS-gauche du point.
@@ -1105,7 +1113,11 @@ struct PremiumCurveCanvas: View {
                         p.addLine(to: CGPoint(x: boxX + 8, y: boxY - 9))
                     }
                     .stroke(v.opacity(0.6), style: StrokeStyle(lineWidth: 0.8, lineCap: .round))
-                    Circle().fill(v).frame(width: 3, height: 3).position(x: nowX, y: py)
+                    // Ancre « réel » : disque plein + halo + cœur clair → lisible parmi les points
+                    // prévision (le point de 3 px se perdait). C'est la base de la moustache.
+                    Circle().fill(v.opacity(0.22)).frame(width: 16, height: 16).position(x: nowX, y: py)
+                    Circle().fill(v).frame(width: 9, height: 9).position(x: nowX, y: py)
+                    Circle().fill(.white.opacity(0.9)).frame(width: 3, height: 3).position(x: nowX, y: py)
                     realWindLegend(obs: obs).position(x: boxX, y: boxY)
                 }
             }
