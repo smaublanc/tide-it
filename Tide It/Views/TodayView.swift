@@ -147,6 +147,13 @@ struct TodayView: View {
         return ForecastBiasService.shared.debiasedSeries(openMeteoForecasts, portId: pid)
     }
 
+    /// Tracé du vent réel récent (≈4 h) de la balise sélectionnée — archive Pioupiou DENSE et continue.
+    /// Vide si la balise n'est pas Pioupiou (pas d'archive) ou pas encore chargée → pas de tracé (honnête).
+    private var realWindHistory: [WindReading] {
+        guard let st = observedWind?.station, st.source == .pioupiou else { return [] }
+        return pioupiouService.archive(for: st.id)
+    }
+
     /// Message d'erreur à afficher en haut de l'écran, ou nil si tout va bien.
     private var currentErrorMessage: String? {
         if let tideError = tideService.error {
@@ -207,6 +214,7 @@ struct TodayView: View {
                             observedMinKmh: observedWind?.reading.minKmh,
                             observedWindDirection: observedWind?.reading.directionDegrees,
                             observedWindAgeMinutes: observedWind?.reading.ageMinutes,
+                            observedWindHistory: realWindHistory,
                             hasBalise: observedWind != nil,
                             riderMinKmh: themeManager.riderMinWindKmh,
                             riderMaxKmh: themeManager.riderMaxWindKmh,
@@ -440,6 +448,10 @@ struct TodayView: View {
                 ForecastBiasService.shared.record(portId: pid, modelKmh: model,
                     observedKmh: obs.reading.speedAvgKmh, distanceKm: obs.distanceKm, at: obs.reading.date)
                 if themeManager.debiasGoEnabled { recomputeGoWindows() }   // garde courbe ↔ fenêtres GO en phase
+            }
+            // Tracé du vent réel récent : précharge l'archive dense (≈4 h) de la balise Pioupiou sélectionnée.
+            if let st = observedWind?.station, st.source == .pioupiou {
+                pioupiouService.prefetchArchive(stationId: st.id)
             }
         }
         // Activer/désactiver un sport — ou éditer ses conditions / sa sensibilité — doit recalculer
@@ -834,6 +846,7 @@ struct PremiumTideGraphView: View {
     var observedMinKmh: Double? = nil
     var observedWindDirection: Double? = nil
     var observedWindAgeMinutes: Int? = nil
+    var observedWindHistory: [WindReading] = []
     var hasBalise: Bool = false
     var riderMinKmh: Double = 12
     var riderMaxKmh: Double = 65
@@ -941,6 +954,7 @@ struct PremiumTideGraphView: View {
                             observedMinKmh: observedMinKmh,
                             observedWindDirection: observedWindDirection,
                             observedWindAgeMinutes: observedWindAgeMinutes,
+                            observedWindHistory: observedWindHistory,
                             hasBalise: hasBalise,
                             riderMinKmh: riderMinKmh,
                             riderMaxKmh: riderMaxKmh,

@@ -27,6 +27,64 @@ final class PioupiouService: ObservableObject {
     private var lastFetch: Date?
     private let cacheTTL: TimeInterval = 180  // 3 min
 
+    // MARK: - Archive (historique récent dense, pour le tracé du vent réel)
+
+    /// Archive (≈4 h de mesures, ~1 toutes les 4 min) PAR balise — socle du tracé du vent réel récent.
+    @Published private(set) var archives: [String: [WindReading]] = [:]
+    private var archiveFetchedAt: [String: Date] = [:]
+    private let archiveTTL: TimeInterval = 300   // 5 min
+    private let archiveHours = 4
+
+    /// Lecture du tracé récent d'une balise (vide si pas encore chargé / source sans archive).
+    func archive(for stationId: String) -> [WindReading] { archives[stationId] ?? [] }
+
+    /// Précharge l'archive de la balise sélectionnée (idempotent, TTL 5 min). Donnée RÉELLE dense.
+    func prefetchArchive(stationId: String) {
+        guard !stationId.isEmpty else { return }
+        if let t = archiveFetchedAt[stationId], Date().timeIntervalSince(t) < archiveTTL { return }
+        archiveFetchedAt[stationId] = Date()
+        Task { await fetchArchive(stationId: stationId) }
+    }
+
+    private func fetchArchive(stationId: String) async {
+        guard let url = URL(string: "https://api.pioupiou.fr/v1/archive/\(stationId)?stop=now&period=\(archiveHours)h") else { return }
+        do {
+            let (data, _) = try await session.data(from: url)
+            let decoded = try JSONDecoder().decode(ArchiveResponse.self, from: data)
+            let iso = ISO8601DateFormatter(); iso.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+            let isoS = ISO8601DateFormatter(); isoS.formatOptions = [.withInternetDateTime]
+            var out: [WindReading] = []
+            out.reserveCapacity(decoded.data.count)
+            for row in decoded.data where row.count >= 7 {
+                // legend : [time, lat, lon, wind_speed_min, wind_speed_avg, wind_speed_max, wind_heading, pressure]
+                guard let ts = row[0].string,
+                      let date = iso.date(from: ts) ?? isoS.date(from: ts),
+                      let avg = row[4].double else { continue }
+                out.append(WindReading(date: date, speedAvgKmh: avg,
+                                       gustKmh: row[5].double, minKmh: row[3].double,
+                                       directionDegrees: row[6].double ?? 0))
+            }
+            let sorted = out.sorted { $0.date < $1.date }
+            await MainActor.run { self.archives[stationId] = sorted }
+        } catch {
+            appLogger.error("[Pioupiou] archive \(stationId) indisponible: \(error.localizedDescription)")
+        }
+    }
+
+    private struct ArchiveResponse: Decodable { let data: [[ArchiveCell]] }
+    private enum ArchiveCell: Decodable {
+        case string(String), number(Double), null
+        init(from decoder: Decoder) throws {
+            let c = try decoder.singleValueContainer()
+            if c.decodeNil() { self = .null }
+            else if let s = try? c.decode(String.self) { self = .string(s) }
+            else if let n = try? c.decode(Double.self) { self = .number(n) }
+            else { self = .null }
+        }
+        var string: String? { if case .string(let s) = self { return s }; return nil }
+        var double: Double? { if case .number(let n) = self { return n }; return nil }
+    }
+
     private let endpoint = "https://api.pioupiou.fr/v1/live-with-meta/all"
 
     private let session: URLSession = {

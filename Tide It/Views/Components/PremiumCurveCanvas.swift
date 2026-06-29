@@ -44,6 +44,8 @@ struct PremiumCurveCanvas: View {
     var observedMinKmh: Double? = nil
     var observedWindDirection: Double? = nil
     var observedWindAgeMinutes: Int? = nil
+    /// Historique récent (≈4 h) du vent réel mesuré (balise) — pour le TRACÉ « vent récent ».
+    var observedWindHistory: [WindReading] = []
     /// Une balise de vent réel est disponible pour ce spot → active le label « Go X% » vivant.
     var hasBalise: Bool = false
     var riderMinKmh: Double = 12
@@ -1077,32 +1079,30 @@ struct PremiumCurveCanvas: View {
                     // creux ↔ moyen ↔ rafale au « maintenant ». La zone de rafale (moyen→rafale)
                     // s'efface vers le haut (drapeau de vent), mais HONNÊTE : que des valeurs réelles
                     // de l'instant — aucun historique fabriqué (décision « pas de comète »).
-                    let capW: CGFloat = 9
-                    // PENNON rafale : triangle PLEIN moyen(base) → rafale(pointe) qui s'estompe vers
-                    // le haut — le « drapeau de vent » voulu, avec du CORPS même à faible amplitude
-                    // (un trait fin disparaissait en vent calme). Amplitude réelle de l'instant.
-                    if let g = observedGustKmh, g > obs {
-                        let gy = wy(g)
+                    // TRACÉ « vent réel récent » (≈4 h) — archive balise DENSE et continue. Honnête :
+                    // runs BRISÉS sur les trous (>15 min, pas d'interpolation), estompé vers le passé
+                    // (vraie queue de comète, pas du foreground clairsemé). Bande = zone moyen→rafale réelle.
+                    let trailRuns = realWindTrailRuns(width: geo.size.width, wy: wy)
+                    if !trailRuns.isEmpty {
                         Path { p in
-                            p.move(to: CGPoint(x: nowX - capW / 2, y: py))
-                            p.addLine(to: CGPoint(x: nowX, y: gy))
-                            p.addLine(to: CGPoint(x: nowX + capW / 2, y: py))
-                            p.closeSubpath()
+                            for run in trailRuns {
+                                p.move(to: CGPoint(x: run[0].x, y: run[0].avg))
+                                for q in run.dropFirst() { p.addLine(to: CGPoint(x: q.x, y: q.avg)) }
+                                for q in run.reversed() { p.addLine(to: CGPoint(x: q.x, y: q.gust)) }
+                                p.closeSubpath()
+                            }
                         }
-                        .fill(LinearGradient(colors: [v.opacity(0.95), v.opacity(0.12)],
-                                             startPoint: .bottom, endPoint: .top))
-                    }
-                    // PENNON creux (lull → moyen) vers le bas, discret, seulement si la source le mesure.
-                    if let m = observedMinKmh, m < obs {
-                        let my = wy(m)
+                        .fill(LinearGradient(colors: [v.opacity(0.02), v.opacity(0.20)],
+                                             startPoint: .leading, endPoint: .trailing))
                         Path { p in
-                            p.move(to: CGPoint(x: nowX - capW / 2, y: py))
-                            p.addLine(to: CGPoint(x: nowX, y: my))
-                            p.addLine(to: CGPoint(x: nowX + capW / 2, y: py))
-                            p.closeSubpath()
+                            for run in trailRuns {
+                                p.move(to: CGPoint(x: run[0].x, y: run[0].avg))
+                                for q in run.dropFirst() { p.addLine(to: CGPoint(x: q.x, y: q.avg)) }
+                            }
                         }
-                        .fill(LinearGradient(colors: [v.opacity(0.5), v.opacity(0.05)],
-                                             startPoint: .top, endPoint: .bottom))
+                        .stroke(LinearGradient(colors: [v.opacity(0.06), v.opacity(0.95)],
+                                               startPoint: .leading, endPoint: .trailing),
+                                style: StrokeStyle(lineWidth: 2.5, lineCap: .round, lineJoin: .round))
                     }
 
                     // Étiquette en BAS-gauche du point.
@@ -1123,6 +1123,22 @@ struct PremiumCurveCanvas: View {
             }
         }
         .allowsHitTesting(false)
+    }
+
+    /// Segments du tracé « vent réel récent » : points (x, y moyen, y rafale) issus de l'archive,
+    /// BRISÉS sur les trous > 15 min (on ne relie jamais à travers un manque → honnête). Passé seulement.
+    private func realWindTrailRuns(width: CGFloat, wy: (Double) -> CGFloat) -> [[(x: CGFloat, avg: CGFloat, gust: CGFloat)]] {
+        let pts = observedWindHistory.compactMap { r -> (x: CGFloat, avg: CGFloat, gust: CGFloat, t: Date)? in
+            guard r.date <= currentTime else { return nil }
+            return (windX(r.date, width: width), wy(r.speedAvgKmh), wy(r.gustKmh ?? r.speedAvgKmh), r.date)
+        }
+        guard pts.count >= 2 else { return [] }
+        var runs: [[(x: CGFloat, avg: CGFloat, gust: CGFloat)]] = [[]]
+        for i in pts.indices {
+            if i > 0, pts[i].t.timeIntervalSince(pts[i - 1].t) > 900 { runs.append([]) }
+            runs[runs.count - 1].append((pts[i].x, pts[i].avg, pts[i].gust))
+        }
+        return runs.filter { $0.count >= 2 }
     }
 
     /// Pastille déportée « vent réel » (mesure balise) reliée au point violet.
