@@ -669,3 +669,74 @@ final class WindsMobiService: ObservableObject {
     }
     private struct Pressure: Decodable { let qnh: Double? }
 }
+
+// MARK: - Magasin générique d'historique vent observé (TOUTES balises)
+
+/// Accumule les relevés balise (toutes sources : Pioupiou, METAR, NDBC, winds.mobi, Weameter…) par
+/// station → socle UNIVERSEL du tracé « vent réel récent ». Chaque relevé live est enregistré ; les
+/// sources avec archive (Pioupiou) le pré-remplissent dense via `merge`. Borné + persisté.
+/// Honnête : on ne stocke que des mesures RÉELLES (jamais d'interpolation).
+@MainActor
+final class WindHistoryStore: ObservableObject {
+    static let shared = WindHistoryStore()
+
+    struct Sample: Codable { let t: Date; let avg: Double; let gust: Double?; let dir: Double }
+
+    @Published private(set) var buffers: [String: [Sample]] = [:]
+    private let maxAge: TimeInterval = 5 * 3600   // fenêtre 5 h
+    private let maxSamples = 160
+    private let storeKey = "windHistoryBuffers_v1"
+
+    private init() { load() }
+
+    /// Enregistre un relevé live (n'importe quelle source). Anti-doublon à la minute.
+    func record(stationId: String, reading: WindReading) {
+        guard !stationId.isEmpty else { return }
+        var arr = buffers[stationId] ?? []
+        if arr.contains(where: { abs($0.t.timeIntervalSince(reading.date)) < 60 }) { return }
+        arr.append(Sample(t: reading.date, avg: reading.speedAvgKmh, gust: reading.gustKmh, dir: reading.directionDegrees))
+        prune(&arr); buffers[stationId] = arr; save()
+    }
+
+    /// Fusionne une série backfill (archive dense) — dédup par minute.
+    func merge(stationId: String, readings: [WindReading]) {
+        guard !stationId.isEmpty, !readings.isEmpty else { return }
+        var arr = buffers[stationId] ?? []
+        var minutes = Set(arr.map { Int($0.t.timeIntervalSince1970 / 60) })
+        for r in readings {
+            let m = Int(r.date.timeIntervalSince1970 / 60)
+            if minutes.insert(m).inserted {
+                arr.append(Sample(t: r.date, avg: r.speedAvgKmh, gust: r.gustKmh, dir: r.directionDegrees))
+            }
+        }
+        prune(&arr); buffers[stationId] = arr; save()
+    }
+
+    /// Série affichable (triée, fraîche) pour une station — vide si rien encore.
+    func history(for stationId: String) -> [WindReading] {
+        (buffers[stationId] ?? []).map {
+            WindReading(date: $0.t, speedAvgKmh: $0.avg, gustKmh: $0.gust, minKmh: nil, directionDegrees: $0.dir)
+        }
+    }
+
+    /// Purge l'historique d'une station (à câbler dans TideService.purgePortState si besoin).
+    func purge(stationId: String) {
+        guard buffers[stationId] != nil else { return }
+        buffers.removeValue(forKey: stationId); save()
+    }
+
+    private func prune(_ arr: inout [Sample]) {
+        let cutoff = Date().addingTimeInterval(-maxAge)
+        arr = arr.filter { $0.t >= cutoff }.sorted { $0.t < $1.t }
+        if arr.count > maxSamples { arr.removeFirst(arr.count - maxSamples) }
+    }
+
+    private func save() {
+        if let d = try? JSONEncoder().encode(buffers) { UserDefaults.standard.set(d, forKey: storeKey) }
+    }
+    private func load() {
+        guard let d = UserDefaults.standard.data(forKey: storeKey),
+              let b = try? JSONDecoder().decode([String: [Sample]].self, from: d) else { return }
+        buffers = b
+    }
+}

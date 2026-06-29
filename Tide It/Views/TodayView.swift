@@ -19,6 +19,7 @@ struct TodayView: View {
     @ObservedObject var marineService: MarineWeatherService = .shared
     @ObservedObject private var liveActivityManager = LiveActivityManager.shared
     @ObservedObject private var pioupiouService = PioupiouService.shared
+    @ObservedObject private var windHistoryStore = WindHistoryStore.shared
     @ObservedObject private var aviationWeatherService = AviationWeatherService.shared
     @ObservedObject private var weameterService = WeameterService.shared
     @ObservedObject private var premiumManager = PremiumManager.shared
@@ -147,11 +148,11 @@ struct TodayView: View {
         return ForecastBiasService.shared.debiasedSeries(openMeteoForecasts, portId: pid)
     }
 
-    /// Tracé du vent réel récent (≈4 h) de la balise sélectionnée — archive Pioupiou DENSE et continue.
-    /// Vide si la balise n'est pas Pioupiou (pas d'archive) ou pas encore chargée → pas de tracé (honnête).
+    /// Tracé du vent réel récent (≈4 h) de la balise sélectionnée — TOUTES sources (magasin générique
+    /// qui accumule chaque relevé ; backfill dense Pioupiou). Vide tant qu'il n'y a pas ≥2 points → honnête.
     private var realWindHistory: [WindReading] {
-        guard let st = observedWind?.station, st.source == .pioupiou else { return [] }
-        return pioupiouService.archive(for: st.id)
+        guard let st = observedWind?.station else { return [] }
+        return windHistoryStore.history(for: st.id)
     }
 
     /// Message d'erreur à afficher en haut de l'écran, ou nil si tout va bien.
@@ -449,9 +450,11 @@ struct TodayView: View {
                     observedKmh: obs.reading.speedAvgKmh, distanceKm: obs.distanceKm, at: obs.reading.date)
                 if themeManager.debiasGoEnabled { recomputeGoWindows() }   // garde courbe ↔ fenêtres GO en phase
             }
-            // Tracé du vent réel récent : précharge l'archive dense (≈4 h) de la balise Pioupiou sélectionnée.
-            if let st = observedWind?.station, st.source == .pioupiou {
-                pioupiouService.prefetchArchive(stationId: st.id)
+            // Tracé du vent réel (TOUTES balises) : on enregistre CHAQUE relevé live ; + backfill dense
+            // si la source a une archive (Pioupiou aujourd'hui ; METAR/NDBC à suivre).
+            if let o = observedWind {
+                windHistoryStore.record(stationId: o.station.id, reading: o.reading)
+                if o.station.source == .pioupiou { pioupiouService.prefetchArchive(stationId: o.station.id) }
             }
         }
         // Activer/désactiver un sport — ou éditer ses conditions / sa sensibilité — doit recalculer

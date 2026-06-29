@@ -29,16 +29,11 @@ final class PioupiouService: ObservableObject {
 
     // MARK: - Archive (historique récent dense, pour le tracé du vent réel)
 
-    /// Archive (≈4 h de mesures, ~1 toutes les 4 min) PAR balise — socle du tracé du vent réel récent.
-    @Published private(set) var archives: [String: [WindReading]] = [:]
     private var archiveFetchedAt: [String: Date] = [:]
     private let archiveTTL: TimeInterval = 300   // 5 min
     private let archiveHours = 4
 
-    /// Lecture du tracé récent d'une balise (vide si pas encore chargé / source sans archive).
-    func archive(for stationId: String) -> [WindReading] { archives[stationId] ?? [] }
-
-    /// Précharge l'archive de la balise sélectionnée (idempotent, TTL 5 min). Donnée RÉELLE dense.
+    /// Précharge l'archive de la balise sélectionnée (idempotent, TTL 5 min) → magasin générique. RÉELLE.
     func prefetchArchive(stationId: String) {
         guard !stationId.isEmpty else { return }
         if let t = archiveFetchedAt[stationId], Date().timeIntervalSince(t) < archiveTTL { return }
@@ -65,7 +60,7 @@ final class PioupiouService: ObservableObject {
                                        directionDegrees: row[6].double ?? 0))
             }
             let sorted = out.sorted { $0.date < $1.date }
-            await MainActor.run { self.archives[stationId] = sorted }
+            await MainActor.run { WindHistoryStore.shared.merge(stationId: stationId, readings: sorted) }
         } catch {
             appLogger.error("[Pioupiou] archive \(stationId) indisponible: \(error.localizedDescription)")
         }
