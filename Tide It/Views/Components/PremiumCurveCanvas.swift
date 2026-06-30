@@ -1143,6 +1143,14 @@ struct PremiumCurveCanvas: View {
                 Text("raf \(UnitFormatter.windSpeedInt(g, unit: unit))")
                     .font(.system(size: 10, weight: .medium)).foregroundStyle(.secondary)
             }
+            // Tendance (↑ monte / ↓ descend / → stable) DANS la pastille — toujours visible, même
+            // quand le point réel et la rafale sont collés (le pointillé animé devient alors invisible).
+            // Source = pente de la prévision (Δ vent ~90 min), seuil mort ±2 km/h.
+            let trend = realWindTrendKmh
+            let up = trend >= 2, down = trend <= -2
+            Image(systemName: up ? "arrow.up" : (down ? "arrow.down" : "arrow.right"))
+                .font(.system(size: 10, weight: .bold))
+                .foregroundStyle(up ? Color.green : (down ? Color.orange : Color.gray.opacity(0.7)))
         }
         .monospacedDigit()
         .padding(.horizontal, 8)
