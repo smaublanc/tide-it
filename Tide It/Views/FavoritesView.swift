@@ -15,27 +15,24 @@ struct FavoritesView: View {
     @State private var selectedSegment = 0
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: 24) {
-                // Header
-                headerSection
-                
-                // Segment control
-                segmentControl
-                
-                // Content — ordre : Favoris · Surf · Personnalisés
-                if selectedSegment == 0 {
-                    favoritesSection
-                } else if selectedSegment == 1 {
-                    surfSpotsSection
-                } else {
-                    customPortsSection
-                }
-                
-                Spacer(minLength: 100)
+        List {
+            headerSection
+                .plainRow(top: 16)
+            segmentControl
+                .plainRow(top: 8, bottom: 8)
+
+            if selectedSegment == 0 {
+                favoritesSection
+            } else if selectedSegment == 1 {
+                surfSpotsSection
+            } else {
+                customPortsSection
             }
-            .padding(.top, 16)
+
+            Color.clear.frame(height: 80).plainRow()
         }
+        .listStyle(.plain)
+        .environment(\.defaultMinListRowHeight, 0)
         .scrollContentBackground(.hidden)
         .appBackground()
         .sheet(isPresented: $showAddCustomPort) {
@@ -84,27 +81,28 @@ struct FavoritesView: View {
         .padding(.horizontal, DS.pagePadding)
     }
     
-    // MARK: - Favorites Section (liste ouverte, sans cadre)
+    // MARK: - Favoris
+    @ViewBuilder
     private var favoritesSection: some View {
-        VStack(spacing: 0) {
-            if favoritePorts.isEmpty {
-                emptyFavoritesView
-            } else {
-                ForEach(Array(favoritePorts.enumerated()), id: \.element.id) { i, port in
-                    SwipeToRemoveRow(label: "Retirer", icon: "star.slash.fill",
-                                     onRemove: { tideService.toggleFavorite(port: port) }) {
-                        FavoritePortRow(
-                            port: port,
-                            tideService: tideService,
-                            selectedTab: $selectedTab,
-                            isSelected: tideService.selectedPort?.id == port.id
-                        )
-                    }
-                    if i < favoritePorts.count - 1 { rowDivider }
+        if favoritePorts.isEmpty {
+            emptyFavoritesView.plainRow()
+        } else {
+            ForEach(favoritePorts) { port in
+                FavoritePortRow(
+                    port: port,
+                    tideService: tideService,
+                    selectedTab: $selectedTab,
+                    isSelected: tideService.selectedPort?.id == port.id
+                )
+                .plainRow(top: 2, bottom: 2, leading: DS.pagePadding, trailing: DS.pagePadding)
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    Button(role: .destructive) {
+                        HapticManager.shared.notification(.warning)
+                        tideService.toggleFavorite(port: port)
+                    } label: { Label("Retirer", systemImage: "star.slash.fill") }
                 }
             }
         }
-        .padding(.horizontal, DS.pagePadding)
     }
 
     // Ports custom de l'utilisateur, séparés : les SPOTS DE SURF (matérialisés depuis le catalogue)
@@ -116,59 +114,62 @@ struct FavoritesView: View {
         tideService.customPorts.filter { SurfSpotCatalog.shared.spot(id: $0.id) == nil }
     }
 
-    // MARK: - Custom Ports Section (ports perso NON-surf)
+    // MARK: - Ports perso (non-surf)
+    @ViewBuilder
     private var customPortsSection: some View {
-        VStack(spacing: 0) {
-            if nonSurfCustomPorts.isEmpty {
-                emptyCustomPortsView
-            } else {
-                ForEach(Array(nonSurfCustomPorts.enumerated()), id: \.element.id) { i, port in
-                    SwipeToRemoveRow(label: "Supprimer", icon: "trash.fill",
-                                     onRemove: { tideService.removeCustomPort(portId: port.id) }) {
-                        CustomPortRow(
-                            port: port,
-                            tideService: tideService,
-                            selectedTab: $selectedTab,
-                            isSelected: tideService.selectedPort?.id == port.id
-                        )
-                    }
-                    if i < nonSurfCustomPorts.count - 1 { rowDivider }
+        if nonSurfCustomPorts.isEmpty {
+            emptyCustomPortsView.plainRow()
+        } else {
+            ForEach(nonSurfCustomPorts) { port in
+                CustomPortRow(
+                    port: port,
+                    tideService: tideService,
+                    selectedTab: $selectedTab,
+                    isSelected: tideService.selectedPort?.id == port.id
+                )
+                .plainRow(top: 2, bottom: 2, leading: DS.pagePadding, trailing: DS.pagePadding)
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    Button(role: .destructive) {
+                        HapticManager.shared.notification(.warning)
+                        tideService.removeCustomPort(portId: port.id)
+                    } label: { Label("Supprimer", systemImage: "trash.fill") }
                 }
             }
         }
-        .padding(.horizontal, DS.pagePadding)
     }
 
-    // MARK: - Surf Section (les SPOTS DE SURF sauvegardés de l'utilisateur)
+    // MARK: - Spots de surf
+    @ViewBuilder
     private var surfSpotsSection: some View {
-        VStack(spacing: 0) {
-            if surfCustomPorts.isEmpty {
-                VStack(spacing: 16) {
-                    Image(systemName: "figure.surfing")
-                        .font(.system(size: 44)).foregroundStyle(.gray.opacity(0.5))
-                    Text("Aucun spot de surf")
-                        .font(.system(size: 18, weight: .semibold)).foregroundStyle(.primary)
-                    Text("Ajoute un spot depuis la carte ou la recherche")
-                        .font(.system(size: 14)).foregroundStyle(.gray).multilineTextAlignment(.center)
-                }
-                .frame(maxWidth: .infinity).padding(.vertical, 40)
-            } else {
-                ForEach(Array(surfCustomPorts.enumerated()), id: \.element.id) { i, port in
-                    SwipeToRemoveRow(label: "Supprimer", icon: "trash.fill",
-                                     onRemove: { tideService.removeCustomPort(portId: port.id) }) {
-                        CustomPortRow(
-                            port: port,
-                            tideService: tideService,
-                            selectedTab: $selectedTab,
-                            isSelected: tideService.selectedPort?.id == port.id,
-                            isSurf: true
-                        )
-                    }
-                    if i < surfCustomPorts.count - 1 { rowDivider }
+        if surfCustomPorts.isEmpty {
+            VStack(spacing: 16) {
+                Image(systemName: "figure.surfing")
+                    .font(.system(size: 44)).foregroundStyle(.gray.opacity(0.5))
+                Text("Aucun spot de surf")
+                    .font(.system(size: 18, weight: .semibold)).foregroundStyle(.primary)
+                Text("Ajoute un spot depuis la carte ou la recherche")
+                    .font(.system(size: 14)).foregroundStyle(.gray).multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity).padding(.vertical, 40)
+            .plainRow()
+        } else {
+            ForEach(surfCustomPorts) { port in
+                CustomPortRow(
+                    port: port,
+                    tideService: tideService,
+                    selectedTab: $selectedTab,
+                    isSelected: tideService.selectedPort?.id == port.id,
+                    isSurf: true
+                )
+                .plainRow(top: 2, bottom: 2, leading: DS.pagePadding, trailing: DS.pagePadding)
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    Button(role: .destructive) {
+                        HapticManager.shared.notification(.warning)
+                        tideService.removeCustomPort(portId: port.id)
+                    } label: { Label("Supprimer", systemImage: "trash.fill") }
                 }
             }
         }
-        .padding(.horizontal, DS.pagePadding)
     }
 
     /// Fin séparateur entre lignes (composant partagé), aligné après l'icône.
@@ -457,6 +458,15 @@ struct CustomPortRow: View {
 /// Enveloppe une ligne de la liste « maison » d'un swipe-vers-la-gauche révélant une action
 /// « Retirer ». Layout côte-à-côte (contenu + bouton rouge adjacents) → aucun fond opaque requis
 /// malgré le dégradé d'arrière-plan. Le tap normal de la ligne reste actif (minimumDistance).
+private extension View {
+    /// Ligne de List « ouverte » : fond transparent, pas de séparateur, encarts contrôlés.
+    func plainRow(top: CGFloat = 0, bottom: CGFloat = 0, leading: CGFloat = 0, trailing: CGFloat = 0) -> some View {
+        listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing))
+    }
+}
+
 struct SwipeToRemoveRow<Content: View>: View {
     let label: String
     let icon: String
