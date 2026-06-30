@@ -491,13 +491,20 @@ struct SwipeToRemoveRow<Content: View>: View {
                 .offset(x: offset)
         }
         .clipped()
-        .gesture(
+        // ⚠️ `.simultaneousGesture` (PAS `.gesture`) : sinon le DragGesture gagne l'arène dès 18 pt —
+        // même sur un drag VERTICAL — et capture le touch, ce qui TUE le scroll vertical du ScrollView
+        // parent (impossible d'atteindre les favoris hors écran). En simultané, le scroll gère le
+        // vertical et ce geste ne bouge l'offset que sur un drag à dominante HORIZONTALE (guard).
+        .simultaneousGesture(
             DragGesture(minimumDistance: 18)
                 .onChanged { v in
                     guard abs(v.translation.width) > abs(v.translation.height) else { return }
                     offset = max(-actionWidth, min(0, committed + v.translation.width))
                 }
-                .onEnded { _ in
+                .onEnded { v in
+                    // N'agit (snap ouvert/fermé) QUE si le geste était horizontal — sinon c'était un
+                    // scroll vertical, on ne touche pas l'état de la ligne.
+                    guard abs(v.translation.width) > abs(v.translation.height) || committed != 0 else { return }
                     let open = offset < -actionWidth / 2
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.85)) {
                         offset = open ? -actionWidth : 0
