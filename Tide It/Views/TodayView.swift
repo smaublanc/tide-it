@@ -19,7 +19,6 @@ struct TodayView: View {
     @ObservedObject var marineService: MarineWeatherService = .shared
     @ObservedObject private var liveActivityManager = LiveActivityManager.shared
     @ObservedObject private var pioupiouService = PioupiouService.shared
-    @ObservedObject private var windHistoryStore = WindHistoryStore.shared
     @ObservedObject private var aviationWeatherService = AviationWeatherService.shared
     @ObservedObject private var weameterService = WeameterService.shared
     @ObservedObject private var premiumManager = PremiumManager.shared
@@ -148,13 +147,6 @@ struct TodayView: View {
         return ForecastBiasService.shared.debiasedSeries(openMeteoForecasts, portId: pid)
     }
 
-    /// Tracé du vent réel récent (≈4 h) de la balise sélectionnée — TOUTES sources (magasin générique
-    /// qui accumule chaque relevé ; backfill dense Pioupiou). Vide tant qu'il n'y a pas ≥2 points → honnête.
-    private var realWindHistory: [WindReading] {
-        guard let st = observedWind?.station else { return [] }
-        return windHistoryStore.history(for: st.id)
-    }
-
     /// Message d'erreur à afficher en haut de l'écran, ou nil si tout va bien.
     private var currentErrorMessage: String? {
         if let tideError = tideService.error {
@@ -212,10 +204,8 @@ struct TodayView: View {
                             openMeteoForecasts: forecastsForDisplay,
                             observedWindKmh: observedWind?.reading.speedAvgKmh,
                             observedGustKmh: observedWind?.reading.gustKmh,
-                            observedMinKmh: observedWind?.reading.minKmh,
                             observedWindDirection: observedWind?.reading.directionDegrees,
                             observedWindAgeMinutes: observedWind?.reading.ageMinutes,
-                            observedWindHistory: realWindHistory,
                             hasBalise: observedWind != nil,
                             riderMinKmh: themeManager.riderMinWindKmh,
                             riderMaxKmh: themeManager.riderMaxWindKmh,
@@ -449,12 +439,6 @@ struct TodayView: View {
                 ForecastBiasService.shared.record(portId: pid, modelKmh: model,
                     observedKmh: obs.reading.speedAvgKmh, distanceKm: obs.distanceKm, at: obs.reading.date)
                 if themeManager.debiasGoEnabled { recomputeGoWindows() }   // garde courbe ↔ fenêtres GO en phase
-            }
-            // Tracé du vent réel (TOUTES balises) : on enregistre CHAQUE relevé live ; + backfill dense
-            // si la source a une archive (Pioupiou aujourd'hui ; METAR/NDBC à suivre).
-            if let o = observedWind {
-                windHistoryStore.record(stationId: o.station.id, reading: o.reading)
-                if o.station.source == .pioupiou { pioupiouService.prefetchArchive(stationId: o.station.id) }
             }
         }
         // Activer/désactiver un sport — ou éditer ses conditions / sa sensibilité — doit recalculer
@@ -846,10 +830,8 @@ struct PremiumTideGraphView: View {
     var openMeteoForecasts: [HourlyForecast] = []
     var observedWindKmh: Double? = nil
     var observedGustKmh: Double? = nil
-    var observedMinKmh: Double? = nil
     var observedWindDirection: Double? = nil
     var observedWindAgeMinutes: Int? = nil
-    var observedWindHistory: [WindReading] = []
     var hasBalise: Bool = false
     var riderMinKmh: Double = 12
     var riderMaxKmh: Double = 65
@@ -954,10 +936,8 @@ struct PremiumTideGraphView: View {
                             openMeteoForecasts: openMeteoForecasts,
                             observedWindKmh: observedWindKmh,
                             observedGustKmh: observedGustKmh,
-                            observedMinKmh: observedMinKmh,
                             observedWindDirection: observedWindDirection,
                             observedWindAgeMinutes: observedWindAgeMinutes,
-                            observedWindHistory: observedWindHistory,
                             hasBalise: hasBalise,
                             riderMinKmh: riderMinKmh,
                             riderMaxKmh: riderMaxKmh,

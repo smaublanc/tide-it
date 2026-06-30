@@ -40,12 +40,8 @@ struct PremiumCurveCanvas: View {
     var openMeteoForecasts: [HourlyForecast] = []
     var observedWindKmh: Double? = nil
     var observedGustKmh: Double? = nil
-    /// Creux (lull) réel de l'instant — brin bas de la moustache rafale. nil si la source ne le fournit pas.
-    var observedMinKmh: Double? = nil
     var observedWindDirection: Double? = nil
     var observedWindAgeMinutes: Int? = nil
-    /// Historique récent (≈4 h) du vent réel mesuré (balise) — pour le TRACÉ « vent récent ».
-    var observedWindHistory: [WindReading] = []
     /// Une balise de vent réel est disponible pour ce spot → active le label « Go X% » vivant.
     var hasBalise: Bool = false
     var riderMinKmh: Double = 12
@@ -848,6 +844,17 @@ struct PremiumCurveCanvas: View {
         CGFloat(date.timeIntervalSince(startDate) / totalDuration) * width
     }
 
+    /// Tendance du vent à « maintenant » d'après la PRÉVISION (Δ km/h sur ~90 min) : ≥0 monte, <0 descend.
+    /// Pas d'historique réel → on dérive la tendance de la pente de la prévision. Anime le pointillé réel↔rafale.
+    private var realWindTrendKmh: Double {
+        guard !openMeteoForecasts.isEmpty else { return 0 }
+        let target = currentTime.addingTimeInterval(90 * 60)
+        let now = openMeteoForecasts.min { abs($0.time.timeIntervalSince(currentTime)) < abs($1.time.timeIntervalSince(currentTime)) }
+        let later = openMeteoForecasts.min { abs($0.time.timeIntervalSince(target)) < abs($1.time.timeIntervalSince(target)) }
+        guard let n = now, let l = later else { return 0 }
+        return l.windSpeedKmh - n.windSpeedKmh
+    }
+
     /// Points HORAIRES (x,y) du vent (ou des rafales) dans la fenêtre visible, déjà LISSÉS
     /// par un noyau [0.25, 0.5, 0.25] sur les valeurs → enlève le jitter heure-à-heure avant
     /// le spline (sinon la courbe garde de petites bosses « dégueu »).
@@ -1075,34 +1082,24 @@ struct PremiumCurveCanvas: View {
                     let py = wy(obs)
                     let v = Color(red: 0.61, green: 0.5, blue: 0.88)
 
-                    // MOUSTACHE rafale — « I-beam » INSTANTANÉ et mesuré : tige verticale
-                    // creux ↔ moyen ↔ rafale au « maintenant ». La zone de rafale (moyen→rafale)
-                    // s'efface vers le haut (drapeau de vent), mais HONNÊTE : que des valeurs réelles
-                    // de l'instant — aucun historique fabriqué (décision « pas de comète »).
-                    // TRACÉ « vent réel récent » (≈4 h) — archive balise DENSE et continue. Honnête :
-                    // runs BRISÉS sur les trous (>15 min, pas d'interpolation), estompé vers le passé
-                    // (vraie queue de comète, pas du foreground clairsemé). Bande = zone moyen→rafale réelle.
-                    let trailRuns = realWindTrailRuns(width: geo.size.width, wy: wy)
-                    if !trailRuns.isEmpty {
-                        Path { p in
-                            for run in trailRuns {
-                                p.move(to: CGPoint(x: run[0].x, y: run[0].avg))
-                                for q in run.dropFirst() { p.addLine(to: CGPoint(x: q.x, y: q.avg)) }
-                                for q in run.reversed() { p.addLine(to: CGPoint(x: q.x, y: q.gust)) }
-                                p.closeSubpath()
+                    // Rafale MAX réelle : point secondaire AU-DESSUS du point vent, relié par un trait
+                    // pointillé ANIMÉ. Les tirets défilent vers la RAFALE si le vent MONTE, vers le
+                    // POINT s'il DESCEND → tendance (hausse/baisse) lisible d'un coup d'œil. La tendance
+                    // vient de la pente de la prévision (plus d'historique réel). ~12 fps, un seul trait.
+                    if let g = observedGustKmh, g > obs {
+                        let gy = wy(g)
+                        let rising = realWindTrendKmh >= 0
+                        TimelineView(.periodic(from: .now, by: 0.08)) { tl in
+                            let phase = CGFloat(tl.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 1)) * 6
+                            Path { p in
+                                p.move(to: CGPoint(x: nowX, y: py))
+                                p.addLine(to: CGPoint(x: nowX, y: gy))
                             }
+                            .stroke(v.opacity(0.75),
+                                    style: StrokeStyle(lineWidth: 1.5, lineCap: .round,
+                                                       dash: [3, 3], dashPhase: rising ? -phase : phase))
                         }
-                        .fill(LinearGradient(colors: [v.opacity(0.02), v.opacity(0.20)],
-                                             startPoint: .leading, endPoint: .trailing))
-                        Path { p in
-                            for run in trailRuns {
-                                p.move(to: CGPoint(x: run[0].x, y: run[0].avg))
-                                for q in run.dropFirst() { p.addLine(to: CGPoint(x: q.x, y: q.avg)) }
-                            }
-                        }
-                        .stroke(LinearGradient(colors: [v.opacity(0.06), v.opacity(0.95)],
-                                               startPoint: .leading, endPoint: .trailing),
-                                style: StrokeStyle(lineWidth: 2.5, lineCap: .round, lineJoin: .round))
+                        Circle().stroke(v, lineWidth: 1.5).frame(width: 6, height: 6).position(x: nowX, y: gy)
                     }
 
                     // Étiquette en BAS-gauche du point.
@@ -1113,32 +1110,12 @@ struct PremiumCurveCanvas: View {
                         p.addLine(to: CGPoint(x: boxX + 8, y: boxY - 9))
                     }
                     .stroke(v.opacity(0.6), style: StrokeStyle(lineWidth: 0.8, lineCap: .round))
-                    // Ancre « réel » : disque plein + halo + cœur clair → lisible parmi les points
-                    // prévision (le point de 3 px se perdait). C'est la base de la moustache.
-                    Circle().fill(v.opacity(0.22)).frame(width: 16, height: 16).position(x: nowX, y: py)
-                    Circle().fill(v).frame(width: 9, height: 9).position(x: nowX, y: py)
-                    Circle().fill(.white.opacity(0.9)).frame(width: 3, height: 3).position(x: nowX, y: py)
+                    Circle().fill(v).frame(width: 3, height: 3).position(x: nowX, y: py)
                     realWindLegend(obs: obs).position(x: boxX, y: boxY)
                 }
             }
         }
         .allowsHitTesting(false)
-    }
-
-    /// Segments du tracé « vent réel récent » : points (x, y moyen, y rafale) issus de l'archive,
-    /// BRISÉS sur les trous > 15 min (on ne relie jamais à travers un manque → honnête). Passé seulement.
-    private func realWindTrailRuns(width: CGFloat, wy: (Double) -> CGFloat) -> [[(x: CGFloat, avg: CGFloat, gust: CGFloat)]] {
-        let pts = observedWindHistory.compactMap { r -> (x: CGFloat, avg: CGFloat, gust: CGFloat, t: Date)? in
-            guard r.date <= currentTime else { return nil }
-            return (windX(r.date, width: width), wy(r.speedAvgKmh), wy(r.gustKmh ?? r.speedAvgKmh), r.date)
-        }
-        guard pts.count >= 2 else { return [] }
-        var runs: [[(x: CGFloat, avg: CGFloat, gust: CGFloat)]] = [[]]
-        for i in pts.indices {
-            if i > 0, pts[i].t.timeIntervalSince(pts[i - 1].t) > 900 { runs.append([]) }
-            runs[runs.count - 1].append((pts[i].x, pts[i].avg, pts[i].gust))
-        }
-        return runs.filter { $0.count >= 2 }
     }
 
     /// Pastille déportée « vent réel » (mesure balise) reliée au point violet.
