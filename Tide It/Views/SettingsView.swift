@@ -187,7 +187,7 @@ struct SettingsView: View {
         }
     }
 
-    private func unitBadge(_ unit: String, label: String) -> some View {
+    private func unitBadge(_ unit: String, label: LocalizedStringKey) -> some View {
         VStack(spacing: 3) {
             Text(unit)
                 .font(.scaled(size: DS.fontHeadline, weight: .bold, design: .rounded))
@@ -560,7 +560,9 @@ struct SettingsView: View {
 
 // MARK: - Settings Section (ultraThinMaterial, code couleur)
 private struct SettingsSectionView<Content: View>: View {
-    let title: String
+    // LocalizedStringKey (pas String) : Text(title) résout via le catalogue — les traductions
+    // des en-têtes existaient mais étaient MORTES (rendu verbatim FR dans les 11 autres langues).
+    let title: LocalizedStringKey
     let icon: String
     let accentColor: Color
     @ViewBuilder let content: Content
@@ -589,7 +591,7 @@ private struct SettingsSectionView<Content: View>: View {
 // MARK: - Settings Row
 private struct SettingsRowView<Content: View>: View {
     let icon: String
-    let title: String
+    let title: LocalizedStringKey   // idem SettingsSectionView : localise les lignes de réglages
     let iconColor: Color
     @ViewBuilder let content: Content
 

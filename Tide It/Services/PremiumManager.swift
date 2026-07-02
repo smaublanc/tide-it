@@ -152,17 +152,19 @@ final class PremiumManager: ObservableObject {
     }
 
     /// « 1 semaine d'essai gratuit », dérivé de la période réelle de l'offre (pas codé en dur).
+    /// LOCALISÉ par phrase entière (clés catalogue) pour les périodes réellement configurables côté
+    /// App Store ; assemblage FR en dernier recours (période exotique jamais configurée).
     private static func trialLabel(for period: Product.SubscriptionPeriod) -> String {
         let v = period.value
-        let unit: String
-        switch period.unit {
-        case .day:   unit = v > 1 ? "jours" : "jour"
-        case .week:  unit = v > 1 ? "semaines" : "semaine"
-        case .month: unit = "mois"
-        case .year:  unit = v > 1 ? "ans" : "an"
-        @unknown default: unit = "période"
+        switch (period.unit, v) {
+        case (.day, _):    return String(localized: "\(v) jours d'essai gratuit")
+        case (.week, 1):   return String(localized: "1 semaine d'essai gratuit")
+        case (.week, _):   return String(localized: "\(v) semaines d'essai gratuit")
+        case (.month, 1):  return String(localized: "1 mois d'essai gratuit")
+        case (.month, _):  return String(localized: "\(v) mois d'essai gratuit")
+        case (.year, _):   return String(localized: "\(v) an(s) d'essai gratuit")
+        @unknown default:  return String(localized: "Essai gratuit")
         }
-        return "\(v) \(unit) d'essai gratuit"
     }
 
     // MARK: - Purchase
@@ -452,14 +454,17 @@ private struct ProductButton: View {
     private var isYearly: Bool {
         product.id.contains("yearly")
     }
-    private var periodLabel: String { isYearly ? "an" : "mois" }
+    // Localisé (injecté dans « prix / an ») — String(localized:) car interpolé, pas un littéral Text.
+    private var periodLabel: String { isYearly ? String(localized: "an") : String(localized: "mois") }
 
     var body: some View {
         Button(action: action) {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     HStack(spacing: DS.spacingSM) {
-                        Text(isYearly ? "Annuel" : "Mensuel")
+                        // Un Text LITTÉRAL par branche → LocalizedStringKey (les traductions du
+                        // catalogue existaient mais étaient MORTES via le ternaire-String).
+                        (isYearly ? Text("Annuel") : Text("Mensuel"))
                             .font(.scaled(size: DS.fontCallout, weight: .bold))
                             .foregroundStyle(.primary)
                         if isYearly {
@@ -481,9 +486,9 @@ private struct ProductButton: View {
                             .font(.scaled(size: DS.fontSubheadline))
                             .foregroundStyle(.gray)
                     }
-                    Text(isYearly
-                         ? "Abonnement de 12 mois, renouvelé automatiquement"
-                         : "Abonnement de 1 mois, renouvelé automatiquement")
+                    (isYearly
+                         ? Text("Abonnement de 12 mois, renouvelé automatiquement")
+                         : Text("Abonnement de 1 mois, renouvelé automatiquement"))
                         .font(.system(size: 10))
                         .foregroundStyle(.tertiary)
                 }

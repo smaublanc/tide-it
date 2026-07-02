@@ -61,6 +61,9 @@ struct FavoritesView: View {
                     .font(.system(size: 26))
                     .foregroundStyle(.cyan)
             }
+            // ⚠️ Dans une rangée de List, un Button sans style explicite étend sa zone de tap à
+            // TOUTE la rangée (l'en-tête entier ouvrait « Nouveau spot »). .borderless le borne.
+            .buttonStyle(.borderless)
         }
         .padding(.horizontal, DS.pagePadding)
         .padding(.bottom, 2)
@@ -653,9 +656,10 @@ struct SpotEditorView: View {
                 Button { useMyLocation() } label: {
                     HStack(spacing: 8) {
                         Image(systemName: "location.fill").foregroundStyle(.cyan)
-                        Text(tideService.userLocation != nil
-                             ? "Utiliser ma position actuelle"
-                             : "Position = celle du port de référence")
+                        // Un Text littéral par branche → LocalizedStringKey (traductions revivifiées).
+                        (tideService.userLocation != nil
+                             ? Text("Utiliser ma position actuelle")
+                             : Text("Position = celle du port de référence"))
                             .font(.system(size: 15))
                             .foregroundStyle(tideService.userLocation != nil ? Color.primary : Color.gray)
                         Spacer()
@@ -679,7 +683,7 @@ struct SpotEditorView: View {
                 showReferencePicker = true
             } label: {
                 HStack {
-                    Text(selectedReferencePort?.name ?? "Sélectionner un port")
+                    Text(selectedReferencePort?.name ?? String(localized: "Sélectionner un port"))
                         .foregroundStyle(selectedReferencePort == nil ? .gray : .primary)
                     Spacer()
                     Image(systemName: "chevron.down").foregroundStyle(.cyan)
@@ -733,7 +737,7 @@ struct SpotEditorView: View {
         Button {
             saveCustomPort()
         } label: {
-            Text(isEditing ? "Enregistrer" : "Créer le spot")
+            (isEditing ? Text("Enregistrer") : Text("Créer le spot"))
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundStyle(.primary)
                 .frame(maxWidth: .infinity)
@@ -818,7 +822,7 @@ struct SpotEditorView: View {
             referencePortId: refPort.id,
             timeOffset: totalMinutes
         ) else {
-            saveErrorMessage = "Impossible d'ajouter ce port. Vérifiez le nom et le décalage horaire (max ±12h)."
+            saveErrorMessage = String(localized: "Impossible d'ajouter ce port. Vérifiez le nom et le décalage horaire (max ±12h).")
             HapticManager.shared.notification(.error)
             return
         }

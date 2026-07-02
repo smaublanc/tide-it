@@ -321,7 +321,7 @@ struct ContentView: View {
 
     /// Titre centré (+ port en sous-titre) pour les barres des sheets.
     @ViewBuilder
-    private func sheetTitle(_ title: String, showPort: Bool = true) -> some View {
+    private func sheetTitle(_ title: LocalizedStringKey, showPort: Bool = true) -> some View {
         VStack(spacing: 0) {
             Text(title)
                 .font(.scaled(size: DS.fontHeadline, weight: .bold, design: .rounded))

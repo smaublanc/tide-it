@@ -141,6 +141,8 @@ struct ActivityCalendarView: View {
         .onChange(of: sportStore.byPort) { recomputePlan() }
         // L'horizon dépend du premium : recharger (sun preload) + recalculer si l'abonnement change.
         .onChange(of: premium.isPremium) { Task { await load() } }
+        // Bascule de la correction « avec le réel » → recharger (le gate de load() relit le toggle).
+        .onChange(of: themeManager.debiasGoEnabled) { Task { await load() } }
         .confirmationDialog(dialogTitle, isPresented: pickedBinding, titleVisibility: .visible) {
             Button("Créer une alerte ici") {
                 if premium.canUseAlerts { showEditor = true } else { showPaywall = true }
@@ -452,7 +454,13 @@ struct ActivityCalendarView: View {
                 sun.append(s)
             }
         }
-        forecasts = fc
+        // MÊME série que la courbe TodayView : corrigée du biais réel SI premium + toggle
+        // (sinon brute). Sans ce gate, le calendrier planifiait sur la série BRUTE pendant que
+        // la courbe utilisait la débiaisée → fenêtres GO divergentes (même moteur, entrées
+        // différentes). `debiasedSeries` est un no-op tant que le biais n'est pas fiable.
+        forecasts = (themeManager.debiasGoEnabled && premium.isPremium)
+            ? ForecastBiasService.shared.debiasedSeries(fc, portId: port.id)
+            : fc
         sunTimes = sun
         loading = false
         recomputePlan()

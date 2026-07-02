@@ -167,12 +167,13 @@ enum CurveMode: String, CaseIterable {
         case .surf:    return "figure.surfing"
         }
     }
-    /// Libellé court (caption sous le bouton + accessibilité).
+    /// Libellé court (caption sous le bouton + accessibilité). String(localized:) — même
+    /// pattern que les autres labels du fichier ; les clés ont déjà leurs 12 traductions.
     var label: String {
         switch self {
-        case .classic: return "Marée"
-        case .wind:    return "Vent"
-        case .surf:    return "Surf"
+        case .classic: return String(localized: "Marée")
+        case .wind:    return String(localized: "Vent")
+        case .surf:    return String(localized: "Surf")
         }
     }
     /// Couleur d'accent néon par mode (glow du bouton + pastille de feedback).

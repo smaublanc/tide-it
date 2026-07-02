@@ -2186,9 +2186,9 @@ struct SurfDashboardCard: View, Equatable {
             }
             HStack(spacing: 8) {
                 if let pu = SurfMetrics.purity(swellHeight: selF?.swellHeight, windWaveHeight: selF?.windWaveHeight) {
-                    pill("houle propre · \(Int((pu * 100).rounded())) %", color: Color.tideLow)
+                    pill(String(localized: "houle propre · \(Int((pu * 100).rounded())) %"), color: Color.tideLow)
                 }
-                pill("\(goodHours) h surfables", color: Color.tideHigh, icon: "bolt.fill")
+                pill(String(localized: "\(goodHours) h surfables"), color: Color.tideHigh, icon: "bolt.fill")
             }
         }
         .padding(.vertical, 12).padding(.horizontal, 14)
@@ -2389,21 +2389,24 @@ struct SurfDashboardCard: View, Equatable {
         var value = "—"; var sub: String? = nil; var good = false
         if let w {
             value = "\(UnitFormatter.windSpeedInt(w, unit: unit)) \(unit.label)"
-            if w <= 12 { sub = "glassy"; good = true }
+            // String(localized:) sur chaque littéral : `sub` est une variable → Text(sub) ne
+            // localiserait pas (piège du ternaire, corrigé à l'échelle en clôture).
+            if w <= 12 { sub = String(localized: "glassy"); good = true }
             else if let orient = spot?.shoreOrientation, let dir {
                 let off = (orient + 180).truncatingRemainder(dividingBy: 360)
                 let d = abs(((dir - off + 540).truncatingRemainder(dividingBy: 360)) - 180)
-                if d <= 60 { sub = "offshore · propre"; good = true } else { sub = "onshore · haché" }
+                if d <= 60 { sub = String(localized: "offshore · propre"); good = true }
+                else { sub = String(localized: "onshore · haché") }
             } else { sub = dir.map { compass8($0) } }
         }
-        return statCell(icon: "wind", label: "Vent", value: value, sub: sub,
+        return statCell(icon: "wind", label: String(localized: "Vent"), value: value, sub: sub,
                         tint: good ? Color.tideHigh : .secondary)
     }
 
     private var waterCell: some View {
         let t = selF?.waterTemperature
         let value = t.map { UnitFormatter.temp($0, system: themeManager.measureSystem) } ?? "—"
-        return statCell(icon: "thermometer.medium", label: "Eau", value: value,
+        return statCell(icon: "thermometer.medium", label: String(localized: "Eau"), value: value,
                         sub: SurfMetrics.wetsuitAdvice(sst: t), tint: Color.tideHigh)
     }
 
@@ -2411,24 +2414,25 @@ struct SurfDashboardCard: View, Equatable {
         var value = "—"; var sub: String? = nil
         if let e = selMetrics?.energyIndex {
             value = "\(Int(e.rounded()))/100"
-            sub = e > 60 ? "puissant" : (e > 30 ? "correct" : "faible")
+            sub = e > 60 ? String(localized: "puissant")
+                : (e > 30 ? String(localized: "correct") : String(localized: "faible"))
         }
-        return statCell(icon: "bolt.fill", label: "Énergie", value: value, sub: sub, tint: Color.tideLow)
+        return statCell(icon: "bolt.fill", label: String(localized: "Énergie"), value: value, sub: sub, tint: Color.tideLow)
     }
 
     private var purityCell: some View {
         var value = "—"; var sub: String? = nil
         if let pu = SurfMetrics.purity(swellHeight: selF?.swellHeight, windWaveHeight: selF?.windWaveHeight) {
             value = "\(Int((pu * 100).rounded())) %"
-            sub = pu > 0.6 ? "houle propre" : "mer du vent"
+            sub = pu > 0.6 ? String(localized: "houle propre") : String(localized: "mer du vent")
         }
-        return statCell(icon: "water.waves", label: "Pureté", value: value, sub: sub, tint: Color.tideMid)
+        return statCell(icon: "water.waves", label: String(localized: "Pureté"), value: value, sub: sub, tint: Color.tideMid)
     }
 
     // MARK: Footer honnêteté
     private var footer: some View {
-        Text((selMetrics?.provenance.label ?? "Houle modèle large (~25 km, offshore)")
-             + " · énergie = indice 0–100, pas une puissance")
+        Text((selMetrics?.provenance.label ?? String(localized: "Houle modèle large (~25 km, offshore)"))
+             + String(localized: " · énergie = indice 0–100, pas une puissance"))
             .font(.scaled(size: DS.fontCaption2)).foregroundStyle(.tertiary)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, DS.spacingLG)

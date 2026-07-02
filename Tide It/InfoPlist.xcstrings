@@ -10,6 +10,66 @@
             "state" : "new",
             "value" : "Tide It"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It"
+          }
         }
       }
     },
@@ -56,6 +116,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O Tide It pode adicionar os horários das marés ao teu calendário para não perderes nada."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It 可以将潮汐时间添加到您的日历，让您不错过任何时机。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It 可以將潮汐時間加入您的行事曆，讓您不錯過任何時機。"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide Itは潮汐の時刻をカレンダーに追加して、見逃しを防ぎます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It이 물때 시간을 캘린더에 추가해 놓치지 않도록 도와줍니다."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tide It ज्वार का समय आपके कैलेंडर में जोड़ सकता है ताकि आप कुछ न चूकें।"
           }
         }
       }
@@ -104,6 +194,36 @@
             "state" : "translated",
             "value" : "Precisamos da tua localização para mostrar os dados meteorológicos e de marés da tua posição atual."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们需要您的位置信息，以显示您当前位置的天气数据和潮汐。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我們需要您的位置資訊，以顯示您目前位置的天氣資料和潮汐。"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在地の気象データと潮汐を表示するため、位置情報が必要です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재 위치의 날씨 데이터와 물때를 표시하기 위해 위치 정보가 필요합니다."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपकी वर्तमान स्थिति के लिए मौसम डेटा और ज्वार दिखाने हेतु हमें आपके स्थान की आवश्यकता है।"
+          }
         }
       }
     },
@@ -150,6 +270,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Precisamos da tua localização para mostrar os portos próximos e permitir-te criar um porto personalizado no teu local atual."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们需要您的位置，以显示附近的港口，并让您在当前位置创建自定义港口。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我們需要您的位置，以顯示附近的港口，並讓您在目前位置建立自訂港口。"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "近くの港を表示し、現在地にカスタム港を作成できるよう、位置情報が必要です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주변 항구를 표시하고 현재 위치에 사용자 지정 항구를 만들 수 있도록 위치 정보가 필요합니다."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आस-पास के पोर्ट दिखाने और आपकी वर्तमान स्थिति पर कस्टम पोर्ट बनाने के लिए हमें आपके स्थान की आवश्यकता है।"
           }
         }
       }

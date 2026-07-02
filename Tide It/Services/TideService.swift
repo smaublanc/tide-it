@@ -469,16 +469,22 @@ class TideService: ObservableObject {
         // 6. Notifs marée/forecast PROGRAMMÉES de ces alertes (annulables par id) + cooldowns forecast.
         NotificationScheduler.cancelPending(forAlertIds: removedAlertIds)
         for id in removedAlertIds { UserDefaults.standard.removeObject(forKey: "forecastAlert_\(id)") }
+        // 7. / 7b. UNIQUEMENT si le port n'existe PLUS dans `ports` (= suppression d'un port
+        //    custom, retiré par l'appelant AVANT la purge). RETIRER DES FAVORIS un port du
+        //    catalogue (toggleFavorite) passe aussi par ici, mais le port reste consultable —
+        //    détourner la sélection sous l'utilisateur (rebasculer sur le port le plus proche
+        //    alors qu'il regarde ce port) était un vrai bug d'UX.
+        let portStillExists = ports.contains { $0.id == portId }
         // 7. Si le port supprimé était le port sélectionné persisté → on nettoie.
-        if UserDefaults.standard.string(forKey: "selectedPortId") == portId {
+        if !portStillExists, UserDefaults.standard.string(forKey: "selectedPortId") == portId {
             UserDefaults.standard.removeObject(forKey: "selectedPortId")
             UserDefaults.standard.removeObject(forKey: "selectedPortName")
         }
         // 7b. … ET s'il était le port sélectionné EN MÉMOIRE → rebascule tout de suite sur un port
         //     valide (le plus proche non-custom, sinon le port par défaut) + refetch. Sans ça, l'UI /
         //     widget / Live Activity restaient sur un port fantôme et l'app sautait silencieusement
-        //     au défaut au prochain lancement. (Le port est déjà retiré de `ports` par l'appelant.)
-        if selectedPort?.id == portId {
+        //     au défaut au prochain lancement.
+        if !portStillExists, selectedPort?.id == portId {
             let fallback = (userLocation.flatMap { nearestReferencePort(to: $0.coordinate) })
                 ?? ports.first { $0.id == Constants.defaultPortID }
                 ?? ports.first { !$0.isCustom }
