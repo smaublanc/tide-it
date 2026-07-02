@@ -161,6 +161,14 @@ struct ObservedWindCard: View, Equatable {
                             .foregroundStyle(.secondary)
                         }
 
+                        // Verdict de RÉGULARITÉ du vent mesuré (ratio rafale/moyen balise) —
+                        // « 20 nds laminaires » ≠ « 20 nds rafaleux » : décision de session ET de
+                        // sécurité que les concurrents laissent calculer de tête. 100 % mesuré,
+                        // nil-safe (pas de rafale publiée / vent trop faible → pas de badge).
+                        if let s = WindSteadiness(reading: reading) {
+                            steadinessBadge(s)
+                        }
+
                         if let delta = deltaVsPredicted, delta != 0 {
                             HStack(spacing: 2) {
                                 Image(systemName: delta > 0 ? "arrow.up" : "arrow.down")
@@ -310,13 +318,85 @@ struct ObservedWindCard: View, Equatable {
         return out
     }
 
+    // MARK: - Régularité du vent (badge)
+
+    /// Capsule « Laminaire / Irrégulier / Rafaleux » (+ facteur ×1,6 si rafaleux).
+    private func steadinessBadge(_ s: WindSteadiness) -> some View {
+        HStack(spacing: 3) {
+            // ⚠️ Un Text LITTÉRAL par cas (LocalizedStringKey, localisé + auto-extrait) —
+            // jamais Text(variable-String), leçon du sous-titre figé en FR.
+            switch s {
+            case .laminar:   Text("Laminaire")
+            case .irregular: Text("Irrégulier")
+            case .gusty:     Text("Rafaleux")
+            }
+            if case .gusty(let f) = s {
+                Text("×\(String(format: "%.1f", locale: Locale.current, f))")
+                    .monospacedDigit()
+            }
+        }
+        .font(.scaled(size: 10, weight: .semibold))
+        .foregroundStyle(s.tint)
+        .padding(.horizontal, 7)
+        .padding(.vertical, 2)
+        .background(
+            Capsule().fill(s.tint.opacity(0.12))
+                .overlay(Capsule().stroke(s.tint.opacity(0.3), lineWidth: 0.5))
+        )
+    }
+
     // MARK: - A11y
 
     private var accessibilityLabel: String {
         var s = "Vent observé \(displaySpeed) \(unitLabel), direction \(reading.directionCardinal), force \(beaufortScale) Beaufort"
         if let gust = displayGust { s += ", rafales \(gust)" }
+        if let st = WindSteadiness(reading: reading) { s += ", vent \(st.a11yAdjective.lowercased())" }
         s += ". Station \(station.name) à \(String(format: "%.1f", locale: Locale.current, distanceKm)) km, \(reading.ageLabel)."
         return s
+    }
+}
+
+// MARK: - Régularité du vent mesuré
+
+/// Verdict de régularité du vent OBSERVÉ : ratio rafale/moyen de l'instant (balise).
+/// 100 % mesuré — aucun modèle, aucune promesse. nil si le vent moyen est trop faible
+/// (le ratio devient du bruit) ou si la source ne publie pas la rafale → le badge
+/// disparaît, jamais de valeur fabriquée. ⚠️ Ne PAS utiliser `minKmh` (lull) ici :
+/// seul Pioupiou le publie (Weameter/winds.mobi → nil, dont la balise Andernos).
+/// Seuils NOMMÉS recalibrables après retours terrain.
+enum WindSteadiness {
+    case laminar                    // rafale ≤ +25 % du moyen → régulier, confortable
+    case irregular                  // entre les deux → gérable mais actif
+    case gusty(factor: Double)      // rafale ≥ +55 % → engagé (facteur affiché ×1,6)
+
+    static let minAvgKmh = 12.0        // ≈ 6,5 nds — en-dessous, ratio non significatif
+    static let laminarMaxRatio = 1.25
+    static let gustyMinRatio = 1.55
+
+    init?(reading: WindReading) {
+        guard let gust = reading.gustKmh, gust > 0,
+              reading.speedAvgKmh >= Self.minAvgKmh else { return nil }
+        let ratio = gust / reading.speedAvgKmh
+        if ratio <= Self.laminarMaxRatio { self = .laminar }
+        else if ratio >= Self.gustyMinRatio { self = .gusty(factor: (ratio * 10).rounded() / 10) }
+        else { self = .irregular }
+    }
+
+    var tint: Color {
+        switch self {
+        case .laminar:   return .green
+        case .irregular: return .yellow
+        case .gusty:     return .orange
+        }
+    }
+
+    /// Adjectif localisé pour VoiceOver (mêmes clés catalogue que le badge).
+    var a11yAdjective: String {
+        switch self {
+        case .laminar:   return String(localized: "Laminaire")
+        case .irregular: return String(localized: "Irrégulier")
+        case .gusty:     return String(localized: "Rafaleux")
+        }
     }
 }
 
