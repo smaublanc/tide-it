@@ -1,6 +1,6 @@
 Novedades:
-- Cientos de nuevos spots de surf por todo el mundo (océano Índico, América, Asia, Pacífico, África).
-- La tendencia del viento real (subiendo o bajando) ahora se muestra directamente en la curva.
-- Navegación más fluida en tus favoritos y varias mejoras.
+- El viento real ahora se califica de un vistazo: constante, irregular o racheado, para saber si de verdad aguanta.
+- App, widgets y Apple Watch totalmente en tu idioma.
+- Fiabilidad y acabados mejorados por todas partes.
 
-Igual de preciso, honesto y ligero con tu batería. ¡Buen viento y buenas olas!
+Igual de preciso, honesto y ligero para tu batería. ¡Buen viento y buenas olas!

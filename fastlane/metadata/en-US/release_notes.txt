@@ -1,6 +1,6 @@
 What's new:
-- Hundreds of new surf spots around the world (Indian Ocean, the Americas, Asia, the Pacific, Africa).
-- The real wind's trend — rising or dropping — now shows right on the curve.
-- Smoother navigation in your favorites, plus various improvements.
+- Live wind now comes with a verdict at a glance: steady, choppy or gusty — so you know if it really holds.
+- App, widgets and Apple Watch fully in your language.
+- Reliability and polish improved throughout.
 
-Still as precise, honest and easy on your battery. Fair winds and good waves!
+Still as precise, honest and battery-light as ever. Fair winds and good waves!
