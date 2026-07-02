@@ -1,34 +1,38 @@
 # Pousser les textes App Store (7 langues) en une commande — Fastlane `deliver`
 
-## 🚀 PROCHAINE MAJ — 5.2.2 (build 8) : +5 langues mondiales (zh-Hans, zh-Hant, ja, ko, hi)
+## 🚀 RUNBOOK — publier la prochaine version X.Y.Z (générique, validé jusqu'à 5.2.3)
 
-> La 5.2.1 (build 7, mois offert + jauge) est **déjà soumise**. La 5.2.2 ajoute la localisation
-> COMPLÈTE (app + fiche) en chinois simplifié, chinois traditionnel, japonais, coréen, hindi →
-> **12 langues** au total. Asie + Inde = le gros du volume mondial.
-
-**Séquence (App Store Connect n'autorise qu'UNE version éditable à la fois) :**
-1. La **5.2.1 (build 7)** finit sa review et **sort**. Tant qu'elle est en review, impossible de créer la 5.2.2.
-2. Archive le **build 8** dans Xcode (Product ▸ Archive ▸ Distribute ▸ App Store Connect) → build 8 / 5.2.2.
-3. Une fois la 5.2.1 **en ligne**, crée la version **5.2.2** (ou laisse `--app_version "5.2.2"` la créer), attache le build 8.
-4. Pousse les textes des **12 langues** d'un coup (les 5 nouvelles incluses) :
+1. **Bump** : `MARKETING_VERSION` + `CURRENT_PROJECT_VERSION` dans le pbxproj (12 configs,
+   remplacement global), `plutil -lint` pour valider.
+2. **Notes de maj** : `fastlane/metadata/<locale>/release_notes.txt` pour les 12 locales
+   (fr-FR, en-US, de-DE, es-ES, it, nl-NL, pt-PT, zh-Hans, zh-Hant, ja, ko, hi).
+3. **Métadonnées** (crée la version + pousse les 12 langues) — la version précédente doit être
+   EN LIGNE (une seule version éditable à la fois) :
 ```
 cd "/Users/maublanc/Desktop/Tide It 18"
 export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 fastlane deliver --api_key_path "$HOME/.appstoreconnect/key.json" \
-  --app_version "5.2.2" --skip_binary_upload --skip_screenshots \
+  --app_version "X.Y.Z" --skip_binary_upload --skip_screenshots \
   --run_precheck_before_submit false --force
 ```
-5. Dans App Store Connect : vérifie, sélectionne le build 8, **soumets** (ou ajoute `--submit_for_review`).
+4. **Archive** dans Xcode (Product ▸ Archive ▸ Distribute ▸ App Store Connect), attendre
+   l'état VALID (~10 min).
+5. **Attacher le build** — `deliver --build_number` NE l'attache PAS (raté connu) → spaceship :
+   `version.select_build(build_id:)` (ruby bundlé fastlane, GEM_HOME=/usr/local/Cellar/fastlane/*/libexec).
+6. **Soumettre** :
+```
+fastlane deliver --api_key_path "$HOME/.appstoreconnect/key.json" \
+  --app_version "X.Y.Z" --build_number "N" --skip_metadata --skip_screenshots \
+  --submit_for_review --automatic_release false --run_precheck_before_submit false --force
+```
 
-> ⚠️ Captures d'écran : les 5 nouvelles langues n'ont PAS encore de screenshots localisés. L'App Store
-> affichera alors les captures de la langue par défaut (anglais) pour ces marchés — acceptable au lancement,
-> à localiser plus tard. (Le `--skip_screenshots` ne pousse aucune capture ; rien n'est cassé.)
-
-**Garde-fous (déjà respectés dans les .txt) :**
-- ✅ **AUCUN emoji dans `release_notes.txt` NI `promotional_text.txt`** — Apple rejette l'emoji dans LES DEUX (vérifié : « Promotional Text can't contain 🎁 »). Texte brut uniquement.
-- ✅ Le **promo « 1 mois offert » ne doit PAS être poussé sur la 5.2.0** (build 6 n'a pas le mois offert → fausse promesse). Il part avec 5.2.1 seulement. (Le promo est éditable en direct, donc OK dès que 5.2.1 est en ligne.)
-- ✅ `name.txt` absent = nom inchangé ; sous-titre/mots-clés présents = ré-affirmés (identiques à 5.2.0, no-op).
-- ✅ Aucune source de données citée.
+**Pièges vérifiés (tous rencontrés en vrai) :**
+- ❌ **AUCUN emoji** dans `release_notes.txt` NI `promotional_text.txt` (Apple rejette les deux).
+- ❌ Toute **NOUVELLE locale** exige un `supportUrl` (sinon « missing required attribute ») →
+  copier celui d'en-US via spaceship `localization.update(attributes:)`.
+- ❌ Login Apple ID ne marche plus pour les métadonnées → clé API obligatoire (`key.json`, jamais commitée).
+- Le promo d'une offre (« 1 mois offert ») doit rester attaché à la version qui CONTIENT l'offre.
+- `name.txt` absent = nom inchangé ; deliver ne touche que les fichiers présents.
 
 ---
 
