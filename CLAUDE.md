@@ -37,7 +37,9 @@ Une seule version éditable à la fois sur App Store Connect.
 
 ## Seuils recalibrables (constantes nommées, après retours terrain)
 - `WindSteadiness` (ObservedWindCard.swift) : `minAvgKmh=12`, `laminarMaxRatio=1.25`,
-  `gustyMinRatio=1.55` — badge Laminaire/Irrégulier/Rafaleux.
+  `gustyMinRatio=1.55` — badge Laminaire/Irrégulier/Rafaleux **ET** facteur « Rafales » du
+  moteur GO (kiteWingScore, poids 0.16 : laminaire=1, irrégulier 1→0.45, rafaleux 0.45→0 à ×2 ;
+  rafales ≥ plafond rider `windCeiling` = gate dur 0 ; pas de donnée rafales = pas de facteur).
 - `ForecastBiasService.BiasReadout` : `minSamples=4`, `maxStationKm=25`, `maxAge=3h`,
   `meaningfulBiasKmh=2.5` — jauge de confiance + correction premium.
 - `surfSessionStars` (ActivityScoreService.swift ~l.455) : poids/caps des étoiles surf.

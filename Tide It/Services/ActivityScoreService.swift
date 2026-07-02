@@ -1043,10 +1043,40 @@ class ActivityScoreService {
             else { desc = "Vent dangereux (\(fmtWind(wind))) : tempête" }
             factors.append(ScoringFactor(name: "Vent", weight: 0.32, score: windScore, detail: desc))
 
-            let gustDiff = (windData.gust ?? wind) - wind
-            let gScore = Self.rampDown(gustDiff, lo: 5, hi: 25)
-            let gDesc = gustDiff < 8 ? "Vent régulier" : (gustDiff < 18 ? "Rafales modérées (+\(fmtWind(gustDiff)))" : "Rafales fortes (+\(fmtWind(gustDiff))) : instable")
-            factors.append(ScoringFactor(name: "Rafales", weight: 0.10, score: gScore, detail: gDesc))
+            // — Régularité (16%) — MÊME métrique que le badge Laminaire/Irrégulier/Rafaleux de la
+            // card vent (ratio rafales/moyen, seuils WindSteadiness = source unique) : un vent
+            // rafaleux se pilote mal et surcharge l'aile → il pèse VRAIMENT sur la note GO
+            // (l'ancien écart absolu à poids 0.10 laissait un 15 gustant 25 quasi indemne).
+            // Sans donnée de rafales : PAS de facteur (on ne fabrique pas un « vent régulier »).
+            if let gust = windData.gust, gust > 0, wind > 0 {
+                let gScore: Double
+                let gDesc: String
+                if wind >= WindSteadiness.minAvgKmh {
+                    let ratio = gust / wind
+                    let lam = WindSteadiness.laminarMaxRatio, gus = WindSteadiness.gustyMinRatio
+                    if ratio <= lam {
+                        gScore = 1
+                        gDesc = "Vent régulier (laminaire)"
+                    } else if ratio < gus {
+                        gScore = 1 - 0.55 * (ratio - lam) / (gus - lam)          // 1 → 0.45 (continu)
+                        gDesc = "Vent irrégulier (rafales ×\(String(format: "%.1f", locale: Locale.current, ratio)))"
+                    } else {
+                        gScore = 0.45 * Self.rampDown(ratio, lo: gus, hi: 2.0)   // 0.45 → 0 à ×2
+                        gDesc = "Rafaleux (×\(String(format: "%.1f", locale: Locale.current, ratio))) : instable"
+                    }
+                } else {
+                    // Vent moyen trop faible pour un ratio significatif (même garde que le badge)
+                    // → on retombe sur l'écart absolu, seul lisible à ces vitesses.
+                    let gustDiff = gust - wind
+                    gScore = Self.rampDown(gustDiff, lo: 5, hi: 25)
+                    gDesc = gustDiff < 8 ? "Vent régulier" : "Rafales (+\(fmtWind(gustDiff)))"
+                }
+                factors.append(ScoringFactor(name: "Rafales", weight: 0.16, score: gScore, detail: gDesc))
+                // Gate sécurité SYMÉTRIQUE du gate vent moyen : des rafales au-delà du plafond
+                // praticable du rider (riderMaxWind / niveau — « au-delà c'est trop ») = danger,
+                // même si la moyenne est dans la plage (40 gustant 70 passait sans ça).
+                if gust >= windCeiling { hardCap = 0 }
+            }
         } else {
             hardCap = 0   // activité ventée sans prévision vent → on ne propose pas
             factors.append(ScoringFactor(name: "Vent", weight: 0.32, score: 0.2, detail: "Données vent indisponibles"))
