@@ -1,6 +1,6 @@
 Novedades:
-- El viento real ahora se califica de un vistazo: constante, irregular o racheado, para saber si de verdad aguanta.
-- App, widgets y Apple Watch totalmente en tu idioma.
-- Fiabilidad y acabados mejorados por todas partes.
+- El viento racheado ahora pesa de verdad en tus ventanas GO: el veredicto de regularidad ya no solo se muestra, cuenta.
+- Encuentra Tide It en Facebook e Instagram: enlaces en Ajustes, para seguir las novedades y compartir tus spots.
+- Fiabilidad y acabados mejorados.
 
 Igual de preciso, honesto y ligero para tu batería. ¡Buen viento y buenas olas!

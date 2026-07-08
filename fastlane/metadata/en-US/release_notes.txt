@@ -1,6 +1,6 @@
 What's new:
-- Live wind now comes with a verdict at a glance: steady, choppy or gusty — so you know if it really holds.
-- App, widgets and Apple Watch fully in your language.
-- Reliability and polish improved throughout.
+- Gusty wind now fully weighs on your GO windows — the steadiness verdict is no longer just displayed, it counts.
+- Find Tide It on Facebook and Instagram: links in Settings, to follow updates and share your spots.
+- Reliability and polish improvements.
 
 Still as precise, honest and battery-light as ever. Fair winds and good waves!
