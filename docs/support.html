@@ -1,125 +1,136 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support — Tide It</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
-            background: #0a0a1a;
-            color: #d0d0d0;
-            line-height: 1.7;
-        }
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-        h1 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-        .subtitle {
-            color: #667788;
-            font-size: 0.95rem;
-            margin-bottom: 40px;
-        }
-        h2 {
-            color: #00d4ff;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-top: 32px;
-            margin-bottom: 12px;
-        }
-        p, li {
-            color: #aabbcc;
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-        }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-        a { color: #00d4ff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .back { display: inline-block; margin-bottom: 30px; color: #667788; font-size: 0.9rem; }
-        .contact-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 24px;
-            margin-top: 20px;
-            text-align: center;
-        }
-        .contact-card .email {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #00d4ff;
-        }
-        .faq-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-bottom: 12px;
-        }
-        .faq-item strong { color: #fff; font-size: 0.95rem; }
-        .faq-item p { margin-top: 8px; margin-bottom: 0; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support &amp; FAQ — Tide It</title>
+<meta name="description" content="Besoin d'aide avec Tide It ? FAQ complète (vent réel, fenêtres GO, Premium, spots personnalisés) et contact direct — réponse sous 48 h.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#040b10">
+<meta name="apple-itunes-app" content="app-id=6743555259">
+<link rel="canonical" href="https://smaublanc.github.io/tide-it/support.html">
+<link rel="alternate" hreflang="fr" href="https://smaublanc.github.io/tide-it/support.html">
+<link rel="alternate" hreflang="en" href="https://smaublanc.github.io/tide-it/en/support.html">
+<link rel="alternate" hreflang="x-default" href="https://smaublanc.github.io/tide-it/en/support.html">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tide It">
+<meta property="og:title" content="Support &amp; FAQ — Tide It">
+<meta property="og:description" content="FAQ complète et contact direct — réponse sous 48 h.">
+<meta property="og:url" content="https://smaublanc.github.io/tide-it/support.html">
+<meta property="og:image" content="https://smaublanc.github.io/tide-it/assets/og-image.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Pourquoi je ne vois pas de vent réel sur mon spot ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Le vent réel vient de la balise anémomètre la plus proche. S'il n'y a aucune balise exploitable autour de ton spot, ou si sa mesure est trop ancienne, Tide It n'affiche rien plutôt que d'inventer une valeur. La prévision reste toujours disponible." } },
+    { "@type": "Question", "name": "Je ne vois pas de fenêtres GO, pourquoi ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Les fenêtres GO sont une fonction Premium et demandent d'activer au moins un sport dans Réglages ▸ Mes sports. Si les conditions de la semaine ne correspondent pas à tes réglages (vent mini/maxi, niveau), il est aussi possible qu'il n'y ait tout simplement aucune fenêtre honnête à afficher." } },
+    { "@type": "Question", "name": "Comment fonctionne le mois Premium offert ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Au premier lancement, Premium s'active gratuitement pendant 1 mois, sans engagement ni moyen de paiement. À la fin, l'app repasse automatiquement en version gratuite. Les abonnés existants ne sont pas concernés." } },
+    { "@type": "Question", "name": "Comment restaurer mon achat Premium ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ouvre Tide It ▸ Réglages ▸ Premium ▸ Restaurer les achats, avec le même identifiant Apple que lors de l'achat." } },
+    { "@type": "Question", "name": "Comment annuler mon abonnement ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Réglages iOS ▸ ton nom ▸ Abonnements ▸ Tide It ▸ Annuler. Tu conserves l'accès jusqu'à la fin de la période payée." } },
+    { "@type": "Question", "name": "Mon port ou mon spot n'existe pas dans l'app",
+      "acceptedAnswer": { "@type": "Answer", "text": "Tide It couvre 3 500+ ports et 284 spots de surf. S'il manque le tien, crée un spot personnalisé (Ports & spots ▸ +) à ta position exacte : il aura sa marée, son vent réel et ses fenêtres GO." } },
+    { "@type": "Question", "name": "Le widget ne se met pas à jour",
+      "acceptedAnswer": { "@type": "Answer", "text": "iOS limite volontairement la fréquence de rafraîchissement des widgets pour préserver la batterie. Ouvre l'app une fois pour forcer la synchronisation ; le widget suit ensuite le budget accordé par le système." } },
+    { "@type": "Question", "name": "L'Apple Watch n'affiche rien",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ouvre Tide It sur l'iPhone une première fois pour charger tes spots : la montre se synchronise ensuite automatiquement." } }
+  ]
+}
+</script>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back">&larr; Retour</a>
-        <h1>Support</h1>
-        <p class="subtitle">Besoin d'aide avec Tide It ? Trouvez la reponse ici ou contactez-nous.</p>
+<div class="sea" aria-hidden="true"></div>
+<div class="stars" aria-hidden="true"></div>
 
-        <h2>Questions frequentes</h2>
-
-        <div class="faq-item">
-            <strong>D'ou viennent les donnees de marees ?</strong>
-            <p>Les horaires de marees sont calcules a partir des constantes harmoniques officielles publiees par les organismes hydrographiques nationaux.</p>
-        </div>
-
-        <div class="faq-item">
-            <strong>L'application fonctionne-t-elle hors connexion ?</strong>
-            <p>Oui. Les horaires de marees sont disponibles hors-ligne une fois charges. Seule la meteo necessite une connexion internet.</p>
-        </div>
-
-        <div class="faq-item">
-            <strong>Pourquoi l'app demande ma position ?</strong>
-            <p>Pour trouver les ports les plus proches de vous et afficher la meteo locale. Votre position n'est jamais stockee ni partagee. Vous pouvez refuser et choisir un port manuellement.</p>
-        </div>
-
-        <div class="faq-item">
-            <strong>Comment annuler mon abonnement Premium ?</strong>
-            <p>Allez dans Reglages &gt; [votre nom] &gt; Abonnements &gt; Tide It &gt; Annuler l'abonnement. Vous conservez l'acces jusqu'a la fin de la periode payee.</p>
-        </div>
-
-        <div class="faq-item">
-            <strong>Comment restaurer mon achat Premium ?</strong>
-            <p>Ouvrez Tide It &gt; Reglages &gt; Premium &gt; Restaurer les achats. Assurez-vous d'etre connecte avec le meme identifiant Apple.</p>
-        </div>
-
-        <div class="faq-item">
-            <strong>L'app ne trouve pas mon port</strong>
-            <p>Tide It couvre plus de 3 500 ports dans le monde (France, USA, mondial). Si votre port n'est pas disponible, vous pouvez creer un port personnalise en utilisant votre position GPS.</p>
-        </div>
-
-        <h2>Nous contacter</h2>
-        <div class="contact-card">
-            <p>Envoyez-nous un email et nous vous repondrons sous 48h.</p>
-            <p class="email" style="margin-top: 12px;"><a href="mailto:tideitapp@icloud.com">tideitapp@icloud.com</a></p>
-        </div>
-
-        <h2>Informations</h2>
-        <ul>
-            <li><strong>Version actuelle</strong> : 3.0</li>
-            <li><strong>Compatibilite</strong> : iOS 26+, watchOS 26+</li>
-            <li><strong>Couverture</strong> : 3 500+ ports dans le monde (France, USA, international)</li>
-            <li><strong>Developpeur</strong> : Tide It</li>
-        </ul>
+<nav id="nav" class="on" aria-label="Navigation">
+  <div class="nav-in">
+    <a class="logo" href="./"><img src="assets/icon-192.png" alt="" width="30" height="30">Tide It</a>
+    <div class="nav-links" style="display:flex">
+      <a href="./">← Accueil</a>
     </div>
+    <a class="nav-cta" href="https://apps.apple.com/fr/app/id6743555259">App Store</a>
+  </div>
+</nav>
+
+<main class="doc">
+  <span class="kicker" style="color:var(--mint)">Support</span>
+  <h1>On te répond, vite.</h1>
+  <p class="sub">Une question, un pépin, une idée ? Regarde la FAQ ci-dessous — sinon écris-nous, un humain répond sous 48 h.</p>
+
+  <div class="contact-card">
+    <p>Le moyen le plus rapide :</p>
+    <a class="email" href="mailto:tideitapp@icloud.com?subject=Tide%20It%20%E2%80%94%20Support">✉ tideitapp@icloud.com</a>
+    <p>Pense à préciser ton modèle d'iPhone, ta version d'iOS et le port ou spot concerné.</p>
+  </div>
+
+  <h2>Questions fréquentes</h2>
+
+  <details>
+    <summary>Pourquoi je ne vois pas de vent réel sur mon spot ?</summary>
+    <p>Le vent réel vient de la <strong>balise anémomètre la plus proche</strong>. S'il n'y a aucune balise exploitable autour de ton spot, ou si sa dernière mesure est trop ancienne, Tide It n'affiche <em>rien</em> plutôt que d'inventer une valeur — c'est voulu. La prévision, elle, reste toujours disponible.</p>
+  </details>
+  <details>
+    <summary>Je ne vois pas de fenêtres GO, pourquoi ?</summary>
+    <p>Trois causes possibles : les fenêtres GO sont une fonction <strong>Premium</strong> ; il faut avoir activé au moins un sport dans <strong>Réglages ▸ Mes sports</strong> ; et si la semaine ne correspond vraiment pas à tes réglages (vent mini/maxi, niveau), il n'y a honnêtement… aucune fenêtre à afficher.</p>
+  </details>
+  <details>
+    <summary>Prévision et vent réel racontent des choses différentes ?</summary>
+    <p>C'est exactement pour ça que les deux sont affichés séparément. La jauge de confiance mesure cet écart en continu ; en Premium, l'option <strong>Réglages ▸ Précision ▸ Corriger le vent avec le réel</strong> applique le biais appris à la courbe et aux fenêtres GO.</p>
+  </details>
+  <details>
+    <summary>Comment fonctionne le mois Premium offert ?</summary>
+    <p>Au premier lancement, Premium s'active gratuitement pendant <strong>1 mois</strong>, sans engagement et sans moyen de paiement. À la fin, l'app repasse automatiquement en version gratuite — rien à annuler. Les abonnés existants ne sont pas concernés.</p>
+  </details>
+  <details>
+    <summary>Comment restaurer mon achat Premium ?</summary>
+    <p>Tide It ▸ <strong>Réglages ▸ Premium ▸ Restaurer les achats</strong>, connecté avec le même identifiant Apple que lors de l'achat.</p>
+  </details>
+  <details>
+    <summary>Comment annuler mon abonnement ?</summary>
+    <p>Réglages iOS ▸ <strong>ton nom ▸ Abonnements ▸ Tide It ▸ Annuler</strong>. Tu gardes l'accès jusqu'à la fin de la période déjà payée.</p>
+  </details>
+  <details>
+    <summary>Mon port ou mon spot n'existe pas dans l'app</summary>
+    <p>Tide It couvre 3 500+ ports et 284 spots de surf. S'il manque le tien, crée un <strong>spot personnalisé</strong> (Ports &amp; spots ▸ +) à ta position exacte : il aura sa marée, son vent réel et ses fenêtres GO.</p>
+  </details>
+  <details>
+    <summary>Le widget ne se met pas à jour</summary>
+    <p>iOS limite volontairement la fréquence de rafraîchissement des widgets pour préserver la batterie. Ouvre l'app une fois pour forcer la synchro ; le widget suit ensuite le budget accordé par le système.</p>
+  </details>
+  <details>
+    <summary>L'Apple Watch n'affiche rien</summary>
+    <p>Ouvre Tide It sur l'iPhone une première fois pour charger tes spots : la montre se synchronise ensuite toute seule.</p>
+  </details>
+  <details>
+    <summary>Changer d'unités (nœuds, km/h, mètres, pieds…)</summary>
+    <p><strong>Réglages ▸ Unités</strong> : vent en kn, km/h, mph ou m/s ; hauteurs en mètres ou pieds ; températures en °C ou °F.</p>
+  </details>
+
+  <div class="notice"><b>Rappel :</b> Tide It est une aide à la décision pour les loisirs nautiques. Pour la navigation, référez-vous toujours aux documents et bulletins officiels des autorités maritimes.</div>
+
+  <h2>Infos utiles</h2>
+  <ul>
+    <li><strong>Compatibilité :</strong> iPhone (iOS 26+), Apple Watch (watchOS 26+), widgets &amp; Dynamic Island.</li>
+    <li><strong>Langues :</strong> 12 — français, anglais, allemand, espagnol, italien, néerlandais, portugais, chinois (simplifié &amp; traditionnel), japonais, coréen, hindi.</li>
+    <li><strong>Confidentialité :</strong> pas de compte, pas de pub, pas de tracking — <a href="privacy.html">politique complète</a>.</li>
+  </ul>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-bottom" style="border-top:0;padding-top:0">
+      <span>© 2026 Tide It · <a href="./">Accueil</a> · <a href="privacy.html">Confidentialité</a> · <a href="terms.html">Conditions</a></span>
+      <span class="lang"><a class="cur" href="support.html" lang="fr">FR</a><a href="en/support.html" lang="en">EN</a></span>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

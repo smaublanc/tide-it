@@ -456,6 +456,33 @@ struct SettingsView: View {
                 .background(Color.glassHighlight.opacity(0.06))
                 .padding(.horizontal, 18)
 
+            // Réseaux sociaux — mêmes URLs que le footer du site (docs/).
+            Link(destination: URL(string: "https://www.facebook.com/profile.php?id=61591269012272")!) {
+                SettingsRowView(icon: "hand.thumbsup.fill", title: "Facebook", iconColor: .blue) {
+                    Image(systemName: "arrow.up.right")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(.gray)
+                }
+            }
+            .buttonStyle(.plain)
+
+            Divider()
+                .background(Color.glassHighlight.opacity(0.06))
+                .padding(.horizontal, 18)
+
+            Link(destination: URL(string: "https://www.instagram.com/tideitapp/")!) {
+                SettingsRowView(icon: "camera.fill", title: "Instagram", iconColor: .pink) {
+                    Image(systemName: "arrow.up.right")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(.gray)
+                }
+            }
+            .buttonStyle(.plain)
+
+            Divider()
+                .background(Color.glassHighlight.opacity(0.06))
+                .padding(.horizontal, 18)
+
             Button {
                 requestReview()
             } label: {

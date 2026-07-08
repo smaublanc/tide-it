@@ -1,339 +1,368 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tide It — Application de marees mondiales en temps reel | 3 500+ ports</title>
-    <meta name="description" content="Tide It : l'app iOS de marees la plus complete. Horaires, coefficients, courbe animee, mode vent, alertes, Apple Watch et Dynamic Island pour 3 500+ ports dans le monde.">
-    <meta name="keywords" content="maree, marees, tide, tides, horaire maree, coefficient maree, surf, peche, port, meteo marine, Apple Watch, iOS, application maree, table des marees, annuaire des marees, nautisme, voile, kayak, kitesurf, plongee">
-    <meta name="author" content="Tide It">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://smaublanc.github.io/tide-it/">
-    <link rel="alternate" hreflang="fr" href="https://smaublanc.github.io/tide-it/">
-    <link rel="alternate" hreflang="en" href="https://smaublanc.github.io/tide-it/en/">
-    <link rel="alternate" hreflang="x-default" href="https://smaublanc.github.io/tide-it/">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Tide It — Marees mondiales en temps reel">
-    <meta property="og:description" content="L'app iOS de marees la plus complete. 3 500+ ports, courbe animee, mode vent, alertes intelligentes, Apple Watch et Dynamic Island.">
-    <meta property="og:url" content="https://smaublanc.github.io/tide-it/">
-    <meta property="og:site_name" content="Tide It">
-    <meta property="og:locale" content="fr_FR">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tide It — Marees mondiales en temps reel">
-    <meta name="twitter:description" content="3 500+ ports, courbe animee, mode vent, alertes, Apple Watch, Dynamic Island.">
-
-    <!-- Apple Smart Banner -->
-    <meta name="apple-itunes-app" content="app-id=6743555259">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "MobileApplication",
-        "name": "Tide It",
-        "operatingSystem": "iOS",
-        "applicationCategory": "WeatherApplication",
-        "offers": [
-            {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "EUR",
-                "description": "Gratuit avec achats integres"
-            }
-        ],
-        "description": "Application de marees mondiales en temps reel pour 3 500+ ports. Horaires, coefficients, courbe animee, mode vent, alertes, Apple Watch et Dynamic Island.",
-        "screenshot": "https://smaublanc.github.io/tide-it/screenshot.png",
-        "softwareVersion": "3.0",
-        "author": {
-            "@type": "Person",
-            "name": "Sebastien Maublanc"
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5",
-            "ratingCount": "1"
-        }
-    }
-    </script>
-
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
-            background: #0a0a1a;
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-        .hero {
-            text-align: center;
-            padding: 80px 20px 60px;
-            background: linear-gradient(180deg, #0d1b2a 0%, #0a0a1a 100%);
-        }
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #00d4ff, #7b61ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            color: #8899aa;
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-        .hero .stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-        .hero .stat {
-            text-align: center;
-        }
-        .hero .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #00d4ff, #7b61ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero .stat-label {
-            font-size: 0.85rem;
-            color: #667788;
-        }
-        .badge-container {
-            margin-top: 20px;
-        }
-        .badge-container a {
-            display: inline-block;
-        }
-        .badge-container img {
-            height: 50px;
-        }
-        .features {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-        .features h2 {
-            text-align: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 40px;
-        }
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .feature-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 24px;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-        .feature-card:hover {
-            transform: translateY(-2px);
-            border-color: rgba(0,212,255,0.2);
-        }
-        .feature-card .icon { font-size: 2rem; margin-bottom: 12px; }
-        .feature-card h3 { color: #fff; font-size: 1rem; margin-bottom: 6px; }
-        .feature-card p { color: #8899aa; font-size: 0.85rem; }
-
-        .data-sources {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .data-sources h2 {
-            font-size: 1.4rem;
-            color: #fff;
-            margin-bottom: 20px;
-        }
-        .sources-grid {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-        .source {
-            text-align: center;
-        }
-        .source-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #00d4ff;
-        }
-        .source-desc {
-            font-size: 0.8rem;
-            color: #667788;
-        }
-
-        .cta {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(180deg, #0a0a1a 0%, #0d1b2a 100%);
-        }
-        .cta h2 {
-            font-size: 1.6rem;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        .cta p {
-            color: #8899aa;
-            margin-bottom: 24px;
-        }
-        .cta a.download-btn {
-            display: inline-block;
-            padding: 14px 36px;
-            background: linear-gradient(135deg, #00d4ff, #7b61ff);
-            color: #fff;
-            font-weight: 700;
-            font-size: 1.1rem;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-        .cta a.download-btn:hover {
-            opacity: 0.9;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            color: #556677;
-            font-size: 0.85rem;
-        }
-        .footer a { color: #00d4ff; text-decoration: none; }
-        .footer a:hover { text-decoration: underline; }
-        .footer .links { margin-bottom: 10px; }
-        .footer .links a { margin: 0 10px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tide It — Marées, vent réel &amp; fenêtres GO pour kite, wing, voile et surf</title>
+<meta name="description" content="L'app iOS qui croise la marée, le vent mesuré par la balise la plus proche et la houle pour te dire quand aller à l'eau. 3 500+ ports, 284 spots de surf, widgets, Apple Watch. Sans pub ni tracking.">
+<meta name="keywords" content="marée, marées, horaires marées, coefficient marée, vent réel, balise vent, kitesurf, wingfoil, wing foil, voile, surf, houle, fenêtres go, app marée iphone, météo marine, table des marées, apple watch marée">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Tide It">
+<meta name="theme-color" content="#040b10">
+<meta name="apple-itunes-app" content="app-id=6743555259">
+<link rel="canonical" href="https://smaublanc.github.io/tide-it/">
+<link rel="alternate" hreflang="fr" href="https://smaublanc.github.io/tide-it/">
+<link rel="alternate" hreflang="en" href="https://smaublanc.github.io/tide-it/en/">
+<link rel="alternate" hreflang="x-default" href="https://smaublanc.github.io/tide-it/en/">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" as="image" href="assets/hero-phone.jpg" fetchpriority="high">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tide It">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Tide It — Marées, vent réel &amp; fenêtres GO">
+<meta property="og:description" content="La marée, le vent mesuré par balise et la houle, croisés pour te dire quand aller à l'eau. Kitesurf, wingfoil, voile, surf.">
+<meta property="og:url" content="https://smaublanc.github.io/tide-it/">
+<meta property="og:image" content="https://smaublanc.github.io/tide-it/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tide It — le vent réel, pas qu'une prévision">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tide It — Marées, vent réel &amp; fenêtres GO">
+<meta name="twitter:description" content="La marée, le vent mesuré par balise et la houle, croisés pour te dire quand aller à l'eau.">
+<meta name="twitter:image" content="https://smaublanc.github.io/tide-it/assets/og-image.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Tide It",
+  "operatingSystem": "iOS 26.0 ou ultérieur, watchOS",
+  "applicationCategory": "Weather",
+  "description": "Marées, vent réel mesuré par balise, houle et fenêtres GO par sport pour kitesurf, wingfoil, voile et surf. 3 500+ ports et 284 spots de surf dans le monde.",
+  "url": "https://smaublanc.github.io/tide-it/",
+  "image": "https://smaublanc.github.io/tide-it/assets/og-image.jpg",
+  "installUrl": "https://apps.apple.com/fr/app/id6743555259",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Téléchargement gratuit. Premium optionnel par abonnement, premier mois offert." },
+  "inLanguage": ["fr", "en", "de", "es", "it", "nl", "pt", "zh-Hans", "zh-Hant", "ja", "ko", "hi"],
+  "author": { "@type": "Organization", "name": "Tide It", "email": "tideitapp@icloud.com",
+    "sameAs": ["https://www.facebook.com/profile.php?id=61591269012272", "https://www.instagram.com/tideitapp/"] }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "D'où vient le vent affiché par Tide It ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Tide It affiche deux vents distincts : la prévision des modèles météo, et le vent réellement mesuré par la balise anémomètre la plus proche de ton spot, avec sa vitesse, ses rafales, sa direction et l'âge de la mesure. Les deux ne sont jamais mélangés sans le dire." } },
+    { "@type": "Question", "name": "Qu'est-ce qu'une fenêtre GO ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Une fenêtre GO est un créneau où les conditions correspondent à ton sport et à ton niveau : vent dans ta plage, hauteur d'eau suffisante, direction sûre, houle et régularité du vent prises en compte. Tide It les calcule sur 7 jours et note chaque session de 1 à 5 étoiles." } },
+    { "@type": "Question", "name": "L'app fonctionne-t-elle hors connexion ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui. Les marées sont calculées sur l'appareil et restent disponibles hors-ligne. Seuls le vent, la météo et la houle nécessitent une connexion." } },
+    { "@type": "Question", "name": "Tide It couvre-t-il mon spot ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Tide It couvre plus de 3 500 ports et 284 spots de surf dans 64 pays. Si ton spot n'existe pas, tu peux créer un spot personnalisé à ta position exacte." } },
+    { "@type": "Question", "name": "Y a-t-il de la publicité ou du tracking ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Non. Aucune publicité, aucun SDK publicitaire, aucun outil d'analytique tierce. Tes données restent sur ton appareil." } },
+    { "@type": "Question", "name": "Que comprend Premium ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Premium débloque les fenêtres GO sur 7 jours, les alertes intelligentes et la correction des prévisions par le vent réel. Le premier mois est offert à l'installation, sans engagement : sans abonnement, l'app repasse simplement en version gratuite." } }
+  ]
+}
+</script>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-    <header class="hero">
-        <h1>Tide It</h1>
-        <p>L'application de marees la plus complete. Horaires, coefficients, courbe animee, mode vent, alertes et meteo pour 3 500+ ports dans le monde.</p>
+<div class="sea" aria-hidden="true"></div>
+<div class="stars" aria-hidden="true"></div>
 
-        <div class="stats">
-            <div class="stat">
-                <div class="stat-number">3 500+</div>
-                <div class="stat-label">Ports dans le monde</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">J+30</div>
-                <div class="stat-label">Previsions Premium</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">3</div>
-                <div class="stat-label">Sources officielles</div>
-            </div>
+<nav id="nav" aria-label="Navigation principale">
+  <div class="nav-in">
+    <a class="logo" href="#"><img src="assets/icon-192.png" alt="" width="30" height="30">Tide It</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+    <div class="nav-links" id="menu">
+      <a href="#features">Fonctionnalités</a>
+      <a href="#honest">Honnêteté</a>
+      <a href="#captures">Captures</a>
+      <a href="#premium">Premium</a>
+      <a href="#faq">FAQ</a>
+      <a href="support.html">Support</a>
+    </div>
+    <a class="nav-cta" href="https://apps.apple.com/fr/app/id6743555259">App Store</a>
+  </div>
+</nav>
+
+<main>
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>Marées · Vent réel · Surf</span>
+      <h1>La marée, le <span class="g1">vent réel</span> et la <span class="g2">houle</span>.<br>Une seule courbe.</h1>
+      <p class="lead">Tide It croise la marée, le vent <strong>mesuré par la balise la plus proche</strong> et la houle pour te dire quand aller à l'eau. Kitesurf, wingfoil, voile, surf.</p>
+      <div class="cta-row">
+        <a class="store-btn" href="https://apps.apple.com/fr/app/id6743555259" aria-label="Télécharger Tide It dans l'App Store">
+          <svg viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><small>Télécharger dans</small><b>l'App Store</b></span>
+        </a>
+        <a class="ghost" href="#features">Découvrir les fonctionnalités ↓</a>
+      </div>
+      <div class="stats" aria-label="Chiffres clés">
+        <div class="stat"><b>3 500+</b><span>ports dans le monde</span></div>
+        <div class="stat"><b>284</b><span>spots de surf · 64 pays</span></div>
+        <div class="stat"><b>12</b><span>langues</span></div>
+        <div class="stat"><b>0</b><span>pub · 0 tracker</span></div>
+      </div>
+    </div>
+    <div class="phone-wrap">
+      <div class="phone-glow" aria-hidden="true"></div>
+      <img class="phone" src="assets/hero-phone.jpg" alt="Tide It sur iPhone : courbe de marée avec le vent réel mesuré par balise et les rafales superposés" width="640" height="1350" fetchpriority="high">
+    </div>
+  </div>
+
+  <div class="verdict" role="note">
+    <div class="wrap verdict-in">
+      <p>Le vent a désormais un <strong>verdict mesuré</strong> :</p>
+      <span class="vb lam"><i></i>Laminaire</span>
+      <span class="vb irr"><i></i>Irrégulier</span>
+      <span class="vb raf"><i></i>Rafaleux</span>
+      <p>— et il pèse sur tes fenêtres GO.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ================= FEATURES ================= -->
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" style="color:var(--mint)">Fonctionnalités</span>
+      <h2>Tout ce qui décide d'une session, au même endroit.</h2>
+      <p>Pas d'onglets à croiser, pas de calculs de tête : la courbe fusionne ce que tu vérifiais dans quatre apps.</p>
+    </div>
+    <div class="grid">
+      <article class="card t-mint reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 8h9a3 3 0 1 0-3-3M3 12h13a3 3 0 1 1-3 3M3 16h5"/></svg></div>
+        <h3>Vent réel, pas qu'une prévi</h3>
+        <p>La balise la plus proche de ton spot : vitesse, rafales, direction, fraîcheur de la mesure — et l'écart vs la prévision, affiché sans détour.</p>
+      </article>
+      <article class="card t-cyan reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 17h16M4 12h16M7 7h10"/></svg></div>
+        <h3>Fenêtres GO par sport</h3>
+        <p>Vent, marée, houle et soleil croisés selon TES réglages et ton niveau. 7 jours de créneaux, notés 1 à 5 étoiles.</p>
+      </article>
+      <article class="card t-yellow reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 3v3M18.4 5.6l-2.1 2.1M21 12h-3M5.6 5.6l2.1 2.1M3 12h3M12 21a6 6 0 0 0 6-6H6a6 6 0 0 0 6 6z"/></svg></div>
+        <h3>Régularité mesurée</h3>
+        <p>Laminaire, irrégulier ou rafaleux : le ratio rafales/vent moyen de la balise, mesuré — jamais deviné. Un vent haché note moins, comme sur l'eau.</p>
+      </article>
+      <article class="card t-orange reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M2 18c2.5-5 5.5-7.5 9-7.5 4 0 5-3 5-6 3 2.5 6 7 6 13.5M2 21h20"/></svg></div>
+        <h3>Mode surf honnête</h3>
+        <p>Houle dominante, période, énergie, pureté et intervalle de déferlement. 284 spots dans 64 pays — et ta marée dessous.</p>
+      </article>
+      <article class="card t-cyan reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 12c2-3 4-4.5 6-4.5S13 12 15 12s4-1.5 6-4.5M3 19c2-3 4-4.5 6-4.5S13 19 15 19s4-1.5 6-4.5"/></svg></div>
+        <h3>Marées de précision</h3>
+        <p>Horaires, hauteurs, coefficients — calculés sur l'appareil par analyse harmonique. Disponible hors-ligne, partout.</p>
+      </article>
+      <article class="card t-violet reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="3"/><path d="M11 19h2"/></svg></div>
+        <h3>Widgets, Watch, Dynamic Island</h3>
+        <p>La prochaine marée sur ton écran verrouillé, ton poignet et ta Dynamic Island — pensé pour ne pas vider ta batterie.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HONNÊTETÉ ================= -->
+<section id="honest" style="padding-top:20px">
+  <div class="wrap">
+    <div class="honest reveal">
+      <div>
+        <span class="kicker" style="color:var(--mint)">Notre parti pris</span>
+        <h2>Pas de données inventées.</h2>
+        <p>Beaucoup d'apps lissent, interpolent et remplissent les trous. Tide It fait l'inverse : ce qui n'est pas mesuré n'est pas affiché.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>Une mesure absente disparaît — elle n'est jamais fabriquée.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>Vent réel et prévision restent deux traits distincts, jamais fondus en douce.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>L'app compare en continu la prévision au réel et t'affiche l'écart.</li>
+        </ul>
+      </div>
+      <div class="gauge" aria-hidden="true">
+        <div class="row"><span>Confiance de la prévision</span><span style="color:var(--mint);font-weight:700">Fiable ici</span></div>
+        <div class="bar"><div class="fill"></div></div>
+        <p class="cap">La jauge de confiance mesure l'écart entre le modèle et les balises autour de ton spot ces dernières heures. Premium peut corriger la courbe avec ce biais appris.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CAPTURES ================= -->
+<section id="captures" style="padding-top:30px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" style="color:var(--cyan)">Captures</span>
+      <h2>Le tour de l'app en 7 écrans.</h2>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="gal" role="region" aria-label="Galerie de captures d'écran">
+      <img src="assets/04_vent_reel.jpg" alt="Le vent réel observé par la balise la plus proche, superposé à la courbe de marée" width="720" height="1561">
+      <img src="assets/03_fenetres_go.jpg" alt="Calendrier des fenêtres GO sur 7 jours, notées par étoiles, par sport" loading="lazy" width="720" height="1561">
+      <img src="assets/01_surf.jpg" alt="Mode surf : houle, période et énergie sur la courbe" loading="lazy" width="720" height="1561">
+      <img src="assets/02_surf_houle.jpg" alt="Détail de la houle : trains de houle, direction et intervalle de déferlement" loading="lazy" width="720" height="1561">
+      <img src="assets/05_marees.jpg" alt="Courbe de marée animée avec horaires, hauteurs et coefficients" loading="lazy" width="720" height="1561">
+      <img src="assets/06_niveau_rider.jpg" alt="Réglages par sport et par niveau de rider" loading="lazy" width="720" height="1561">
+      <img src="assets/07_carte_spots.jpg" alt="Carte mondiale des ports, balises de vent et spots de surf" loading="lazy" width="720" height="1561">
+    </div>
+    <p class="hint">← Fais défiler →</p>
+  </div>
+</section>
+
+<!-- ================= PREMIUM ================= -->
+<section id="premium">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" style="color:var(--orange)">Premium</span>
+      <h2>Gratuit pour regarder. Premium pour anticiper.</h2>
+      <p>Le premier mois est offert à l'installation — sans engagement. Sans abonnement, l'app repasse simplement en version gratuite.</p>
+    </div>
+    <div class="plans">
+      <div class="plan free reveal">
+        <h3>Gratuit</h3>
+        <p class="pr">Pour toujours</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>Marées complètes : horaires, hauteurs, coefficients, hors-ligne</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>Vent réel de la balise la plus proche + verdict de régularité</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>Mode surf : houle, période, énergie sur 284 spots</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>Widgets, Apple Watch, Dynamic Island</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>Jauge de confiance des prévisions</li>
+        </ul>
+      </div>
+      <div class="plan pro reveal">
+        <span class="tag">1 mois offert</span>
+        <h3>Premium</h3>
+        <p class="pr">Abonnement mensuel ou annuel — prix affiché dans l'app</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>Fenêtres GO sur 7 jours, notées 1–5★, par sport et par niveau</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>Alertes intelligentes : « le vent s'établit », créneaux parfaits</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>Correction de la prévision par le vent réel (biais appris)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>Calendrier de marées sur 7 jours</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" style="color:var(--violet)">FAQ</span>
+      <h2>Questions fréquentes</h2>
+    </div>
+    <div class="faq reveal">
+      <details>
+        <summary>D'où vient le vent affiché ?</summary>
+        <p>Tide It affiche deux vents distincts : la prévision des modèles météo, et le vent <strong>réellement mesuré</strong> par la balise anémomètre la plus proche de ton spot — vitesse, rafales, direction et âge de la mesure. Les deux ne sont jamais mélangés sans le dire. L'attribution détaillée des réseaux de mesure est disponible dans l'app (Réglages ▸ À propos).</p>
+      </details>
+      <details>
+        <summary>Qu'est-ce qu'une fenêtre GO ?</summary>
+        <p>Un créneau où les conditions correspondent à ton sport et ton niveau : vent dans ta plage, hauteur d'eau suffisante, direction sûre, houle et régularité du vent prises en compte. Calculées sur 7 jours, notées 1 à 5 étoiles.</p>
+      </details>
+      <details>
+        <summary>Ça marche hors connexion ?</summary>
+        <p>Oui. Les marées sont calculées sur l'appareil et restent disponibles hors-ligne. Seuls le vent, la météo et la houle demandent une connexion.</p>
+      </details>
+      <details>
+        <summary>Mon spot n'existe pas dans l'app ?</summary>
+        <p>Tide It couvre 3 500+ ports et 284 spots de surf dans 64 pays. S'il manque le tien, crée un spot personnalisé à ta position exacte — il aura sa marée, son vent et ses fenêtres GO.</p>
+      </details>
+      <details>
+        <summary>Publicité, tracking, comptes ?</summary>
+        <p>Aucun des trois. Pas de pub, pas de SDK publicitaire, pas d'analytique tierce, pas de compte à créer. Tes réglages restent sur ton appareil (et ton iCloud personnel pour la synchro).</p>
+      </details>
+      <details>
+        <summary>Comment fonctionne le mois offert ?</summary>
+        <p>À l'installation, Premium est activé gratuitement pendant 1 mois, sans engagement et sans saisir de moyen de paiement. À la fin, l'app repasse automatiquement en version gratuite — rien à annuler.</p>
+      </details>
+      <details>
+        <summary>Puis-je m'y fier pour naviguer ?</summary>
+        <p>Non. Tide It est un outil d'aide à la décision pour les loisirs nautiques. Pour la navigation, référez-vous aux documents et bulletins officiels des autorités maritimes.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="final">
+  <div class="wrap reveal">
+    <h2>Prêt pour la <span style="background:linear-gradient(90deg,var(--cyan),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent">prochaine session</span> ?</h2>
+    <p>Gratuit sur iPhone et Apple Watch. Premier mois Premium offert.</p>
+    <a class="store-btn" href="https://apps.apple.com/fr/app/id6743555259" aria-label="Télécharger Tide It dans l'App Store" style="display:inline-flex">
+      <svg viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+      <span><small>Télécharger dans</small><b>l'App Store</b></span>
+    </a>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <a class="logo" href="#"><img src="assets/icon-192.png" alt="" width="30" height="30">Tide It</a>
+        <p>Marées, vent réel et houle pour les riders. Précis, honnête, léger pour la batterie.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/profile.php?id=61591269012272" aria-label="Tide It sur Facebook" rel="noopener" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M13.5 21v-8.2h2.8l.4-3.2h-3.2V7.5c0-.9.3-1.6 1.6-1.6h1.7V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.3v3.2h2.8V21h3.4z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/tideitapp/" aria-label="Tide It sur Instagram" rel="noopener" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.9.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.9.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.9-.9-1.4-.2-.4-.4-1.1-.4-2.2-.1-1.3-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.9-.7 1.4-.9.4-.2 1.1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 2c-3.1 0-3.5 0-4.7.1-1.1.1-1.4.2-1.7.3-.4.2-.7.4-1 .7-.3.3-.5.6-.7 1-.1.3-.3.7-.3 1.7-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.4.3 1.7.2.4.4.7.7 1 .3.3.6.5 1 .7.3.1.7.3 1.7.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.4-.2 1.7-.3.4-.2.7-.4 1-.7.3-.3.5-.6.7-1 .1-.3.3-.7.3-1.7.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.4-.3-1.7-.2-.4-.4-.7-.7-1-.3-.3-.6-.5-1-.7-.3-.1-.7-.3-1.7-.3-1.2-.1-1.6-.1-4.7-.1zm0 3.3a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2zm0 2a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.3-2.6a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg>
+          </a>
         </div>
+      </div>
+      <div class="f-col">
+        <b>App</b>
+        <a href="#features">Fonctionnalités</a>
+        <a href="#captures">Captures</a>
+        <a href="#premium">Premium</a>
+        <a href="https://apps.apple.com/fr/app/id6743555259">App Store</a>
+      </div>
+      <div class="f-col">
+        <b>Aide</b>
+        <a href="support.html">Support &amp; FAQ</a>
+        <a href="mailto:tideitapp@icloud.com">Nous écrire</a>
+      </div>
+      <div class="f-col">
+        <b>Légal</b>
+        <a href="privacy.html">Confidentialité</a>
+        <a href="terms.html">Conditions d'utilisation</a>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2026 Tide It — Fait au bord de l'eau.</span>
+      <span class="lang" aria-label="Langue"><a class="cur" href="./" lang="fr">FR</a><a href="en/" lang="en">EN</a></span>
+    </div>
+  </div>
+</footer>
 
-        <div class="badge-container">
-            <a href="https://apps.apple.com/app/tide-it/id6743555259">
-                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr?size=250x83" alt="Telecharger sur l'App Store">
-            </a>
-        </div>
-    </header>
-
-    <section class="features">
-        <h2>Tout ce dont vous avez besoin</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <div class="icon">🌊</div>
-                <h3>Courbe de maree interactive</h3>
-                <p>Courbe animee en temps reel avec hauteur d'eau, tendance et coefficients. Indicateur lumineux sur la courbe.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">💨</div>
-                <h3>Mode vent</h3>
-                <p>Colorisez la courbe selon la force du vent. Visualisez en un instant les conditions de vent sur la maree.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">📊</div>
-                <h3>Previsions 7 jours</h3>
-                <p>Courbe heure par heure, vitesse et rafales du vent, direction, temperature et meteo detaillee.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">🔔</div>
-                <h3>Alertes intelligentes</h3>
-                <p>Alertes personnalisees : grandes marees, vent, conditions ideales. Combinez criteres avec ET/OU.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">🗺️</div>
-                <h3>Carte interactive</h3>
-                <p>Explorez 3 500+ ports sur la carte. Maree en temps reel sur chaque pin avec clustering intelligent.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">🏄</div>
-                <h3>Scores d'activites</h3>
-                <p>Surf, peche, kitesurf, plongee, baignade : score combine maree + meteo + vent + coefficient.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">📅</div>
-                <h3>Calendrier des marees</h3>
-                <p>Vue mensuelle avec coefficients. Filtrez par coefficient minimum pour les grandes marees.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">⌚</div>
-                <h3>Apple Watch</h3>
-                <p>App native avec complications : courbe coloree, indicateur temps reel et tendance directement au poignet.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">📱</div>
-                <h3>Dynamic Island & Widgets</h3>
-                <p>Suivez la maree en temps reel sur la Dynamic Island. Widgets iOS en 3 tailles sur l'ecran d'accueil.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="data-sources">
-        <h2>Donnees officielles</h2>
-        <div class="sources-grid">
-            <div class="source">
-                <div class="source-name">France</div>
-                <div class="source-desc">Donnees officielles</div>
-            </div>
-            <div class="source">
-                <div class="source-name">NOAA</div>
-                <div class="source-desc">Etats-Unis (officiel)</div>
-            </div>
-            <div class="source">
-                <div class="source-name">TideCheck</div>
-                <div class="source-desc">Mondial (3 500+ ports)</div>
-            </div>
-            <div class="source">
-                <div class="source-name">Apple WeatherKit</div>
-                <div class="source-desc">Meteo en temps reel</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta">
-        <h2>Pret a suivre les marees ?</h2>
-        <p>Gratuit. Premium optionnel pour les passionnes.</p>
-        <a href="https://apps.apple.com/app/tide-it/id6743555259" class="download-btn">Telecharger Tide It</a>
-    </section>
-
-    <footer class="footer">
-        <div class="links">
-            <a href="privacy.html">Confidentialite</a>
-            <a href="support.html">Support</a>
-            <a href="terms.html">Conditions</a>
-        </div>
-        <p>&copy; 2026 Tide It. Tous droits reserves.</p>
-    </footer>
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  var onScroll=function(){nav.classList.toggle('on',scrollY>10)};
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var b=document.getElementById('burger'),m=document.getElementById('menu');
+  b.addEventListener('click',function(){var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o)});
+  m.addEventListener('click',function(e){if(e.target.tagName==='A'){m.classList.remove('open')}});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  }else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')})}
+})();
+</script>
 </body>
 </html>
