@@ -603,6 +603,11 @@ struct SmallWindView: View {
                 Text("rafales \(SharedUnitFormatter.windSpeed(gust))")
                     .font(.system(size: 9, weight: .semibold)).foregroundStyle(WT.text2)
             }
+            // Âge de la mesure balise (déjà affiché en Medium) : une mesure reportée
+            // d'une écriture précédente doit dire son âge — jamais passer pour du direct.
+            if let age = windAgeLabel(data.observedWindDate, now: entryDate) {
+                Text(age).font(.system(size: 8, weight: .medium)).foregroundStyle(WT.text3)
+            }
             Spacer(minLength: 5)
             Rectangle().fill(WT.separator).frame(height: 1)
             Spacer(minLength: 5)

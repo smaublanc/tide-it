@@ -25,6 +25,43 @@ enum WidgetDataWriter {
     ) {
         guard WidgetSharedKeys.sharedDefaults != nil else { return }
 
+        // ANTI-RÉGRESSION VENT : plusieurs appelants (init à froid, retour au premier plan,
+        // rechargement de marées) écrivent AVANT que la balise/le cache marine aient répondu →
+        // ils écrasaient la dernière mesure par nil et le widget Vent restait sur « — » jusqu'au
+        // prochain lancement de l'app. On reporte l'existant du MÊME port tant qu'il est encore
+        // exploitable (gates d'âge) ; au-delà, il meurt vraiment (honnêteté — l'âge est affiché).
+        var observedWind = observedWind
+        var forecastWind = forecastWind
+        if observedWind == nil || forecastWind == nil,
+           let pid = portId,
+           let blob = WidgetSharedKeys.sharedDefaults?.data(forKey: WidgetSharedKeys.dataKey),
+           let prev = try? JSONDecoder().decode(WidgetSharedData.self, from: blob),
+           prev.portId == pid {   // jamais le vent d'un AUTRE port (changement de spot)
+            if observedWind == nil,
+               let station = prev.observedWindStation, let date = prev.observedWindDate,
+               currentTime.timeIntervalSince(date) <= Self.observedCarryMaxAge {
+                if prev.realtimeWindLocked == true {
+                    // Balise présente mais non-premium : préserver l'état verrouillé (upsell),
+                    // sinon un refresh marée-seule le faisait disparaître lui aussi.
+                    observedWind = .init(speedKmh: 0, gustKmh: nil, directionDeg: 0,
+                                         stationName: station,
+                                         distanceKm: prev.observedWindDistanceKm ?? 0,
+                                         date: date, premiumLocked: true)
+                } else if let speed = prev.observedWindKmh, let dir = prev.observedWindDirDeg {
+                    observedWind = .init(speedKmh: speed, gustKmh: prev.observedWindGustKmh,
+                                         directionDeg: dir, stationName: station,
+                                         distanceKm: prev.observedWindDistanceKm ?? 0,
+                                         date: date, premiumLocked: false)
+                }
+            }
+            if forecastWind == nil,
+               let speed = prev.forecastWindKmh, let dir = prev.forecastWindDirDeg,
+               currentTime.timeIntervalSince(prev.updatedAt) <= Self.forecastCarryMaxAge {
+                forecastWind = .init(speedKmh: speed, gustKmh: prev.forecastWindGustKmh,
+                                     directionDeg: dir, confidence: prev.forecastWindConfidence)
+            }
+        }
+
         // tideData déjà trié par TideService
         let sorted = tideData
 
@@ -179,6 +216,11 @@ enum WidgetDataWriter {
         let swellDirectionDeg: Double?
         let gradeRaw: String
     }
+
+    /// Report anti-régression : âge max d'une mesure balise reportée d'une écriture à l'autre
+    /// (3 h — le widget affiche l'âge) et d'un vent prévu (6 h — le créneau modèle dérive au-delà).
+    static let observedCarryMaxAge: TimeInterval = 3 * 3600
+    static let forecastCarryMaxAge: TimeInterval = 6 * 3600
 
     /// Signature du planning de marées (port + valeurs des marées). Change UNIQUEMENT
     /// quand le planning lui-même change — pas quand seuls `currentHeight`/`updatedAt`

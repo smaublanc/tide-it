@@ -1134,8 +1134,13 @@ class TideService: ObservableObject {
         // fraîche). Le gate notify(for:) interne ignore les spots non abonnés.
         await WindEstablishingService.shared.evaluateGo(reading: reading, portId: port.id, portName: port.name,
                                                         lat: port.latitude, lon: port.longitude)
+        // La balise vient d'être rafraîchie → pousser la mesure FRAÎCHE au widget Vent.
+        // Les écritures du début de cycle partent avant la réponse réseau (l'anti-régression
+        // de WidgetDataWriter les empêche d'effacer l'existant) ; celle-ci apporte le neuf.
+        // La signature vent dédoublonne : aucun reload widget si la mesure n'a pas changé.
+        updateWidgetData()
     }
-    
+
     private func updateWidgetData() {
         guard let port = selectedPort else { return }
 

@@ -46,6 +46,9 @@ Une seule version éditable à la fois sur App Store Connect.
 - `refinedForecasts` (ActivityScoreService.swift ~l.405) : horizon +2 h, gates d'âge balise 20 min /
   bouée 60 min.
 - `PremiumManager.welcomeTrialDays=30` (mois offert).
+- `WidgetDataWriter.observedCarryMaxAge=3h` / `forecastCarryMaxAge=6h` — anti-régression du
+  widget Vent : une écriture marée-seule (caches vent vides au réveil) REPORTE la dernière
+  mesure du même port au lieu de l'effacer ; au-delà des gates elle meurt (l'âge est affiché).
 
 ## Risques connus (surveiller, pas de fix code possible)
 - **Licence Open-Meteo** : usage commercial = LE point juridique ouvert (self-host = solution).
