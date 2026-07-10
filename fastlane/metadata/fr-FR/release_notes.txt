@@ -1,6 +1,5 @@
 Nouveautés :
-- Un vent rafaleux pèse désormais pleinement sur tes fenêtres GO — le verdict de régularité n'est plus seulement affiché, il compte.
-- Retrouve Tide It sur Facebook et Instagram : liens dans les Réglages, pour suivre les nouveautés et partager tes spots.
+- Le widget Vent ne se vide plus : la dernière mesure est conservée (avec son âge affiché) et se rafraîchit dès que la balise répond.
 - Fiabilité et finitions améliorées.
 
 Toujours aussi précis, honnête et léger pour ta batterie. Bon vent et bonnes vagues !

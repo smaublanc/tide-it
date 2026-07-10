@@ -1,6 +1,5 @@
 Neu:
-- Böiger Wind fließt jetzt voll in deine GO-Fenster ein – das Regelmäßigkeits-Urteil wird nicht nur angezeigt, es zählt.
-- Tide It auf Facebook und Instagram: Links in den Einstellungen, für Neuigkeiten und deine Spots.
+- Das Wind-Widget bleibt nicht mehr leer: Die letzte Messung bleibt erhalten (mit angezeigtem Alter) und aktualisiert sich, sobald die Station antwortet.
 - Zuverlässigkeit und Feinschliff verbessert.
 
 Weiterhin präzise, ehrlich und schonend für den Akku. Guten Wind und gute Wellen!

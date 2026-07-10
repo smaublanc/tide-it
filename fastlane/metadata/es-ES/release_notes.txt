@@ -1,6 +1,5 @@
 Novedades:
-- El viento racheado ahora pesa de verdad en tus ventanas GO: el veredicto de regularidad ya no solo se muestra, cuenta.
-- Encuentra Tide It en Facebook e Instagram: enlaces en Ajustes, para seguir las novedades y compartir tus spots.
+- El widget de Viento ya no se queda vacío: la última medición se conserva (con su antigüedad visible) y se actualiza en cuanto la estación responde.
 - Fiabilidad y acabados mejorados.
 
 Igual de preciso, honesto y ligero para tu batería. ¡Buen viento y buenas olas!

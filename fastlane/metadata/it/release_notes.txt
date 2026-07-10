@@ -1,6 +1,5 @@
 Novità:
-- Il vento a raffiche ora pesa davvero sulle tue finestre GO: il verdetto di regolarità non è più solo mostrato, conta.
-- Trova Tide It su Facebook e Instagram: link nelle Impostazioni, per seguire le novità e condividere i tuoi spot.
+- Il widget Vento non resta più vuoto: l'ultima misura viene conservata (con la sua età visibile) e si aggiorna appena la stazione risponde.
 - Affidabilità e rifiniture migliorate.
 
 Sempre preciso, onesto e leggero per la batteria. Buon vento e buone onde!

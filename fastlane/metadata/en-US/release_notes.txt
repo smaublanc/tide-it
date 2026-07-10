@@ -1,6 +1,5 @@
 What's new:
-- Gusty wind now fully weighs on your GO windows — the steadiness verdict is no longer just displayed, it counts.
-- Find Tide It on Facebook and Instagram: links in Settings, to follow updates and share your spots.
+- The Wind widget no longer goes blank: the latest reading is kept (with its age shown) and refreshes as soon as the station responds.
 - Reliability and polish improvements.
 
 Still as precise, honest and battery-light as ever. Fair winds and good waves!

@@ -1074,7 +1074,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.2.5;
+				MARKETING_VERSION = 5.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.TideItWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1109,7 +1109,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.2.5;
+				MARKETING_VERSION = 5.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.TideItWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1143,7 +1143,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2.5;
+				MARKETING_VERSION = 5.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1176,7 +1176,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2.5;
+				MARKETING_VERSION = 5.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1343,7 +1343,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2.5;
+				MARKETING_VERSION = 5.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1384,7 +1384,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2.5;
+				MARKETING_VERSION = 5.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1405,7 +1405,7 @@
 				CURRENT_PROJECT_VERSION = 12;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 5.2.5;
+				MARKETING_VERSION = 5.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1423,7 +1423,7 @@
 				CURRENT_PROJECT_VERSION = 12;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 5.2.5;
+				MARKETING_VERSION = 5.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1439,7 +1439,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 5.2.5;
+				MARKETING_VERSION = 5.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1455,7 +1455,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 5.2.5;
+				MARKETING_VERSION = 5.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1481,7 +1481,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.2.5;
+				MARKETING_VERSION = 5.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.watchkitapp.TideWatchWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1511,7 +1511,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.2.5;
+				MARKETING_VERSION = 5.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.watchkitapp.TideWatchWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
