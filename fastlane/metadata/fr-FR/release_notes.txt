@@ -1,5 +1,5 @@
 Nouveautés :
-- Le widget Vent ne se vide plus : la dernière mesure est conservée (avec son âge affiché) et se rafraîchit dès que la balise répond.
-- Fiabilité et finitions améliorées.
+- La carte s'ouvre instantanément. Un défaut d'affichage la faisait mettre une dizaine de secondes à apparaître en thème sombre : c'est corrigé.
+- Et si un chargement venait à traîner, une barre de progression le signale désormais, au lieu d'un écran figé.
 
 Toujours aussi précis, honnête et léger pour ta batterie. Bon vent et bonnes vagues !

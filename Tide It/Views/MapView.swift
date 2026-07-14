@@ -156,9 +156,23 @@ struct MapView: View {
         return CLLocationCoordinate2D(latitude: 46.5, longitude: -2.5)
     }
 
+    /// La carte a peint sa PREMIÈRE image (tuiles rendues) — ou a échoué à charger ses tuiles
+    /// (hors-ligne : on n'affiche pas une barre qui tournerait sans fin). Piloté par MapKit.
+    @State private var mapDidRender = false
+    /// Le premier rendu traîne au-delà du délai anti-flash → on le SIGNALE. Filet de sécurité :
+    /// si un rendu lent revenait un jour (tuiles réseau, régression), l'utilisateur voit une barre
+    /// de chargement au lieu d'un écran figé — au lieu de croire l'app plantée.
+    @State private var mapRenderIsSlow = false
+    /// Délai avant de considérer le premier rendu comme « lent » (évite un flash de barre sur
+    /// une carte qui s'affiche instantanément — le cas normal).
+    private static let mapRenderSlowAfter: Duration = .milliseconds(400)
+
     /// Vrai dès qu'un fetch de données de port est en cours (préchargement des favoris, tap sur un
-    /// port, ou fetch du port sélectionné) → pilote la barre de chargement en haut de la carte.
-    private var isMapBusy: Bool { isLoadingMapData || tideService.isLoading }
+    /// port, ou fetch du port sélectionné) OU si la carte tarde à peindre sa première image
+    /// → pilote la barre de chargement en haut de la carte.
+    private var isMapBusy: Bool {
+        isLoadingMapData || tideService.isLoading || (mapRenderIsSlow && !mapDidRender)
+    }
 
     var body: some View {
         ZStack {
@@ -176,7 +190,8 @@ struct MapView: View {
                 initialCenter: initialMapCenter,
                 pendingRegion: $pendingMapRegion,
                 onLongPress: { coord in newSpotPoint = MapPoint(coordinate: coord) },
-                onSelectSurfSpot: { spotID in launchSurfSpot(spotID) }
+                onSelectSurfSpot: { spotID in launchSurfSpot(spotID) },
+                onFirstRender: { mapDidRender = true }
             )
             .ignoresSafeArea()
 
@@ -281,6 +296,14 @@ struct MapView: View {
             buildSearchIndex()
             seedCurrentPortData()
             loadPriorityPortsData()
+            // Filet de sécurité « écran figé » : si la carte n'a pas peint sa 1ʳᵉ image au bout du
+            // délai anti-flash, la barre de chargement le dit. MapKit coupe le signal dès le
+            // premier rendu terminé — ou dès l'échec des tuiles (hors-ligne), pour ne jamais
+            // laisser tourner une barre sans fin.
+            Task {
+                try? await Task.sleep(for: Self.mapRenderSlowAfter)
+                if !mapDidRender { mapRenderIsSlow = true }
+            }
             // Charger les stations de vent (Pioupiou + METAR) pour les badges moulin
             Task {
                 let centerCoord = tideService.selectedPort.map {
@@ -1591,6 +1614,9 @@ struct TintedMapRepresentable: UIViewRepresentable {
     var onLongPress: (CLLocationCoordinate2D) -> Void = { _ in }
     /// Tap sur une pastille de SPOT DE SURF → son id (le parent le matérialise en port + l'ouvre).
     var onSelectSurfSpot: (String) -> Void = { _ in }
+    /// Premier rendu de la carte terminé — OU échec de chargement des tuiles (hors-ligne).
+    /// Le parent coupe alors sa barre de chargement. Appelé UNE seule fois.
+    var onFirstRender: () -> Void = {}
 
     func makeCoordinator() -> Coordinator { Coordinator(self) }
 
@@ -1644,6 +1670,30 @@ struct TintedMapRepresentable: UIViewRepresentable {
     final class Coordinator: NSObject, MKMapViewDelegate {
         var parent: TintedMapRepresentable
         init(_ parent: TintedMapRepresentable) { self.parent = parent }
+
+        // MARK: Premier rendu (pilote la barre de chargement du parent)
+
+        private var didSignalFirstRender = false
+
+        /// Signale UNE fois que la carte est peinte (ou qu'elle ne le sera pas). Async sur la main
+        /// queue : on ne mute jamais l'état SwiftUI pendant une passe de mise à jour de la vue.
+        private func signalFirstRender() {
+            guard !didSignalFirstRender else { return }
+            didSignalFirstRender = true
+            let notify = parent.onFirstRender
+            DispatchQueue.main.async { notify() }
+        }
+
+        func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+            signalFirstRender()
+        }
+
+        /// Tuiles indisponibles (hors-ligne, réseau coupé) : la carte ne peindra pas — on coupe
+        /// quand même la barre. Elle reste utilisable (gestes + annotations depuis le cache), fidèle
+        /// au parti pris offline : jamais un chargement qui tourne dans le vide.
+        func mapViewDidFailLoadingMap(_ mapView: MKMapView, withError error: Error) {
+            signalFirstRender()
+        }
 
         @objc func handleLongPress(_ g: UILongPressGestureRecognizer) {
             guard g.state == .began, let map = g.view as? MKMapView else { return }

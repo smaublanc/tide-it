@@ -1,5 +1,5 @@
 Nieuw:
-- De Wind-widget blijft niet meer leeg: de laatste meting blijft bewaard (met leeftijd zichtbaar) en ververst zodra het station reageert.
-- Betrouwbaarheid en afwerking verbeterd.
+- De kaart opent nu direct. Door een weergavefout duurde het in het donkere thema zo'n tien seconden voordat hij verscheen: opgelost.
+- En als het laden toch lang duurt, geeft een voortgangsbalk dat nu aan, in plaats van een bevroren scherm.
 
 Nog steeds nauwkeurig, eerlijk en zuinig voor je batterij. Goede wind en mooie golven!

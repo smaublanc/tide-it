@@ -1,5 +1,5 @@
 Neu:
-- Das Wind-Widget bleibt nicht mehr leer: Die letzte Messung bleibt erhalten (mit angezeigtem Alter) und aktualisiert sich, sobald die Station antwortet.
-- Zuverlässigkeit und Feinschliff verbessert.
+- Die Karte öffnet sich jetzt sofort. Ein Darstellungsfehler ließ sie im dunklen Design rund zehn Sekunden brauchen – behoben.
+- Und falls ein Ladevorgang doch einmal dauert, zeigt das nun ein Fortschrittsbalken an, statt eines eingefrorenen Bildschirms.
 
 Weiterhin präzise, ehrlich und schonend für den Akku. Guten Wind und gute Wellen!

@@ -1,5 +1,5 @@
 What's new:
-- The Wind widget no longer goes blank: the latest reading is kept (with its age shown) and refreshes as soon as the station responds.
-- Reliability and polish improvements.
+- The map now opens instantly. A rendering bug made it take about ten seconds to appear in dark theme: fixed.
+- And if loading ever drags on, a progress bar now says so, instead of a frozen screen.
 
 Still as precise, honest and battery-light as ever. Fair winds and good waves!

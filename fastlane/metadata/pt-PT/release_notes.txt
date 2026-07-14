@@ -1,5 +1,5 @@
 Novidades:
-- O widget de Vento já não fica vazio: a última medição é conservada (com a idade visível) e atualiza-se assim que a estação responde.
-- Fiabilidade e acabamentos melhorados.
+- O mapa abre instantaneamente. Uma falha de desenho fazia-o demorar cerca de dez segundos a aparecer no tema escuro: corrigido.
+- E se algum carregamento se arrastar, passa a ser indicado por uma barra de progresso, em vez de um ecrã parado.
 
 Tão preciso, honesto e leve para a bateria como sempre. Bom vento e boas ondas!
