@@ -30,10 +30,16 @@ final class SurfSpotCatalog: ObservableObject {
         rebuild()
     }
 
+    /// Index id → spot, reconstruit avec `spots` (même choke point : toute fusion seed+user y passe).
+    /// Rend `spot(id:)` O(1) : la carte teste l'appartenance surf pour CHACUN des ~3 500 ports à
+    /// chaque re-render — en scan linéaire sur 284 spots, ça faisait ~1 M de comparaisons par passe.
+    private(set) var spotsByID: [String: SurfSpot] = [:]
+
     private func rebuild() {
         var byId: [String: SurfSpot] = [:]
         for s in seed { byId[s.id] = s }
         for s in userSpots { byId[s.id] = s }   // l'utilisateur prime (override ou ajout)
+        spotsByID = byId
         spots = byId.values.sorted { $0.name < $1.name }
     }
 
@@ -58,7 +64,7 @@ final class SurfSpotCatalog: ObservableObject {
         }
     }
 
-    func spot(id: String) -> SurfSpot? { spots.first { $0.id == id } }
+    func spot(id: String) -> SurfSpot? { spotsByID[id] }
 
     // MARK: - Rattachement au port le plus proche (marée)
 

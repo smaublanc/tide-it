@@ -1343,7 +1343,7 @@ final class WorldTintOverlay: NSObject, MKOverlay {
     var boundingMapRect: MKMapRect { .world }
 }
 
-/// Remplit tout le rect monde d'une couleur (navy semi-transparent).
+/// Remplit d'une couleur (navy semi-transparent) LA TUILE demandée — et elle seule.
 final class TintRenderer: MKOverlayRenderer {
     let fill: UIColor
     init(overlay: MKOverlay, fill: UIColor) {
@@ -1352,7 +1352,12 @@ final class TintRenderer: MKOverlayRenderer {
     }
     override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {
         context.setFillColor(fill.cgColor)
-        context.fill(rect(for: overlay.boundingMapRect))
+        // ⚠️ `mapRect` (la TUILE demandée), JAMAIS `overlay.boundingMapRect` (= .world).
+        // MapKit appelle draw() une fois PAR TUILE : remplir le rect MONDE à chaque appel
+        // faisait rasteriser un CGRect de ~268 M × 268 M points par tuile et par niveau de
+        // zoom → la carte mettait ~10 s à s'afficher (mode sombre uniquement : la teinte
+        // n'est installée que là). L'union des tuiles = le monde → rendu IDENTIQUE.
+        context.fill(rect(for: mapRect))
     }
 }
 

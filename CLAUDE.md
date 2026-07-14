@@ -50,6 +50,16 @@ Une seule version éditable à la fois sur App Store Connect.
   widget Vent : une écriture marée-seule (caches vent vides au réveil) REPORTE la dernière
   mesure du même port au lieu de l'effacer ; au-delà des gates elle meurt (l'âge est affiché).
 
+## Pièges vérifiés (ne pas réintroduire)
+- **`MKOverlayRenderer.draw`** (TintRenderer, MapView.swift) : remplir `rect(for: mapRect)` — la
+  TUILE demandée — et JAMAIS `rect(for: overlay.boundingMapRect)` (= `.world`). MapKit appelle
+  `draw()` une fois par tuile : remplir le rect monde à chaque appel rasterise un CGRect de
+  ~268 M × 268 M points par tuile → la carte mettait **10 s** à s'afficher (mode sombre seul, la
+  teinte n'y étant installée que là). Rendu identique, l'union des tuiles = le monde.
+- **Lookups par id sur les catalogues** : `SurfSpotCatalog.spot(id:)` est O(1) (`spotsByID`,
+  reconstruit dans `rebuild()`). La carte teste l'appartenance surf pour chacun des ~3 500 ports
+  à chaque re-render — un `first { $0.id == }` y coûtait ~1 M de comparaisons par passe.
+
 ## Risques connus (surveiller, pas de fix code possible)
 - **Licence Open-Meteo** : usage commercial = LE point juridique ouvert (self-host = solution).
 - **Clés API hardcodées** (`APIKeys.swift`, gitignoré) : quota partagé ; à terme proxy.
