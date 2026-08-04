@@ -227,8 +227,14 @@ final class CloudSyncService: ObservableObject {
     /// Fusionne les favoris locaux et iCloud (union)
     func mergeInitialFavorites(localFavorites: [String]) -> [String] {
         guard let cloudFavorites = loadFavorites() else {
-            // Pas de données iCloud, pousser les données locales
-            saveFavorites(localFavorites)
+            // ⚠️ Une lecture iCloud vide ne veut PAS dire « le nuage est vide » : la descente du
+            // store KVS est asynchrone, donc sur un appareil neuf (ou une réinstallation) elle
+            // rend nil pendant les premières secondes. Pousser ici une liste LOCALE — vide à ce
+            // moment-là — écrasait les favoris déjà synchronisés depuis l'autre appareil.
+            // On ne publie que si on a réellement quelque chose à publier ; sinon on attend :
+            // `handleExternalChange` applique les favoris dès qu'ils arrivent. (Même correction
+            // que `mergeInitialSettings`, dont c'est la course jumelle.)
+            if !localFavorites.isEmpty { saveFavorites(localFavorites) }
             return localFavorites
         }
 

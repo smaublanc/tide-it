@@ -131,7 +131,12 @@ struct FavoritesView: View {
                     isSelected: tideService.selectedPort?.id == port.id
                 )
                 .plainRow(top: 2, bottom: 2, leading: DS.pagePadding, trailing: DS.pagePadding)
-                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                // `allowsFullSwipe: false` : la SUPPRESSION est définitive et sans annulation.
+                // En full-swipe, un geste un peu diagonal pendant qu'on fait défiler la liste
+                // (doigts mouillés, bateau qui bouge) effaçait un spot d'un seul mouvement. Il
+                // faut désormais swiper PUIS toucher le bouton rouge — un geste délibéré.
+                // (Le « Retirer » des favoris, lui, reste en full-swipe : il est réversible.)
+                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                     Button(role: .destructive) {
                         HapticManager.shared.notification(.warning)
                         tideService.removeCustomPort(portId: port.id)
@@ -165,7 +170,12 @@ struct FavoritesView: View {
                     isSurf: true
                 )
                 .plainRow(top: 2, bottom: 2, leading: DS.pagePadding, trailing: DS.pagePadding)
-                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                // `allowsFullSwipe: false` : la SUPPRESSION est définitive et sans annulation.
+                // En full-swipe, un geste un peu diagonal pendant qu'on fait défiler la liste
+                // (doigts mouillés, bateau qui bouge) effaçait un spot d'un seul mouvement. Il
+                // faut désormais swiper PUIS toucher le bouton rouge — un geste délibéré.
+                // (Le « Retirer » des favoris, lui, reste en full-swipe : il est réversible.)
+                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                     Button(role: .destructive) {
                         HapticManager.shared.notification(.warning)
                         tideService.removeCustomPort(portId: port.id)
@@ -418,12 +428,16 @@ struct CustomPortRow: View {
                 HapticManager.shared.impact(.light)
                 showEditor = true
             } label: {
+                // Cible 44×44 (le visuel reste une icône 16 pt) : à ~20 pt, rater le bouton de
+                // 3 pt faisait tomber le tap sur la ligne — qui, elle, QUITTE l'écran. Le geste
+                // de réglage et le geste de navigation ne doivent pas se disputer 3 points.
                 Image(systemName: "slider.horizontal.3")
                     .font(.system(size: 16))
                     .foregroundStyle(.cyan)
+                    .frame(width: 44, height: 44)
+                    .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .padding(.trailing, 4)
 
             // Suppression = swipe-vers-la-gauche (uniforme avec les favoris).
             Image(systemName: "chevron.right")

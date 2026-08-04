@@ -1527,19 +1527,25 @@ final class DataPillMarkerView: MKAnnotationView {
         let cellW = contentW + hPad * 2
         let cellH = max(lh, iconSize) + vPad * 2
 
-        bounds = CGRect(x: 0, y: 0, width: cellW, height: cellH)
-        cell.frame = bounds
+        // ZONE TACTILE ≥ 44 pt (recommandation Apple) DÉCOUPLÉE du visuel : la pastille dessinée
+        // ne fait que ~19 pt de haut, et c'est le geste PRINCIPAL de la carte — visé sur la plage,
+        // souvent avec les doigts mouillés ou des gants. On garde donc le rendu compact et on
+        // agrandit seulement `bounds` autour, la pastille restant centrée dedans.
+        let touchH = max(cellH, 44)
+        bounds = CGRect(x: 0, y: 0, width: cellW, height: touchH)
+        let cellY = (touchH - cellH) / 2
+        cell.frame = CGRect(x: 0, y: cellY, width: cellW, height: cellH)
         cell.layer.cornerRadius = cellH / 2
 
         var x = hPad
         if !iconView.isHidden {
-            iconView.frame = CGRect(x: x, y: (cellH - iconSize) / 2, width: iconSize, height: iconSize)
+            iconView.frame = CGRect(x: x, y: cellY + (cellH - iconSize) / 2, width: iconSize, height: iconSize)
             x += iconSize + (hasText ? gap : 0)
         }
         if hasText {
-            label.frame = CGRect(x: x, y: (cellH - lh) / 2, width: lw, height: lh)
+            label.frame = CGRect(x: x, y: cellY + (cellH - lh) / 2, width: lw, height: lh)
         }
-        favoriteDot.frame = CGRect(x: cellW - 5, y: -3, width: 8, height: 8)
+        favoriteDot.frame = CGRect(x: cellW - 5, y: cellY - 3, width: 8, height: 8)
         favoriteDot.layer.cornerRadius = 4
     }
 }

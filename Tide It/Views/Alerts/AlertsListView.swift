@@ -12,6 +12,17 @@ import SwiftUI
 enum AlertSegment: String, CaseIterable {
     case smart = "Calendrier"
     case manual = "Mes alertes"
+
+    /// Libellé AFFICHÉ. `rawValue` est une clé INTERNE : passée telle quelle à
+    /// `UnderlineSegments(titles:)`, elle finissait dans un `Text(uneVariableString)` rendu
+    /// verbatim — les deux onglets restaient en français dans les 11 autres langues alors que
+    /// leurs traductions existaient déjà. Même pattern que les autres enums de l'app.
+    var localizedName: String {
+        switch self {
+        case .smart:  return String(localized: "Calendrier")
+        case .manual: return String(localized: "Mes alertes")
+        }
+    }
 }
 
 struct AlertsListView: View {
@@ -137,7 +148,7 @@ struct AlertsListView: View {
     // MARK: - Sélecteur de segment (souligné, composant partagé)
     private var segmentPicker: some View {
         UnderlineSegments(
-            titles: AlertSegment.allCases.map(\.rawValue),
+            titles: AlertSegment.allCases.map(\.localizedName),
             selectedIndex: AlertSegment.allCases.firstIndex(of: segment) ?? 0
         ) { index in
             guard AlertSegment.allCases.indices.contains(index) else { return }

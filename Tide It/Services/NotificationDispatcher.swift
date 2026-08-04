@@ -18,6 +18,28 @@ final class NotificationDispatcher {
 
     private init() {}
 
+    /// Résultat d'une demande d'autorisation faite depuis l'INTERFACE (≠ `send`, qui tourne en
+    /// arrière-plan et échoue en silence). Permet à un interrupteur de ne pas s'allumer quand
+    /// iOS bloque tout — sinon l'app promet des notifications qu'elle ne pourra jamais délivrer.
+    enum AuthOutcome { case authorized, denied }
+
+    /// À appeler AVANT d'activer une option qui promet une notification. Demande l'autorisation
+    /// si elle n'a jamais été posée ; sinon rend l'état réel. Ne demande jamais deux fois (iOS
+    /// ne représente pas la fenêtre système : un refus ne se répare que dans les Réglages iOS).
+    func requestAuthorizationFromUI() async -> AuthOutcome {
+        let center = UNUserNotificationCenter.current()
+        let settings = await center.notificationSettings()
+        switch settings.authorizationStatus {
+        case .authorized, .provisional, .ephemeral:
+            return .authorized
+        case .notDetermined:
+            let granted = (try? await center.requestAuthorization(options: [.alert, .sound])) ?? false
+            return granted ? .authorized : .denied
+        default:
+            return .denied
+        }
+    }
+
     /// Envoie une notification locale. Si l'autorisation n'a jamais été demandée,
     /// la demande à l'utilisateur. Ignore silencieusement si refusée.
     func send(title: String, body: String) async {

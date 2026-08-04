@@ -446,6 +446,11 @@ struct UnderlineSegments: View {
                             .frame(height: 2.5)
                     }
                     .fixedSize()
+                    // Cible verticale portée à ~45 pt sans bouger le trait : les onglets ne
+                    // faisaient que 25 pt de haut (texte + trait, `fixedSize`, aucun padding),
+                    // ce qui rendait le changement d'onglet capricieux en usage réel.
+                    .padding(.vertical, 10)
+                    .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
             }

@@ -35,6 +35,8 @@ struct ActivityCalendarView: View {
     @State private var showEditor = false
     @State private var showSports = false
     @State private var showPaywall = false
+    /// iOS refuse les notifications → on le DIT, au lieu d'allumer une cloche muette.
+    @State private var notifDeniedAlert = false
 
     /// Horizon : 2 jours en gratuit, 7 en premium (calendrier GO = feature payante).
     // En gratuit on affiche AUSSI la semaine complète, mais FLOUTÉE (teaser) → « toutes les journées ».
@@ -173,6 +175,16 @@ struct ActivityCalendarView: View {
                 .presentationDetents([.large])
                 .sheetBackground()
         }
+        .alert("Notifications désactivées", isPresented: $notifDeniedAlert) {
+            Button("Ouvrir les Réglages") {
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+            }
+            Button("Plus tard", role: .cancel) {}
+        } message: {
+            Text("iOS bloque les notifications de Tide It. Autorise-les dans les Réglages pour être prévenu quand une fenêtre GO s'ouvre ici.")
+        }
     }
 
     /// Bandeau d'upsell FIN, placé SOUS le calendrier flouté → n'occulte aucune journée (on garde le
@@ -228,7 +240,19 @@ struct ActivityCalendarView: View {
             HapticManager.shared.impact(.light)
             guard premium.isPremium else { showPaywall = true; return }
             guard !portID.isEmpty else { return }
-            sportStore.setNotify(!sportStore.notify(for: portID), for: portID)
+            // EXTINCTION : immédiate, aucune autorisation nécessaire.
+            if sportStore.notify(for: portID) { sportStore.setNotify(false, for: portID); return }
+            // ALLUMAGE : on n'allume QUE si iOS laissera vraiment passer la notification.
+            // Sans ça, la cloche virait au cyan (« activées ici ») alors que l'autorisation
+            // n'avait jamais été demandée — ou avait été refusée : l'app promettait une alerte
+            // qu'elle ne pourrait jamais délivrer, et l'utilisateur ne l'apprenait jamais.
+            Task {
+                if await NotificationDispatcher.shared.requestAuthorizationFromUI() == .authorized {
+                    sportStore.setNotify(true, for: portID)
+                } else {
+                    notifDeniedAlert = true
+                }
+            }
         } label: {
             Image(systemName: on ? "bell.fill" : (premium.isPremium ? "bell.slash" : "bell.badge.slash.fill"))
                 .font(.system(size: 14, weight: .semibold))

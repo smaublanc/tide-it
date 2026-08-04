@@ -259,9 +259,7 @@
         }
       }
     },
-    " Weather" : {
-
-    },
+    " Weather" : {},
     "-" : {
       "localizations" : {
         "de" : {
@@ -5593,9 +5591,7 @@
         }
       }
     },
-    "×%@" : {
-
-    },
+    "×%@" : {},
     "1 mois d'essai gratuit" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -32589,9 +32585,7 @@
         }
       }
     },
-    "houle propre · %lld %%" : {
-
-    },
+    "houle propre · %lld %%" : {},
     "HOULES" : {
       "localizations" : {
         "de" : {
@@ -48804,7 +48798,8 @@
             "value" : "稍後"
           }
         }
-      }
+      },
+      "extractionState" : "manual"
     },
     "Plutôt dégagé" : {
       "extractionState" : "manual",
@@ -64982,6 +64977,237 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wing 水翼"
+          }
+        }
+      }
+    },
+    "Notifications désactivées" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications désactivées"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications are off"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mitteilungen deaktiviert"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notificaciones desactivadas"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifiche disattivate"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meldingen uitgeschakeld"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notificações desativadas"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知已关闭"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知已關閉"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知がオフです"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알림이 꺼져 있습니다"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सूचनाएँ बंद हैं"
+          }
+        }
+      }
+    },
+    "Ouvrir les Réglages" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir les Réglages"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Settings"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen öffnen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Ajustes"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri Impostazioni"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Instellingen"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Definições"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开设置"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟設定"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定を開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정 열기"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग्स खोलें"
+          }
+        }
+      }
+    },
+    "iOS bloque les notifications de Tide It. Autorise-les dans les Réglages pour être prévenu quand une fenêtre GO s'ouvre ici." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS bloque les notifications de Tide It. Autorise-les dans les Réglages pour être prévenu quand une fenêtre GO s'ouvre ici."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS is blocking Tide It's notifications. Allow them in Settings to be told when a GO window opens here."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS blockiert die Mitteilungen von Tide It. Erlaube sie in den Einstellungen, um benachrichtigt zu werden, wenn hier ein GO-Fenster aufgeht."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS está bloqueando las notificaciones de Tide It. Permítelas en Ajustes para que te avise cuando se abra una ventana GO aquí."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS blocca le notifiche di Tide It. Autorizzale in Impostazioni per essere avvisato quando si apre una finestra GO qui."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS blokkeert de meldingen van Tide It. Sta ze toe in Instellingen om bericht te krijgen wanneer hier een GO-venster opengaat."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O iOS está a bloquear as notificações do Tide It. Permite-as nas Definições para seres avisado quando abrir uma janela GO aqui."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS 正在阻止 Tide It 的通知。请在设置中允许，以便此处出现 GO 时段时收到提醒。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS 正在阻擋 Tide It 的通知。請在設定中允許，以便此處出現 GO 時段時收到提醒。"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOSがTide Itの通知をブロックしています。ここでGOウィンドウが開いたときに知らせるには、設定で許可してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS가 Tide It의 알림을 차단하고 있습니다. 이곳에 GO 시간대가 열릴 때 알림을 받으려면 설정에서 허용하세요."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS, Tide It की सूचनाएँ रोक रहा है। यहाँ GO विंडो खुलने पर सूचित होने के लिए सेटिंग्स में इन्हें अनुमति दें।"
           }
         }
       }
