@@ -536,9 +536,11 @@ private func beaufort(fromKmh kmh: Double) -> Int {
 private func windAgeLabel(_ date: Date?, now: Date) -> String? {
     guard let date else { return nil }
     let mins = max(0, Int(now.timeIntervalSince(date) / 60))
-    if mins < 1 { return "à l'instant" }
-    if mins < 60 { return "il y a \(mins) min" }
-    return "il y a \(mins / 60)h\(String(format: "%02d", mins % 60))"
+    // LOCALISÉ : l'âge de la mesure est ce qui distingue une donnée fraîche d'une donnée reportée.
+    // En français brut, 11 langues sur 12 ne pouvaient tout simplement pas le lire.
+    if mins < 1 { return String(localized: "à l'instant") }
+    if mins < 60 { return String(localized: "il y a \(mins) min") }
+    return String(localized: "il y a \(mins / 60)h\(String(format: "%02d", mins % 60))")
 }
 
 struct WindWidgetEntryView: View {

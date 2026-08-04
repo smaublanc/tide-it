@@ -443,9 +443,11 @@ class TideService: ObservableObject {
             ports[index].isFavorite.toggle()
             let stillFavorite = ports[index].isFavorite
             saveFavorites()
-            // Retiré des favoris = retiré de « mes spots » → on purge ses notifs + état par-spot.
+            // Retiré des favoris = retiré de « mes spots » → on coupe ses notifs + son état de fond.
             // (Un spot peut être abonné aux notifs « fenêtre GO » sans être favori : on clé sur l'id.)
-            if !stillFavorite { purgePortState(portId: port.id) }
+            // `keepUserConfig` : le port EXISTE toujours → ses sports réglés et son orientation de
+            // spot survivent, pour qu'un re-favori les retrouve intacts.
+            if !stillFavorite { purgePortState(portId: port.id, keepUserConfig: true) }
         }
     }
 
@@ -453,15 +455,29 @@ class TideService: ObservableObject {
     /// La notif « fenêtre de GO » se rejoue en arrière-plan depuis cet état (`SportSetupStore`
     /// + `goWindow.portCoords`) : la supprimer ne suffit pas — il faut tuer ce qui la régénère.
     /// Clé sur portId, indépendamment du statut favori/custom.
-    func purgePortState(portId: String) {
+    /// - Parameter keepUserConfig: `true` = simple RETRAIT DES FAVORIS (le port existe toujours et
+    ///   reste consultable). On coupe alors tout ce qui PING l'utilisateur, mais on garde ce qu'il a
+    ///   CONFIGURÉ : ses sports réglés pour ce spot et l'orientation du spot. Sans ça, un tap sur
+    ///   l'étoile détruisait silencieusement des réglages patiemment construits — et, sur un spot de
+    ///   surf, l'orientation de côte perdue inverse le verdict du vent (offshore lu comme une
+    ///   dégradation). `false` = SUPPRESSION réelle → purge totale, rien ne doit survivre.
+    func purgePortState(portId: String, keepUserConfig: Bool = false) {
         // 1. Alertes liées au port (vent s'établit / forecast / marée) → récupère leurs id.
+        //    Elles partent dans les DEUX cas : une alerte EST une notification, et ne plus suivre
+        //    un spot veut dire ne plus en être averti.
         let removedAlertIds = (alertService?.removeAlerts(forPort: portId) ?? []).map { $0.uuidString }
-        // 2. Sports + abonnement « fenêtre GO » (sort le spot de notifyEnabledPortIDs).
-        SportSetupStore.shared.removePort(portId)
+        // 2. Abonnement « fenêtre GO » : coupé dans les deux cas (sort le spot de
+        //    notifyEnabledPortIDs, donc de la boucle de fond). Les SPORTS réglés, eux, ne sont
+        //    effacés que sur une vraie suppression.
+        if keepUserConfig {
+            SportSetupStore.shared.setNotify(false, for: portId)
+        } else {
+            SportSetupStore.shared.removePort(portId)
+        }
         // 3. Machines à états background (GO + vent s'établit) + snapshot coords.
         WindEstablishingService.shared.purge(portId: portId, alertIds: removedAlertIds)
-        // 4. Config spot (orientation…) + cache marée + buffer de biais (jauge de confiance).
-        SpotConfigStore.shared.remove(for: portId)
+        // 4. Config spot (orientation…) — conservée sur un simple retrait des favoris.
+        if !keepUserConfig { SpotConfigStore.shared.remove(for: portId) }
         TideCache.shared.invalidate(portId: portId)
         ForecastBiasService.shared.purge(portId: portId)
         // 5. Données widget par-port + registre des ports disponibles.

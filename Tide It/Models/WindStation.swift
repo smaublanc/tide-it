@@ -91,9 +91,9 @@ struct WaveReading: Hashable {
     func minutesOld(asOf clock: Date) -> Int { max(0, Int(clock.timeIntervalSince(date) / 60)) }
     var ageLabel: String {
         let mins = ageMinutes
-        if mins < 1 { return "à l'instant" }
-        if mins < 60 { return "il y a \(mins) min" }
-        return "il y a \(mins / 60)h\(String(format: "%02d", mins % 60))"
+        if mins < 1 { return String(localized: "à l'instant") }
+        if mins < 60 { return String(localized: "il y a \(mins) min") }
+        return String(localized: "il y a \(mins / 60)h\(String(format: "%02d", mins % 60))")
     }
 }
 
@@ -142,14 +142,15 @@ struct WindReading: Hashable {
     /// de la courbe, pas l'heure murale). Nom distinct de `ageMinutes` (collision propriété+méthode).
     func minutesOld(asOf clock: Date) -> Int { max(0, Int(clock.timeIntervalSince(date) / 60)) }
 
-    /// Libellé d'âge : "à l'instant", "il y a 3 min", "il y a 1h12"
+    /// Libellé d'âge : "à l'instant", "il y a 3 min", "il y a 1h12" — LOCALISÉ (l'âge de la mesure
+    /// est le dispositif d'honnêteté le plus visible de l'app : il ne peut pas rester en français).
     var ageLabel: String {
         let mins = ageMinutes
-        if mins < 1 { return "à l'instant" }
-        if mins < 60 { return "il y a \(mins) min" }
+        if mins < 1 { return String(localized: "à l'instant") }
+        if mins < 60 { return String(localized: "il y a \(mins) min") }
         let hours = mins / 60
         let remMin = mins % 60
-        return "il y a \(hours)h\(String(format: "%02d", remMin))"
+        return String(localized: "il y a \(hours)h\(String(format: "%02d", remMin))")
     }
 
     /// Direction cardinale (N, NE, E, SE, S, SO, O, NO)

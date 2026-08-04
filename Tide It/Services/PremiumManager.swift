@@ -104,8 +104,28 @@ final class PremiumManager: ObservableObject {
 
     private var transactionListener: Task<Void, Never>?
 
+    /// Dernier droit payant VÉRIFIÉ par StoreKit, mémorisé avec sa date d'expiration.
+    /// `Transaction.currentEntitlements` est asynchrone : à chaque lancement à froid — donc à
+    /// CHAQUE réveil en arrière-plan — `paidPremium` valait `false` le temps de la réponse. Un
+    /// abonné payant dont le mois offert est terminé passait donc les gates `isPremium` à false
+    /// et ne recevait AUCUNE notification « fenêtre GO » : la fonction qu'il paie, muette, sans
+    /// le moindre signe. On ne fabrique aucun droit ici — on se souvient d'un droit vérifié, et
+    /// seulement jusqu'à son échéance connue ; StoreKit corrige ensuite dans tous les cas.
+    private static let paidUntilKey = "paidEntitlementUntil_v1"
+
+    private var paidEntitlementUntil: Date? {
+        get { UserDefaults.standard.object(forKey: Self.paidUntilKey) as? Date }
+        set {
+            if let newValue { UserDefaults.standard.set(newValue, forKey: Self.paidUntilKey) }
+            else { UserDefaults.standard.removeObject(forKey: Self.paidUntilKey) }
+        }
+    }
+
     private init() {
         startWelcomeTrialIfNeeded()
+        // Amorçage SYNCHRONE : l'état payé est correct dès la première ligne de code qui le lit,
+        // sans attendre le réseau (cf. paidEntitlementUntil).
+        paidPremium = paidEntitlementUntil.map { $0 > Date() } ?? false
         transactionListener = listenForTransactions()
         Task { await checkEntitlement() }
     }
@@ -182,6 +202,9 @@ final class PremiumManager: ObservableObject {
                 let transaction = try checkVerified(verification)
                 await transaction.finish()
                 paidPremium = true
+                // Même mémorisation qu'à la vérification : le droit tout juste acheté doit
+                // survivre au prochain réveil en arrière-plan (cf. paidEntitlementUntil).
+                paidEntitlementUntil = transaction.expirationDate ?? .distantFuture
                 appLogger.info("[Premium] Achat réussi: \(product.id)")
 
             case .pending:
@@ -237,11 +260,15 @@ final class PremiumManager: ObservableObject {
             if let transaction = try? checkVerified(result) {
                 if ProductID.allCases.map(\.rawValue).contains(transaction.productID) {
                     paidPremium = true
+                    // Mémorise l'échéance réelle du droit (nil = achat sans expiration) pour que
+                    // le prochain réveil en arrière-plan démarre déjà premium.
+                    paidEntitlementUntil = transaction.expirationDate ?? .distantFuture
                     return
                 }
             }
         }
         paidPremium = false
+        paidEntitlementUntil = nil   // droit révoqué/expiré → on oublie, aucun premium fantôme
     }
 
     #if DEBUG
@@ -365,7 +392,19 @@ struct PremiumPaywallView: View {
                         VStack(spacing: DS.spacingMD) {
                             ForEach(manager.products, id: \.id) { product in
                                 ProductButton(product: product, trialText: manager.freeTrialText(for: product)) {
-                                    Task { await manager.purchase(product) }
+                                    Task {
+                                        await manager.purchase(product)
+                                        // Achat abouti → on ferme. Sans ça, la fiche restait
+                                        // ouverte, sans confirmation, en continuant à proposer
+                                        // l'essai : l'acheteur ne savait pas si ça avait marché
+                                        // (et pouvait retenter). `purchase` ne passe `paidPremium`
+                                        // à true QUE sur succès vérifié → pas de fermeture sur
+                                        // une annulation ni sur un achat en attente d'approbation.
+                                        if manager.paidPremium {
+                                            HapticManager.shared.success()
+                                            dismiss()
+                                        }
+                                    }
                                 }
                             }
                         }

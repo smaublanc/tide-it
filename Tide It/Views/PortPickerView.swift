@@ -11,6 +11,12 @@ import CoreLocation
 struct PortPickerView: View {
     @ObservedObject var tideService: TideService
     @ObservedObject private var surfCatalog = SurfSpotCatalog.shared
+    /// Le surf est une fonction PAYANTE (fiche App Store : « PREMIUM : … mode vent & surf »), et la
+    /// carte l'applique déjà (`mapSurfSpots` est vide hors premium). Cette liste, elle, ouvrait la
+    /// porte en grand : n'importe qui pouvait matérialiser un spot et l'ouvrir. On garde la vitrine
+    /// (voir les spots donne envie) mais y toucher propose l'abonnement.
+    @ObservedObject private var premium = PremiumManager.shared
+    @State private var showPaywall = false
     @Environment(\.dismiss) private var dismiss
     @State private var searchText = ""
     @State private var selectedFilter: FilterOption = .all
@@ -79,6 +85,10 @@ struct PortPickerView: View {
             .navigationBarTitleDisplayMode(.inline)
             .task {
                 if searchIndex.isEmpty { buildIndexAndCounts() }
+            }
+            .sheet(isPresented: $showPaywall) {
+                PremiumPaywallView()
+                    .sheetBackground()
             }
         }
     }
@@ -188,6 +198,11 @@ struct PortPickerView: View {
         let spots = sortedSurfSpots
         ForEach(Array(spots.enumerated()), id: \.element.id) { i, spot in
             SurfSpotRow(spot: spot, userLocation: tideService.userLocation) {
+                guard premium.isPremium else {
+                    HapticManager.shared.impact(.light)
+                    showPaywall = true
+                    return
+                }
                 // Matérialise + configure (source unique, partagée avec la carte) → sélectionne.
                 if let port = SurfSpotCatalog.shared.materializeAndConfigure(spot.id, tideService: tideService) {
                     selectPort(port)

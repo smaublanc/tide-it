@@ -269,6 +269,12 @@ final class WindEstablishingService {
                 continue
             }
 
+            // JOUR seulement, comme le surf (`surfGoNow`) : une fenêtre GO vent ne se navigue pas
+            // dans le noir. Sans ce gate, la machine à états pouvait confirmer et notifier en
+            // pleine nuit — se faire réveiller à 3 h fait désinstaller une app. Coordonnées
+            // absentes (chemin legacy) → pas de gate, on ne bloque pas sur une position inconnue.
+            if !isDaylight(lat: lat, lon: lon, now: now) { pend[key] = nil; continue }
+
             // Conditions de VENT uniquement (force + direction) — seul signal live via balise.
             let windConds = setup.conditions.filter { $0.type == .windSpeed || $0.type == .windDirection }
             // Exiger une condition de FORCE de vent : un sport avec seulement une direction serait
@@ -314,13 +320,22 @@ final class WindEstablishingService {
         appLogger.info("[GoWindow] \(sport.rawValue) GO confirmé à \(spot) : \(Int(speed)) km/h")
     }
 
+    /// Fait-il jour au spot ? SOURCE UNIQUE du garde-fou nocturne, partagée par le vent et le surf
+    /// (le vent n'en avait pas : ses notifs pouvaient tomber en pleine nuit). Position inconnue →
+    /// `true` : on ne bloque jamais une notif sur une donnée qu'on n'a pas.
+    private func isDaylight(lat: Double?, lon: Double?, now: Date) -> Bool {
+        guard let lat, let lon,
+              let sun = SolarCalculator.sunriseSunset(latitude: lat, longitude: lon, date: now)
+        else { return true }
+        return now >= sun.sunrise && now <= sun.sunset
+    }
+
     /// La fenêtre SURF est-elle ouverte MAINTENANT ? Évalue les SurfConditions (ajustées au niveau)
     /// sur l'heure de prévision marine en cache la plus proche de `now`, de JOUR uniquement.
     /// Pas de marée en arrière-plan → le gate marée optionnel est ignoré (jamais de faux négatif).
     private func surfGoNow(setup: SportSetup, lat: Double, lon: Double, now: Date) -> Bool {
         // Jour seulement : pas de notif surf en pleine nuit.
-        if let sun = SolarCalculator.sunriseSunset(latitude: lat, longitude: lon, date: now),
-           now < sun.sunrise || now > sun.sunset { return false }
+        if !isDaylight(lat: lat, lon: lon, now: now) { return false }
         guard let forecasts = MarineWeatherService.shared.cachedForecast(latitude: lat, longitude: lon),
               let f = forecasts.min(by: { abs($0.time.timeIntervalSince(now)) < abs($1.time.timeIntervalSince(now)) })
         else { return false }
