@@ -467,7 +467,8 @@ struct AlertConditionBuilderView: View {
     }
 
     private var valueLabel: String {
-        selectedOperator == .between ? "Valeur min" : "Valeur"
+        // `String`, donc rendu par `Text(valueLabel)` en verbatim : à localiser explicitement.
+        selectedOperator == .between ? String(localized: "Valeur min") : String(localized: "Valeur")
     }
 
     private var valueRange: ClosedRange<Double> {
@@ -516,34 +517,44 @@ struct AlertConditionBuilderView: View {
         }
     }
 
+    /// Phrase de prévisualisation de la condition — LOCALISÉE. Elle était assemblée en français
+    /// brut puis rendue par `Text(previewText)` : tout le constructeur d'alertes (fonction
+    /// premium) parlait français dans les 11 autres langues. Le nom du type venait en plus de
+    /// `rawValue` (clé interne) au lieu de `localizedName`.
     private var previewText: String {
         switch selectedType {
         case .windDirection:
-            return "Quand le vent vient de \(Int(windDirCenter))° ±\(Int(windDirSpread))°"
+            return String(localized: "Quand le vent vient de \(Int(windDirCenter))° ±\(Int(windDirSpread))°")
 
         case .sunriseSunset:
-            let eventStr = sunEvent == .sunrise ? "lever du soleil" : "coucher du soleil"
+            let eventStr = sunEvent == .sunrise
+                ? String(localized: "lever du soleil")
+                : String(localized: "coucher du soleil")
             switch sunTiming {
             case .at:
-                return "Au moment du \(eventStr)"
+                return String(localized: "Au moment du \(eventStr)")
             case .before:
-                return "\(formatMinutes(sunOffsetMinutes)) avant le \(eventStr)"
+                return String(localized: "\(formatMinutes(sunOffsetMinutes)) avant le \(eventStr)")
             case .after:
-                return "\(formatMinutes(sunOffsetMinutes)) après le \(eventStr)"
+                return String(localized: "\(formatMinutes(sunOffsetMinutes)) après le \(eventStr)")
             }
 
         case .tideWindow:
-            let ref = tideType == true ? "la pleine mer" : (tideType == false ? "la basse mer" : "la marée")
-            return "Navigable de \(String(format: "%.1f", locale: Locale.current, value1)) h avant à \(String(format: "%.1f", locale: Locale.current, value2)) h après \(ref)"
+            let ref = tideType == true
+                ? String(localized: "la pleine mer")
+                : (tideType == false ? String(localized: "la basse mer") : String(localized: "la marée"))
+            let before = String(format: "%.1f", locale: Locale.current, value1)
+            let after = String(format: "%.1f", locale: Locale.current, value2)
+            return String(localized: "Navigable de \(before) h avant à \(after) h après \(ref)")
 
         default:
-            let typeStr = selectedType.rawValue.lowercased()
+            let typeStr = selectedType.localizedName.lowercased()
             let v1Str = formattedValue(value1)
             switch selectedOperator {
-            case .greaterThan: return "Quand \(typeStr) > \(v1Str)"
-            case .lessThan:    return "Quand \(typeStr) < \(v1Str)"
-            case .equals:      return "Quand \(typeStr) = \(v1Str)"
-            case .between:     return "Quand \(typeStr) entre \(v1Str) et \(formattedValue(value2))"
+            case .greaterThan: return String(localized: "Quand \(typeStr) > \(v1Str)")
+            case .lessThan:    return String(localized: "Quand \(typeStr) < \(v1Str)")
+            case .equals:      return String(localized: "Quand \(typeStr) = \(v1Str)")
+            case .between:     return String(localized: "Quand \(typeStr) entre \(v1Str) et \(formattedValue(value2))")
             }
         }
     }
@@ -613,7 +624,9 @@ private struct OperatorChip: View {
 
 // MARK: - Tide Type Chip
 private struct TideTypeChip: View {
-    let title: String
+    /// `LocalizedStringKey` et non `String` : rendu par `Text(title)`, un String serait affiché
+    /// verbatim → « Les deux / Pleine mer / Basse mer » restaient en français partout.
+    let title: LocalizedStringKey
     let icon: String
     let isSelected: Bool
     let color: Color

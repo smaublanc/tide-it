@@ -534,12 +534,12 @@ struct AlertEditorView: View {
         Button {
             HapticManager.shared.impact(.medium)
             guard hasConditions else {
-                validationMessage = "Ajoutez au moins une condition à votre alerte."
+                validationMessage = String(localized: "Ajoutez au moins une condition à votre alerte.")
                 showValidationError = true
                 return
             }
             guard actions.contains(where: { $0.type == .notification }) else {
-                validationMessage = "Activez au moins l'action « Notification » pour recevoir vos alertes."
+                validationMessage = String(localized: "Activez au moins l'action « Notification » pour recevoir vos alertes.")
                 showValidationError = true
                 return
             }
