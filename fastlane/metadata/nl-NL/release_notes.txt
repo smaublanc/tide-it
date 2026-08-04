@@ -1,5 +1,8 @@
 Nieuw:
-- De kaart opent nu direct. Door een weergavefout duurde het in het donkere thema zo'n tien seconden voordat hij verscheen: opgelost.
-- En als het laden toch lang duurt, geeft een voortgangsbalk dat nu aan, in plaats van een bevroren scherm.
+- De 7-daagse trend staat nu direct op het hoofdscherm, onder de actuele wind: één windbalk, en op surfspots een tweede voor de deining. Niet meer via het menu.
+- Surf-GO-vensters ontstaan niet meer bij windgolven of zonder deiningsgegevens, en respecteren eindelijk het plafond van jouw niveau.
+- De getoonde getijden horen altijd bij de getoonde haven, ook bij het starten op een buitenlandse haven.
+- Een station dat zijn snelheid of richting niet publiceert wordt niet langer als meting getoond.
+- Geen meldingen meer midden in de nacht, en de meldingseditor spreekt eindelijk jouw taal.
 
 Nog steeds nauwkeurig, eerlijk en zuinig voor je batterij. Goede wind en mooie golven!

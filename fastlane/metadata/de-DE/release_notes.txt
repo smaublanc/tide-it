@@ -1,5 +1,8 @@
 Neu:
-- Die Karte öffnet sich jetzt sofort. Ein Darstellungsfehler ließ sie im dunklen Design rund zehn Sekunden brauchen – behoben.
-- Und falls ein Ladevorgang doch einmal dauert, zeigt das nun ein Fortschrittsbalken an, statt eines eingefrorenen Bildschirms.
+- Der 7-Tage-Trend wandert direkt auf den Hauptbildschirm, unter den Echtzeitwind: ein Windband, an Surfspots zusätzlich ein Wellenband. Kein Umweg mehr übers Menü.
+- Surf-GO-Fenster entstehen nicht mehr bei Windsee oder ganz ohne Dünungsdaten und halten sich endlich an das Limit deines Niveaus.
+- Die angezeigten Gezeiten gehören immer zum angezeigten Hafen – auch beim Start auf einem ausländischen Hafen.
+- Eine Station ohne veröffentlichte Geschwindigkeit oder Richtung wird nicht mehr als Messung dargestellt.
+- Keine Mitteilungen mitten in der Nacht mehr, und der Benachrichtigungs-Editor spricht endlich deine Sprache.
 
 Weiterhin präzise, ehrlich und schonend für den Akku. Guten Wind und gute Wellen!

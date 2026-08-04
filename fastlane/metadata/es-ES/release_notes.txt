@@ -1,5 +1,8 @@
 Novedades:
-- El mapa se abre al instante. Un fallo de renderizado hacía que tardara unos diez segundos en aparecer con el tema oscuro: corregido.
-- Y si alguna carga se alarga, ahora lo indica una barra de progreso, en lugar de una pantalla congelada.
+- La tendencia de 7 días pasa a la pantalla principal, justo bajo el viento real: una franja de viento y, en los spots de surf, otra de oleaje. Ya no hace falta pasar por el menú.
+- Las ventanas GO de surf ya no saltan con marejadilla de viento ni sin datos de oleaje, y por fin respetan el techo de tu nivel.
+- Las mareas mostradas son siempre las del puerto mostrado, incluso al arrancar en un puerto extranjero.
+- Una estación que no publica su velocidad o su dirección deja de mostrarse como una medición.
+- Se acabaron las notificaciones en plena noche, y el editor de alertas por fin habla tu idioma.
 
 Igual de preciso, honesto y ligero para tu batería. ¡Buen viento y buenas olas!

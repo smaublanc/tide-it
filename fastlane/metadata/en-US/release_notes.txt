@@ -1,5 +1,8 @@
 What's new:
-- The map now opens instantly. A rendering bug made it take about ten seconds to appear in dark theme: fixed.
-- And if loading ever drags on, a progress bar now says so, instead of a frozen screen.
+- The 7-day trend moves onto the main screen, right under the live wind: one wind ribbon, plus a swell ribbon on surf spots. No more digging through the menu.
+- Surf GO windows no longer fire on wind chop or with no swell data at all, and finally respect your level's ceiling.
+- The tides on screen always belong to the port on screen — including at launch on a foreign port.
+- A station that doesn't publish its speed or direction is no longer shown as a reading.
+- No more middle-of-the-night notifications, and the alert editor finally speaks your language.
 
 Still as precise, honest and battery-light as ever. Fair winds and good waves!
