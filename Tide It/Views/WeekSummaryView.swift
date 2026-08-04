@@ -2,21 +2,33 @@
 //  WeekSummaryView.swift
 //  Tide It
 //
-//  « Résumé 7 jours » — bottom sheet COURTE (comme les autres fenêtres de l'app, qui sortent
-//  du bas), pas plein écran. Rubans couleur pleine largeur (vent + houle si spot surf) façon
-//  app de vent, segmentés par jour, pour lire la tendance de la semaine d'un coup d'œil.
-//  Données = cache MarineWeatherService partagé → présentation pure. Couleurs vent réutilisées
-//  de PremiumCurveCanvas. Le fond/grabber/glisse sont fournis par la sheet (.sheetBackground).
+//  « Tendance 7 jours » — rubans couleur pleine largeur (vent, + houle sur un spot de surf),
+//  segmentés par jour, pour lire la semaine d'un coup d'œil façon app de vent.
+//
+//  ⚠️ Ce bloc vivait dans une bottom sheet ouverte depuis le menu (« Résumé 7 jours »). Il est
+//  désormais posé DIRECTEMENT dans la vue principale, sous les infos de la balise vent : la
+//  tendance de la semaine est une info de coup d'œil, la mettre derrière deux taps (menu →
+//  entrée) coûtait plus d'interactions qu'elle n'en valait. Un spot classique montre 1 ruban
+//  (vent), un spot de surf en montre 2 (vent + houle).
+//
+//  Données = cache MarineWeatherService partagé → présentation pure, aucun fetch ici.
+//  Couleurs vent réutilisées de PremiumCurveCanvas (source unique).
 //
 
 import SwiftUI
 
-struct WeekSummaryView: View {
+struct WeekTrendBands: View, Equatable {
     let forecasts: [HourlyForecast]
-    let portName: String
+    /// Spot de surf → second ruban « Houle ». Un port classique n'affiche que le vent.
     let isSurfSpot: Bool
 
     private let days = 7
+
+    /// Re-rendu uniquement si les prévisions ou le type de spot changent (le curseur
+    /// « maintenant » n'a pas besoin d'une précision supérieure à l'heure).
+    static func == (lhs: WeekTrendBands, rhs: WeekTrendBands) -> Bool {
+        lhs.isSurfSpot == rhs.isSurfSpot && lhs.forecasts == rhs.forecasts
+    }
 
     private var window: [HourlyForecast] {
         let cal = Calendar.current
@@ -34,44 +46,33 @@ struct WeekSummaryView: View {
         return min(max(Date().timeIntervalSince(start) / span, 0), 1)
     }
 
+    /// Y a-t-il une vraie donnée de houle ? Sans elle, PAS de ruban « Houle » — plutôt qu'une
+    /// bande uniforme à 0 m qui se lirait comme une mer plate mesurée (règle d'honnêteté).
+    private var hasSwellData: Bool {
+        window.contains { ($0.swellHeight ?? $0.waveHeight) != nil }
+    }
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            header
-            if window.count >= 2 {
-                // Bloc Vent : jours COLLÉS au-dessus du ruban, légende dessous.
+        // Rien à montrer sans au moins deux points : le bloc DISPARAÎT (pas de cadre vide).
+        if window.count >= 2 {
+            VStack(alignment: .leading, spacing: 10) {
                 VStack(alignment: .leading, spacing: 4) {
                     dayHeader
                     band(title: "Vent", icon: "wind", tint: Color(red: 0.5, green: 0.84, blue: 0.9),
-                         colors: window.map { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) }, trailing: windRange)
+                         colors: window.map { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) },
+                         trailing: windRange)
                 }
-                if isSurfSpot {
+                if isSurfSpot, hasSwellData {
                     band(title: "Houle", icon: "water.waves", tint: Color(red: 0.37, green: 0.79, blue: 0.65),
-                         colors: window.map { swellColor($0.swellHeight ?? $0.waveHeight ?? 0) }, trailing: swellRange)
+                         colors: window.map { swellColor($0.swellHeight ?? $0.waveHeight ?? 0) },
+                         trailing: swellRange)
                 }
                 footnote
-            } else {
-                unavailable
             }
         }
-        .padding(.horizontal, 20)
-        .padding(.top, 18)
-        .padding(.bottom, 20)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .presentationDetents([.height(isSurfSpot ? 358 : 278)])
-        .presentationDragIndicator(.visible)
     }
 
     // MARK: pièces
-
-    private var header: some View {
-        VStack(alignment: .leading, spacing: 1) {
-            Text("Résumé 7 jours").font(.system(size: 17, weight: .semibold)).foregroundStyle(.primary)
-            // Suffixe « spot de surf » localisé via String(localized:) (le nom du port reste tel quel).
-            Text(isSurfSpot ? "\(portName) · \(String(localized: "spot de surf"))" : portName)
-                .font(.system(size: 12)).foregroundStyle(.secondary).lineLimit(1)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-    }
 
     private var dayHeader: some View {
         let accent = Color(red: 0.37, green: 0.79, blue: 0.65)
@@ -86,21 +87,27 @@ struct WeekSummaryView: View {
                 .frame(maxWidth: .infinity)
             }
         }
+        .accessibilityHidden(true)   // l'échelle de jours est décrite par le libellé du ruban
     }
 
-    private func band(title: String, icon: String, tint: Color, colors: [Color], trailing: String) -> some View {
+    private func band(title: LocalizedStringKey, icon: String, tint: Color,
+                      colors: [Color], trailing: String) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             ForecastRibbon(colors: colors, cursorFrac: cursorFrac, daySegments: days)
-                .frame(height: 42)
+                .frame(height: 34)
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(.white.opacity(0.08), lineWidth: 1))
             HStack(spacing: 6) {
                 Image(systemName: icon).font(.system(size: 13, weight: .medium)).foregroundStyle(tint)
-                Text(LocalizedStringKey(title)).font(.system(size: 13, weight: .medium)).foregroundStyle(.primary)
+                Text(title).font(.system(size: 13, weight: .medium)).foregroundStyle(.primary)
                 Spacer()
                 Text(trailing).font(.system(size: 12, weight: .medium)).foregroundStyle(.secondary).monospacedDigit()
             }
         }
+        // VoiceOver : une phrase, pas un ruban muet suivi de nombres orphelins.
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(title))
+        .accessibilityValue(Text(String(localized: "tendance sur 7 jours, de \(trailing)")))
     }
 
     private var footnote: some View {
@@ -110,16 +117,7 @@ struct WeekSummaryView: View {
             Spacer()
             Text("tendance · 7 j").font(.system(size: 11)).foregroundStyle(.tertiary)
         }
-    }
-
-    private var unavailable: some View {
-        VStack(spacing: 8) {
-            Image(systemName: "wind.snow").font(.system(size: 28)).foregroundStyle(.secondary)
-            Text("Prévisions indisponibles").font(.system(size: 15, weight: .medium)).foregroundStyle(.primary)
-            Text("Ouvre le spot un instant, puis reviens.").font(.system(size: 12)).foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 20)
+        .accessibilityHidden(true)
     }
 
     // MARK: données dérivées
@@ -189,7 +187,7 @@ private struct ForecastRibbon: View {
             }
             let cx = CGFloat(cursorFrac) * size.width
             ctx.fill(Path(CGRect(x: cx - 0.5, y: 0, width: 1, height: size.height)), with: .color(.white.opacity(0.2)))
-            let r: CGFloat = 7
+            let r: CGFloat = 6
             let ring = CGRect(x: cx - r, y: size.height / 2 - r, width: 2 * r, height: 2 * r)
             ctx.fill(Path(ellipseIn: ring), with: .color(.black.opacity(0.42)))
             ctx.stroke(Path(ellipseIn: ring), with: .color(.white), lineWidth: 2.2)

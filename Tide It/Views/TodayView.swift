@@ -290,6 +290,20 @@ struct TodayView: View {
                             .staggeredAppearance(index: 2, appeared: dashboardAppeared)
                     }
 
+                    // Tendance 7 jours, JUSTE SOUS les infos de balise : 1 ruban (vent) sur un port
+                    // classique, 2 (vent + houle) sur un spot de surf. Anciennement planqué derrière
+                    // le menu (« Résumé 7 jours ») — une info de coup d'œil ne mérite pas deux taps.
+                    // Le composant s'efface tout seul s'il n'a pas au moins deux points de prévision.
+                    if !openMeteoForecasts.isEmpty {
+                        WeekTrendBands(
+                            forecasts: openMeteoForecasts,
+                            isSurfSpot: SurfSpotCatalog.shared.spot(id: tideService.selectedPort?.id ?? "") != nil
+                        )
+                        .equatable()
+                        .padding(.horizontal, DS.pagePadding)
+                        .staggeredAppearance(index: 3, appeared: dashboardAppeared)
+                    }
+
                     // Météo 7 jours — un seul bandeau scrollable, dense et color-codé
                     if !openMeteoForecasts.isEmpty {
                         WeatherBand7Days(
