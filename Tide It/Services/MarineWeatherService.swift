@@ -20,6 +20,13 @@ struct MarineConditions: Codable, Equatable {
     let swellDirection: Double?     // Direction de la houle longue (°)
     let waterTemperature: Double?   // Température de l'eau (°C)
 
+    /// Le modèle marine a-t-il réellement fourni une lecture de vague/houle ?
+    /// `init(from:)` retombe sur 0 quand le point n'est pas couvert (spot très abrité, plan d'eau
+    /// intérieur, réponse partielle) : sans ce témoin, ce 0 FABRIQUÉ se lit comme une mesure
+    /// « mer plate » — et le moteur surf notait dessus. Une vraie mer à 0,00 m n'existe pas ;
+    /// une houle nulle mais mesurée arrive toujours avec sa période ou sa partition.
+    var hasWaveData: Bool { swellHeight != nil || waveHeight > 0 || wavePeriod > 0 }
+
     var waveDirectionName: String {
         let directions = ["N", "NE", "E", "SE", "S", "SO", "O", "NO"]
         let index = Int((waveDirection + 22.5).truncatingRemainder(dividingBy: 360) / 45)

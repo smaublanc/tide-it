@@ -791,9 +791,6 @@ struct SpotEditorView: View {
         // Position : coordonnée explicite (carte / ma position) sinon celle du port de référence.
         let lat = coordinate?.latitude ?? refPort.latitude
         let lon = coordinate?.longitude ?? refPort.longitude
-        // Gates type/eau/orientation retirés du spot (gérés par sport dans « Mes sports »).
-        let cfg = SpotConfig()
-
         // — Mode édition : on met à jour le spot existant (id conservé) —
         if let editing = editingPort {
             let updated = Port(
@@ -804,7 +801,12 @@ struct SpotEditorView: View {
                 source: editing.source, country: editing.country
             )
             tideService.updateCustomPort(updated)
-            SpotConfigStore.shared.set(cfg, for: editing.id)
+            // ⚠️ NE PAS toucher à SpotConfigStore ici. L'éditeur n'expose plus les gates
+            // type/eau/orientation (gérés par sport dans « Mes sports ») : il y écrivait donc une
+            // SpotConfig VIDE, qui effaçait l'orientation de côte posée à la matérialisation d'un
+            // spot de surf. Conséquence : le facteur Exposition disparaissait et le vent basculait
+            // sur la branche « cap inconnu », où un offshore (idéal en surf) est noté comme une
+            // dégradation — un simple renommage inversait le verdict du spot.
             TideCache.shared.invalidate(portId: editing.id)   // ref/décalage ont pu changer
             if tideService.selectedPort?.id == editing.id {
                 Task { await tideService.fetchTideData(forceRefresh: true) }
@@ -827,7 +829,8 @@ struct SpotEditorView: View {
             return
         }
 
-        SpotConfigStore.shared.set(cfg, for: created.id)
+        // Spot NEUF : config vierge (les gates type/eau/orientation vivent dans « Mes sports »).
+        SpotConfigStore.shared.set(SpotConfig(), for: created.id)
         HapticManager.shared.success()
         onCreated(created)
         dismiss()

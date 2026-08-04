@@ -831,23 +831,36 @@ class ActivityScoreService {
         // — Houle : énergie de la houle DOMINANTE (28%) —
         // On note la rideabilité (plateau sur la hauteur) et on DÉCRIT via la hauteur de
         // déferlement estimée en INTERVALLE (genou…overhead) + la taille/période au large.
-        if let marine = marine {
+        // Gates DURS du surf, symétriques de ceux du moteur vent (qui met hardCap = 0 sans
+        // prévision de vent) : le surf n'en avait AUCUN — d'où des fenêtres GO sur une absence
+        // de donnée ou au-delà du plafond du rider.
+        var hardCap: Int? = nil
+        if let marine = marine, marine.hasWaveData {
             let h = marine.waveHeight
+            // La note porte sur la houle DOMINANTE, pas sur la mer TOTALE : `waveHeight` inclut
+            // le clapot de vent, donc 1,5 m de clapot onshore notait comme 1,5 m de houle et
+            // ouvrait une fenêtre GO — alors que le texte affiché juste à côté décrivait, lui,
+            // la houle. La note et le texte parlent désormais du MÊME fait.
             let swH = (marine.swellHeight ?? h)
             let swP = marine.swellPeriod ?? marine.wavePeriod
             // Sweet spot rideable CALÉ SUR LE NIVEAU : un débutant note haut le petit/propre et
             // chute vite au-delà de son plafond ; un expert garde un large plateau. nil = défaut.
             let hiCap = currentRiderLevel.map { $0.surfMaxSwellM ?? 4.0 } ?? 2.5
             let loCap = (currentRiderLevel == .debutant) ? 0.5 : 0.8
-            let s = Self.plateau(h, lo: loCap, hi: hiCap, falloff: 1.2)
+            let s = Self.plateau(swH, lo: loCap, hi: hiCap, falloff: 1.2)
+            // Plafond de houle du NIVEAU = gate DUR. Le chemin MANUEL le traite déjà ainsi
+            // (SurfConditions.adjusted(for:) borne maxSwellHeight) ; le mode AUTO — qui est le
+            // DÉFAUT — ne l'appliquait qu'en poids, si bien qu'un débutant recevait des fenêtres
+            // GO à 2,5 m. Sans niveau renseigné : aucun gate, on ne devine pas la limite du rider.
+            if let cap = currentRiderLevel?.surfMaxSwellM, swH > cap { hardCap = 0 }
             let breaking = SurfMetrics.breakingHeightRange(height: swH, period: swP)
             let bucket = SurfHeightBucket.bucket(forMeters: (breaking.lowerBound + breaking.upperBound) / 2)
             let desc: String
-            if h < 0.3 { desc = "Flat (\(fmtHeight(h)))" }
-            else if h < 0.8 { desc = "Petite houle (\(fmtHeight(h))) — déferlement ~\(bucket.localizedName.lowercased())" }
-            else if h <= 2.5 { desc = "Houle \(fmtHeight(swH)) / \(Int(swP))s — déferlement ~\(bucket.localizedName.lowercased())" }
-            else if h <= 3.5 { desc = "Grosse houle (\(fmtHeight(h))) : niveau requis" }
-            else { desc = "Houle puissante (\(fmtHeight(h))) : engagé" }
+            if swH < 0.3 { desc = "Flat (\(fmtHeight(swH)))" }
+            else if swH < 0.8 { desc = "Petite houle (\(fmtHeight(swH))) — déferlement ~\(bucket.localizedName.lowercased())" }
+            else if swH <= 2.5 { desc = "Houle \(fmtHeight(swH)) / \(Int(swP))s — déferlement ~\(bucket.localizedName.lowercased())" }
+            else if swH <= 3.5 { desc = "Grosse houle (\(fmtHeight(swH))) : niveau requis" }
+            else { desc = "Houle puissante (\(fmtHeight(swH))) : engagé" }
             factors.append(ScoringFactor(name: "Houle", weight: 0.28, score: s, detail: desc))
 
             // — Période (14%) — longue période = houle organisée. MarineConditions ne porte
@@ -878,7 +891,11 @@ class ActivityScoreService {
                 factors.append(ScoringFactor(name: "Exposition", weight: 0.12, score: exposure, detail: desc))
             }
         } else {
-            factors.append(ScoringFactor(name: "Houle", weight: 0.28, score: 0.3, detail: "Données houle indisponibles"))
+            // Aucune lecture de houle exploitable → on ne propose RIEN. L'ancien score de 0,3
+            // « par défaut » suffisait, combiné à la marée et au vent, à faire passer le seuil
+            // AUTO : l'app fabriquait des fenêtres GO surf sur une absence totale de donnée.
+            hardCap = 0
+            factors.append(ScoringFactor(name: "Houle", weight: 0.28, score: 0, detail: "Données houle indisponibles"))
         }
 
         // — État de marée (14%) — gate par-spot si l'utilisateur a renseigné la phase idéale,
@@ -941,7 +958,8 @@ class ActivityScoreService {
             factors.append(ScoringFactor(name: "Coefficient", weight: 0.06, score: s, detail: desc))
         }
 
-        let (score, details) = Self.combine(factors)
+        let (rawScore, details) = Self.combine(factors)
+        let score = hardCap.map { min(rawScore, $0) } ?? rawScore   // gates durs (houle absente / hors plafond)
         return ActivityScore(activity: .surfing, score: score, label: "", details: details, bestTimeToday: nil)
     }
 
