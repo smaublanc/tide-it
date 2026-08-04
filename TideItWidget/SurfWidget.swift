@@ -293,6 +293,14 @@ struct SurfProvider: TimelineProvider {
         completion(Timeline(entries: entries, policy: .after(refreshDate)))
     }
 
+    /// Âge maximal du repli « dernier spot de surf visité ». Au-delà, on n'affiche RIEN plutôt
+    /// qu'une houle périmée présentée comme actuelle : le widget surf était « collant » sans
+    /// aucune limite, si bien qu'une hauteur, une période et un verdict vieux de plusieurs jours
+    /// restaient à l'écran comme s'ils décrivaient la mer du moment. La houle évolue lentement —
+    /// 12 h reste une lecture utile — mais au-delà, c'est un mensonge par omission.
+    /// (Ne s'applique QU'AU repli : le spot actif, lui, est réécrit à chaque passage de l'app.)
+    private static let stickySurfMaxAge: TimeInterval = 12 * 3600
+
     private func loadSurfSource() -> WidgetSharedData? {
         guard let defaults = WidgetSharedKeys.sharedDefaults else { return nil }
         // 1. Port actif = spot de surf → on l'affiche.
@@ -301,9 +309,12 @@ struct SurfProvider: TimelineProvider {
            main.isSurfSpot == true {
             return main
         }
-        // 2. Sinon : dernier spot de surf visité.
+        // 2. Sinon : dernier spot de surf visité, tant qu'il est encore exploitable.
+        //    `updatedAt` est lu ICI, sur le blob BRUT : `resolvedSharedData` le ré-estampille
+        //    ensuite à la date de l'entrée, il ne dirait donc plus rien de la fraîcheur en aval.
         if let d = defaults.data(forKey: WidgetSharedKeys.lastSurfDataKey),
-           let last = try? JSONDecoder().decode(WidgetSharedData.self, from: d) {
+           let last = try? JSONDecoder().decode(WidgetSharedData.self, from: d),
+           Date().timeIntervalSince(last.updatedAt) <= Self.stickySurfMaxAge {
             return last
         }
         return nil

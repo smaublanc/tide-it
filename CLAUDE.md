@@ -45,7 +45,11 @@ Une seule version éditable à la fois sur App Store Connect.
 - `surfSessionStars` (ActivityScoreService.swift ~l.455) : poids/caps des étoiles surf.
 - `refinedForecasts` (ActivityScoreService.swift ~l.405) : horizon +2 h, gates d'âge balise 20 min /
   bouée 60 min.
-- `PremiumManager.welcomeTrialDays=30` (mois offert).
+- `PremiumManager.welcomeTrialDays=30` (mois offert). Droit payant mis en cache avec son
+  échéance (`paidEntitlementUntil_v1`) et amorcé SYNCHRONEMENT à l'init : sans ça `paidPremium`
+  vaut false à chaque réveil en arrière-plan → l'abonné ne reçoit aucune notif GO.
+- `SurfProvider.stickySurfMaxAge=12h` — le widget surf « collant » ne ressert le dernier spot
+  visité que dans cette fenêtre ; au-delà il n'affiche rien plutôt qu'une houle périmée.
 - `WidgetDataWriter.observedCarryMaxAge=3h` / `forecastCarryMaxAge=6h` — anti-régression du
   widget Vent : une écriture marée-seule (caches vent vides au réveil) REPORTE la dernière
   mesure du même port au lieu de l'effacer ; au-delà des gates elle meurt (l'âge est affiché).
@@ -56,6 +60,15 @@ Une seule version éditable à la fois sur App Store Connect.
   `draw()` une fois par tuile : remplir le rect monde à chaque appel rasterise un CGRect de
   ~268 M × 268 M points par tuile → la carte mettait **10 s** à s'afficher (mode sombre seul, la
   teinte n'y étant installée que là). Rendu identique, l'union des tuiles = le monde.
+- **`?? 0` sur une mesure** : une valeur ABSENTE ne doit jamais devenir une mesure. `wAvg ?? 0`
+  donnait un « 0 km/h » indiscernable d'un calme plat, `wDir ?? 0` un cap plein Nord dessiné à
+  la flèche, `waveHeight ?? 0` un « Flat 0,0 m ». Rendre la mesure ABSENTE (reading nil,
+  `MarineConditions.hasWaveData`) — jamais la remplacer par un zéro.
+- **Ternaire de littéraux** : `Text(cond ? "a" : "b")` EST localisé par SwiftUI (les deux
+  branches sont des `LocalizedStringKey`). La règle 1 est plus large que la réalité — le vrai
+  piège est `Text(uneVariableString)` et les branches non-littérales.
+- **Marées et port** : `selectedPort.didSet` vide `tideData` (ou le repose depuis le cache
+  synchrone). Sans ça, les marées du port précédent s'affichent sous le nouveau nom.
 - **Lookups par id sur les catalogues** : `SurfSpotCatalog.spot(id:)` est O(1) (`spotsByID`,
   reconstruit dans `rebuild()`). La carte teste l'appartenance surf pour chacun des ~3 500 ports
   à chaque re-render — un `first { $0.id == }` y coûtait ~1 M de comparaisons par passe.
