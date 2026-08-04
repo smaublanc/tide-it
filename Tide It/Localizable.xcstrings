@@ -22774,6 +22774,7 @@
       }
     },
     "Débloque toutes les features sans achat. DEBUG uniquement." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -51635,6 +51636,7 @@
       }
     },
     "Premium forcé (test)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
