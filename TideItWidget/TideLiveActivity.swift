@@ -120,7 +120,12 @@ struct TideLiveActivity: Widget {
                                 HStack(spacing: 2) {
                                     Image(systemName: "location.north.fill")
                                         .font(.system(size: 8, weight: .semibold))
-                                        .rotationEffect(.degrees(d))
+                                        // `+ 180` comme TOUTES les autres surfaces (card vent,
+                                        // widgets, carte) : `windDirDeg` est la direction D'OÙ
+                                        // vient le vent, la flèche montre où il VA. Sans le
+                                        // demi-tour, la Live Activity pointait à l'opposé de
+                                        // l'app — et contredisait son propre libellé cardinal.
+                                        .rotationEffect(.degrees(d + 180))
                                     Text(SharedUnitFormatter.windCardinal(d))
                                         .font(.system(size: 11, weight: .medium))
                                 }

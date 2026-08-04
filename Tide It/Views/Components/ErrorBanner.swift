@@ -25,9 +25,12 @@ struct ErrorBanner: View {
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundStyle(.orange)
 
+            // `.primary` et non `.white` : le fond est un `ultraThinMaterial`, qui s'éclaircit en
+            // thème CLAIR → le texte blanc y devenait illisible (invisible sur fond blanc). La
+            // Preview forçant `.preferredColorScheme(.dark)`, le défaut n'apparaissait jamais.
             Text(message)
                 .font(.scaled(size: DS.fontCallout, weight: .medium))
-                .foregroundStyle(.white)
+                .foregroundStyle(.primary)
                 .lineLimit(2)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -38,9 +41,9 @@ struct ErrorBanner: View {
                 } label: {
                     Image(systemName: "arrow.clockwise")
                         .font(.system(size: 14, weight: .semibold))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.primary)
                         .frame(width: 30, height: 30)
-                        .background(Circle().fill(.white.opacity(0.12)))
+                        .background(Circle().fill(.primary.opacity(0.10)))
                 }
                 .accessibilityLabel("Réessayer")
             }
@@ -51,7 +54,7 @@ struct ErrorBanner: View {
             } label: {
                 Image(systemName: "xmark")
                     .font(.system(size: 12, weight: .bold))
-                    .foregroundStyle(.white.opacity(0.7))
+                    .foregroundStyle(.secondary)
                     .frame(width: 28, height: 28)
             }
             .accessibilityLabel("Fermer")
@@ -68,7 +71,7 @@ struct ErrorBanner: View {
         )
         .shadow(color: .black.opacity(0.2), radius: 8, y: 4)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("Erreur : \(message)")
+        .accessibilityLabel(Text("Erreur : \(message)"))
     }
 }
 

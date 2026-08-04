@@ -123,12 +123,18 @@ final class CloudSyncService: ObservableObject {
         return true
     }
 
-    /// Au lancement : applique les réglages iCloud s'ils existent (last-writer-wins),
-    /// sinon pousse les réglages locaux vers iCloud.
+    /// Au lancement : applique les réglages iCloud s'ils existent. S'ils sont ABSENTS, on ne
+    /// pousse RIEN.
+    ///
+    /// Pourquoi : la descente du store KVS est asynchrone. Sur un DEUXIÈME appareil, au tout
+    /// premier lancement, iCloud n'a encore rien livré localement — l'ancien code en concluait
+    /// « le nuage est vide » et y écrivait les réglages LOCAUX, c'est-à-dire les valeurs par
+    /// défaut, écrasant ceux du premier appareil (unités, plage de vent du rider, apparence).
+    /// Ne rien pousser est sans risque : `handleExternalChange` applique les réglages dès qu'ils
+    /// arrivent, et le moindre changement de réglage par l'utilisateur les publie de toute façon
+    /// (chaque `didSet` de ThemeManager appelle `saveSettings`).
     func mergeInitialSettings() {
-        if !applyCloudSettings() {
-            saveSettings()
-        }
+        applyCloudSettings()
     }
 
     /// Planifie un `synchronize()` avec debounce. Les appels rapprochés

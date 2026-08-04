@@ -12,8 +12,22 @@ class TideService: ObservableObject {
     @Published var ports: [Port] = []
     @Published var selectedPort: Port? {
         didSet {
+            guard selectedPort?.id != oldValue?.id else { return }
             // Tout port consulté alimente la liste « récents » (MRU) du menu central.
-            if let id = selectedPort?.id, id != oldValue?.id { recordRecentPort(id) }
+            if let id = selectedPort?.id { recordRecentPort(id) }
+            // HONNÊTETÉ : les marées appartiennent à un PORT. Elles n'étaient jamais vidées au
+            // changement, si bien qu'entre la sélection et la réponse du fetch (réseau, voire
+            // JAMAIS si l'appel échoue ou qu'on est hors-ligne) l'app affichait les horaires du
+            // port PRÉCÉDENT sous le nom du NOUVEAU — impossible à détecter pour l'utilisateur.
+            // Le cache est synchrone : s'il connaît déjà ce port on repose ses marées dans la
+            // foulée (aucun clignotement dans le cas courant) ; sinon on vide, et l'état de
+            // chargement prend le relais jusqu'à la vraie donnée.
+            if let id = selectedPort?.id, let cached = TideCache.shared.get(portId: id) {
+                tideData = cached
+            } else {
+                tideData = []
+            }
+            extendedTideData = []   // même règle pour l'horizon 7 j (calendrier)
         }
     }
     /// IDs des ports/spots récemment consultés (MRU, le plus récent en tête), persistés.
@@ -222,6 +236,12 @@ class TideService: ObservableObject {
                let savedPort = self.ports.first(where: { $0.id == savedID }) {
                 self.selectedPort = savedPort
                 appLogger.info("[TideService] Port étranger restauré après chargement mondial: \(savedPort.name)")
+                // … ET on charge SES marées. Personne ne le faisait : l'observateur de TodayView
+                // ne refetch que pour les spots custom. Résultat, au démarrage à froid sur un port
+                // étranger, l'écran restait sur les marées du port de repli affichées sous le nom
+                // du port restauré (le `didSet` de `selectedPort` empêche désormais ce mensonge,
+                // mais sans ce fetch il ne resterait qu'un écran vide). Le cache répond en premier.
+                Task { await self.fetchTideData() }
             }
         }
 

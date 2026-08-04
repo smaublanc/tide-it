@@ -16,20 +16,22 @@ enum TideError: LocalizedError {
     case cacheExpired
     case unknown(Error)
 
+    /// LOCALISÉ : ces messages sont les SEULS textes que voit un utilisateur quand l'app n'a rien
+    /// à afficher. En français brut, 11 langues sur 12 tombaient sur un écran d'erreur illisible.
     var errorDescription: String? {
         switch self {
         case .networkUnavailable:
-            return "Connexion internet indisponible"
+            return String(localized: "Connexion internet indisponible")
         case .serverError(let code):
-            return "Erreur serveur (\(code))"
+            return String(localized: "Erreur serveur (\(code))")
         case .invalidData:
-            return "Données invalides reçues"
+            return String(localized: "Données invalides reçues")
         case .portNotFound:
-            return "Port introuvable"
+            return String(localized: "Port introuvable")
         case .parsingFailed:
-            return "Impossible de lire les données"
+            return String(localized: "Impossible de lire les données")
         case .cacheExpired:
-            return "Données en cache expirées"
+            return String(localized: "Données en cache expirées")
         case .unknown(let error):
             return error.localizedDescription
         }
@@ -38,17 +40,17 @@ enum TideError: LocalizedError {
     var recoverySuggestion: String? {
         switch self {
         case .networkUnavailable:
-            return "Vérifiez votre connexion Wi-Fi ou données mobiles."
+            return String(localized: "Vérifiez votre connexion Wi-Fi ou données mobiles.")
         case .serverError:
-            return "Réessayez dans quelques instants."
+            return String(localized: "Réessayez dans quelques instants.")
         case .invalidData, .parsingFailed:
-            return "Le format des données a peut-être changé. Mettez à jour l'application."
+            return String(localized: "Le format des données a peut-être changé. Mettez à jour l'application.")
         case .portNotFound:
-            return "Sélectionnez un autre port."
+            return String(localized: "Sélectionnez un autre port.")
         case .cacheExpired:
-            return "Actualisez les données."
+            return String(localized: "Actualisez les données.")
         case .unknown:
-            return "Réessayez ou contactez le support."
+            return String(localized: "Réessayez ou contactez le support.")
         }
     }
 

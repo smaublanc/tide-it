@@ -153,7 +153,7 @@ struct TodayView: View {
             if let localized = tideError as? LocalizedError, let desc = localized.errorDescription {
                 return desc
             }
-            return "Impossible de charger les données de marée."
+            return String(localized: "Impossible de charger les données de marée.")
         }
         return nil
     }

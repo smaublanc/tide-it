@@ -345,9 +345,11 @@ final class WeameterService: ObservableObject {
                 .replacingOccurrences(of: ", France", with: "") ?? "Weameter \(slug)"
 
             var reading: WindReading?
+            // Direction EXIGÉE au même titre que la vitesse : `?? 0` affichait un cap plein Nord
+            // fabriqué (flèche + « N ») dès que la balise ne publiait pas sa girouette.
             if let speed = firstNumber(current["windspeed"] as? String),
-               let date = epochDate(current["epoch"]) {
-                let dir = firstNumber(current["winddir"] as? String) ?? 0
+               let date = epochDate(current["epoch"]),
+               let dir = firstNumber(current["winddir"] as? String) {
                 let gust = firstNumber(current["windGust"] as? String)
                 reading = WindReading(
                     date: date,
@@ -615,13 +617,19 @@ final class WindsMobiService: ObservableObject {
         if s.status == "red" { return nil }   // red = hors-ligne
 
         let reading: WindReading?
-        if let m = s.last {
+        // HONNÊTETÉ : vitesse ET direction sont EXIGÉES. Les anciens `?? 0` fabriquaient deux
+        // mesures : une vitesse absente devenait un « 0 km/h » (indiscernable d'un vrai calme
+        // plat) et une direction absente devenait un cap 0° = plein NORD, dessiné comme une
+        // vraie flèche. `directionDegrees` n'étant pas optionnel dans le modèle, une balise
+        // incomplète n'a pas de mesure du tout : elle disparaît des points carte et de
+        // l'arbitrage `nearestReading`, au lieu de mentir.
+        if let m = s.last, let avg = m.wAvg, let dir = m.wDir {
             reading = WindReading(
                 date: Date(timeIntervalSince1970: TimeInterval(m._id)),
-                speedAvgKmh: m.wAvg ?? 0,
+                speedAvgKmh: avg,
                 gustKmh: m.wMax,
                 minKmh: nil,
-                directionDegrees: Double(m.wDir ?? 0),
+                directionDegrees: Double(dir),
                 temperatureC: m.temp,
                 humidityPct: m.hum,
                 pressureHpa: m.pres?.qnh
