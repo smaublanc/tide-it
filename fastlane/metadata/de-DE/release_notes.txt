@@ -1,8 +1,10 @@
-Neu:
-- Der 7-Tage-Trend wandert direkt auf den Hauptbildschirm, unter den Echtzeitwind: ein Windband, an Surfspots zusätzlich ein Wellenband. Kein Umweg mehr übers Menü.
-- Surf-GO-Fenster entstehen nicht mehr bei Windsee oder ganz ohne Dünungsdaten und halten sich endlich an das Limit deines Niveaus.
-- Die angezeigten Gezeiten gehören immer zum angezeigten Hafen – auch beim Start auf einem ausländischen Hafen.
-- Eine Station ohne veröffentlichte Geschwindigkeit oder Richtung wird nicht mehr als Messung dargestellt.
-- Keine Mitteilungen mitten in der Nacht mehr, und der Benachrichtigungs-Editor spricht endlich deine Sprache.
+Korrekturen:
+- Deine Favoriten können nicht mehr von einer zu früh gestarteten iCloud-Synchronisierung gelöscht werden.
+- Offline sind die Ersatzgezeiten zurück: kein leerer Bildschirm mehr, wenn das Netz fehlt.
+- Gezeitentage folgen jetzt der Zeitzone des Hafens, nicht der deines Telefons.
+- Die Alarmglocke fragt wirklich nach der Mitteilungserlaubnis und sagt dir, wenn iOS sie verweigert hat.
+- Jeder Messwert zeigt sein Alter: nichts wird als aktuell dargestellt, was es nicht ist.
+- Größere Tippflächen auf der Karte, gemacht für nasse Hände.
+- Übersetzungen in allen 12 Sprachen vervollständigt: Mitteilungen, Bewertungen, Siri und VoiceOver.
 
 Weiterhin präzise, ehrlich und schonend für den Akku. Guten Wind und gute Wellen!

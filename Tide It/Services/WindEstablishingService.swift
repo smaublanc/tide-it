@@ -188,6 +188,16 @@ final class WindEstablishingService {
     /// de confiance sur la fenêtre, on se tait — on n'annonce jamais à l'aveugle.
     private let goAheadMinConfidence: Double = 0.6
 
+    /// INTERRUPTEUR DE LIVRAISON — `false` en 5.2.9, à passer à `true` en 5.3.
+    ///
+    /// Le moteur est complet et compile, mais cette notification fait une PROMESSE
+    /// (« on revient vers toi la veille »). Or c'est iOS qui décide de ses réveils
+    /// d'arrière-plan : si celui de la veille ne vient pas, la promesse est rompue et
+    /// quelqu'un pose sa journée pour rien. Tant que le calendrier de l'app ne porte pas
+    /// l'état « repérée / confirmée » — le filet qui rattrape un réveil manqué — cette
+    /// fonctionnalité ne doit pas partir chez les utilisateurs. C'est le travail de la 5.3.
+    private let goAheadShipped = false
+
     private var goAhead: [String: String] {
         get { (UserDefaults.standard.dictionary(forKey: goAheadKey) as? [String: String]) ?? [:] }
         set { UserDefaults.standard.set(newValue, forKey: goAheadKey) }
@@ -413,6 +423,7 @@ final class WindEstablishingService {
 
     /// Scan quotidien du planning d'activité, en arrière-plan. Premium + spots abonnés seulement.
     func evaluateGoAheadInBackground(now: Date = Date()) async {
+        guard goAheadShipped else { return }   // cf. goAheadShipped : livré en 5.3, pas avant
         guard PremiumManager.shared.isPremium else { return }
         // UN scan par jour (cf. goAheadScanInterval) : une prévision par spot, ce n'est pas
         // une opération à répéter toutes les 30 min.

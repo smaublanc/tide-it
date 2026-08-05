@@ -1,8 +1,10 @@
-Nieuw:
-- De 7-daagse trend staat nu direct op het hoofdscherm, onder de actuele wind: één windbalk, en op surfspots een tweede voor de deining. Niet meer via het menu.
-- Surf-GO-vensters ontstaan niet meer bij windgolven of zonder deiningsgegevens, en respecteren eindelijk het plafond van jouw niveau.
-- De getoonde getijden horen altijd bij de getoonde haven, ook bij het starten op een buitenlandse haven.
-- Een station dat zijn snelheid of richting niet publiceert wordt niet langer als meting getoond.
-- Geen meldingen meer midden in de nacht, en de meldingseditor spreekt eindelijk jouw taal.
+Correcties:
+- Je favorieten kunnen niet meer worden gewist door een te vroeg gestarte iCloud-synchronisatie.
+- Offline zijn de reservegetijden terug: geen leeg scherm meer als het netwerk wegvalt.
+- Getijdedagen volgen nu de tijdzone van de haven, en niet die van je telefoon.
+- De meldingsbel vraagt echt om toestemming voor meldingen en waarschuwt je als iOS die heeft geweigerd.
+- Elke meting toont haar ouderdom: niets wordt als actueel gepresenteerd als het dat niet is.
+- Grotere aanraakzones op de kaart, gemaakt voor natte handen.
+- Vertalingen voltooid in alle 12 talen: meldingen, oordelen, Siri en VoiceOver.
 
 Nog steeds nauwkeurig, eerlijk en zuinig voor je batterij. Goede wind en mooie golven!

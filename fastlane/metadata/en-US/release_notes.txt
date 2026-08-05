@@ -1,8 +1,10 @@
-What's new:
-- The 7-day trend moves onto the main screen, right under the live wind: one wind ribbon, plus a swell ribbon on surf spots. No more digging through the menu.
-- Surf GO windows no longer fire on wind chop or with no swell data at all, and finally respect your level's ceiling.
-- The tides on screen always belong to the port on screen — including at launch on a foreign port.
-- A station that doesn't publish its speed or direction is no longer shown as a reading.
-- No more middle-of-the-night notifications, and the alert editor finally speaks your language.
+Fixes:
+- Your favorites can no longer be wiped by an iCloud sync that started too early.
+- Offline fallback tides are back: no more empty screen when the network drops out.
+- Tide days now follow the port's time zone, not your phone's.
+- The alert bell actually asks for notification permission, and tells you if iOS turned it down.
+- Every reading shows its age: nothing is presented as current unless it is.
+- Bigger touch targets on the map, designed for wet hands.
+- Translations completed across all 12 languages: notifications, verdicts, Siri and VoiceOver.
 
 Still as precise, honest and battery-light as ever. Fair winds and good waves!

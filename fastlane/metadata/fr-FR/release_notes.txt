@@ -1,8 +1,10 @@
-Nouveautés :
-- La tendance 7 jours passe directement sur l'écran principal, sous le vent réel : un ruban vent, et un second pour la houle sur les spots de surf. Plus besoin de passer par le menu.
-- Les fenêtres GO surf ne se déclenchent plus sur du clapot ni sans donnée de houle, et respectent enfin le plafond de ton niveau.
-- Les marées affichées sont toujours celles du port affiché, y compris au lancement sur un port étranger.
-- Une balise qui ne publie pas sa vitesse ou sa direction n'est plus affichée comme une mesure.
-- Plus de notification en pleine nuit, et l'éditeur d'alertes parle enfin ta langue.
+Corrections :
+- Tes favoris ne peuvent plus être effacés par une synchronisation iCloud partie trop tôt.
+- Hors ligne, les marées de secours reviennent : plus d'écran vide quand le réseau manque.
+- Les journées de marée suivent le fuseau horaire du port, et non celui de ton téléphone.
+- La cloche des alertes demande vraiment l'autorisation des notifications, et te prévient si iOS l'a refusée.
+- Chaque mesure affiche son âge : rien n'est présenté comme actuel sans l'être.
+- Cibles tactiles agrandies sur la carte, pensées pour des mains mouillées.
+- Traductions complétées dans les 12 langues : notifications, verdicts, Siri et VoiceOver.
 
 Toujours aussi précis, honnête et léger pour ta batterie. Bon vent et bonnes vagues !
