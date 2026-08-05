@@ -111,6 +111,11 @@ struct ActivityCalendarView: View {
                 legend
                 if loading && forecasts.isEmpty {
                     loadingState
+                } else if forecasts.isEmpty {
+                    // Chargement TERMINÉ mais rien reçu (hors-ligne, API muette) : sans cette
+                    // branche l'écran affichait une grille vide, sans un mot — l'utilisateur ne
+                    // pouvait pas distinguer « pas de réseau » de « aucune fenêtre cette semaine ».
+                    noForecastState
                 } else {
                     let locked = !premium.isPremium
                     ZStack {
@@ -432,6 +437,35 @@ struct ActivityCalendarView: View {
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .padding(.vertical, 40)
+    }
+
+    /// Prévisions indisponibles (hors-ligne / API muette) — état EXPLICITE avec réessai.
+    private var noForecastState: some View {
+        VStack(spacing: 12) {
+            Image(systemName: "wifi.slash")
+                .font(.system(size: 34))
+                .foregroundStyle(.gray.opacity(0.8))
+            Text("Prévisions indisponibles")
+                .font(.scaled(size: DS.fontHeadline, weight: .semibold))
+                .foregroundStyle(.primary)
+            Text("Les fenêtres GO ont besoin des prévisions de vent et de mer. Vérifie ta connexion.")
+                .font(.scaled(size: DS.fontFootnote))
+                .foregroundStyle(.gray)
+                .multilineTextAlignment(.center)
+            Button {
+                HapticManager.shared.impact(.light)
+                Task { await load() }
+            } label: {
+                Text("Réessayer")
+                    .font(.scaled(size: DS.fontFootnote, weight: .semibold))
+                    .foregroundStyle(.cyan)
+                    .padding(.horizontal, 18).padding(.vertical, 10)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 32)
     }
 
     private var noSportState: some View {

@@ -48,6 +48,12 @@ final class ForecastBiasService: ObservableObject {
         static let maxStationKm = 25.0
         static let maxAge: TimeInterval = 3 * 3600   // 3 h
         static let meaningfulBiasKmh = 2.5           // seuil verdict amber/cyan ET correction (source unique)
+        /// Âge maximal d'un échantillon RETENU dans la moyenne. Le tampon est borné en NOMBRE
+        /// (24) mais pas en durée : sans ce filtre, un spot rouvert après des mois moyennait le
+        /// biais du printemps avec celui d'aujourd'hui — et, la balise arbitrée ayant pu changer
+        /// entre-temps, deux balises différentes. Le biais d'un modèle est saisonnier et local :
+        /// au-delà de quelques jours, un vieil échantillon décrit une autre situation.
+        static let maxSampleAge: TimeInterval = 48 * 3600   // 48 h
     }
 
     private var buffers: [String: [Sample]] = [:]
@@ -80,9 +86,20 @@ final class ForecastBiasService: ObservableObject {
 
     // MARK: - Lecture
 
+    /// Échantillons RETENUS pour le verdict : assez récents ET issus d'une balise assez proche.
+    /// SOURCE UNIQUE du filtre — `readout` et `sampleCount` doivent voir le même ensemble, sinon
+    /// l'app annonce « calibration : 6 échantillons » puis rend un verdict fondé sur 2.
+    private func usableSamples(for portId: String, now: Date = Date()) -> [Sample] {
+        (buffers[portId] ?? []).filter {
+            now.timeIntervalSince($0.t) <= BiasReadout.maxSampleAge && $0.dist <= BiasReadout.maxStationKm
+        }
+    }
+
     /// Verdict de biais pour un spot, ou nil si pas assez d'échantillons.
     func readout(for portId: String) -> BiasReadout? {
-        guard let arr = buffers[portId], arr.count >= 2 else { return nil }
+        let now = Date()
+        let arr = usableSamples(for: portId, now: now)
+        guard arr.count >= 2, let last = arr.last else { return nil }
         let diffs = arr.map { $0.model - $0.observed }
         let mean = diffs.reduce(0, +) / Double(diffs.count)
         let variance = diffs.reduce(0) { $0 + ($1 - mean) * ($1 - mean) } / Double(diffs.count)
@@ -90,13 +107,15 @@ final class ForecastBiasService: ObservableObject {
             meanBiasKmh: mean,
             sampleCount: arr.count,
             scatterKmh: variance.squareRoot(),
-            lastSampleAge: Date().timeIntervalSince(arr.last!.t),
-            stationDistanceKm: arr.last!.dist
+            lastSampleAge: now.timeIntervalSince(last.t),
+            // Distance la PLUS DÉFAVORABLE des échantillons retenus, et non celle du dernier :
+            // la fiabilité d'une moyenne se juge sur le pire de ses termes, pas sur le meilleur.
+            stationDistanceKm: arr.map(\.dist).max() ?? last.dist
         )
     }
 
-    /// Nombre d'échantillons accumulés (pour l'état "calibration…").
-    func sampleCount(for portId: String) -> Int { buffers[portId]?.count ?? 0 }
+    /// Nombre d'échantillons accumulés (pour l'état "calibration…") — même filtre que le verdict.
+    func sampleCount(for portId: String) -> Int { usableSamples(for: portId).count }
 
     /// Corrige une valeur prévue (km/h) avec le biais appris — SI fiable. Sinon valeur brute.
     func debiased(_ kmh: Double, portId: String) -> Double {

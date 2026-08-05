@@ -35,6 +35,11 @@ private enum WT {
 struct TideEntry: TimelineEntry {
     let date: Date
     let data: WidgetSharedData?
+    /// Date d'ÉCRITURE réelle du blob partagé (avant `resolvedSharedData`, qui ré-estampille
+    /// `updatedAt` à la date de l'entrée et efface donc toute trace de fraîcheur). Sert à dater
+    /// le repli « Vent prévu », qui n'a aucun horodatage propre dans `WidgetSharedData`.
+    /// Valeur par défaut → les call sites existants (previews, autres widgets) sont inchangés.
+    var sourceUpdatedAt: Date? = nil
 }
 
 // MARK: - Timeline Provider
@@ -67,7 +72,7 @@ struct TideProvider: TimelineProvider {
             } else {
                 resolved = nil
             }
-            entries.append(TideEntry(date: entryDate, data: resolved))
+            entries.append(TideEntry(date: entryDate, data: resolved, sourceUpdatedAt: rawData?.updatedAt))
         }
 
         let refreshDate = Calendar.current.date(byAdding: .hour, value: 3, to: now)
@@ -551,17 +556,33 @@ struct WindWidgetEntryView: View {
         Group {
             if let data = entry.data, data.realtimeWindLocked == true {
                 WindLockedView()
-            } else if let data = entry.data,
-                      (data.observedWindKmh != nil && data.observedWindStation != nil) || data.forecastWindKmh != nil {
+            } else if let data = entry.data, hasShowableWind(data) {
                 // Balise réelle si dispo, sinon repli sur le vent prévu (jamais « aveugle »).
                 switch family {
-                case .systemMedium: MediumWindView(data: data, entryDate: entry.date)
-                default:            SmallWindView(data: data, entryDate: entry.date)
+                case .systemMedium: MediumWindView(data: data, entryDate: entry.date,
+                                                   sourceUpdatedAt: entry.sourceUpdatedAt)
+                default:            SmallWindView(data: data, entryDate: entry.date,
+                                                  sourceUpdatedAt: entry.sourceUpdatedAt)
                 }
             } else {
                 WindNoStationView(port: entry.data?.portName)
             }
         }
+    }
+
+    /// Âge max d'affichage du repli « Vent prévu ». Le vent OBSERVÉ affiche son âge et se juge
+    /// tout seul ; la prévision, elle, n'a AUCUN horodatage dans `WidgetSharedData` — sans cette
+    /// porte, une prévision écrite il y a trois jours restait affichée comme le vent de
+    /// maintenant. Aligné sur `WidgetDataWriter.forecastCarryMaxAge`.
+    private static let forecastShownMaxAge: TimeInterval = 6 * 3600
+
+    /// Y a-t-il un vent AFFICHABLE ? Balise fraîche → oui. Sinon repli prévision, mais seulement
+    /// tant que le blob partagé est lui-même récent.
+    private func hasShowableWind(_ data: WidgetSharedData) -> Bool {
+        if data.observedWindKmh != nil && data.observedWindStation != nil { return true }
+        guard data.forecastWindKmh != nil else { return false }
+        guard let src = entry.sourceUpdatedAt else { return false }
+        return entry.date.timeIntervalSince(src) <= Self.forecastShownMaxAge
     }
 }
 
@@ -570,6 +591,8 @@ struct WindWidgetEntryView: View {
 struct SmallWindView: View {
     let data: WidgetSharedData
     var entryDate: Date = Date()
+    /// Date d'écriture du blob — sert à dater le repli « Vent prévu », qui n'a pas d'horodatage.
+    var sourceUpdatedAt: Date? = nil
 
     var body: some View {
         // Repli sur le vent PRÉVU si pas de balise observée → le widget n'est jamais « aveugle ».
@@ -605,9 +628,11 @@ struct SmallWindView: View {
                 Text("rafales \(SharedUnitFormatter.windSpeed(gust))")
                     .font(.system(size: 9, weight: .semibold)).foregroundStyle(WT.text2)
             }
-            // Âge de la mesure balise (déjà affiché en Medium) : une mesure reportée
-            // d'une écriture précédente doit dire son âge — jamais passer pour du direct.
-            if let age = windAgeLabel(data.observedWindDate, now: entryDate) {
+            // Âge : celui de la MESURE balise si on en affiche une, sinon celui du blob partagé
+            // (repli « Vent prévu »). Dans les deux cas la donnée dit son ancienneté — jamais
+            // passer pour du direct.
+            if let age = windAgeLabel(data.observedWindKmh != nil ? data.observedWindDate : sourceUpdatedAt,
+                                      now: entryDate) {
                 Text(age).font(.system(size: 8, weight: .medium)).foregroundStyle(WT.text3)
             }
             Spacer(minLength: 5)
@@ -639,6 +664,8 @@ struct SmallWindView: View {
 struct MediumWindView: View {
     let data: WidgetSharedData
     var entryDate: Date = Date()
+    /// Date d'écriture du blob — sert à dater le repli « Vent prévu », qui n'a pas d'horodatage.
+    var sourceUpdatedAt: Date? = nil
 
     var body: some View {
         // Repli sur le vent PRÉVU si pas de balise observée → jamais « aveugle ».
@@ -686,7 +713,8 @@ struct MediumWindView: View {
                         .padding(.horizontal, 5).padding(.vertical, 1)
                         .background(Capsule().fill(windAccent.opacity(0.15)))
                 }
-                if let age = windAgeLabel(data.observedWindDate, now: entryDate) {
+                if let age = windAgeLabel(data.observedWindKmh != nil ? data.observedWindDate : sourceUpdatedAt,
+                                          now: entryDate) {
                     Text(age).font(.system(size: 9, weight: .medium)).foregroundStyle(WT.text3)
                 }
                 Spacer(minLength: 0)

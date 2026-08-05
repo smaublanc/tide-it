@@ -85,15 +85,21 @@ struct ContentView: View {
             if let rawData = dataManager.tideData {
                 // Résolution autonome depuis allTides (gère overnight)
                 let main = resolvedSharedData(from: rawData, at: currentTime)
-                let favs = dataManager.favorites.map { resolvedSharedData(from: $0, at: currentTime) }
-                if favs.isEmpty {
-                    TideMainView(data: main, currentTime: currentTime, showDirectWind: true)
+                let raws = dataManager.favorites
+                if raws.isEmpty {
+                    TideMainView(data: main, currentTime: currentTime, showDirectWind: true,
+                                 sourceUpdatedAt: rawData.updatedAt)
                 } else {
                     // Carrousel Digital Crown : port principal (vent direct possible) puis favoris.
+                    // On itère sur les blobs BRUTS et on résout DANS la boucle, pour garder la
+                    // date d'écriture propre à chaque favori (la résolution l'écrase).
                     TabView {
-                        TideMainView(data: main, currentTime: currentTime, showDirectWind: true)
-                        ForEach(Array(favs.enumerated()), id: \.offset) { _, fav in
-                            TideMainView(data: fav, currentTime: currentTime)
+                        TideMainView(data: main, currentTime: currentTime, showDirectWind: true,
+                                     sourceUpdatedAt: rawData.updatedAt)
+                        ForEach(Array(raws.enumerated()), id: \.offset) { _, raw in
+                            TideMainView(data: resolvedSharedData(from: raw, at: currentTime),
+                                         currentTime: currentTime,
+                                         sourceUpdatedAt: raw.updatedAt)
                         }
                     }
                     .tabViewStyle(.verticalPage)
@@ -127,6 +133,12 @@ private struct TideMainView: View {
     let currentTime: Date
     /// Port actif → autorise le fetch vent DIRECT (balise Watch, sans tel). Faux pour les favoris.
     var showDirectWind: Bool = false
+    /// Date d'écriture RÉELLE du blob par l'iPhone. `data.updatedAt` ne peut pas servir :
+    /// `resolvedSharedData` le ré-estampille à `currentTime`, donc le pied de page affichait
+    /// l'horloge — « Mis à jour 11:42 » à 11:42, sur des données parfois vieilles d'un jour.
+    /// La marée, elle, reste juste (recalculée depuis allTides) : rien d'autre ne trahissait
+    /// l'ancienneté du vent, du nom de balise ou du soleil.
+    var sourceUpdatedAt: Date? = nil
     @State private var showCredits = false
     @ObservedObject private var directWind = WatchWindService.shared
 
@@ -529,7 +541,7 @@ private struct TideMainView: View {
     // MARK: Footer
 
     private var updatedFooter: some View {
-        Text("Mis \u{00e0} jour \(timeFmt.string(from: data.updatedAt))")
+        Text("Mis \u{00e0} jour \(timeFmt.string(from: sourceUpdatedAt ?? data.updatedAt))")
             .font(.system(size: 9))
             .foregroundStyle(WDS.text3)
             .frame(maxWidth: .infinity)

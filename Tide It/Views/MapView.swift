@@ -756,6 +756,19 @@ struct EnhancedPortInfoCard: View {
                         .frame(height: 88)
                         .allowsHitTesting(false)
                 }
+            } else {
+                // Chargement TERMINÉ, tableau VIDE : le port n'a pas répondu (réseau capricieux,
+                // port du monde sans source). La card restait muette — juste un nom et du vide,
+                // sans que l'utilisateur sache s'il devait attendre, réessayer ou changer de port.
+                VStack(spacing: 6) {
+                    Image(systemName: "water.waves.slash")
+                        .font(.system(size: 20))
+                        .foregroundStyle(.secondary)
+                    Text("Marées indisponibles ici")
+                        .font(.scaled(size: DS.fontFootnote, weight: .medium))
+                        .foregroundStyle(.secondary)
+                }
+                .frame(maxWidth: .infinity, minHeight: 100)
             }
 
             // Météo du jour (condition + plage de température) — UNIQUEMENT pour les ports classiques.

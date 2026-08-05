@@ -321,7 +321,12 @@ enum SurfMetrics {
     /// Pureté 0–1 = houle / (houle + mer du vent) : plus la houle domine, plus c'est propre.
     static func purity(swellHeight: Double?, windWaveHeight: Double?) -> Double? {
         guard let sh = swellHeight, sh > 0 else { return nil }
-        let ww = max(0, windWaveHeight ?? 0)
+        // La mer du vent est EXIGÉE : `?? 0` la traitait comme nulle quand le modèle ne la
+        // fournit pas, donnant une pureté de 100 % et un verdict « houle propre » sur une
+        // donnée simplement ABSENTE. Une pureté est un RAPPORT — sans son dénominateur complet,
+        // elle n'existe pas. nil → le facteur disparaît du scoring et l'indicateur ne s'affiche
+        // pas, au lieu d'annoncer une mer parfaitement propre qu'on n'a pas mesurée.
+        guard let ww = windWaveHeight, ww >= 0 else { return nil }
         return sh / (sh + ww)
     }
 

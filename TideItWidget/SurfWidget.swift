@@ -215,7 +215,13 @@ struct MediumSurfView: View {
                     Image(systemName: isRising ? "arrow.up" : "arrow.down")
                         .font(.system(size: 18, weight: .heavy)).foregroundStyle(isRising ? SW.high : SW.low)
                     VStack(alignment: .leading, spacing: 1) {
-                        Text(SharedUnitFormatter.height(data.nextTideHeight))
+                        // Niveau d'eau MAINTENANT (`currentHeight`, interpolé par
+                        // `resolvedSharedData` pour la date de l'entrée) — et non la hauteur de
+                        // la PROCHAINE extrémité, qui s'affichait ici en gros à côté de
+                        // « Marée · Montante » et se lisait donc comme le niveau actuel. Le
+                        // surf est marée-dépendant : un mètre d'écart change la décision.
+                        // La prochaine marée reste affichée juste dessous (PM/BM + heure).
+                        Text(SharedUnitFormatter.height(data.currentHeight))
                             .font(.system(size: 22, weight: .heavy, design: .rounded)).foregroundStyle(SW.text1)
                         Text(isRising ? "Montante" : "Descendante")
                             .font(.system(size: 10, weight: .bold)).foregroundStyle(isRising ? SW.high : SW.low)

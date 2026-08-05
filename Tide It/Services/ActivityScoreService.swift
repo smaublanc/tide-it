@@ -424,7 +424,13 @@ class ActivityScoreService {
                 }
             }
             // HOULE réelle (bouée NDBC) : gate âge ≤ 60 min (publication horaire) + falloff distance.
-            // windWaveHeight INCHANGÉE (Hs bouée = totale, pas une partition) → pureté honnête.
+            // ⚠️ Le Hs d'une bouée est une hauteur TOTALE (houle + mer du vent), pas une partition.
+            // L'injecter dans le champ HOULE tout en laissant `windWaveHeight` intacte gonflait la
+            // PURETÉ (= houle / (houle + mer du vent)) : le numérateur montait, le dénominateur non,
+            // donc la mer paraissait plus propre… parce qu'on l'avait mesurée. On préfère la
+            // meilleure HAUTEUR (la bouée) et une pureté INCONNUE à une hauteur modèle et une
+            // pureté fabriquée : `windWaveHeight` passe à nil dès que le mélange a lieu, et
+            // `SurfMetrics.purity` rend alors nil — l'indicateur disparaît au lieu de mentir.
             if let b = buoyWave {
                 let age = Double(b.wave.minutesOld(asOf: now))
                 if age <= 60 {
@@ -437,6 +443,9 @@ class ActivityScoreService {
                         } ?? f.swellPeriod
                         out = out.withSwell(height: blendedH, period: blendedP, peak: blendedP,
                                             direction: b.wave.directionDegrees ?? f.swellDirection)
+                        // Le champ houle porte désormais une hauteur TOTALE mesurée : la
+                        // répartition houle/mer du vent du modèle ne s'y applique plus.
+                        out.windWaveHeight = nil
                     }
                 }
             }
