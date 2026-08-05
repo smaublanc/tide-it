@@ -1832,7 +1832,11 @@ struct TintedMapRepresentable: UIViewRepresentable {
             guard let r = s.reading else { return nil }
             let unit = ThemeManager.shared.windUnit
             var parts = ["\(UnitFormatter.windSpeedInt(r.speedAvgKmh, unit: unit)) \(unit.label)"]
-            if let g = r.gustKmh { parts.append("raf \(UnitFormatter.windSpeedInt(g, unit: unit))") }
+            // « raf » (rafale) était codé en dur : la pastille de balise parlait français dans
+            // les 12 langues, sur l'écran le plus consulté après l'accueil.
+            if let g = r.gustKmh {
+                parts.append(String(localized: "raf \(UnitFormatter.windSpeedInt(g, unit: unit))"))
+            }
             parts.append(compass8(r.directionDegrees))
             return parts.joined(separator: " · ")
         }

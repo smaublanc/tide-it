@@ -86,29 +86,29 @@ struct GetCurrentTideIntent: AppIntent {
     func perform() async throws -> some IntentResult & ProvidesDialog {
         let portId = port?.id ?? selectedPortId()
         guard let portId else {
-            return .result(dialog: "Aucun port sélectionné. Ouvre Tide It et choisis un port.")
+            return .result(dialog: "\(String(localized: "Aucun port sélectionné. Ouvre Tide It et choisis un port."))")
         }
 
         let portName = port?.name ?? selectedPortName() ?? portId
         guard let tides = TideCache.shared.get(portId: portId), !tides.isEmpty else {
-            return .result(dialog: "Pas de données de marée disponibles pour \(portName). Ouvre l'app pour les actualiser.")
+            return .result(dialog: "\(String(localized: "Pas de données de marée disponibles pour \(portName). Ouvre l'app pour les actualiser."))")
         }
 
         guard let state = TideCalculator.currentState(at: Date(), sortedTides: tides) else {
-            return .result(dialog: "Impossible de calculer l'état actuel de la marée à \(portName).")
+            return .result(dialog: "\(String(localized: "Impossible de calculer l'état actuel de la marée à \(portName)."))")
         }
 
         let height = String(format: "%.1f", locale: Locale.current, state.currentHeight)
         let trend = state.trend.description.lowercased()
-        var response = "À \(portName), la marée est \(trend) à \(height) m."
+        var response = String(localized: "À \(portName), la marée est \(trend) à \(height) m.")
 
         if let next = state.nextTide {
-            let type = next.isHighTide ? "pleine mer" : "basse mer"
+            let type = next.isHighTide ? String(localized: "pleine mer") : String(localized: "basse mer")
             let time = intentTime(next.date, tz: intentPortTimeZone(for: portId))
             let nextHeight = String(format: "%.1f", locale: Locale.current, next.height)
-            response += " Prochaine \(type) à \(time) (\(nextHeight) m)"
+            response += String(localized: " Prochaine \(type) à \(time) (\(nextHeight) m)")
             if let coef = next.coefficient {
-                response += ", coef \(coef)"
+                response += String(localized: ", coef \(coef)")
             }
             response += "."
         }
@@ -136,12 +136,12 @@ struct GetNextTideIntent: AppIntent {
     func perform() async throws -> some IntentResult & ProvidesDialog {
         let portId = port?.id ?? selectedPortId()
         guard let portId else {
-            return .result(dialog: "Aucun port sélectionné.")
+            return .result(dialog: "\(String(localized: "Aucun port sélectionné."))")
         }
 
         let portName = port?.name ?? selectedPortName() ?? portId
         guard let tides = TideCache.shared.get(portId: portId), !tides.isEmpty else {
-            return .result(dialog: "Pas de données pour \(portName). Ouvre l'app.")
+            return .result(dialog: "\(String(localized: "Pas de données pour \(portName). Ouvre l'app."))")
         }
 
         let now = Date()
@@ -158,10 +158,10 @@ struct GetNextTideIntent: AppIntent {
         }
 
         guard let next = filtered.first else {
-            return .result(dialog: "Aucune marée trouvée dans les prochains jours pour \(portName).")
+            return .result(dialog: "\(String(localized: "Aucune marée trouvée dans les prochains jours pour \(portName)."))")
         }
 
-        let type = next.isHighTide ? "Pleine mer" : "Basse mer"
+        let type = next.isHighTide ? String(localized: "Pleine mer") : String(localized: "Basse mer")
         let time = intentTime(next.date, tz: intentPortTimeZone(for: portId), weekday: true)
         let height = String(format: "%.1f", locale: Locale.current, next.height)
         var msg = "\(type) à \(portName) : \(time), \(height) m."
@@ -205,12 +205,12 @@ struct GetTidesForDayIntent: AppIntent {
     func perform() async throws -> some IntentResult & ProvidesDialog {
         let portId = port?.id ?? selectedPortId()
         guard let portId else {
-            return .result(dialog: "Aucun port sélectionné.")
+            return .result(dialog: "\(String(localized: "Aucun port sélectionné."))")
         }
 
         let portName = port?.name ?? selectedPortName() ?? portId
         guard let tides = TideCache.shared.get(portId: portId), !tides.isEmpty else {
-            return .result(dialog: "Pas de données pour \(portName). Ouvre l'app.")
+            return .result(dialog: "\(String(localized: "Pas de données pour \(portName). Ouvre l'app."))")
         }
 
         let resolvedDate = date ?? Date()
@@ -220,7 +220,7 @@ struct GetTidesForDayIntent: AppIntent {
         let calendar = Calendar.inTimeZone(portTZ)
         let startOfDay = calendar.startOfDay(for: resolvedDate)
         guard let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) else {
-            return .result(dialog: "Erreur de date.")
+            return .result(dialog: "\(String(localized: "Erreur de date."))")
         }
 
         let dayTides = tides
@@ -229,7 +229,7 @@ struct GetTidesForDayIntent: AppIntent {
 
         guard !dayTides.isEmpty else {
             let dateStr = resolvedDate.formatted(.dateTime.day().month(.wide))
-            return .result(dialog: "Aucune marée disponible pour le \(dateStr) à \(portName).")
+            return .result(dialog: "\(String(localized: "Aucune marée disponible pour le \(dateStr) à \(portName)."))")
         }
 
         let dateLabel = calendar.isDateInToday(resolvedDate) ? "Aujourd'hui" :

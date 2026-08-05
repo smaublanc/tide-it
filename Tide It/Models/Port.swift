@@ -132,21 +132,23 @@ struct Port: Identifiable, Hashable, Codable {
     }
     
     // Format le décalage horaire avec + ou -
+    /// LOCALISÉ : « Aucun décalage » et les unités h/min s'affichaient en français dans les 12
+    /// langues (String rendu verbatim par `Text`).
     var formattedTimeOffset: String {
         if timeOffset == 0 {
-            return "Aucun décalage"
+            return String(localized: "Aucun décalage")
         }
-        
-        let sign = timeOffset >= 0 ? "+" : ""
+
+        let sign = timeOffset >= 0 ? "+" : "-"
         let hours = abs(timeOffset) / 60
         let minutes = abs(timeOffset) % 60
-        
+
         if hours > 0 && minutes > 0 {
-            return "\(sign)\(hours)h \(minutes)min"
+            return String(localized: "\(sign)\(hours) h \(minutes) min")
         } else if hours > 0 {
-            return "\(sign)\(hours)h"
+            return String(localized: "\(sign)\(hours) h")
         } else {
-            return "\(sign)\(minutes)min"
+            return String(localized: "\(sign)\(minutes) min")
         }
     }
     
@@ -162,14 +164,26 @@ struct Port: Identifiable, Hashable, Codable {
     }
     
     // Renvoie une distance formatée en km ou m
+    /// Distance formatée dans le système d'unités CHOISI par l'utilisateur (Réglages ▸ Unités) :
+    /// elle était toujours en km/m, y compris pour quelqu'un qui a réglé toute l'app en impérial
+    /// et lit ses hauteurs en pieds et ses vitesses en nœuds.
     func formattedDistance(to location: CLLocation) -> String {
-        let distance = self.distance(to: location)
-        
+        let distance = self.distance(to: location)   // mètres
+
+        // Lecture NONISOLATED du réglage (ThemeManager est @MainActor, cette fonction ne l'est
+        // pas) — même approche que les autres call sites hors MainActor de l'app.
+        let system = MeasureSystem(rawValue: UserDefaults.standard.string(forKey: "measureSystem") ?? "") ?? .metric
+        if system == .imperial {
+            let miles = distance / 1609.344
+            if miles >= 0.1 {
+                return String(format: "%.1f mi", locale: Locale.current, miles)
+            }
+            return String(format: "%.0f ft", locale: Locale.current, distance * 3.28084)
+        }
         if distance >= 1000 {
             return String(format: "%.1f km", locale: Locale.current, distance / 1000)
-        } else {
-            return String(format: "%.0f m", distance)
         }
+        return String(format: "%.0f m", locale: Locale.current, distance)
     }
     
     // Égalité basée sur l'identifiant

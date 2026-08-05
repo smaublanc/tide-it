@@ -370,7 +370,10 @@ extension WindTidePlanner {
         let gos = goWindows(forecasts: forecasts, minKmh: minKmh, maxKmh: maxKmh, sunTimes: sunTimes)
         let byDay = Dictionary(grouping: forecasts) { cal.startOfDay(for: $0.time) }
         let labelFmt = DateFormatter(); labelFmt.timeZone = portTimeZone; labelFmt.dateFormat = "EEE d"
-        let hourFmt = DateFormatter(); hourFmt.timeZone = portTimeZone; hourFmt.dateFormat = "HH'h'"
+        // Gabarit LOCALISÉ (`j` = heure seule) : « 14h » à la française s'affichait dans les 12
+        // langues et ignorait le réglage 12 h / 24 h du système.
+        let hourFmt = DateFormatter(); hourFmt.timeZone = portTimeZone; hourFmt.locale = .current
+        hourFmt.setLocalizedDateFormatFromTemplate("j")
         let today = cal.startOfDay(for: Date())
 
         return byDay.keys.sorted().prefix(maxDays).map { day -> DayVerdict in
@@ -398,19 +401,23 @@ extension WindTidePlanner {
                 // Eau basse pendant la fenêtre ? (sous le tiers inférieur du marnage du jour)
                 let lowWater = isLowWater(during: g, tideData: tideData)
                 let win = "\(hourFmt.string(from: g.start))–\(hourFmt.string(from: g.end))"
+                // LOCALISÉS : ces verdicts sont assemblés en String puis rendus par
+                // `Text(uneVariable)` → ils restaient en français dans les 11 autres langues.
                 if lowWater {
                     return DayVerdict(date: day, label: label, status: .marginal,
-                                      detail: "\(loU)–\(hiU) \(dir) \(win) · marée basse")
+                                      detail: String(localized: "\(loU)–\(hiU) \(dir) \(win) · marée basse"))
                 }
                 return DayVerdict(date: day, label: label, status: .go,
-                                  detail: "GO \(win) · \(loU)–\(hiU) \(dir)")
+                                  detail: String(localized: "GO \(win) · \(loU)–\(hiU) \(dir)"))
             }
             // Pas de fenêtre : pourquoi ?
             let maxU = UnitFormatter.windSpeedInt(maxW, unit: windUnit)
             if maxW < minKmh {
-                return DayVerdict(date: day, label: label, status: .none, detail: "trop faible · max \(maxU)")
+                return DayVerdict(date: day, label: label, status: .none,
+                                  detail: String(localized: "trop faible · max \(maxU)"))
             }
-            return DayVerdict(date: day, label: label, status: .marginal, detail: "max \(maxU) (hors jour ou trop fort)")
+            return DayVerdict(date: day, label: label, status: .marginal,
+                              detail: String(localized: "max \(maxU) (hors jour ou trop fort)"))
         }
     }
 

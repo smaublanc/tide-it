@@ -150,21 +150,30 @@ final class TideAlertEvaluator {
                     }
 
                     if triggered {
-                        let dayName = dayOffset == 1 ? "demain" : "dans \(dayOffset) jours"
+                        // LOCALISÉ : cette notification était intégralement en français, construite
+                        // par interpolation — donc illisible pour 11 des 12 langues, alors que
+                        // c'est parfois le SEUL contact de la journée entre l'app et l'utilisateur.
+                        let dayName = dayOffset == 1
+                            ? String(localized: "demain")
+                            : String(localized: "dans \(dayOffset) jours")
+                        // Heure au gabarit LOCALISÉ (`jmm`) : respecte le choix 12 h / 24 h du
+                        // système, là où « HH:mm » imposait le 24 h à tout le monde.
                         let formatter = DateFormatter()
-                        formatter.dateFormat = "HH:mm"
+                        formatter.locale = .current
+                        formatter.setLocalizedDateFormatFromTemplate("jmm")
                         formatter.timeZone = TimeZone(identifier: port.portTimeZoneIdentifier) ?? .current
                         let timeStr = formatter.string(from: maxWind.time)
 
                         // Titre adapté à l'opérateur : « vent faible » pour < (fenêtre calme),
                         // « vent fort » sinon — sinon un seuil bas affichait « Alerte vent » alarmiste.
                         let title = condition.operator1 == .lessThan
-                            ? "Vent faible prévu \(dayName)"
-                            : "Alerte vent prévue \(dayName)"
+                            ? String(localized: "Vent faible prévu \(dayName)")
+                            : String(localized: "Alerte vent prévue \(dayName)")
+                        let speedStr = UnitFormatter.windSpeed(maxWind.windSpeedKmh, unit: userUnit)
 
                         await NotificationScheduler.sendForecastAlert(
                             title: title,
-                            body: "\(port.name) : vent prévu \(UnitFormatter.windSpeed(maxWind.windSpeedKmh, unit: userUnit)) vers \(timeStr)",
+                            body: String(localized: "\(port.name) : vent prévu \(speedStr) vers \(timeStr)"),
                             identifier: "forecast_\(alert.id)_\(dayOffset)"
                         )
 

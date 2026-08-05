@@ -347,11 +347,15 @@ struct ObservedWindCard: View, Equatable {
 
     // MARK: - A11y
 
+    /// Phrase VoiceOver — LOCALISÉE. Elle était construite en français brut : un utilisateur
+    /// non francophone qui navigue au lecteur d'écran entendait la carte la plus importante de
+    /// l'app (le vent réel) dans une langue qu'il ne lit pas.
     private var accessibilityLabel: String {
-        var s = "Vent observé \(displaySpeed) \(unitLabel), direction \(reading.directionCardinal), force \(beaufortScale) Beaufort"
-        if let gust = displayGust { s += ", rafales \(gust)" }
-        if let st = WindSteadiness(reading: reading) { s += ", vent \(st.a11yAdjective.lowercased())" }
-        s += ". Station \(station.name) à \(String(format: "%.1f", locale: Locale.current, distanceKm)) km, \(reading.ageLabel)."
+        var s = String(localized: "Vent observé \(displaySpeed) \(unitLabel), direction \(reading.directionCardinal), force \(beaufortScale) Beaufort")
+        if let gust = displayGust { s += String(localized: ", rafales \(gust)") }
+        if let st = WindSteadiness(reading: reading) { s += String(localized: ", vent \(st.a11yAdjective.lowercased())") }
+        let dist = String(format: "%.1f", locale: Locale.current, distanceKm)
+        s += String(localized: ". Station \(station.name) à \(dist) km, \(reading.ageLabel).")
         return s
     }
 }
