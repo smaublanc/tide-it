@@ -613,7 +613,9 @@ class TideService: ObservableObject {
         do {
             let tides = try await fetchTideDataFromAnySource(portId: portId, source: port?.source ?? .shom)
             let sorted = tides.sorted { $0.date < $1.date }
-            TideCache.shared.set(portId: portId, tides: sorted)
+            // Jamais de VIDE en cache : il se relirait comme une réponse valide pendant 6 h
+            // (le port paraîtrait « sans marées » sans qu'aucun nouvel essai ait lieu).
+            if !sorted.isEmpty { TideCache.shared.set(portId: portId, tides: sorted) }
             return sorted
         } catch {
             appLogger.error("fetchTideDataForPort(\(portId)) failed: \(error.localizedDescription)")
@@ -724,8 +726,10 @@ class TideService: ObservableObject {
             let sorted = tides.sorted { $0.date < $1.date }
 
             // Le cache est indexé par port : on l'écrit même si l'utilisateur a changé de
-            // port entre-temps (utile au prochain accès).
-            TideCache.shared.set(portId: port.id, tides: sorted)
+            // port entre-temps (utile au prochain accès). Mais JAMAIS un résultat vide : il se
+            // relirait comme une réponse valide pendant 6 h et gèlerait le port sur « aucune
+            // marée », sans qu'aucun nouvel essai ne soit tenté.
+            if !sorted.isEmpty { TideCache.shared.set(portId: port.id, tides: sorted) }
 
             // … mais on ne diffuse l'état UI/widget/Live Activity que si ce port est
             // toujours le port sélectionné (garde « in-flight » après l'await réseau).
@@ -779,8 +783,9 @@ class TideService: ObservableObject {
                 }
             }
 
-            // En cas d'erreur, essayer le cache même expiré
-            if let cachedTides = TideCache.shared.get(portId: port.id) {
+            // Dernier recours : les marées en cache MÊME EXPIRÉES (astronomiques → toujours
+            // justes). `get` filtrant l'expiration, ce repli ne se déclenchait JAMAIS.
+            if let cachedTides = TideCache.shared.getEvenIfExpired(portId: port.id) {
                 self.tideData = cachedTides
                 self.isLoading = false
                 updateDerivedState()

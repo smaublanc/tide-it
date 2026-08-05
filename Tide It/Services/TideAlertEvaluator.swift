@@ -114,7 +114,11 @@ final class TideAlertEvaluator {
         let forecasts = await MarineWeatherService.shared.fetchHourlyForecast(for: port)
         guard !forecasts.isEmpty else { return }
 
-        let calendar = Calendar.current
+        // Fuseau du PORT, pas du téléphone : « demain » est la journée locale du spot. Avec
+        // `Calendar.current`, une alerte posée depuis la France sur un port des Antilles
+        // (UTC−4) découpait ses journées à minuit heure de Paris — la fenêtre analysée était
+        // décalée de 6 h, donc le « vent max de demain » portait sur la mauvaise tranche.
+        let calendar = Calendar.inTimeZone(port.portTimeZone)
         let now = Date()
 
         for alert in windAlerts {

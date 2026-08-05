@@ -51,9 +51,22 @@ final class TideCache: @unchecked Sendable {
     
     func get(portId: String) -> [TideData]? {
         queue.sync {
-            guard let cached = memoryCache[portId], !cached.isExpired else {
+            guard let cached = memoryCache[portId], !cached.isExpired, !cached.tides.isEmpty else {
                 return nil
             }
+            return cached.tides
+        }
+    }
+
+    /// Dernières marées connues, MÊME EXPIRÉES — repli de dernier recours quand le réseau a
+    /// échoué. Une table de marée est ASTRONOMIQUE : périmée de quelques heures, elle reste
+    /// juste. L'expiration sert à rafraîchir, pas à invalider la physique. Sans cet accès,
+    /// le repli « cache même expiré » de `TideService` était du code mort (il passait par
+    /// `get`, qui filtre l'expiration) : hors-ligne au-delà de 6 h, l'app affichait « impossible
+    /// de charger » alors qu'une table parfaitement utilisable dormait sur le disque.
+    func getEvenIfExpired(portId: String) -> [TideData]? {
+        queue.sync {
+            guard let cached = memoryCache[portId], !cached.tides.isEmpty else { return nil }
             return cached.tides
         }
     }

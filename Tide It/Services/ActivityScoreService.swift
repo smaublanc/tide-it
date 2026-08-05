@@ -1364,9 +1364,13 @@ class ActivityScoreService {
     // MARK: - Helpers
 
     /// Récupère le premier coefficient du jour (associé aux pleines mers)
+    /// Coefficient du CYCLE EN COURS — même définition que le badge de l'écran principal
+    /// (`TideCalculator.currentCoefficient` : la pleine mer porteuse la plus proche de l'instant).
+    /// L'ancienne version prenait « le premier coefficient du jour » dans le fuseau du TÉLÉPHONE :
+    /// sur une grande marée passant de 95 le matin à 102 le soir, le badge affichait 102 et le
+    /// détail du score expliquait 95 — deux chiffres pour un même fait, et un découpage de
+    /// journée faux dès que le port n'est pas dans le fuseau de l'utilisateur.
     private func todayCoefficient(tideData: [TideData], currentTime: Date) -> Int? {
-        let calendar = Calendar.current
-        let todayTides = tideData.filter { calendar.isDate($0.date, inSameDayAs: currentTime) }
-        return todayTides.compactMap(\.coefficient).first
+        TideCalculator.currentCoefficient(at: currentTime, tides: tideData)
     }
 }
