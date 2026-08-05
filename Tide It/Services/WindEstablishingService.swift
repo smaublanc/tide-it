@@ -166,6 +166,33 @@ final class WindEstablishingService {
         set { UserDefaults.standard.set(newValue, forKey: goFiredKey) }
     }
 
+    // MARK: - Repérage anticipé d'une fenêtre GO (« on revient vers toi si ça se confirme »)
+
+    /// État du repérage anticipé, par `portId|sport|jour` → étape (`spotted` puis `closed`).
+    /// `closed` = le retour promis (confirmation OU annulation) a été envoyé : on n'y revient plus.
+    private let goAheadKey = "goWindow.aheadState"
+    /// Dernier scan prévisionnel (un par jour, cf. `goAheadScanInterval`).
+    private let goAheadScanKey = "goWindow.aheadLastScan"
+
+    /// UN scan par jour : ce repérage demande une prévision par spot abonné. À la cadence de
+    /// réveil d'iOS (30 min) ce serait absurde pour la batterie ET pour le quota de l'API.
+    private let goAheadScanInterval: TimeInterval = 20 * 3600
+    /// Horizon du repérage : au-delà de J+5 les modèles ne valent rien pour du vent local ;
+    /// en deçà de J+2 il n'y a plus rien à planifier (les autres notifs couvrent le court terme).
+    private let goAheadMinDays = 2
+    private let goAheadMaxDays = 5
+    /// Une fenêtre trop courte n'est pas une sortie : on ne dérange pas pour 1 h.
+    private let goAheadMinHours: Double = 2
+    /// Accord inter-modèles minimal (AROME/ICON/GFS) pour ANNONCER une fenêtre. C'est le cœur
+    /// de la promesse : on ne signale que ce qui a de vraies chances de se réaliser. Sans mesure
+    /// de confiance sur la fenêtre, on se tait — on n'annonce jamais à l'aveugle.
+    private let goAheadMinConfidence: Double = 0.6
+
+    private var goAhead: [String: String] {
+        get { (UserDefaults.standard.dictionary(forKey: goAheadKey) as? [String: String]) ?? [:] }
+        set { UserDefaults.standard.set(newValue, forKey: goAheadKey) }
+    }
+
     /// Purge SYNCHRONE de tout l'état par-spot/par-alerte d'un port supprimé. Les notifs GO et
     /// « vent s'établit » partent via un identifiant UUID aléatoire + trigger 1 s → NON annulables
     /// après coup ; tuer l'état qui les régénère en arrière-plan est le seul correctif durable.
@@ -173,6 +200,7 @@ final class WindEstablishingService {
         let prefix = "\(portId)|"
         goPending = goPending.filter { !$0.key.hasPrefix(prefix) }
         goFired   = goFired.filter   { !$0.key.hasPrefix(prefix) }
+        goAhead   = goAhead.filter   { !$0.key.hasPrefix(prefix) }   // repérages anticipés du spot
         var coords = (UserDefaults.standard.dictionary(forKey: goCoordsKey) as? [String: [String: Any]]) ?? [:]
         if coords.removeValue(forKey: portId) != nil {
             UserDefaults.standard.set(coords, forKey: goCoordsKey)
@@ -359,5 +387,183 @@ final class WindEstablishingService {
                 : String(localized: "\(detail) à \(spot) — c'est le moment de surfer (prévision).")
         )
         appLogger.info("[GoWindow] surf GO à \(spot) : \(detail)")
+    }
+
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // MARK: - Repérage anticipé : « une fenêtre se dessine, on revient vers toi »
+    //
+    // Troisième machine à états, à côté de « le vent s'établit » et « fenêtre GO maintenant ».
+    // Celle-ci regarde LOIN (J+2 à J+5) et annonce UNE fenêtre : la PLUS FIABLE, pas la
+    // première venue. Puis elle tient sa promesse — la veille, elle revient dire si ça se
+    // confirme OU si ça ne tient plus. Sans ce retour, l'annonce serait un mensonge par
+    // omission : quelqu'un pose sa journée et se retrouve sans vent.
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    /// Une fenêtre candidate + sa fiabilité, pour pouvoir CHOISIR la meilleure.
+    private struct AheadCandidate {
+        let sport: WindSport
+        let day: Date
+        let window: GoWindow
+        let confidence: Double   // accord inter-modèles moyen sur les heures de la fenêtre
+        let hours: Double
+        /// On préfère une fenêtre SÛRE à une fenêtre longue : la confiance domine, la durée
+        /// ne départage que les quasi-ex æquo (au-delà de 4 h, une heure de plus ne change rien).
+        var rank: Double { confidence * 100 + min(hours, 4) }
+    }
+
+    /// Scan quotidien du planning d'activité, en arrière-plan. Premium + spots abonnés seulement.
+    func evaluateGoAheadInBackground(now: Date = Date()) async {
+        guard PremiumManager.shared.isPremium else { return }
+        // UN scan par jour (cf. goAheadScanInterval) : une prévision par spot, ce n'est pas
+        // une opération à répéter toutes les 30 min.
+        let last = UserDefaults.standard.double(forKey: goAheadScanKey)
+        guard last == 0 || now.timeIntervalSince1970 - last >= goAheadScanInterval else { return }
+
+        let coordsMap = (UserDefaults.standard.dictionary(forKey: goCoordsKey) as? [String: [String: Any]]) ?? [:]
+        let spots = SportSetupStore.shared.notifyEnabledPortIDs
+        guard !spots.isEmpty, !coordsMap.isEmpty else { return }
+        UserDefaults.standard.set(now.timeIntervalSince1970, forKey: goAheadScanKey)
+
+        for portId in spots {
+            guard let meta = coordsMap[portId],
+                  let name = meta["name"] as? String,
+                  let lat = meta["lat"] as? Double, let lon = meta["lon"] as? Double else { continue }
+            await scanSpotAhead(portId: portId, name: name, lat: lat, lon: lon, now: now)
+        }
+    }
+
+    private func scanSpotAhead(portId: String, name: String, lat: Double, lon: Double, now: Date) async {
+        let setups = SportSetupStore.shared.enabledSetups(for: portId)
+        guard !setups.isEmpty else { return }
+
+        let forecasts = await MarineWeatherService.shared.fetchHourlyForecast(latitude: lat, longitude: lon)
+        guard !forecasts.isEmpty else { return }
+
+        // Marées : LOCALES (cache, sinon calcul harmonique) — aucun réseau supplémentaire.
+        let tides = TideCache.shared.getEvenIfExpired(portId: portId)
+            ?? TideRepository.shared.fetchFromHarmonics(portId: portId)
+
+        var cal = Calendar(identifier: .gregorian)
+        cal.timeZone = TimeZone(identifier: (UserDefaults.standard.dictionary(forKey: goCoordsKey)?[portId] as? [String: Any])?["tz"] as? String ?? "") ?? .current
+        let startDay = cal.startOfDay(for: now)
+
+        var sun: [(sunrise: Date, sunset: Date)] = []
+        for d in 0...(goAheadMaxDays + 1) {
+            if let day = cal.date(byAdding: .day, value: d, to: startDay),
+               let s = SolarCalculator.sunriseSunset(latitude: lat, longitude: lon, date: day) {
+                sun.append(s)
+            }
+        }
+
+        // MÊME moteur que le calendrier de l'app (scorer AUTO inclus) → jamais de contradiction
+        // entre ce qu'annonce la notification et ce que montre l'écran Activités.
+        let spotCfg = SpotConfigStore.shared.config(for: portId)
+        let plan = await MainActor.run {
+            ActivityGoPlanner.plan(
+                setups: setups, forecasts: forecasts, sunTimes: sun, tideData: tides,
+                from: now, days: goAheadMaxDays + 1, calendar: cal,
+                scorer: { sport, f, lvl in
+                    ActivityScoreService.shared.scoreHour(sport: sport, at: f, tideData: tides,
+                                                          spot: spotCfg, riderLevel: lvl)
+                }
+            )
+        }
+
+        var state = goAhead
+        let dayFmt = DateFormatter(); dayFmt.dateFormat = "yyyy-MM-dd"; dayFmt.timeZone = cal.timeZone
+
+        // ── 1. La promesse tenue : pour tout repérage dont le jour est DEMAIN, on revient. ──
+        if let tomorrow = cal.date(byAdding: .day, value: 1, to: startDay) {
+            let tomorrowKey = dayFmt.string(from: tomorrow)
+            for (key, stage) in state where stage == "spotted" && key.hasSuffix("|\(tomorrowKey)") {
+                let parts = key.split(separator: "|")
+                guard parts.count == 3, parts[0] == portId,
+                      let sport = WindSport(rawValue: String(parts[1])) else { continue }
+                let stillThere = plan.first { cal.isDate($0.day, inSameDayAs: tomorrow) }?
+                    .lanes.first { $0.sport == sport }?
+                    .windows.first { $0.end.timeIntervalSince($0.start) >= goAheadMinHours * 3600 }
+                await fireAheadFollowUp(sport: sport, spot: name, window: stillThere,
+                                        timeZone: cal.timeZone, lat: lat, lon: lon, now: now)
+                state[key] = "closed"
+            }
+        }
+
+        // ── 2. Le repérage : on retient LA fenêtre la plus fiable de l'horizon. ──
+        var best: AheadCandidate?
+        for offset in goAheadMinDays...goAheadMaxDays {
+            guard let day = cal.date(byAdding: .day, value: offset, to: startDay),
+                  let dayPlan = plan.first(where: { cal.isDate($0.day, inSameDayAs: day) }) else { continue }
+            for lane in dayPlan.lanes {
+                for w in lane.windows {
+                    let hours = w.end.timeIntervalSince(w.start) / 3600
+                    guard hours >= goAheadMinHours else { continue }
+                    // Confiance = accord inter-modèles MOYEN sur les heures de la fenêtre.
+                    // Aucune heure mesurée → on ne peut rien promettre : la fenêtre est écartée.
+                    let confs = forecasts
+                        .filter { $0.time >= w.start && $0.time < w.end }
+                        .compactMap(\.windConfidence)
+                    guard !confs.isEmpty else { continue }
+                    let conf = confs.reduce(0, +) / Double(confs.count)
+                    guard conf >= goAheadMinConfidence else { continue }
+                    let c = AheadCandidate(sport: lane.sport, day: day, window: w, confidence: conf, hours: hours)
+                    if best == nil || c.rank > best!.rank { best = c }
+                }
+            }
+        }
+
+        if let c = best {
+            let key = "\(portId)|\(c.sport.rawValue)|\(dayFmt.string(from: c.day))"
+            if state[key] == nil {   // jamais deux annonces pour le même spot+sport+jour
+                await fireAheadSpotted(sport: c.sport, spot: name, day: c.day,
+                                       timeZone: cal.timeZone, now: now, lat: lat, lon: lon)
+                state[key] = "spotted"
+            }
+        }
+
+        // Purge des clés dont le jour est passé (borne la croissance du dictionnaire).
+        let todayKey = dayFmt.string(from: startDay)
+        state = state.filter { key, _ in
+            guard let dayPart = key.split(separator: "|").last else { return false }
+            return String(dayPart) >= todayKey
+        }
+        goAhead = state
+    }
+
+    /// « Une fenêtre se dessine » — annonce PRUDENTE : elle dit son incertitude et promet le retour.
+    private func fireAheadSpotted(sport: WindSport, spot: String, day: Date,
+                                  timeZone: TimeZone, now: Date, lat: Double, lon: Double) async {
+        guard PremiumManager.shared.isPremium, isDaylight(lat: lat, lon: lon, now: now) else { return }
+        let fmt = DateFormatter(); fmt.locale = .current; fmt.timeZone = timeZone
+        fmt.setLocalizedDateFormatFromTemplate("EEEE")
+        let dayName = fmt.string(from: day)
+        await NotificationDispatcher.shared.send(
+            title: String(localized: "Une fenêtre se dessine — \(sport.localizedName)"),
+            body: String(localized: "Tide It a repéré un créneau \(dayName) à \(spot). C'est encore une prévision : on revient vers toi la veille pour te dire si ça se confirme.")
+        )
+        appLogger.info("[GoAhead] repérage \(sport.rawValue) à \(spot) pour \(dayName)")
+    }
+
+    /// Le RETOUR promis, dans les deux sens. Une fenêtre qui s'évapore doit être annoncée aussi
+    /// clairement qu'une fenêtre qui tient : c'est ce qui sépare une prévision honnête d'un
+    /// optimisme publicitaire.
+    private func fireAheadFollowUp(sport: WindSport, spot: String, window: GoWindow?,
+                                   timeZone: TimeZone, lat: Double, lon: Double, now: Date) async {
+        guard PremiumManager.shared.isPremium, isDaylight(lat: lat, lon: lon, now: now) else { return }
+        let hFmt = DateFormatter(); hFmt.locale = .current; hFmt.timeZone = timeZone
+        hFmt.setLocalizedDateFormatFromTemplate("jmm")
+        if let w = window {
+            let range = "\(hFmt.string(from: w.start))–\(hFmt.string(from: w.end))"
+            await NotificationDispatcher.shared.send(
+                title: String(localized: "Confirmé — \(sport.localizedName) demain"),
+                body: String(localized: "\(spot) : le créneau tient, \(range). Prépare ton matos.")
+            )
+            appLogger.info("[GoAhead] confirmé \(sport.rawValue) à \(spot) : \(range)")
+        } else {
+            await NotificationDispatcher.shared.send(
+                title: String(localized: "Annulé — \(sport.localizedName) demain"),
+                body: String(localized: "\(spot) : le créneau repéré ne tient plus. On te préviendra à la prochaine occasion.")
+            )
+            appLogger.info("[GoAhead] annulé \(sport.rawValue) à \(spot)")
+        }
     }
 }

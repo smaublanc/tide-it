@@ -101,6 +101,10 @@ struct Tide_ItApp: App {
         // abonnés → coût batterie maîtrisé (cadence de réveil = iOS).
         if WindEstablishingService.hasGoNotifySpots() {
             await WindEstablishingService.shared.evaluateGoWindowsInBackground()
+            // Repérage ANTICIPÉ (J+2..J+5) : « une fenêtre se dessine, on revient vers toi ».
+            // S'auto-throttle à UN passage par jour (une prévision par spot abonné : à la
+            // cadence des réveils iOS, ce serait ruineux en batterie et en quota d'API).
+            await WindEstablishingService.shared.evaluateGoAheadInBackground()
         }
 
         // Lire les données actuelles
