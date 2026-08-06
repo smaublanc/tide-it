@@ -17,6 +17,10 @@ struct WindStation: Identifiable, Hashable {
     let latitude: Double
     let longitude: Double
     let reading: WindReading?
+    /// Page de l'exploitant, quand elle est connue. Affichée sous la mesure et ouvrable d'un
+    /// tap : c'est LE lien promis dans les courriers d'information (« votre nom affiché sous la
+    /// mesure, avec un lien vers votre site »). Sans lui, la promesse ne serait pas tenue.
+    var homepage: URL? = nil
     /// Relevé de HOULE réel (bouées NDBC uniquement). nil pour les balises vent pures.
     /// Affichage/affinage de la note surf — voir WindStationAggregator.nearestWaveReading.
     var wave: WaveReading? = nil
@@ -29,6 +33,11 @@ struct WindStation: Identifiable, Hashable {
         case weameter       // Stations WeeWX Weameter (balises côtières FR)
         case ndbc           // Bouées marines NOAA NDBC (couverture mondiale)
         case windsMobi      // Agrégat Winds.mobi (Holfuy/FFVL/Romma/MeteoSwiss… ≤20km, côtier)
+        /// Station personnelle sous WeeWX, hébergée par son propriétaire (école de kite,
+        /// camping, particulier). Distincte de `.weameter`, qui désigne l'hébergeur : mettre
+        /// la station d'un tiers sous `.weameter` la rattacherait au mauvais exploitant — et
+        /// rendrait impossible de couper une famille sans couper l'autre (liste de retrait).
+        case weewx
 
         var displayName: String {
             switch self {
@@ -39,6 +48,7 @@ struct WindStation: Identifiable, Hashable {
             case .weameter: return "Weameter"
             case .ndbc: return "Bouée NDBC"
             case .windsMobi: return "Winds.mobi"
+            case .weewx: return "Station personnelle"
             }
         }
 
@@ -52,6 +62,9 @@ struct WindStation: Identifiable, Hashable {
             case .weameter: return "Données : Weameter"
             case .ndbc: return "Données : NDBC · NOAA"
             case .windsMobi: return "Données : winds.mobi"
+            // L'exploitant est propriétaire de SA mesure : le crédit porte son nom, pas celui
+            // d'un fournisseur. Le nom réel vient de `WindStation.name` et le lien de `homepage`.
+            case .weewx: return "Données : station personnelle"
             }
         }
     }

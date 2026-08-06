@@ -221,9 +221,26 @@ struct ObservedWindCard: View, Equatable {
                 HStack(spacing: 4) {
                     Image(systemName: "location.circle")
                         .font(.scaled(size: 9))
-                    Text(station.name)
-                        .font(.scaled(size: 10, weight: .medium))
-                        .lineLimit(1)
+                    // Le nom devient OUVRABLE quand on connaît le site de l'exploitant. C'est le
+                    // lien promis noir sur blanc dans les courriers d'information (« votre nom
+                    // affiché sous la mesure, avec un lien vers votre site ») : sans lui, la
+                    // contrepartie offerte à quelqu'un dont on affiche la mesure n'existerait pas.
+                    if let home = station.homepage {
+                        Link(destination: home) {
+                            HStack(spacing: 2) {
+                                Text(station.name)
+                                    .font(.scaled(size: 10, weight: .medium))
+                                    .lineLimit(1)
+                                Image(systemName: "arrow.up.right")
+                                    .font(.system(size: 7, weight: .semibold))
+                            }
+                        }
+                        .buttonStyle(.plain)
+                    } else {
+                        Text(station.name)
+                            .font(.scaled(size: 10, weight: .medium))
+                            .lineLimit(1)
+                    }
                     Text("·")
                         .font(.scaled(size: 10))
                     Text(String(format: "%.1f km", locale: Locale.current, distanceKm))

@@ -306,20 +306,44 @@ final class WeameterService: ObservableObject {
     private var lastFetch: Date?
     private let cacheTTL: TimeInterval = 180  // 3 min
 
-    /// Balises Weameter connues (slug = chemin sous /stations/). Liste maintenue à la
-    /// main : weameter.com ne fournit pas d'endpoint de découverte, mais son `sitemap.xml`
-    /// énumère les stations hébergées — c'est par là qu'il faut chercher les nouvelles.
+    /// Une station WeeWX au skin Belchertown, ou qu'elle soit hebergee.
     ///
-    /// `kiteschool-leucate` : école de kite à Leucate, donc PILE sur l'un des plus gros spots
-    /// français — un anémomètre au bord de l'eau vaut mieux que l'aéroport le plus proche.
-    /// Son JSON répond et porte des coordonnées valides, mais la station SE TAIT depuis le
-    /// 2 août 2026 (`windspeed: N/A`). On la garde quand même : le parseur exige vitesse ET
-    /// direction, une station muette produit donc `reading = nil` et n'est jamais présentée
-    /// comme une mesure. Elle ne coûte qu'une requête et se réveillera toute seule.
+    /// Weameter n'est pas un site, c'est une CONVENTION : tout WeeWX sous ce skin publie son
+    /// JSON a `<racine>/json/weewx_data.json`. Il n'y a donc aucune raison de se limiter aux
+    /// stations d'un hebergeur — d'ou une liste d'URL completes plutot que des slugs.
+    struct WeeWXStation {
+        let id: String
+        let url: String
+        /// `.weameter` pour les stations hebergees par weameter.com, `.weewx` pour celles que
+        /// leur proprietaire heberge lui-meme. La distinction n'est pas cosmetique : elle
+        /// permet a la liste de retrait de couper une famille sans emporter l'autre.
+        let source: WindStation.Source
+        /// Site de l'exploitant — le lien promis dans les courriers d'information.
+        let homepage: String?
+    }
+
+    /// weameter.com ne fournit pas d'endpoint de decouverte, mais son `sitemap.xml` enumere les
+    /// stations hebergees : c'est par la qu'il faut chercher les nouvelles.
+    ///
+    /// `kiteschool-leucate` : ecole de kite a Leucate, donc PILE sur l'un des plus gros spots
+    /// francais — un anemometre au bord de l'eau vaut mieux que l'aeroport le plus proche. Son
+    /// JSON repond et porte des coordonnees valides, mais la station SE TAIT depuis le 2 aout
+    /// 2026 (`windspeed: N/A`). Gardee : le parseur exige vitesse ET direction, une station
+    /// muette produit donc `reading = nil` et n'est jamais presentee comme une mesure. Elle
+    /// coute une requete et se reveillera toute seule.
     ///
     /// `montamer` figure aussi dans le sitemap mais renvoie 404 sur le JSON comme sur sa page :
-    /// entrée périmée, NE PAS l'ajouter — ce serait un 404 toutes les 3 minutes pour rien.
-    private let slugs = ["andernos", "pauillac", "lachanau", "kiteschool-leucate"]
+    /// entree perimee, NE PAS l'ajouter — ce serait un 404 toutes les 3 minutes pour rien.
+    private let catalog: [WeeWXStation] = [
+        .init(id: "weameter_andernos",           url: "https://weameter.com/stations/andernos",           source: .weameter, homepage: "https://weameter.com/stations/andernos"),
+        .init(id: "weameter_pauillac",           url: "https://weameter.com/stations/pauillac",           source: .weameter, homepage: "https://weameter.com/stations/pauillac"),
+        .init(id: "weameter_lachanau",           url: "https://weameter.com/stations/lachanau",           source: .weameter, homepage: "https://weameter.com/stations/lachanau"),
+        .init(id: "weameter_kiteschool-leucate", url: "https://weameter.com/stations/kiteschool-leucate", source: .weameter, homepage: "https://weameter.com/stations/kiteschool-leucate"),
+        // Cap Frehel (22) — anemometre de La Chevrerie du Cap, entre le cap et le Fort-la-Latte.
+        // Verifie au curl le 6 aout 2026 : vent, direction et rafale a jour. La station donne
+        // elle-meme son nom (« La Chevrerie du Cap ») : le credit affiche est donc le bon.
+        .init(id: "weewx_capfrehel", url: "http://www.chevrerie-du-cap.com/meteo", source: .weewx, homepage: "http://www.chevrerie-du-cap.com")
+    ]
 
     private init() {}
 
@@ -337,10 +361,10 @@ final class WeameterService: ObservableObject {
             return
         }
 
-        let slugsCopy = slugs
+        let list = catalog
         let fetched = await withTaskGroup(of: WindStation?.self) { group -> [WindStation] in
-            for slug in slugsCopy {
-                group.addTask { await WeameterService.fetchStation(slug: slug) }
+            for st in list {
+                group.addTask { await WeameterService.fetchStation(st) }
             }
             var result: [WindStation] = []
             for await station in group { if let station { result.append(station) } }
@@ -351,13 +375,13 @@ final class WeameterService: ObservableObject {
             self.stations = fetched
             self.lastFetch = Date()
         }
-        appLogger.info("[Weameter] \(fetched.count)/\(slugsCopy.count) balises chargées")
+        appLogger.info("[WeeWX] \(fetched.count)/\(list.count) balises chargées")
     }
 
     // MARK: - Network + parsing (nonisolated : tourne hors du main thread)
 
-    private nonisolated static func fetchStation(slug: String) async -> WindStation? {
-        guard let url = URL(string: "https://weameter.com/stations/\(slug)/json/weewx_data.json") else { return nil }
+    private nonisolated static func fetchStation(_ st: WeeWXStation) async -> WindStation? {
+        guard let url = URL(string: "\(st.url)/json/weewx_data.json") else { return nil }
         do {
             let (data, response) = try await session.data(from: url)
             guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else { return nil }
@@ -370,7 +394,7 @@ final class WeameterService: ObservableObject {
 
             let unitLabel = (root["unit_label"] as? [String: Any])?["windSpeed"] as? String
             let name = (station["location"] as? String)?
-                .replacingOccurrences(of: ", France", with: "") ?? "Weameter \(slug)"
+                .replacingOccurrences(of: ", France", with: "") ?? st.id
 
             var reading: WindReading?
             // Direction EXIGÉE au même titre que la vitesse : `?? 0` affichait un cap plein Nord
@@ -395,12 +419,13 @@ final class WeameterService: ObservableObject {
             }
 
             return WindStation(
-                id: "weameter_\(slug)",
+                id: st.id,
                 name: name,
-                source: .weameter,
+                source: st.source,
                 latitude: lat,
                 longitude: lon,
-                reading: reading
+                reading: reading,
+                homepage: st.homepage.flatMap(URL.init(string:))
             )
         } catch {
             return nil
