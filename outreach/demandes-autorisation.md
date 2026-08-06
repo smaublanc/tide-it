@@ -22,6 +22,40 @@ au prochain lancement de l'app. Aucune mise à jour App Store, aucune attente.
 Remplacer les `[CROCHETS]`. Un destinataire par mail, jamais de copie carbone visible.
 Envoi depuis **tideitapp@icloud.com**.
 
+## Versions à boutons (à privilégier)
+
+- [`modele-webcam-fr.html`](modele-webcam-fr.html)
+- [`modele-balise-fr.html`](modele-balise-fr.html)
+
+Ouvrir dans Safari → `Cmd+A` `Cmd+C` → coller dans Mail. Les boutons suivent.
+
+**Comment ça marche.** Le site est statique : aucun serveur pour enregistrer un clic. Les
+boutons sont donc des `mailto:` qui ouvrent la messagerie du destinataire avec l'objet ET le
+corps déjà écrits — il n'a plus qu'à envoyer. Universel, sans infrastructure, et sans traceur
+(aucun pixel de suivi dans ces courriers, volontairement).
+
+**La réponse EST l'accord.** Le bouton vert pré-remplit une phrase d'autorisation explicite,
+avec la mention « révocable à tout moment » et un champ pour les conditions particulières. Ce
+qui revient n'est donc pas un « ok » ambigu mais un accord écrit, daté et utilisable — c'est
+exactement ce qu'il faut pour passer une webcam en flux intégré.
+
+**Trier les réponses.** Objets normalisés :
+
+```
+ACCORD Tide It — <identifiant>
+REFUS  Tide It — <identifiant>
+```
+
+Deux règles dans Mail suffisent. L'identifiant est celui de la source dans l'app
+(`weameter_andernos`, `webcam_skaping_leucate`…) : il dit exactement quelle ligne basculer.
+
+- **ACCORD** sur une webcam → `embed: true` dans le catalogue.
+- **REFUS** → identifiant dans `docs/blocklist.json`. Disparaît au lancement suivant.
+- **Silence** → statu quo (affichage crédité, lien sortant).
+
+Le texte du bouton « refus » dit « retirez-moi » et non « je refuse » : on ne demande pas à
+quelqu'un de se justifier pour exercer un droit.
+
 ## Suivi
 
 | Destinataire | Type | Envoyé le | Réponse | Action |

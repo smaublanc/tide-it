@@ -1,0 +1,126 @@
+<!-- ============================================================================
+     Tide It — modèle de courrier BALISE VENT (français)
+
+     Même mode d'emploi que modele-webcam-fr.html :
+       1. remplacer les [CROCHETS], [ID] = identifiant EXACT dans l'app (ex. weameter_andernos)
+       2. ouvrir dans Safari, Cmd+A, Cmd+C
+       3. coller dans Mail depuis tideitapp@icloud.com
+
+     DIFFÉRENCE AVEC LE COURRIER WEBCAM : ici l'affichage a déjà lieu (une mesure est un
+     fait, pas une œuvre). Le bouton vert ne demande donc pas une permission — il enregistre
+     un accord explicite, ce qui vaut mieux qu'un silence. Le bouton gris déclenche le retrait.
+
+     Objets normalisés : « ACCORD Tide It — <id> » / « REFUS Tide It — <id> ».
+     Un REFUS → ajouter <id> à docs/blocklist.json, la balise disparaît au lancement suivant.
+     ============================================================================ -->
+<div style="margin:0;padding:0;background:#f4f6f8;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f4f6f8;">
+<tr><td align="center" style="padding:28px 12px;">
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;background:#ffffff;border-radius:14px;border:1px solid #e2e6ea;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#1c2530;">
+
+  <tr><td style="padding:30px 34px 6px 34px;">
+    <p style="margin:0 0 18px 0;font-size:16px;line-height:1.6;">Bonjour,</p>
+
+    <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;">
+      Je développe <strong>Tide It</strong>, une application iOS indépendante de marées et de vent
+      réel, utilisée surtout par des kitesurfeurs, windsurfeurs et surfeurs du littoral français.
+    </p>
+
+    <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;">
+      Votre station de <strong>[LIEU]</strong> est l'une des rares à mesurer le vent au plus près
+      d'un spot de glisse &mdash; bien plus près que les stations d'aéroport sur lesquelles la
+      plupart des applications se rabattent. Sa mesure est affichée aux utilisateurs qui
+      consultent ce spot, avec votre nom et un lien vers votre site.
+    </p>
+  </td></tr>
+
+  <!-- Le crédit, montré plutôt que promis -->
+  <tr><td style="padding:6px 34px 6px 34px;">
+    <p style="margin:0 0 10px 0;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#6b7785;font-weight:600;">
+      Voici exactement ce que voit l'utilisateur
+    </p>
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f7f9fb;border:1px solid #e2e6ea;border-radius:10px;">
+      <tr><td style="padding:14px 16px;font-size:15px;line-height:1.5;">
+        <span style="color:#1c2530;font-weight:700;font-size:19px;">24 km/h</span>
+        <span style="color:#6b7785;font-size:14px;">&nbsp;rafales 31&nbsp;&middot;&nbsp;Ouest</span><br>
+        <span style="color:#6b7785;font-size:13px;">[NOM DE LA STATION] &middot; à [X] km &middot; il y a 3 min</span><br>
+        <span style="color:#0a84c8;font-size:13px;">[VOTRE-SITE.FR] &rsaquo;</span>
+      </td></tr>
+    </table>
+    <p style="margin:10px 0 18px 0;font-size:13px;line-height:1.5;color:#6b7785;">
+      Votre nom et le lien vers votre site, sous chaque mesure.
+    </p>
+  </td></tr>
+
+  <tr><td style="padding:0 34px 6px 34px;">
+    <p style="margin:0 0 12px 0;font-size:16px;line-height:1.6;">
+      Ce que ça représente concrètement pour vous :
+    </p>
+
+    <p style="margin:0 0 12px 0;font-size:16px;line-height:1.6;">
+      &bull;&nbsp; Une requête <strong>toutes les trois minutes au maximum</strong>, et seulement
+      quand quelqu'un regarde ce spot. Aucune collecte massive, aucun archivage de votre
+      historique.
+    </p>
+
+    <p style="margin:0 0 12px 0;font-size:16px;line-height:1.6;">
+      &bull;&nbsp; <strong>L'âge de la mesure est toujours indiqué</strong>, et rien ne s'affiche si
+      la donnée manque. Je ne présente jamais une valeur ancienne ou absente comme si elle était
+      actuelle : votre station ne dira jamais autre chose que ce qu'elle mesure.
+    </p>
+
+    <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;">
+      &bull;&nbsp; Si vous préférez ne pas y figurer, <strong>un mot suffit</strong>. Le retrait est
+      immédiat : votre station disparaît de tous les téléphones au lancement suivant, sans mise à
+      jour de l'application ni délai.
+    </p>
+
+    <p style="margin:0 0 22px 0;font-size:16px;line-height:1.6;">
+      Pour être clair d'emblée : Tide It est une application commerciale, certaines fonctions
+      étant accessibles par abonnement. Je préfère vous le dire plutôt que vous le laisser
+      découvrir.
+    </p>
+  </td></tr>
+
+  <!-- Les deux boutons -->
+  <tr><td style="padding:4px 34px 8px 34px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <td style="padding:0 6px 10px 0;" width="50%">
+          <a href="mailto:tideitapp@icloud.com?subject=ACCORD%20Tide%20It%20%E2%80%94%20[ID]&body=Bonjour%2C%0A%0AJe%20donne%20mon%20accord%20pour%20que%20Tide%20It%20affiche%20les%20mesures%20de%20ma%20station%20%5BNOM%20DE%20LA%20STATION%5D%20%28%5BLIEU%5D%29%20dans%20l%27application%2C%20avec%20mention%20de%20mon%20nom%20et%20lien%20vers%20mon%20site.%0A%0ACet%20accord%20est%20r%C3%A9vocable%20%C3%A0%20tout%20moment%20sur%20simple%20demande%20de%20ma%20part.%0A%0AConditions%20particuli%C3%A8res%20%28laisser%20vide%20s%27il%20n%27y%20en%20a%20pas%29%20%3A%0A%0A%0ACordialement%2C%0A"
+             style="display:block;padding:15px 10px;background:#17994f;color:#ffffff;text-decoration:none;border-radius:10px;font-size:15px;font-weight:700;text-align:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+            Je donne mon accord
+          </a>
+        </td>
+        <td style="padding:0 0 10px 6px;" width="50%">
+          <a href="mailto:tideitapp@icloud.com?subject=REFUS%20Tide%20It%20%E2%80%94%20[ID]&body=Bonjour%2C%0A%0AJe%20ne%20souhaite%20pas%20que%20les%20mesures%20de%20ma%20station%20%5BNOM%20DE%20LA%20STATION%5D%20%28%5BLIEU%5D%29%20figurent%20dans%20Tide%20It.%20Merci%20de%20la%20retirer.%0A%0ACordialement%2C%0A"
+             style="display:block;padding:15px 10px;background:#ffffff;color:#4a5563;text-decoration:none;border:1.5px solid #ccd3da;border-radius:10px;font-size:15px;font-weight:600;text-align:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+            Je refuse, retirez-moi
+          </a>
+        </td>
+      </tr>
+    </table>
+    <p style="margin:2px 0 0 0;font-size:12.5px;line-height:1.5;color:#8b95a1;">
+      Ces boutons ouvrent simplement votre messagerie avec la réponse déjà écrite : vous n'avez
+      qu'à l'envoyer. Rien n'est transmis avant. Ce courrier ne contient aucun traceur.
+    </p>
+  </td></tr>
+
+  <tr><td style="padding:20px 34px 30px 34px;border-top:1px solid #eef1f4;">
+    <p style="margin:16px 0 4px 0;font-size:16px;line-height:1.6;">
+      Merci, et bravo pour la station,
+    </p>
+    <p style="margin:0;font-size:16px;line-height:1.6;">
+      <strong>[PRÉNOM NOM]</strong><br>
+      <span style="color:#6b7785;font-size:14px;">
+        Tide It &middot; <a href="mailto:tideitapp@icloud.com" style="color:#0a84c8;text-decoration:none;">tideitapp@icloud.com</a><br>
+        <a href="https://smaublanc.github.io/tide-it/" style="color:#0a84c8;text-decoration:none;">smaublanc.github.io/tide-it</a>
+      </span>
+    </p>
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
+</div>
