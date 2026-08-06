@@ -307,8 +307,19 @@ final class WeameterService: ObservableObject {
     private let cacheTTL: TimeInterval = 180  // 3 min
 
     /// Balises Weameter connues (slug = chemin sous /stations/). Liste maintenue à la
-    /// main : weameter.com ne fournit pas d'endpoint de découverte.
-    private let slugs = ["andernos", "pauillac", "lachanau"]
+    /// main : weameter.com ne fournit pas d'endpoint de découverte, mais son `sitemap.xml`
+    /// énumère les stations hébergées — c'est par là qu'il faut chercher les nouvelles.
+    ///
+    /// `kiteschool-leucate` : école de kite à Leucate, donc PILE sur l'un des plus gros spots
+    /// français — un anémomètre au bord de l'eau vaut mieux que l'aéroport le plus proche.
+    /// Son JSON répond et porte des coordonnées valides, mais la station SE TAIT depuis le
+    /// 2 août 2026 (`windspeed: N/A`). On la garde quand même : le parseur exige vitesse ET
+    /// direction, une station muette produit donc `reading = nil` et n'est jamais présentée
+    /// comme une mesure. Elle ne coûte qu'une requête et se réveillera toute seule.
+    ///
+    /// `montamer` figure aussi dans le sitemap mais renvoie 404 sur le JSON comme sur sa page :
+    /// entrée périmée, NE PAS l'ajouter — ce serait un 404 toutes les 3 minutes pour rien.
+    private let slugs = ["andernos", "pauillac", "lachanau", "kiteschool-leucate"]
 
     private init() {}
 
