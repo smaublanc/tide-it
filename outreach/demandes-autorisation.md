@@ -1,44 +1,62 @@
-# Demandes d'autorisation — webcams et balises
+# Information et demandes — webcams et balises
 
-Modèles pour obtenir un accord ÉCRIT avant d'afficher une webcam ou la mesure d'une station
-tierce dans Tide It. Règle : **on n'affiche que ceux qui ont dit oui**, et on retire sans
-discuter dès qu'on nous le demande.
+Politique retenue : **on affiche, on crédite, on retire immédiatement sur demande.**
 
-Remplacer les `[CROCHETS]`. Ne rien envoyer en copie carbone visible : un destinataire par mail.
+Ces courriers ne demandent donc pas une permission qu'on aurait déjà prise — ce serait
+malhonnête. Ils informent, ils offrent le retrait en un mot, et ils proposent une contrepartie.
+
+Deux régimes différents, à ne pas confondre :
+
+| | Par défaut | Avec accord écrit |
+|---|---|---|
+| **Balise vent** | mesure affichée, nom + lien vers le site | rien de plus à obtenir |
+| **Webcam** | icône qui **ouvre la page de l'exploitant** (un lien n'est pas une contrefaçon) | flux affiché **dans** l'app |
+
+Le flux vidéo d'un tiers rejoué dans une app commerciale sans accord relève de la guideline
+App Store 5.2 : la sanction n'est pas le retrait de la fonctionnalité, c'est le retrait de
+l'application. D'où le lien par défaut, et l'intégration réservée à ceux qui ont dit oui.
+
+**Retrait immédiat** : identifiant ajouté à la liste de blocage distante, la source disparaît
+au prochain lancement de l'app. Aucune mise à jour App Store, aucune attente.
+
+Remplacer les `[CROCHETS]`. Un destinataire par mail, jamais de copie carbone visible.
+Envoi depuis **tideitapp@icloud.com**.
 
 ## Suivi
 
-| Destinataire | Type | Envoyé le | Réponse | Affiché ? |
+| Destinataire | Type | Envoyé le | Réponse | Action |
 |---|---|---|---|---|
 | | | | | |
+
+Réponse négative → ajouter l'identifiant à `docs/blocklist.json`. C'est tout.
 
 ---
 
 ## 1 — Webcam · français
 
-**Objet :** Tide It — autorisation d'affichage de votre webcam
+**Objet :** Tide It envoie du monde sur votre webcam de [LIEU]
 
 Bonjour,
 
 Je développe Tide It, une application iOS indépendante de marées, de vent réel et de conditions
 de surf, utilisée surtout par des kitesurfeurs et des surfeurs du littoral français.
 
-J'aimerais votre autorisation pour afficher le flux de votre webcam de [LIEU] dans
-l'application, à côté des conditions de vent de ce spot.
+Quand quelqu'un consulte le spot de [LIEU] dans l'application, une icône lui propose les
+webcams les plus proches. La vôtre en fait partie : un appui **ouvre votre page**, avec votre
+nom. Je ne rediffuse pas votre image, je vous envoie le visiteur.
 
-Ce que je m'engage à faire :
+Deux raisons à ce courrier.
 
-- votre nom affiché avec l'image et un lien direct vers votre site à chaque consultation ;
-- aucune publicité, aucune superposition sur l'image, aucun enregistrement ni réutilisation ;
-- le flux ne se charge que si l'utilisateur appuie explicitement dessus — jamais de lecture
-  automatique, jamais en arrière-plan ;
-- retrait immédiat sur simple demande de votre part, sans discussion.
+La première : si vous préférez ne pas y figurer, répondez-moi et je vous retire. Le retrait est
+immédiat, sans mise à jour de l'application ni délai.
+
+La seconde : si au contraire l'idée vous convient, je peux faire mieux. Avec votre accord
+écrit, j'afficherais l'image directement dans l'application, avec votre nom visible et le lien
+vers votre site — sans publicité, sans superposition, sans enregistrement, et uniquement quand
+l'utilisateur appuie dessus. Jamais de lecture automatique.
 
 Pour être clair d'emblée : Tide It est une application commerciale, certaines fonctions étant
 accessibles par abonnement. Je préfère vous le dire plutôt que vous le laisser découvrir.
-
-Si le principe vous convient, un accord écrit par retour de mail me suffit. Dites-moi aussi les
-conditions que vous souhaitez poser, je m'y tiendrai.
 
 Merci du temps que vous y consacrerez,
 
@@ -50,28 +68,28 @@ Tide It — tideitapp@icloud.com
 
 ## 2 — Webcam · anglais
 
-**Subject:** Tide It — permission to display your webcam
+**Subject:** Tide It is sending visitors to your [LOCATION] webcam
 
 Hello,
 
 I develop Tide It, an independent iOS app for tides, live wind and surf conditions, used mainly
 by kitesurfers and surfers along the French coast.
 
-I would like your permission to display your [LOCATION] webcam feed inside the app, next to the
-wind conditions for that spot.
+When someone checks the [LOCATION] spot in the app, an icon offers them the nearest webcams.
+Yours is one of them: tapping it **opens your page**, under your name. I do not rebroadcast your
+image — I send you the visitor.
 
-What I commit to:
+Two reasons for writing.
 
-- your name shown with the image and a direct link to your site every time it is viewed;
-- no advertising, no overlay on the image, no recording or reuse of any kind;
-- the stream loads only when a user explicitly taps it — never autoplay, never in the background;
-- immediate removal on request, no questions asked.
+First: if you would rather not be listed, just reply and I will remove you. Removal is immediate,
+with no app update and no delay.
+
+Second: if you like the idea, I can do better. With your written agreement I would show the
+image directly inside the app, with your name visible and a link to your site — no advertising,
+no overlay, no recording, and only when the user taps it. Never autoplay.
 
 To be upfront: Tide It is a commercial app, with some features behind a subscription. I would
 rather tell you than let you find out.
-
-If this works for you, a written yes by reply is enough. Please also tell me any conditions you
-want to attach and I will honour them.
 
 Thank you for your time,
 
@@ -81,9 +99,9 @@ Tide It — tideitapp@icloud.com
 
 ---
 
-## 3 — Station / balise vent · français (exploitant, club, société)
+## 3 — Balise vent · français (exploitant, club, société)
 
-**Objet :** Tide It — autorisation d'affichage de la mesure de votre station
+**Objet :** Votre station de [LIEU] dans Tide It — et comment l'en retirer
 
 Bonjour,
 
@@ -92,22 +110,23 @@ surtout par des kitesurfeurs, windsurfeurs et surfeurs du littoral français.
 
 Votre station de [LIEU] est l'une des rares à mesurer le vent au plus près d'un spot de glisse —
 bien plus près que les stations d'aéroport sur lesquelles la plupart des applications se
-rabattent. J'aimerais votre autorisation pour afficher sa mesure (vitesse moyenne, rafale,
-direction, horodatage) aux utilisateurs qui consultent ce spot.
+rabattent. Sa mesure est affichée aux utilisateurs qui consultent ce spot, **avec votre nom et
+un lien vers votre site**.
 
-Concrètement :
+Ce que ça représente concrètement pour vous :
 
 - une requête toutes les trois minutes au maximum, et seulement quand quelqu'un regarde ce
   spot — aucune collecte massive, aucun archivage de votre historique ;
-- votre nom affiché sous la mesure, avec un lien vers votre site ;
 - l'âge de la mesure toujours indiqué, et rien d'affiché si la donnée manque : je ne présente
-  jamais une valeur ancienne ou absente comme si elle était actuelle ;
-- arrêt immédiat sur simple demande.
+  jamais une valeur ancienne ou absente comme si elle était actuelle. Votre station ne dira
+  jamais autre chose que ce qu'elle mesure ;
+- si vous préférez ne pas y figurer, un mot suffit et je vous retire immédiatement, sans
+  mise à jour de l'application ni délai.
 
 Pour être clair d'emblée : Tide It est une application commerciale, certaines fonctions étant
 accessibles par abonnement.
 
-Un accord écrit par retour de mail me suffit, et je respecterai les conditions que vous poserez.
+Si vous souhaitez poser des conditions, dites-les moi, je m'y tiendrai.
 
 Merci,
 
@@ -117,9 +136,9 @@ Tide It — tideitapp@icloud.com
 
 ---
 
-## 4 — Station / balise vent · anglais
+## 4 — Balise vent · anglais
 
-**Subject:** Tide It — permission to display your station's readings
+**Subject:** Your [LOCATION] station in Tide It — and how to remove it
 
 Hello,
 
@@ -127,21 +146,22 @@ I develop Tide It, an independent iOS app for tides and live wind, used mainly b
 windsurfers and surfers along the French coast.
 
 Your [LOCATION] station is one of the few measuring wind right at a riding spot — far closer
-than the airport stations most apps fall back on. I would like your permission to display its
-readings (average speed, gust, direction, timestamp) to users viewing that spot.
+than the airport stations most apps fall back on. Its readings are shown to users viewing that
+spot, **with your name and a link to your site**.
 
-In practice:
+What this means in practice:
 
 - one request every three minutes at most, and only while someone is actually looking at that
   spot — no bulk harvesting, no archiving of your history;
-- your name shown under the reading, with a link to your site;
 - the age of the reading always displayed, and nothing shown when data is missing: I never
-  present a stale or absent value as if it were current;
-- immediate stop on request.
+  present a stale or absent value as if it were current. Your station will never be made to say
+  anything other than what it measures;
+- if you would rather not be listed, one word is enough and I remove you immediately, with no
+  app update and no delay.
 
 To be upfront: Tide It is a commercial app, with some features behind a subscription.
 
-A written yes by reply is enough, and I will honour any conditions you set.
+If you want to set conditions, tell me and I will honour them.
 
 Thank you,
 
@@ -153,11 +173,10 @@ Tide It — tideitapp@icloud.com
 
 ## 5 — Station personnelle · français (particulier)
 
-Version courte et personnelle. Un passionné n'est pas un service client : on ne lui envoie pas
-un contrat, on lui parle. À n'envoyer QU'À une adresse de contact publiée par la personne
-elle-même sur son propre site.
+Version courte. Un passionné n'est pas un service client : on ne lui envoie pas un contrat, on
+lui parle. À n'envoyer QU'À une adresse qu'il a lui-même publiée sur son propre site.
 
-**Objet :** Votre station météo de [LIEU] — une question d'un développeur
+**Objet :** Votre station météo de [LIEU] — un mot d'un développeur
 
 Bonjour,
 
@@ -166,15 +185,14 @@ Je suis tombé sur votre station météo de [LIEU] en cherchant des mesures de v
 glisse du coin.
 
 Je développe Tide It, une petite application iOS de marées et de vent pour kitesurfeurs et
-surfeurs. Est-ce que vous accepteriez que j'y affiche votre mesure, avec votre nom et un lien
-vers votre site ?
+surfeurs. Votre mesure y est affichée avec votre nom et un lien vers votre site, pour les gens
+qui consultent ce spot.
 
-Ce serait une lecture toutes les trois minutes au maximum, uniquement quand quelqu'un regarde
-ce spot. Rien d'archivé, rien de revendu, et j'arrête le jour où vous me le dites.
+Une lecture toutes les trois minutes au maximum, uniquement quand quelqu'un regarde. Rien
+d'archivé, rien de revendu. Et si ça ne vous va pas, dites-le moi : je vous retire le jour même,
+sans attendre une mise à jour de l'application.
 
 L'application est payante pour certaines fonctions, autant que vous le sachiez.
-
-Un simple « oui, d'accord » par retour de mail me suffit.
 
 Merci, et bravo pour la station,
 
