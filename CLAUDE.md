@@ -72,6 +72,21 @@ Une seule version éditable à la fois sur App Store Connect.
 - **Lookups par id sur les catalogues** : `SurfSpotCatalog.spot(id:)` est O(1) (`spotsByID`,
   reconstruit dans `rebuild()`). La carte teste l'appartenance surf pour chacun des ~3 500 ports
   à chaque re-render — un `first { $0.id == }` y coûtait ~1 M de comparaisons par passe.
+- **`.equatable()` + `Date()` interne = temps GELÉ**. Une vue montée avec `.equatable()` n'est
+  re-rendue que si son `==` change. Un `Date()` lu au vol DANS un calcul n'entre dans aucune
+  comparaison : curseur « maintenant », en-têtes de jour, âge d'une mesure restent bloqués (au
+  passage de minuit, `WeekTrendBands` affichait encore la veille). L'instant doit être une
+  PROPRIÉTÉ de la vue, **quantifié** au pas que l'affichage sait montrer — `TodayView.bandsClock`
+  (15 min ; 900 s tombe pile sur minuit, tous les fuseaux étant décalés d'un multiple de 15 min)
+  et `ObservedWindCard.currentTime`. Ça garde le bénéfice perf sans mentir sur l'heure.
+- **Fraîcheur balise** : une mesure vieille ne doit pas être seulement ÉTIQUETÉE, elle doit être
+  redemandée. `TodayView.refreshObservedWind()` (tick 60 s + retour au premier plan) redemande
+  quand l'affiché dépasse `observedWindStaleMinutes` (10, = le seuil du badge « frais » : une
+  seule définition) **ou a disparu** — une station qui se tait sort des 30 min de
+  `nearestReading` et, sans ce cas, plus aucune tentative jusqu'au changement de port. Pas de
+  polling : le TTL de 3 min de l'agrégateur borne le réseau, une mesure fraîche ne déclenche rien.
+- **Jour = fuseau du PORT** partout, jamais `Calendar.current` (cf. `Calendar.inTimeZone`). Vaut
+  aussi pour le `DateFormatter` des libellés : sinon un minuit « port » se formate à la veille.
 
 ## Risques connus (surveiller, pas de fix code possible)
 - **Licence Open-Meteo** : usage commercial = LE point juridique ouvert (self-host = solution).
