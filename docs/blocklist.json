@@ -1,0 +1,14 @@
+{
+  "_lisezmoi": "Liste de retrait de Tide It. Ajouter un identifiant ici retire la source de TOUS les telephones au prochain lancement de l'app, sans mise a jour App Store ni revue Apple. C'est ce qui rend tenable la promesse faite dans outreach/demandes-autorisation.md : 'je vous retire immediatement'. Ne jamais supprimer ce fichier ni le renommer : l'app le lit a chaque lancement, et un 404 la laisserait sur sa derniere copie en cache.",
+  "version": 1,
+  "updated": "2026-08-06",
+
+  "_stations": "Identifiants EXACTS de balises a retirer, tels que construits par leur service (ex. 'weameter_andernos', 'pioupiou_512').",
+  "stations": [],
+
+  "_sources": "Familles entieres a couper, quand un fournisseur refuse en bloc. Valeurs = WindStation.Source (pioupiou, holfuy, metar, meteoFrance, weameter, ndbc, windsMobi).",
+  "sources": [],
+
+  "_webcams": "Identifiants de webcams a retirer de la liste des plus proches.",
+  "webcams": []
+}

@@ -55,6 +55,7 @@
 		3F519E8D2F3C7BA400AF313B /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E622F3C7BA400AF313B /* SkeletonView.swift */; };
 		3F519E902F3C7BA400AF313B /* WindDirectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E912F3C7BA400AF313B /* WindDirectionPicker.swift */; };
 		3F54FB013462433C8AD3D701 /* WindStationAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F57B0A81B4CAEA0AFDA63 /* WindStationAggregator.swift */; };
+		A1B2C3D40001414243444546 /* SourceBlocklistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D40002414243444546 /* SourceBlocklistService.swift */; };
 		3F64889A2F3FDA8E00BA5DE7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6488992F3FDA8D00BA5DE7 /* WidgetKit.framework */; };
 		3F64889C2F3FDA8E00BA5DE7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F64889B2F3FDA8E00BA5DE7 /* SwiftUI.framework */; };
 		3F6488AD2F3FDA9200BA5DE7 /* TideItWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3F6488972F3FDA8D00BA5DE7 /* TideItWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -248,6 +249,7 @@
 		3FD91B272F589E0900DDE842 /* TideIt.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; name = TideIt.storekit; path = "Tide It/TideIt.storekit"; sourceTree = "<group>"; };
 		3FWC00022F478A0000DD5CED /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		474F57B0A81B4CAEA0AFDA63 /* WindStationAggregator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindStationAggregator.swift; sourceTree = "<group>"; };
+		A1B2C3D40002414243444546 /* SourceBlocklistService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceBlocklistService.swift; sourceTree = "<group>"; };
 		54CB9D8857DF483FB9FA4353 /* ErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBanner.swift; sourceTree = "<group>"; };
 		59646B6C2D94005900527D45 /* CalendarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtension.swift; sourceTree = "<group>"; };
 		59646B6E2D94005900527D45 /* Port.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Port.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				A1B2C30000000000000000B2 /* PecheAPiedService.swift */,
 				ED82DEB1532A4300BAA82F40 /* AviationWeatherService.swift */,
 				474F57B0A81B4CAEA0AFDA63 /* WindStationAggregator.swift */,
+				A1B2C3D40002414243444546 /* SourceBlocklistService.swift */,
 				3F4F6A102F3A754B008882A5 /* WeatherService.swift */,
 				3FA1B0002F3C100000AA1122 /* HarmonicTideEngine.swift */,
 				3FA1B0042F3D200000BB2244 /* MareeInfoService.swift */,
@@ -949,6 +952,7 @@
 				A1B2C30000000000000000A3 /* PecheAPiedView.swift in Sources */,
 				D1978E88B6E545CCA5C24FF5 /* AviationWeatherService.swift in Sources */,
 				3F54FB013462433C8AD3D701 /* WindStationAggregator.swift in Sources */,
+				A1B2C3D40001414243444546 /* SourceBlocklistService.swift in Sources */,
 				C139EB79939E46CFB41DC9A2 /* ObservedWindCard.swift in Sources */,
 				7407D482AA594F8CAD37E83C /* WindTideRibbon.swift in Sources */,
 				PCCV00000002 /* PremiumCurveCanvas.swift in Sources */,
@@ -1063,7 +1067,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TideItWidget/TideItWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TideItWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TideItWidget;
@@ -1074,7 +1078,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.2.9;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.TideItWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1098,7 +1102,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TideItWidget/TideItWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TideItWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TideItWidget;
@@ -1109,7 +1113,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.2.9;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.TideItWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1133,7 +1137,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Tide Watch Watch App/Tide Watch Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tide Watch";
@@ -1143,7 +1147,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2.9;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1166,7 +1170,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Tide Watch Watch App/Tide Watch Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tide Watch";
@@ -1176,7 +1180,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2.9;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1322,7 +1326,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Tide It/Tide It.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"Tide It/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1343,7 +1347,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2.9;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1363,7 +1367,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Tide It/Tide It.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"Tide It/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1384,7 +1388,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2.9;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1402,10 +1406,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 5.2.9;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1420,10 +1424,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 5.2.9;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1437,9 +1441,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 5.2.9;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1453,9 +1457,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 5.2.9;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-ItUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1471,7 +1475,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TideWatchWidget/TideWatchWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TideWatchWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TideWatchWidget;
@@ -1481,7 +1485,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.2.9;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.watchkitapp.TideWatchWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1501,7 +1505,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TideWatchWidget/TideWatchWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TideWatchWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TideWatchWidget;
@@ -1511,7 +1515,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.2.9;
+				MARKETING_VERSION = 5.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "seb.Tide-It.watchkitapp.TideWatchWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;

@@ -54,12 +54,17 @@ final class WindStationAggregator: ObservableObject {
         // de MapKit = lag à la 1ʳᵉ ouverture. On MERGE les 5 flux et on DÉBOUNCE (150 ms) → UN
         // seul rebuild après la rafale. (`refresh()` rappelle `rebuildDedup()` ensuite, donc
         // l'état reste correct même si une source arrive en retard.)
+        // `eraseToAnyPublisher` obligatoire : `MergeMany` exige UN seul type d'upstream, or la
+        // liste de retrait publie des `Set<String>` là où les sources publient des [WindStation].
         Publishers.MergeMany(
-            PioupiouService.shared.$stations.map { _ in () },
-            AviationWeatherService.shared.$stations.map { _ in () },
-            WeameterService.shared.$stations.map { _ in () },
-            NDBCService.shared.$stations.map { _ in () },
-            WindsMobiService.shared.$stations.map { _ in () }
+            PioupiouService.shared.$stations.map { _ in () }.eraseToAnyPublisher(),
+            AviationWeatherService.shared.$stations.map { _ in () }.eraseToAnyPublisher(),
+            WeameterService.shared.$stations.map { _ in () }.eraseToAnyPublisher(),
+            NDBCService.shared.$stations.map { _ in () }.eraseToAnyPublisher(),
+            WindsMobiService.shared.$stations.map { _ in () }.eraseToAnyPublisher(),
+            // La liste de retrait est traitée comme une source : quand elle arrive du réseau,
+            // la liste se reconstruit et la balise retirée disparaît sans attendre un refresh.
+            SourceBlocklistService.shared.$blockedStationIDs.map { _ in () }.eraseToAnyPublisher()
         )
         .debounce(for: .milliseconds(150), scheduler: DispatchQueue.main)
         .sink { [weak self] _ in self?.rebuildDedup() }
@@ -75,6 +80,10 @@ final class WindStationAggregator: ObservableObject {
     func refresh(around coord: CLLocationCoordinate2D, force: Bool = false) async {
         lastRefreshCoord = coord
         await withTaskGroup(of: Void.self) { group in
+            group.addTask {
+                // Retraits demandés : lus AVANT le reste (TTL 6 h, quelques centaines d'octets).
+                await SourceBlocklistService.shared.refreshIfNeeded(force: force)
+            }
             group.addTask {
                 await PioupiouService.shared.refreshIfNeeded(force: force)
             }
@@ -132,6 +141,14 @@ final class WindStationAggregator: ObservableObject {
             + WeameterService.shared.stations
             + NDBCService.shared.stations
             + WindsMobiService.shared.stations
+        // RETRAIT À LA DEMANDE — filtré ICI et nulle part ailleurs. `allStations` est le point de
+        // passage unique : la carte, le widget, les alertes, la Live Activity et la Watch lisent
+        // tous cette liste. Un exploitant qui demande son retrait disparaît donc PARTOUT, sans
+        // qu'on ait à se souvenir des dix écrans qui l'affichaient.
+        let blocklist = SourceBlocklistService.shared
+        if !blocklist.blockedStationIDs.isEmpty || !blocklist.blockedSources.isEmpty {
+            combined = combined.filter { !blocklist.isBlocked(stationID: $0.id, source: $0.source.rawValue) }
+        }
         // Pré-filtre régional : indispensable avec les ~1000 bouées NDBC mondiales
         // (sinon dédup O(n²) très lourde). Garde la liste proche de la zone active.
         if let c = lastRefreshCoord {
