@@ -42,7 +42,11 @@ final class NotificationDispatcher {
 
     /// Envoie une notification locale. Si l'autorisation n'a jamais été demandée,
     /// la demande à l'utilisateur. Ignore silencieusement si refusée.
-    func send(title: String, body: String) async {
+    ///
+    /// `target` VOYAGE AVEC la notification. Sans lui, ouvrir « Fenêtre de GO à Leucate »
+    /// atterrissait sur le port affiché la dernière fois — donc, la plupart du temps, sur un
+    /// autre spot que celui dont on venait de parler, sans rien qui indique le créneau annoncé.
+    func send(title: String, body: String, target: NotificationTarget? = nil) async {
         // Défense en profondeur : toute notification de l'app est premium (échoue FERMÉ).
         // Un futur appelant de send() ne peut donc pas réintroduire de fuite.
         guard PremiumManager.shared.isPremium else { return }
@@ -60,6 +64,7 @@ final class NotificationDispatcher {
         content.title = title
         content.body = body
         content.sound = UNNotificationSound.default
+        if let target { content.userInfo = target.userInfo }
 
         let request = UNNotificationRequest(
             identifier: UUID().uuidString,
@@ -105,5 +110,72 @@ final class NotificationDispatcher {
         case .vibration:
             triggerVibration(pattern: action.vibrationPattern ?? "default")
         }
+    }
+}
+
+// MARK: - Cible portée par une notification (ouvrir SUR le bon spot, au bon créneau)
+
+/// Ce qu'une notification doit emporter pour que l'ouvrir signifie quelque chose.
+///
+/// Avant, `send(title:body:)` ne posait AUCUN `userInfo` : la bannière disait « fenêtre de GO à
+/// Leucate », et le tap rouvrait l'app sur le port affiché la fois précédente, sans rien qui
+/// désigne le créneau annoncé. L'information était dans la phrase, pas dans la notification.
+struct NotificationTarget: Equatable {
+    let portId: String
+    let portName: String
+    /// Sport concerné (rawValue de `WindSport`) — sert à surligner la BONNE lane de la courbe.
+    let sport: String?
+    /// Bornes du créneau annoncé. nil pour une notification qui ne parle pas d'une fenêtre.
+    let start: Date?
+    let end: Date?
+
+    /// `userInfo` doit rester du plist : uniquement des types primitifs, jamais de `Date`.
+    var userInfo: [String: Any] {
+        var d: [String: Any] = ["portId": portId, "portName": portName]
+        if let sport { d["sport"] = sport }
+        if let start { d["start"] = start.timeIntervalSince1970 }
+        if let end   { d["end"]   = end.timeIntervalSince1970 }
+        return d
+    }
+
+    init(portId: String, portName: String, sport: String? = nil, start: Date? = nil, end: Date? = nil) {
+        self.portId = portId; self.portName = portName
+        self.sport = sport; self.start = start; self.end = end
+    }
+
+    init?(userInfo: [AnyHashable: Any]) {
+        guard let portId = userInfo["portId"] as? String, !portId.isEmpty else { return nil }
+        self.portId = portId
+        self.portName = (userInfo["portName"] as? String) ?? ""
+        self.sport = userInfo["sport"] as? String
+        self.start = (userInfo["start"] as? Double).map(Date.init(timeIntervalSince1970:))
+        self.end   = (userInfo["end"]   as? Double).map(Date.init(timeIntervalSince1970:))
+    }
+}
+
+/// Boîte aux lettres entre le tap sur la notification et l'interface.
+///
+/// Le tap arrive dans l'AppDelegate, souvent AVANT que la vue principale n'existe (démarrage à
+/// froid) : elle ne peut donc pas l'écouter au moment où il se produit. La cible est déposée
+/// ici et RESTE en attente jusqu'à ce que quelqu'un la consomme — sinon un lancement depuis une
+/// notification, cas le plus fréquent, serait précisément celui qui ne marcherait jamais.
+@MainActor
+final class NotificationRouter: ObservableObject {
+    static let shared = NotificationRouter()
+    private init() {}
+
+    @Published private(set) var pending: NotificationTarget?
+
+    func handle(userInfo: [AnyHashable: Any]) {
+        guard let target = NotificationTarget(userInfo: userInfo) else { return }
+        pending = target
+        appLogger.info("[NotificationRouter] ouverture demandée sur \(target.portName)")
+    }
+
+    /// Prend la cible ET la retire : elle ne doit agir qu'une fois. Sans ça, revenir au premier
+    /// plan rejouerait la navigation et arracherait l'utilisateur à ce qu'il regardait.
+    func take() -> NotificationTarget? {
+        defer { pending = nil }
+        return pending
     }
 }

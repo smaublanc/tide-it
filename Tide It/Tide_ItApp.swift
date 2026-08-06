@@ -188,6 +188,13 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
     /// L'utilisateur a ouvert une notification → démarrer le cooldown de l'alerte.
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse) async {
+        // OUVRIR SUR LE BON SPOT. La cible voyage dans le `userInfo` de la notification ; on la
+        // dépose dans le routeur, qui la garde jusqu'à ce que l'interface existe — au démarrage
+        // à froid, ce tap arrive AVANT la vue principale.
+        await MainActor.run {
+            NotificationRouter.shared.handle(userInfo: response.notification.request.content.userInfo)
+        }
+
         let id = response.notification.request.identifier
         // Format : "tideit.alert.<UUID>.<minute>" (les forecast utilisent "...forecast.<id>").
         let parts = id.components(separatedBy: ".")

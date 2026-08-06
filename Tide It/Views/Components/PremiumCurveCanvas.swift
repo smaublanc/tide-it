@@ -55,6 +55,11 @@ struct PremiumCurveCanvas: View {
     /// TOUTES les fenêtres GO (tous sports), calculées par TodayView via le MÊME `ActivityGoPlanner.plan`
     /// que le calendrier → rendu IDENTIQUE en mode vent ET surf, parfaitement corrélé au calendrier.
     var goWindows: [GoCurveWindow] = []
+    /// Créneau annoncé par une notification qu'on vient d'ouvrir. nil = rien à mettre en avant.
+    var spotlight: CurveSpotlight? = nil
+    /// Battement 0→1 du halo, piloté par l'appelant. Il S'ÉTEINT (voir TodayView) : un halo
+    /// permanent deviendrait un élément d'interface de plus, alors que c'est une réponse à un geste.
+    var spotlightPhase: Double = 0
 
     @Environment(\.colorScheme) private var colorScheme
 
@@ -1575,6 +1580,25 @@ struct PremiumCurveCanvas: View {
                 let rr = Path(roundedRect: CGRect(x: x0, y: y, width: w, height: laneH), cornerRadius: 7)
                 context.fill(rr, with: .color(color.opacity(0.14)))
                 context.stroke(rr, with: .color(color.opacity(0.5)), lineWidth: 1)
+                // HALO « c'est CE créneau-là » — la fenêtre dont parlait la notification qu'on
+                // vient d'ouvrir. Le battement attire l'œil sans rien recouvrir : la bande garde
+                // son nom, sa durée et ses étoiles, on ne fait que la désigner.
+                if let sl = spotlight, spotlightPhase > 0.001,
+                   sl.sport == nil || sl.sport == sport,
+                   abs(g.start.timeIntervalSince(sl.start)) < 3600 {
+                    let breathe = 0.45 + 0.55 * sin(spotlightPhase * .pi * 4)   // 2 battements
+                    let glow = spotlightPhase * max(0, breathe)
+                    for ring in 0..<3 {
+                        let grow = CGFloat(ring) * 3.5 + 2
+                        let halo = Path(roundedRect:
+                            CGRect(x: x0 - grow, y: y - grow, width: w + grow * 2, height: laneH + grow * 2),
+                            cornerRadius: 7 + grow)
+                        context.stroke(halo,
+                                       with: .color(color.opacity(glow * (0.55 - Double(ring) * 0.16))),
+                                       lineWidth: 2.2 - CGFloat(ring) * 0.5)
+                    }
+                    context.fill(rr, with: .color(color.opacity(glow * 0.22)))
+                }
                 if g.isPeak {
                     // « LE meilleur créneau » à venir : bande accentuée + couronne au centre-haut.
                     context.fill(rr, with: .color(color.opacity(0.12)))
@@ -1971,6 +1995,17 @@ struct PremiumCurveCanvas: View {
 
 /// Fenêtre GO « aplatie » (tous sports) passée à la courbe — issue du MÊME `ActivityGoPlanner.plan`
 /// que le calendrier. Equatable (WindSport l'est) → rebuild propre.
+/// Créneau à METTRE EN AVANT après une ouverture depuis une notification.
+///
+/// La bannière dit « une fenêtre se dessine jeudi » ; l'app doit ensuite MONTRER laquelle,
+/// sinon l'utilisateur doit la chercher lui-même sur sept jours de courbe et la notification
+/// n'a fait que le déplacer.
+struct CurveSpotlight: Equatable {
+    let start: Date
+    let end: Date
+    let sport: WindSport?
+}
+
 struct GoCurveWindow: Equatable {
     let start: Date
     let end: Date

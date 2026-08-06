@@ -300,7 +300,7 @@ final class WindEstablishingService {
                 var go = false
                 if let lat, let lon { go = surfGoNow(setup: setup, lat: lat, lon: lon, now: now) }
                 if go, let lat, let lon {
-                    await fireSurfGo(setup: setup, spot: portName, lat: lat, lon: lon, now: now)
+                    await fireSurfGo(setup: setup, spot: portName, portId: portId, lat: lat, lon: lon, now: now)
                     fired[key] = now.timeIntervalSince1970
                 }
                 pend[key] = nil
@@ -330,7 +330,7 @@ final class WindEstablishingService {
             if go {
                 if let t0 = pend[key] {
                     if now.timeIntervalSince1970 - t0 >= goConfirmSec {
-                        await fireGo(sport: setup.sport, spot: portName, speed: r.speedAvgKmh)
+                        await fireGo(sport: setup.sport, spot: portName, portId: portId, speed: r.speedAvgKmh)
                         fired[key] = now.timeIntervalSince1970
                         pend[key] = nil
                     }   // sinon : confirmation en cours
@@ -348,12 +348,16 @@ final class WindEstablishingService {
         goFired = fired
     }
 
-    private func fireGo(sport: WindSport, spot: String, speed: Double) async {
+    private func fireGo(sport: WindSport, spot: String, portId: String, speed: Double) async {
         guard PremiumManager.shared.isPremium else { return }
         let unit = WindSpeedUnit(rawValue: UserDefaults.standard.string(forKey: "windSpeedUnit") ?? "") ?? .kmh
         await NotificationDispatcher.shared.send(
             title: String(localized: "Fenêtre de GO — \(sport.localizedName)"),
-            body: String(localized: "\(UnitFormatter.windSpeed(speed, unit: unit)) établi à \(spot) (balise). C'est le moment.")
+            body: String(localized: "\(UnitFormatter.windSpeed(speed, unit: unit)) établi à \(spot) (balise). C'est le moment."),
+            // La fenêtre est MAINTENANT : bornes ouvertes sur l'heure qui vient, de quoi
+            // surligner le créneau à l'ouverture.
+            target: NotificationTarget(portId: portId, portName: spot, sport: sport.rawValue,
+                                       start: Date(), end: Date().addingTimeInterval(3600))
         )
         appLogger.info("[GoWindow] \(sport.rawValue) GO confirmé à \(spot) : \(Int(speed)) km/h")
     }
@@ -381,7 +385,7 @@ final class WindEstablishingService {
         return surf.isSatisfied(at: f, tideState: nil)
     }
 
-    private func fireSurfGo(setup: SportSetup, spot: String, lat: Double, lon: Double, now: Date) async {
+    private func fireSurfGo(setup: SportSetup, spot: String, portId: String, lat: Double, lon: Double, now: Date) async {
         guard PremiumManager.shared.isPremium else { return }
         var detail = ""
         if let forecasts = MarineWeatherService.shared.cachedForecast(latitude: lat, longitude: lon),
@@ -394,7 +398,9 @@ final class WindEstablishingService {
             title: String(localized: "Fenêtre de GO — \(setup.sport.localizedName)"),
             body: detail.isEmpty
                 ? String(localized: "Conditions de surf réunies à \(spot) (prévision).")
-                : String(localized: "\(detail) à \(spot) — c'est le moment de surfer (prévision).")
+                : String(localized: "\(detail) à \(spot) — c'est le moment de surfer (prévision)."),
+            target: NotificationTarget(portId: portId, portName: spot, sport: setup.sport.rawValue,
+                                       start: now, end: now.addingTimeInterval(3600))
         )
         appLogger.info("[GoWindow] surf GO à \(spot) : \(detail)")
     }
@@ -515,7 +521,7 @@ final class WindEstablishingService {
                 let stillThere = plan.first { cal.isDate($0.day, inSameDayAs: tomorrow) }?
                     .lanes.first { $0.sport == sport }?
                     .windows.first { $0.end.timeIntervalSince($0.start) >= goAheadMinHours * 3600 }
-                await fireAheadFollowUp(sport: sport, spot: name, window: stillThere,
+                await fireAheadFollowUp(sport: sport, spot: name, portId: portId, window: stillThere,
                                         timeZone: cal.timeZone, lat: lat, lon: lon, now: now)
                 state[key] = "closed"
             }
@@ -547,8 +553,9 @@ final class WindEstablishingService {
         if let c = best {
             let key = "\(portId)|\(c.sport.rawValue)|\(dayFmt.string(from: c.day))"
             if state[key] == nil {   // jamais deux annonces pour le même spot+sport+jour
-                await fireAheadSpotted(sport: c.sport, spot: name, day: c.day,
-                                       timeZone: cal.timeZone, now: now, lat: lat, lon: lon)
+                await fireAheadSpotted(sport: c.sport, spot: name, portId: portId, day: c.day,
+                                       window: c.window, timeZone: cal.timeZone, now: now,
+                                       lat: lat, lon: lon)
                 state[key] = "spotted"
             }
         }
@@ -563,15 +570,18 @@ final class WindEstablishingService {
     }
 
     /// « Une fenêtre se dessine » — annonce PRUDENTE : elle dit son incertitude et promet le retour.
-    private func fireAheadSpotted(sport: WindSport, spot: String, day: Date,
-                                  timeZone: TimeZone, now: Date, lat: Double, lon: Double) async {
+    private func fireAheadSpotted(sport: WindSport, spot: String, portId: String, day: Date,
+                                  window: GoWindow, timeZone: TimeZone, now: Date,
+                                  lat: Double, lon: Double) async {
         guard PremiumManager.shared.isPremium, isDaylight(lat: lat, lon: lon, now: now) else { return }
         let fmt = DateFormatter(); fmt.locale = .current; fmt.timeZone = timeZone
         fmt.setLocalizedDateFormatFromTemplate("EEEE")
         let dayName = fmt.string(from: day)
         await NotificationDispatcher.shared.send(
             title: String(localized: "Une fenêtre se dessine — \(sport.localizedName)"),
-            body: String(localized: "Tide It a repéré un créneau \(dayName) à \(spot). C'est encore une prévision : on revient vers toi la veille pour te dire si ça se confirme.")
+            body: String(localized: "Tide It a repéré un créneau \(dayName) à \(spot). C'est encore une prévision : on revient vers toi la veille pour te dire si ça se confirme."),
+            target: NotificationTarget(portId: portId, portName: spot, sport: sport.rawValue,
+                                       start: window.start, end: window.end)
         )
         appLogger.info("[GoAhead] repérage \(sport.rawValue) à \(spot) pour \(dayName)")
     }
@@ -579,7 +589,7 @@ final class WindEstablishingService {
     /// Le RETOUR promis, dans les deux sens. Une fenêtre qui s'évapore doit être annoncée aussi
     /// clairement qu'une fenêtre qui tient : c'est ce qui sépare une prévision honnête d'un
     /// optimisme publicitaire.
-    private func fireAheadFollowUp(sport: WindSport, spot: String, window: GoWindow?,
+    private func fireAheadFollowUp(sport: WindSport, spot: String, portId: String, window: GoWindow?,
                                    timeZone: TimeZone, lat: Double, lon: Double, now: Date) async {
         guard PremiumManager.shared.isPremium, isDaylight(lat: lat, lon: lon, now: now) else { return }
         let hFmt = DateFormatter(); hFmt.locale = .current; hFmt.timeZone = timeZone
@@ -588,13 +598,18 @@ final class WindEstablishingService {
             let range = "\(hFmt.string(from: w.start))–\(hFmt.string(from: w.end))"
             await NotificationDispatcher.shared.send(
                 title: String(localized: "Confirmé — \(sport.localizedName) demain"),
-                body: String(localized: "\(spot) : le créneau tient, \(range). Prépare ton matos.")
+                body: String(localized: "\(spot) : le créneau tient, \(range). Prépare ton matos."),
+                target: NotificationTarget(portId: portId, portName: spot, sport: sport.rawValue,
+                                           start: w.start, end: w.end)
             )
             appLogger.info("[GoAhead] confirmé \(sport.rawValue) à \(spot) : \(range)")
         } else {
             await NotificationDispatcher.shared.send(
                 title: String(localized: "Annulé — \(sport.localizedName) demain"),
-                body: String(localized: "\(spot) : le créneau repéré ne tient plus. On te préviendra à la prochaine occasion.")
+                body: String(localized: "\(spot) : le créneau repéré ne tient plus. On te préviendra à la prochaine occasion."),
+                // Annulation : on ouvre bien SUR le spot, mais sans fenêtre à surligner —
+                // il n'y en a plus. Surligner un créneau annulé serait se contredire.
+                target: NotificationTarget(portId: portId, portName: spot)
             )
             appLogger.info("[GoAhead] annulé \(sport.rawValue) à \(spot)")
         }

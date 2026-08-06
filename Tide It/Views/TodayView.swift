@@ -70,6 +70,51 @@ struct TodayView: View {
              * Self.bandsClockStep)
     }
 
+    // MARK: - Ouverture depuis une notification
+
+    /// Créneau désigné par la notification qu'on vient d'ouvrir, et son halo.
+    @State private var spotlight: CurveSpotlight?
+    @State private var spotlightPhase: Double = 0
+    @State private var spotlightTask: Task<Void, Never>?
+
+    /// Durée d'affichage du halo. Assez pour être vu et compris, assez court pour ne pas devenir
+    /// un élément d'interface permanent : c'est une RÉPONSE à un geste, pas une décoration.
+    private static let spotlightSeconds: Double = 4.5
+
+    /// Le tap sur une notification arrive dans l'AppDelegate, souvent avant que cette vue
+    /// n'existe. On vient donc chercher la cible en attente à chaque apparition et à chaque
+    /// retour au premier plan, plutôt que d'espérer être là au bon moment.
+    private func consumeNotificationTarget() {
+        guard let target = NotificationRouter.shared.take() else { return }
+
+        // 1. Le bon spot. C'est le manque de fond : la bannière nommait un spot, l'app rouvrait
+        // sur celui d'avant. Si le port n'est pas encore chargé (catalogue mondial en cours),
+        // on ne force rien — le halo, lui, reste posé pour la fenêtre.
+        if tideService.selectedPort?.id != target.portId,
+           let port = tideService.ports.first(where: { $0.id == target.portId }) {
+            tideService.selectedPort = port
+        }
+
+        // 2. Le bon créneau, mis en avant.
+        guard let start = target.start, let end = target.end, end > start else { return }
+        spotlightTask?.cancel()
+        spotlight = CurveSpotlight(start: start, end: end,
+                                   sport: target.sport.flatMap(WindSport.init(rawValue:)))
+        HapticManager.shared.impact(.light)
+
+        spotlightTask = Task { @MainActor in
+            let steps = 45
+            for i in 0...steps {
+                guard !Task.isCancelled else { return }
+                spotlightPhase = 1 - Double(i) / Double(steps)   // s'éteint en fondu
+                try? await Task.sleep(for: .milliseconds(Int(Self.spotlightSeconds * 1000) / steps))
+            }
+            guard !Task.isCancelled else { return }
+            spotlightPhase = 0
+            spotlight = nil     // rend la main au recentrage « maintenant »
+        }
+    }
+
     /// Au-delà, la mesure balise ne vaut plus la peine d'être crue sans la redemander.
     /// C'est le seuil que la carte utilise déjà pour son badge « frais » (`ageMinutes < 10`) :
     /// une seule définition de la fraîcheur pour l'affichage et pour le rafraîchissement.
@@ -250,7 +295,9 @@ struct TodayView: View {
                             windShoreOrientation: tideService.selectedPort.flatMap { SpotConfigStore.shared.config(for: $0.id)?.shoreOrientation },
                             spotConfig: tideService.selectedPort.flatMap { SpotConfigStore.shared.config(for: $0.id) },
                             sportSetups: activeSportSetups,
-                            goWindows: goWindows
+                            goWindows: goWindows,
+                            spotlight: spotlight,
+                            spotlightPhase: spotlightPhase
                         )
 
                         // Header superposé en haut
@@ -528,7 +575,17 @@ struct TodayView: View {
                 // ouverte, on la ressort une heure plus tard. Le premier coup d'œil doit
                 // porter sur du vent d'il y a quelques minutes, pas d'il y a une heure.
                 refreshObservedWind()
+                // Notification ouverte alors que l'app dormait en arrière-plan.
+                consumeNotificationTarget()
             }
+        }
+        // Notification ouverte au démarrage À FROID : le tap a précédé cette vue, la cible
+        // attend dans le routeur. Et si elle arrive pendant qu'on regarde l'écran, le
+        // @Published la pousse ici.
+        .onAppear { consumeNotificationTarget() }
+        .onReceive(NotificationRouter.shared.$pending) { target in
+            guard target != nil else { return }
+            consumeNotificationTarget()
         }
         // Minuit, changement de fuseau, passage heure d'été : iOS le dit lui-même. Recaler
         // l'horloge ici évite d'attendre le tick de 60 s pour que les bandeaux changent de
@@ -906,6 +963,11 @@ struct PremiumTideGraphView: View {
     var spotConfig: SpotConfig? = nil
     var sportSetups: [SportSetup] = []
     var goWindows: [GoCurveWindow] = []
+    /// Créneau annoncé par la notification qu'on vient d'ouvrir : on scrolle dessus et on
+    /// l'entoure d'un halo. Sans ça, la notification laissait l'utilisateur chercher lui-même
+    /// sur sept jours de courbe le créneau dont elle venait de lui parler.
+    var spotlight: CurveSpotlight? = nil
+    var spotlightPhase: Double = 0
 
     @EnvironmentObject private var themeManager: ThemeManager
     private var calendar: Calendar { Calendar.inTimeZone(portTimeZone) }
@@ -1009,7 +1071,9 @@ struct PremiumTideGraphView: View {
                             minWaterHeight: minWaterHeight,
                             windShoreOrientation: windShoreOrientation,
                             sportSetups: sportSetups,
-                            goWindows: goWindows
+                            goWindows: goWindows,
+                            spotlight: spotlight,
+                            spotlightPhase: spotlightPhase
                         )
                         .frame(width: data.totalWidth, height: viewH)
 
@@ -1023,6 +1087,11 @@ struct PremiumTideGraphView: View {
                             Spacer()
                                 .frame(width: data.totalWidth - nowX)
                         }
+
+                        // Même mécanique d'ancre, au MILIEU du créneau annoncé par la
+                        // notification. C'est ce qui répond à « quand est-ce que ça arrive » :
+                        // la courbe se déplace jusqu'au jour et à l'heure dont on vient de parler.
+                        spotlightAnchor(data: data)
                         .frame(width: data.totalWidth)
 
                         // Tracking scroll
@@ -1108,7 +1177,21 @@ struct PremiumTideGraphView: View {
                         }
                     }
                 }
+                // Le créneau annoncé prend la main sur le recentrage « maintenant » : c'est de LUI
+                // que parlait la notification. Léger retard pour laisser l'ancre se poser dans la
+                // hiérarchie (elle vient d'apparaître avec `spotlight`).
+                .onChange(of: spotlight) { _, sl in
+                    guard sl != nil else { return }
+                    Task { @MainActor in
+                        try? await Task.sleep(for: .milliseconds(220))
+                        withAnimation(.easeInOut(duration: 0.75)) {
+                            scrollProxy.scrollTo("spotlight", anchor: .center)
+                        }
+                    }
+                }
                 .onChange(of: scrollToTodayTrigger) { _, _ in
+                    // Ne pas arracher l'utilisateur au créneau qu'on vient de lui montrer.
+                    guard spotlight == nil else { return }
                     withAnimation(.easeInOut(duration: 0.4)) {
                         scrollProxy.scrollTo("now", anchor: .center)
                     }
@@ -1157,6 +1240,30 @@ struct PremiumTideGraphView: View {
     private func currentTimeXPosition(data: GraphData) -> CGFloat {
         let progress = currentTime.timeIntervalSince(data.startDate) / data.totalDuration
         return CGFloat(progress) * data.totalWidth
+    }
+
+    /// Ancre de défilement posée au MILIEU du créneau annoncé.
+    /// Sortie du `body` : celui-ci était déjà à la limite du vérificateur de types de Swift,
+    /// une branche conditionnelle de plus le faisait renoncer (« unable to type-check »).
+    @ViewBuilder
+    private func spotlightAnchor(data: GraphData) -> some View {
+        if let sx = spotlightX(data: data) {
+            HStack(spacing: 0) {
+                Spacer().frame(width: sx)
+                Color.clear.frame(width: 1, height: 1).id("spotlight")
+                Spacer().frame(width: max(0, data.totalWidth - sx))
+            }
+        }
+    }
+
+    /// Abscisse du MILIEU du créneau annoncé — l'ancre de défilement.
+    /// Sortie du corps de vue : l'inférence de types de SwiftUI capitulait dessus.
+    private func spotlightX(data: GraphData) -> CGFloat? {
+        guard let sl = spotlight, data.totalDuration > 0 else { return nil }
+        let mid = sl.start.addingTimeInterval(sl.end.timeIntervalSince(sl.start) / 2)
+        let progress = mid.timeIntervalSince(data.startDate) / data.totalDuration
+        let x = CGFloat(progress) * data.totalWidth
+        return min(max(x, 0), data.totalWidth)
     }
 
 }
