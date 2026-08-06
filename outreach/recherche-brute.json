@@ -1,0 +1,123 @@
+[
+ {
+  "type": "result",
+  "key": "v2:5ae7dda603fdc6e9df57cd3eea7610e3b058534a8ea21430ba38db3eed82fb3f",
+  "agentId": "ae2743121462f6022",
+  "result": {
+   "candidates": [
+    {
+     "name": "Meteo-France API Observations (DPObs / DPPaquetObs) — RECOMMANDATION N°1",
+     "endpoint": "https://public-api.meteofrance.fr/public/DPPaquetObs/v1/paquet/stations/horaire (+ /public/DPObs/v1/station/horaire?id_station=11202001 , /public/DPObs/v1/liste-stations)",
+     "verified": false,
+     "httpStatus": "401 (JSON propre, code 900902 sans en-tete / 900901 avec apikey bidon) — la ROUTE existe et l'auth est confirmee ; swagger.json renvoie 404 explicite, donc les 4 chemins ci-dessus sont valides",
+     "format": "json / csv",
+     "needsKey": true,
+     "hasDirection": true,
+     "hasGust": true,
+     "hasTimestamp": true,
+     "hasLatLon": true,
+     "commercialUse": "OUVERTE — Licence Ouverte / Etalab v2.0. Verifie par curl : data.gouv.fr renvoie license=lov2 sur 'Archive Synop OMM' et license=fr-lo sur 'Donnees d'observation des principales stations meteorologiques' (org Meteo-France 534fff8ba3a7292c64a77ed4). LOV2 autorise explicitement la reutilisation commerciale avec attribution. C'est LE gros avantage vs Open-Meteo.",
+     "frenchCoastStations": "741 stations ACTIVES metropole+Corse mesurant vitesse ET direction horaires (dont 731 avec rafale), calculees depuis fiches.json (191 Mo, 13746 fiches, filtre dateFin=='' + parametres 'DIRECTION DU VENT A 10 M HORAIRE' + 'VITESSE DU VENT HORAIRE'). Distance a la station la plus proche pour les spots vises : Penmarch 0.1 km, Cap Ferret 0.3 km, Sete 0.3 km, Almanarre/Hyeres 1.0 km (HYERES 83069001), Quiberon 1.8 km (56186003), Biscarrosse 1.9 km, Leucate 2.8 km (11202001), Le Havre 3.1 km (Cap-de-la-Heve 76552001), Dunkerque 3.5 km, Hossegor 4.3 km (CAPBRETON 40065002), Ajaccio 4.7 km, Wissant 5.9 km (Cap-Gris-Nez 62054001), Porto-Vecchio 7.0 km (La Chiappa), Saint-Malo 8.0 km, La Baule 9.0 km (Pte de Chemoulin 44184001), Marseille 9.0 km, Bastia 11.4 km (Cap Sagro), Gruissan 12.9 km. Sur les 25 spots surf FR du catalogue de l'app : mediane 7.5 km, 15/25 a <=10 km, 20/25 a <=20 km. Arcachon/Andernos est le moins bien servi (Lege-Cap-Ferret a 16.9 km) et Lacanau le trou reel (Pauillac 40.7 km) — la ou Weameter/Pioupiou restent indispensables.",
+     "sampleResponse": "{\"code\":\"900902\",\"message\":\"Missing Credentials\",\"description\":\"Invalid Credentials. Make sure your API invocation call has a header: 'Authorization : Bearer ACCESS_TOKEN' or 'Authorization : Basic ACCESS_TOKEN' or 'apikey: API_KEY'\"}  — HTTP 401",
+     "notes": "PIEGE MAJEUR VERIFIE : avec -A \"Mozilla/5.0\" l'API renvoie une page de challenge anti-bot F5/TSPD (window[\"bobcmn\"]=...) qui ressemble a un CAPTCHA. Avec le User-Agent curl par defaut (ou aucun), elle repond un JSON 401 propre. Le blocage venait de l'usurpation d'UA, PAS d'une protection anti-bot generale — un vrai client iOS avec sa cle passera. Ne pas rejeter cette source sur ce faux signal. Cle GRATUITE en self-service sur portail-api.meteofrance.fr (HTTP 200 verifie) ; je n'ai pas cree de compte (creation de compte = action interdite pour moi), donc le PAYLOAD reste non verifie => verified=false, honnetement. Ce qui EST verifie : les 4 routes existent, le mecanisme apikey/Bearer est accepte, la licence est commerciale, et le schema des champs est prouve par l'archive S3 (meme reseau, memes capteurs). DPPaquetObs/paquet/stations/horaire = toutes les stations en UN appel => ideal derriere le proxy deja envisage pour Open-Meteo. Complementarite reelle vs l'existant : les semaphores et pointes (Cap Gris-Nez, Cap-de-la-Heve, Pte de Penmarch, Pte de Chemoulin, Leucate, Sete, Cap Bear, Cap Pertusato, Cap Sagro, La Chiappa, Ouessant-Stiff, Socoa, Capbreton) ne sont PAS des aeroports, donc absents de METAR, et ne sont pas dans Pioupiou/winds.mobi. Attention : ces id RADOME sont a 8 chiffres (Leucate=11202001), differents des id SYNOP OMM a 5 chiffres (Leucate=07666). ATTENTION regle CLAUDE.md n°3 : ne jamais nommer Meteo-France dans une copy App Store."
+    },
+    {
+     "name": "Meteo-France — archive ouverte S3 (SYNOP + bouees + catalogue stations), SANS cle",
+     "endpoint": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/synchro_ftp/OBS/SYNOP/synop_2026.csv.gz  (+ .../OBS/SYNOP/postes_synop.geojson , .../OBS/BOUEES/marine_2026.csv.gz , .../BASE/METADONNEES_STATION/fiches.json)",
+     "verified": true,
+     "httpStatus": "200 (et 206 sur Range — bucket S3 public, listable via ?list-type=2&prefix=...)",
+     "format": "csv (gzip) + geojson + json",
+     "needsKey": false,
+     "hasDirection": true,
+     "hasGust": true,
+     "hasTimestamp": true,
+     "hasLatLon": true,
+     "commercialUse": "OUVERTE — Licence Ouverte / Etalab v2.0 (lov2 confirme par l'API data.gouv.fr sur le jeu 'Archive Synop OMM'). Usage commercial autorise avec attribution.",
+     "frenchCoastStations": "postes_synop.geojson = 188 stations SYNOP mondiales, 152 en metropole+Corse, dont ~38 franchement littorales : Dunkerque, Boulogne-sem, Le Touquet, Dieppe, Dinard, Ploumanac'h, Ouessant-Stiff, Lanveoc, Quimper, Ile de Groix, Lorient, Nantes, La Rochelle-Ile de Re, Biscarrosse, Cazaux, Socoa, Biarritz, Leucate, Cap Bear, Perpignan, Sete, Montpellier, Istres, Marignane, Hyeres, Ile du Levant, Cannes, Nice, Ajaccio, Bastia, Cap Corse, Cap Pertusato, Calvi, Figari, Solenzara.",
+     "sampleResponse": "header: lat;lon;geo_id_wmo;geo_id_wigos;name;reference_time;insert_time;validity_time;pmer;tend;cod_tend;dd;ff;...;raf10;rafper\\nLEUCATE: 42.917333;3.059667;07666;0-20000-0-07666;LEUCATE;...;2026-08-05T21:00:00Z;101770;200;1;310;7.4;...;12.9;13.3",
+     "notes": "TOUS les champs obligatoires sont presents et verifies sur une vraie ligne : lat/lon, dd=310 deg, ff=7.4 m/s, raf10=12.9 / rafper=13.3 m/s (rafales), validity_time horodate. MAIS LE VERDICT EST LA FRAICHEUR : le fichier est regenere UNE FOIS PAR JOUR (Last-Modified 2026-08-06T05:43Z) et son validity_time maximum est 2026-08-05T21:00:00Z, soit ~12 h de retard, et les obs sont tri-horaires. C'est du J-1 => INUTILISABLE pour le vent live selon ton propre critere. Ne pas se faire piper par le 'mis a jour aujourd'hui' de data.gouv. Idem BASE/HOR et BASE/MIN (6 min) : fichiers 'latest-2025-2026' de 5 a 14 Mo par departement, regeneres quotidiennement => J-1 aussi. Poids : 19.7 Mo gzip pour synop_2026 (telecharge en 2 s ici, mais inacceptable en 4G/batterie ; Range/206 fonctionne mais gzip n'est pas decodable par la fin, donc pas de fetch partiel utile). DEUX USAGES REELS ET GRATUITS QUAND MEME : (1) alimenter ForecastBiasService en historique de biais modele-vs-mesure sur les vraies stations littorales, cote serveur/proxy, ce qui est exactement la jauge de confiance deja construite ; (2) postes_synop.geojson (46 Ko) et fiches.json donnent le CATALOGUE de stations avec lat/lon/id — a embarquer pour resoudre les coordonnees que l'API live et Ogimet ne renvoient pas. marine_2026.csv.gz = bouees Meteo-France, complement des bouees NDBC (americaines) deja integrees, meme limite J-1."
+    },
+    {
+     "name": "Ogimet getsynop — relais GTS des SYNOP, SANS cle, quasi temps reel",
+     "endpoint": "https://www.ogimet.com/cgi-bin/getsynop?block=07666&begin=202608060000&end=202608062359",
+     "verified": true,
+     "httpStatus": "200",
+     "format": "csv encapsulant du SYNOP FM-12 brut",
+     "needsKey": false,
+     "hasDirection": true,
+     "hasGust": true,
+     "hasTimestamp": true,
+     "hasLatLon": false,
+     "commercialUse": "FLOU — c'est le point de rejet. La DONNEE sous-jacente est OMM/Meteo-France (donc lov2, libre), mais le SERVICE Ogimet est un site personnel (Guillermo Ballester Valor) dont les conditions restreignent explicitement les requetes automatisees massives. Aucune licence commerciale explicite. Adosser une app payante a une infra mono-mainteneur non contractualisee = meme classe de risque que les balises tierces deja listees dans CLAUDE.md, mais avec en plus un flou juridique.",
+     "frenchCoastStations": "Teste sur 10 stations littorales : 9/10 repondent, toutes a jour a 08:00Z. Leucate 07666, Cap Bear 07749, Sete 07641, Ouessant-Stiff 07100, Ploumanac'h 07117, Cap Ferret 07510, Socoa/Biarritz 07603, Perpignan 07747, Cap Pertusato 07770 = OK. Seul Ile du Levant 07678 renvoie 0 ligne (ne transmet pas sur le GTS).",
+     "sampleResponse": "07666,2026,08,06,08,00,AAXX 06081 07666 25/// /3205 10301 20158 30142 40187 51004 333 58023 60005 91008 90710 91108==\\n07600,2026,08,06,08,00,AAXX 06081 07600 25/// /0603 10225 20149 30184 40234 53008 333 ... 91006==",
+     "notes": "LATENCE MESUREE : l'echeance 08:00Z etait disponible a 08:51Z, soit ~50 min — c'est la seule source SANS CLE reellement temps reel que j'ai trouvee sur les semaphores francais. Decodage : dans le groupe Nddff '/3205' => dd=320 deg, ff=05 m/s ; la rafale est dans la section 333, groupe 910ff (91008 => 8 m/s). Il faut donc ECRIRE UN DECODEUR SYNOP FM-12 (faisable, ~200 lignes, mais c'est du code a maintenir). Pas de lat/lon dans la reponse : jointure obligatoire avec postes_synop.geojson (candidat n°2), ce qui tombe bien puisqu'il est gratuit et embarquable. Cas d'honnetete deja rencontre dans mes tests : Cap Bear 07749 renvoie '/////' a 08:00Z (anemometre muet cette heure-la) — a mapper sur reading=nil, surtout pas sur 0, conformement au piege '?? 0' de CLAUDE.md. MON AVIS : techniquement seduisant, juridiquement le plus faible du lot. Ne l'utiliser que comme secours de l'API officielle, jamais comme source principale d'une app commerciale."
+    },
+    {
+     "name": "EMODnet Physics (ERDDAP) — plateformes in-situ europeennes",
+     "endpoint": "https://erddap.emodnet-physics.eu/erddap/tabledap/EP_PLATFORMS_METADATA_V2.csv?PLATFORMCODE,call_name,latitude,longitude,lastdateobservation,p33_winds&p33_winds=1&latitude>=41&latitude<=51.5&longitude>=-6&longitude<=10",
+     "verified": true,
+     "httpStatus": "200",
+     "format": "csv / json (metadonnees) ; NetCDF mensuel pour les observations",
+     "needsKey": false,
+     "hasDirection": true,
+     "hasGust": false,
+     "hasTimestamp": true,
+     "hasLatLon": true,
+     "commercialUse": "CC-BY — EMODnet et Copernicus Marine diffusent en CC-BY 4.0 avec attribution. Juridiquement sain pour du commercial. (L'attribution devra vivre derriere un lien in-app, jamais dans la copy App Store.)",
+     "frenchCoastStations": "Cote francaise MINCE et souvent perimee : SOLA (Banyuls, 42.4833/3.1333, Observatoire Oceanologique de Banyuls, params WDIR+WSPD) frais a 2026-08-05T01:50Z ; QUIBERON BUGALET (IF000701, 47.3969/-3.0488, Ifremer) date de 2026-07-15 ; Calvi (6101033) de 2026-07-09. En revanche le secteur Manche/mer du Nord est VIVANT a 2026-08-06T04:00Z : Westhinder, Nieuwpoort, Blankenberge, Zeebrugge Dam, Scheur Wielingen, Foxtrott Lightship (51.24/2.0), Greenwich Lightship (50.4/0.0), Folkestone — utiles pour Wissant, Calais, Dunkerque.",
+     "sampleResponse": "PLATFORMCODE,call_name,latitude,longitude,lastdateobservation,p33_winds\\nSOLA,SOLA,42.4833,3.1333,2026-08-05T01:50:00Z,1\\nWesthinderMP,Westhinder - Measuring pile,51.3886,2.4378,2026-08-06T04:10:00Z,1\\nIF000701,QUIBERON BUGALET,47.3969,-3.0488,2026-07-15T07:00:00Z,1",
+     "notes": "La COUCHE DECOUVERTE est excellente et verifiee : keyless, CSV/JSON, lat/lon numeriques, flag p33_winds, lastdateobservation par plateforme — on peut interroger 'quelles balises vent existent dans ce rectangle et sont-elles fraiches' en un appel. Le probleme est la COUCHE DONNEES : pour SOLA, EP_PLATFORMS_FILES_METADATA ne renvoie que des NetCDF MENSUELS de 3 a 63 Mo (https://er2webapps.emodnet-physics.eu/erddap/files/TS_ATMS_INSTAC/SOLA/SOLA_TS_ATMS_032025.nc). Pas de endpoint 'derniere observation' leger, et parser du NetCDF sur iOS pour une valeur de vent est disproportionne. Pas de rafale exposee. Piege a signaler : la variante EP_PLATFORMS_METADATA_V2_CSV a des lat/lon de type String, donc tout filtre numerique echoue avec 'Unrecognized constraint variable' ou 'source min=, max=' — il faut la variante EP_PLATFORMS_METADATA_V2. VERDICT : garder comme source de DECOUVERTE de balises et pour le secteur belge/Manche, pas comme fournisseur de mesure vent au fil de l'eau."
+    },
+    {
+     "name": "public.opendatasoft.com 'donnees-synop-essentielles-omm' — PIEGE, MORTE DEPUIS JANVIER",
+     "endpoint": "https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/donnees-synop-essentielles-omm/records?limit=1&order_by=date%20DESC",
+     "verified": false,
+     "httpStatus": "200 (mais donnees perimees)",
+     "format": "json / csv",
+     "needsKey": false,
+     "hasDirection": true,
+     "hasGust": true,
+     "hasTimestamp": true,
+     "hasLatLon": true,
+     "commercialUse": "ouverte — Open License v1.0 (Etalab), publisher Meteo France. La licence n'est pas le probleme ici.",
+     "frenchCoastStations": "Sans objet : le flux est mort. Le jeu contient bien 2 725 261 enregistrements avec dd, ff, raf10, coordonnees et nom de station — mais figes.",
+     "sampleResponse": "{\"total_count\":2725261,\"results\":[{\"date\":\"2026-01-15T09:00:00+00:00\",\"nom\":\"MONTELIMAR\",\"dd\":170,\"ff\":1.5,\"raf10\":2.4}]}   — et where=date>date'2026-06-01' renvoie ZERO resultat",
+     "notes": "JE LE REMONTE PARCE QUE C'EST LE PIEGE LE PLUS PROBABLE : c'est l'endpoint SYNOP le plus cite dans les tutos et sur Stack Overflow, il repond HTTP 200, il a un schema parfait (dd/ff/raf10/latitude/longitude/nom/date) — et il a CESSE D'ETRE ALIMENTE. Enregistrement le plus recent = 2026-01-15T09:00Z, metadonnee modified = 2026-02-02, soit ~7 mois de retard au 2026-08-06. Un filtre sur date>2026-06-01 renvoie zero ligne. Integre naivement, il afficherait un vent de janvier comme une mesure du jour — exactement la faute d'honnetete que l'app s'interdit. A NE PAS UTILISER. Mort silencieuse confirmee aussi pour l'ancien FTP legacy https://donneespubliques.meteofrance.fr/donnees_libres/Txt/Synop/synop.YYYYMMDDHH.csv qui renvoie desormais 302 vers ?fond=donnee_indisponible. Le miroir ODS communal https://numerique.brocaslesforges.fr/... (reference par data.gouv) ne repond ni en API v1 ni en v2.1."
+    },
+    {
+     "name": "Meetnet Vlaamse Banken (cote belge, pertinent Dunkerque/Wissant)",
+     "endpoint": "https://api.meetnetvlaamsebanken.be/V2/catalog  (auth : POST https://api.meetnetvlaamsebanken.be/Token, grant_type=password)",
+     "verified": false,
+     "httpStatus": "401 sur /V2/catalog ('Authorization has been denied for this request') ; 401 'Login failed' sur POST /Token avec identifiants bidons — le mecanisme repond correctement",
+     "format": "json",
+     "needsKey": true,
+     "hasDirection": true,
+     "hasGust": true,
+     "hasTimestamp": true,
+     "hasLatLon": true,
+     "commercialUse": "FLOU — reseau de la Region flamande (Agentschap MDK). Compte gratuit, mais les conditions d'utilisation ne declarent pas explicitement une licence ouverte commerciale. A faire confirmer avant integration payante.",
+     "frenchCoastStations": "Aucune station francaise, mais les mats offshore Westhinder, Wandelaar, Nieuwpoort, Zeebrugge, Blankenberge couvrent la meme masse d'air que Dunkerque, Zuydcoote, Gravelines et Wissant. Fraicheur confirmee INDIRECTEMENT via EMODnet (candidat n°4) qui les relaie a 2026-08-06T04:00Z.",
+     "sampleResponse": "{\"Message\":\"Authorization has been denied for this request.\"}  (HTTP 401)  /  POST Token -> {\"Message\":\"Login failed\"} (HTTP 401)",
+     "notes": "Non verifie en payload : l'acces exige la creation d'un compte, que je ne fais pas (action interdite). Point positif verifie : l'auth est un POST password-grant classique renvoyant un bearer — donc PAS d'authentification interactive ni de CAPTCHA, ce qui la rend techniquement compatible avec un proxy. Interet reel limite a la pointe nord du littoral ; a ne considerer qu'apres l'API Meteo-France, et seulement si la couverture Nord-Pas-de-Calais s'avere insuffisante en pratique."
+    },
+    {
+     "name": "Sources ecartees apres test curl (CANDHIS/CEREMA, Infoclimat, Puertos del Estado, NOAA NCEI, API interne meteofrance.com)",
+     "endpoint": "https://candhis.cerema.fr/_public_/campagne.php | https://www.infoclimat.fr/opendata/?method=get&format=json&token=... | https://portus.puertos.es/portussvr/api/RTData/station/2630 | https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-hourly&stations=07666099999 | https://rpcache-aa.meteofrance.com/internet2018client/2.0/observation",
+     "verified": false,
+     "httpStatus": "CANDHIS 200 HTML (et 404 sur /api/*) | Infoclimat 200 corps 'Wrong ip address' | Portus 405 puis 400/404 | NCEI 200 corps '[ ]' vide | meteofrance.com interne HTTP 000 (connexion bloquee)",
+     "format": "html / json",
+     "needsKey": true,
+     "hasDirection": false,
+     "hasGust": false,
+     "hasTimestamp": false,
+     "hasLatLon": false,
+     "commercialUse": "CANDHIS : donnee publique CEREMA mais aucune API ouverte -> sans objet. Infoclimat : reseau associatif StatIC, conditions restrictives, commercial non accorde -> INTERDIT/flou. Portus : Puertos del Estado, reutilisation non clarifiee. meteofrance.com interne : NON LICENCIE pour la reutilisation, zone grise a proscrire pour une app payante.",
+     "frenchCoastStations": "Sans objet — aucune de ces voies ne fournit un flux vent exploitable.",
+     "sampleResponse": "CANDHIS: <script>var langJsonPHP = \"{...cookie...}\" + liens .php?Y2FtcD05NzEwMQ== (base64)  |  Infoclimat: 'Wrong ip address'  |  Portus: {\"status\":405,\"error\":\"Method Not Allowed\"}  |  NCEI: []",
+     "notes": "Detail des rejets, pour que tu n'y repasses pas de temps. CANDHIS/CEREMA : aucun endpoint machine, la navigation passe par des campagne.php?<base64> et les pages sont du HTML -> scraping fragile, exclu par ton cahier des charges ; de plus CANDHIS est oriente HOULE, peu de girouettes. Infoclimat : token + WHITELIST D'IP ('Wrong ip address') -> structurellement incompatible avec une app mobile dont les IP clientes changent, sauf proxy, et la licence bloque de toute facon le commercial. Puertos del Estado : aucune route REST publique trouvee (RTData/stations, inventory/stations, RTData/lastData tous en 404) ; interet geographique marginal de toute facon (Hendaye, frontiere catalane). NOAA NCEI global-hourly : repond 200 mais renvoie un tableau VIDE sur 2026-08-04..06 — c'est une archive differee, pas un flux temps reel ; les stations littorales FR n'y sont pas exploitables a J. API interne meteofrance.com : injoignable (HTTP 000) et, meme joignable, non licenciee -> a proscrire. Note annexe reperee au passage dans ton catalogue : surf_spots.json contient 'Saint-Leu' avec country=France mais des coordonnees a La Reunion (8420 km de la station metropolitaine la plus proche) — sans impact sur ce travail, mais a verifier si un jour tu filtres par pays."
+    }
+   ]
+  }
+ }
+]
