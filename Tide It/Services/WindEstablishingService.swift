@@ -188,15 +188,15 @@ final class WindEstablishingService {
     /// de confiance sur la fenêtre, on se tait — on n'annonce jamais à l'aveugle.
     private let goAheadMinConfidence: Double = 0.6
 
-    /// INTERRUPTEUR DE LIVRAISON — `false` en 5.2.9, à passer à `true` en 5.3.
+    /// INTERRUPTEUR DE LIVRAISON — `true` depuis la 5.3 (était `false` en 5.2.9).
     ///
-    /// Le moteur est complet et compile, mais cette notification fait une PROMESSE
-    /// (« on revient vers toi la veille »). Or c'est iOS qui décide de ses réveils
-    /// d'arrière-plan : si celui de la veille ne vient pas, la promesse est rompue et
-    /// quelqu'un pose sa journée pour rien. Tant que le calendrier de l'app ne porte pas
-    /// l'état « repérée / confirmée » — le filet qui rattrape un réveil manqué — cette
-    /// fonctionnalité ne doit pas partir chez les utilisateurs. C'est le travail de la 5.3.
-    private let goAheadShipped = false
+    /// Cette notification fait une PROMESSE (« on revient vers toi la veille ») et c'est iOS
+    /// qui décide de ses réveils d'arrière-plan : si celui de la veille ne vient pas, quelqu'un
+    /// pose sa journée pour rien. Avant de soumettre à l'App Store, deux choses doivent être
+    /// vraies : le terrain a confirmé qu'iOS réveille bien l'app (cf. `debugForceGoAheadScan`),
+    /// et le calendrier porte l'état « repérée / confirmée » — le filet qui rattrape un réveil
+    /// manqué. Repasser à `false` suffit à tout éteindre sans rien démonter.
+    private let goAheadShipped = true
 
     private var goAhead: [String: String] {
         get { (UserDefaults.standard.dictionary(forKey: goAheadKey) as? [String: String]) ?? [:] }
@@ -423,7 +423,29 @@ final class WindEstablishingService {
 
     /// Scan quotidien du planning d'activité, en arrière-plan. Premium + spots abonnés seulement.
     func evaluateGoAheadInBackground(now: Date = Date()) async {
-        guard goAheadShipped else { return }   // cf. goAheadShipped : livré en 5.3, pas avant
+        guard goAheadShipped else { return }   // cf. goAheadShipped
+        await runGoAheadScan(now: now)
+    }
+
+    #if DEBUG
+    /// Test sur appareil. Sans ça, vérifier ce repérage demanderait d'attendre le lendemain ET
+    /// qu'iOS veuille bien réveiller l'app : le compteur de scan et l'état déjà notifié sont
+    /// remis à zéro, et l'interrupteur de livraison est contourné.
+    ///
+    /// `daysFromNow` décale la date du scan : c'est le SEUL moyen d'atteindre la seconde moitié
+    /// de la fonctionnalité — la promesse tenue. Repérer aujourd'hui une fenêtre à J+3, puis
+    /// relancer à J+2, place cette fenêtre à « demain » et déclenche la confirmation (ou
+    /// l'annulation). Sans ce décalage il faudrait attendre trois jours pour savoir si la moitié
+    /// qui engage l'app fonctionne.
+    func debugForceGoAheadScan(daysFromNow: Int = 0) async {
+        UserDefaults.standard.removeObject(forKey: goAheadScanKey)
+        if daysFromNow == 0 { goAhead = [:] }   // un décalage rejoue l'état, il ne l'efface pas
+        let now = Calendar.current.date(byAdding: .day, value: daysFromNow, to: Date()) ?? Date()
+        await runGoAheadScan(now: now)
+    }
+    #endif
+
+    private func runGoAheadScan(now: Date) async {
         guard PremiumManager.shared.isPremium else { return }
         // UN scan par jour (cf. goAheadScanInterval) : une prévision par spot, ce n'est pas
         // une opération à répéter toutes les 30 min.

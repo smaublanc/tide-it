@@ -21,29 +21,40 @@ struct WeekTrendBands: View, Equatable {
     let forecasts: [HourlyForecast]
     /// Spot de surf → second ruban « Houle ». Un port classique n'affiche que le vent.
     let isSurfSpot: Bool
+    /// Instant de référence, QUANTIFIÉ par l'appelant (cf. `TodayView.bandsClock`).
+    ///
+    /// Le temps doit être une PROPRIÉTÉ de la vue, pas un `Date()` lu au vol dans les calculs :
+    /// avec `.equatable()`, SwiftUI ne re-rend que si la valeur change. Un `Date()` interne
+    /// n'entre dans aucune comparaison — le curseur « maintenant », les en-têtes de jour et la
+    /// fenêtre de 7 jours restaient figés à leur état du dernier changement de prévisions, et
+    /// au passage de minuit les bandeaux affichaient encore la veille.
+    let now: Date
+    /// Calendrier du PORT. `Calendar.current` (fuseau du téléphone) découpait les journées
+    /// autrement que le reste de la vue dès qu'on regardait un spot à l'étranger.
+    let calendar: Calendar
 
     private let days = 7
 
-    /// Re-rendu uniquement si les prévisions ou le type de spot changent (le curseur
-    /// « maintenant » n'a pas besoin d'une précision supérieure à l'heure).
+    /// Re-rendu si les prévisions, le type de spot, l'instant quantifié OU le fuseau changent.
     static func == (lhs: WeekTrendBands, rhs: WeekTrendBands) -> Bool {
-        lhs.isSurfSpot == rhs.isSurfSpot && lhs.forecasts == rhs.forecasts
+        lhs.isSurfSpot == rhs.isSurfSpot
+            && lhs.now == rhs.now
+            && lhs.calendar.timeZone == rhs.calendar.timeZone
+            && lhs.forecasts == rhs.forecasts
     }
 
     private var window: [HourlyForecast] {
-        let cal = Calendar.current
-        let start = cal.startOfDay(for: Date())
-        guard let end = cal.date(byAdding: .day, value: days, to: start) else { return [] }
+        let start = calendar.startOfDay(for: now)
+        guard let end = calendar.date(byAdding: .day, value: days, to: start) else { return [] }
         return forecasts.filter { $0.time >= start && $0.time < end }.sorted { $0.time < $1.time }
     }
 
     private var cursorFrac: Double {
-        let cal = Calendar.current
-        let start = cal.startOfDay(for: Date())
-        guard let end = cal.date(byAdding: .day, value: days, to: start) else { return 0 }
+        let start = calendar.startOfDay(for: now)
+        guard let end = calendar.date(byAdding: .day, value: days, to: start) else { return 0 }
         let span = end.timeIntervalSince(start)
         guard span > 0 else { return 0 }
-        return min(max(Date().timeIntervalSince(start) / span, 0), 1)
+        return min(max(now.timeIntervalSince(start) / span, 0), 1)
     }
 
     /// Y a-t-il une vraie donnée de houle ? Sans elle, PAS de ruban « Houle » — plutôt qu'une
@@ -123,11 +134,12 @@ struct WeekTrendBands: View, Equatable {
     // MARK: données dérivées
 
     private var dayLabels: [DayCol] {
-        let cal = Calendar.current
-        let start = cal.startOfDay(for: Date())
+        let cal = calendar
+        let start = cal.startOfDay(for: now)
         // Jour court LOCALISÉ (≈ 2 lettres) : JE/VE en fr, Mo/Di en de, Th/Fr en en…
         let fmt = DateFormatter()
         fmt.locale = .current
+        fmt.timeZone = cal.timeZone   // sinon un minuit « port » se formate au jour de la veille
         fmt.setLocalizedDateFormatFromTemplate("EEEEEE")
         return (0..<days).compactMap { off in
             guard let d = cal.date(byAdding: .day, value: off, to: start) else { return nil }

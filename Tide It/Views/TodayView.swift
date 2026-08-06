@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UIKit          // significantTimeChangeNotification (minuit / fuseau / heure d'été)
 import WeatherKit
 import ActivityKit
 import CoreLocation
@@ -54,6 +55,42 @@ struct TodayView: View {
     }
 
     private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+
+    /// Pas de l'horloge des bandeaux 7 jours. Le ruban fait 7 jours de large pour ~350 pt :
+    /// un point vaut une demi-heure. Bouger le curseur plus souvent que ce pas ne se VOIT pas
+    /// et re-rendrait deux Canvas pour rien (c'est ce que `.equatable()` protège).
+    ///
+    /// 900 s tombe pile sur minuit — tous les fuseaux du monde sont décalés d'un multiple de
+    /// 15 min (jusqu'à Katmandou +5:45 et Chatham +12:45). Le changement de jour produit donc
+    /// TOUJOURS une nouvelle valeur, et les bandeaux se réalignent dans la minute.
+    private static let bandsClockStep: TimeInterval = 900   // 15 min
+
+    private var bandsClock: Date {
+        Date(timeIntervalSince1970: (currentTime.timeIntervalSince1970 / Self.bandsClockStep).rounded(.down)
+             * Self.bandsClockStep)
+    }
+
+    /// Au-delà, la mesure balise ne vaut plus la peine d'être crue sans la redemander.
+    /// C'est le seuil que la carte utilise déjà pour son badge « frais » (`ageMinutes < 10`) :
+    /// une seule définition de la fraîcheur pour l'affichage et pour le rafraîchissement.
+    private static let observedWindStaleMinutes = 10
+
+    /// Faut-il redemander la balise ? Oui si la mesure affichée a vieilli au-delà du seuil,
+    /// oui aussi s'il n'y en a plus (une station qui s'est tue repasse sous les 30 min de
+    /// `nearestReading` et disparaît : sans ça, plus jamais de tentative jusqu'au changement
+    /// de port). L'agrégateur a son propre TTL de 3 min : demander souvent ne fetch pas souvent.
+    private var observedWindNeedsRefresh: Bool {
+        guard let obs = observedWind else { return true }
+        return obs.reading.ageMinutes >= Self.observedWindStaleMinutes
+    }
+
+    private func refreshObservedWind() {
+        guard let port = tideService.selectedPort, observedWindNeedsRefresh else { return }
+        Task {
+            await WindStationAggregator.shared.refresh(
+                around: CLLocationCoordinate2D(latitude: port.latitude, longitude: port.longitude))
+        }
+    }
     /// Calendrier réglé sur le fuseau du port : tout calcul « jour » (même jour, début
     /// de journée, nombre de jours) reste cohérent même quand le port est dans un autre fuseau.
     private var calendar: Calendar { Calendar.inTimeZone(portTimeZone) }
@@ -297,7 +334,9 @@ struct TodayView: View {
                     if !openMeteoForecasts.isEmpty {
                         WeekTrendBands(
                             forecasts: openMeteoForecasts,
-                            isSurfSpot: SurfSpotCatalog.shared.spot(id: tideService.selectedPort?.id ?? "") != nil
+                            isSurfSpot: SurfSpotCatalog.shared.spot(id: tideService.selectedPort?.id ?? "") != nil,
+                            now: bandsClock,
+                            calendar: calendar
                         )
                         .equatable()
                         .padding(.horizontal, DS.pagePadding)
@@ -383,15 +422,15 @@ struct TodayView: View {
         .onReceive(timer) { _ in
             currentTime = Date()
             tideService.refreshTideState()
-            // Alerte « le vent s'établit » active → on entretient le rafraîchissement balise
-            // (TTL-gated : un vrai fetch ~toutes les 3 min) pour échantillonner la confirmation.
-            if let port = tideService.selectedPort,
-               WindEstablishingService.hasActiveAlert(forPort: port.id) {
-                Task {
-                    await WindStationAggregator.shared.refresh(
-                        around: CLLocationCoordinate2D(latitude: port.latitude, longitude: port.longitude))
-                }
-            }
+            // La balise ne se redemande QUE quand ce qui est affiché a vieilli (ou a disparu) —
+            // et non à chaque minute. Une mesure d'il y a une heure ne sert à rien : autant ne
+            // pas l'afficher comme le vent du moment. Le TTL de 3 min de l'agrégateur borne le
+            // réseau ; en pratique ça se stabilise sur un fetch toutes les 3 min pendant qu'on
+            // regarde l'écran, et zéro dès que la mesure est fraîche.
+            //
+            // Remplace l'ancienne condition « une alerte vent est armée » : la fraîcheur de ce
+            // qu'on montre n'a rien à voir avec le fait d'avoir armé une alerte.
+            refreshObservedWind()
             // Note : les scores d'activité ne sont PAS recalculés ici (chaque minute) — ils
             // n'alimentent que la carte d'export (à la demande) et changent lentement. Ils sont
             // rafraîchis au changement de port et de marées. Évite un calcul/minute inutile.
@@ -485,7 +524,19 @@ struct TodayView: View {
                 // Mettre à jour l'heure et recentrer le graphique sur T0
                 currentTime = Date()
                 scrollToTodayTrigger.toggle()
+                // Cas le plus fréquent de mesure périmée : téléphone en poche, app restée
+                // ouverte, on la ressort une heure plus tard. Le premier coup d'œil doit
+                // porter sur du vent d'il y a quelques minutes, pas d'il y a une heure.
+                refreshObservedWind()
             }
+        }
+        // Minuit, changement de fuseau, passage heure d'été : iOS le dit lui-même. Recaler
+        // l'horloge ici évite d'attendre le tick de 60 s pour que les bandeaux changent de
+        // jour — et couvre le cas qu'aucun timer ne couvre : l'utilisateur qui atterrit dans
+        // un autre fuseau pendant que l'app tourne.
+        .onReceive(NotificationCenter.default.publisher(
+            for: UIApplication.significantTimeChangeNotification)) { _ in
+            currentTime = Date()
         }
         } // GeometryReader
     }

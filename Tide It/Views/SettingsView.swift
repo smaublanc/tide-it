@@ -16,6 +16,7 @@ struct SettingsView: View {
     @State private var showSpringTideHistory = false
     #if DEBUG
     @State private var debugPremium = UserDefaults.standard.bool(forKey: PremiumManager.debugForcePremiumKey)
+    @State private var aheadScanning = false
     #endif
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -75,6 +76,47 @@ struct SettingsView: View {
                 }
             }
             .tint(.pink)
+
+            Divider().overlay(Color.glassHighlight.opacity(0.08))
+
+            // Repérage anticipé : sans ces boutons, le vérifier demanderait d'attendre le
+            // lendemain ET qu'iOS veuille bien réveiller l'app. « Premium forcé » doit être ON.
+            Button {
+                Task { @MainActor in
+                    aheadScanning = true
+                    await WindEstablishingService.shared.debugForceGoAheadScan()
+                    aheadScanning = false
+                }
+            } label: {
+                SettingsRowView(icon: "binoculars.fill", title: "Repérage anticipé : scanner", iconColor: .pink) {
+                    if aheadScanning {
+                        ProgressView().scaleEffect(0.8).tint(.pink)
+                    } else {
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 14, weight: .semibold)).foregroundStyle(.gray)
+                    }
+                }
+            }
+            .buttonStyle(.plain)
+
+            VStack(alignment: .leading, spacing: DS.spacingSM) {
+                Text("Rejouer la veille du jour repéré")
+                    .font(.scaled(size: DS.fontCaption))
+                    .foregroundStyle(.secondary)
+                // Le repérage vise J+2..J+5 : rejouer à J+1..J+4 place la fenêtre à « demain »
+                // et déclenche la seconde moitié — la promesse tenue (confirmation ou annulation).
+                HStack(spacing: DS.spacingSM) {
+                    ForEach(1...4, id: \.self) { d in
+                        Button("J+\(d)") {
+                            Task { await WindEstablishingService.shared.debugForceGoAheadScan(daysFromNow: d) }
+                        }
+                        .font(.scaled(size: DS.fontCaption, weight: .semibold))
+                        .frame(maxWidth: .infinity, minHeight: 32)
+                        .background(Color.pink.opacity(0.15), in: RoundedRectangle(cornerRadius: 8))
+                        .foregroundStyle(.pink)
+                    }
+                }
+            }
         }
     }
     #endif
