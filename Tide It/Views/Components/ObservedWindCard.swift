@@ -8,6 +8,7 @@
 //
 
 import SwiftUI
+import CoreLocation   // distances vers les webcams du secteur
 
 struct ObservedWindCard: View, Equatable {
     /// Station source (Pioupiou / Holfuy / ...)
@@ -86,6 +87,21 @@ struct ObservedWindCard: View, Equatable {
         }
     }
 
+    // MARK: - Webcams du secteur
+
+    /// Les 3 webcams les plus proches de la BALISE (donc du plan d'eau qu'on regarde), retraits
+    /// appliqués. Catalogue embarqué : aucun réseau, aucune clé, rien à charger.
+    private var nearbyWebcams: [(cam: Webcam, distance: CLLocationDistance)] {
+        WebcamCatalog.shared.nearest(to: station.coordinate)
+    }
+
+    /// Distance courte, dans le système d'unités de l'utilisateur.
+    private static func km(_ meters: CLLocationDistance) -> String {
+        let imperial = (UserDefaults.standard.string(forKey: "measureSystem") ?? "") == "imperial"
+        if imperial { return String(format: "%.1f mi", locale: .current, meters / 1609.344) }
+        return String(format: "%.1f km", locale: .current, meters / 1000)
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -107,6 +123,31 @@ struct ObservedWindCard: View, Equatable {
                     .foregroundStyle(.primary)
 
                 Spacer()
+
+                // Webcams du secteur. L'icône n'apparaît QUE s'il y en a une à portée : ce qui
+                // n'existe pas ne s'affiche pas, et un bouton qui n'ouvre rien serait pire
+                // qu'un bouton absent.
+                if !nearbyWebcams.isEmpty {
+                    Menu {
+                        ForEach(nearbyWebcams, id: \.cam.id) { entry in
+                            Link(destination: entry.cam.page) {
+                                Label {
+                                    // Le nom de l'exploitant, sa commune, et la distance : de quoi
+                                    // savoir si la caméra regarde VRAIMENT le spot avant de sortir
+                                    // de l'app.
+                                    Text(verbatim: "\(entry.cam.name) · \(Self.km(entry.distance))")
+                                } icon: {
+                                    Image(systemName: "video.fill")
+                                }
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "video.circle")
+                            .font(.scaled(size: 17, weight: .medium))
+                            .foregroundStyle(windColor.opacity(0.85))
+                    }
+                    .accessibilityLabel(Text("Webcams à proximité"))
+                }
 
                 // Pastille "live" pulsante si frais (< 10 min)
                 if reading.ageMinutes < 10 {

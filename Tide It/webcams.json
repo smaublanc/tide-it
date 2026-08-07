@@ -1,0 +1,361 @@
+{
+ "_lisezmoi": "Catalogue des webcams du littoral. Par defaut l'app OUVRE la page de l'exploitant : un lien n'est pas une contrefacon. Le champ 'embed' n'apparait QUE sur les cameras dont l'exploitant a donne un accord ECRIT (guideline App Store 5.2 : rejouer le flux d'un tiers sans accord fait retirer l'APPLICATION, pas la fonctionnalite). Le retrait a la demande passe par docs/blocklist.json, cle 'webcams'.",
+ "version": 1,
+ "updated": "2026-08-07",
+ "webcams": [
+  {
+   "id": "cam_le-barcares-les-dosses-park-dosses-webcam-sk",
+   "name": "Le Barcares — Les Dosses / Park Dosses — webcam Skaping",
+   "place": "Le Barcares (66420) — Les Dosses, spot kite / wing sur l etang de Leucate-Salses, ~2 km au sud de Port Leucate",
+   "lat": 42.83733,
+   "lon": 3.02344,
+   "page": "https://www.skaping.com/le-barcares/dosses",
+   "operatorContact": "info@skaping.com"
+  },
+  {
+   "id": "cam_cercle-de-voile-du-cap-leucate-re-diffuseur-",
+   "name": "Cercle de Voile du Cap Leucate — re-diffuseur des vues Viewsurf, contact utile",
+   "place": "Etang de Leucate — base nautique (windsurf, foil, catamaran, char a voile, paddle)",
+   "lat": 42.8494,
+   "lon": 3.0368,
+   "page": "https://cercledevoile.com/webcams/",
+   "operatorContact": "contact.voile@cercledevoile.com"
+  },
+  {
+   "id": "cam_leucate-base-de-voile-la-marina-etang-de-leu",
+   "name": "Leucate — Base de Voile « La Marina » (etang de Leucate) — Viewsurf / OT Leucate",
+   "place": "Etang de Leucate / base de voile — plan d eau plat, spot d apprentissage kite et wing",
+   "lat": 42.8494,
+   "lon": 3.0368,
+   "page": "https://www.viewsurf.com/univers/plage/vue/18158-france-languedoc-roussillon-leucate-base-de-voile",
+   "operatorContact": "info@tourisme-leucate.fr"
+  },
+  {
+   "id": "cam_leucate-le-port-port-leucate-viewsurf-ot-leu",
+   "name": "Leucate — Le Port (Port Leucate) — Viewsurf / OT Leucate",
+   "place": "Port Leucate — port de plaisance, quais",
+   "lat": 42.8557,
+   "lon": 3.0401,
+   "page": "https://www.viewsurf.com/univers/plage/vue/17040-france-languedoc-roussillon-leucate-le-port",
+   "operatorContact": "info@tourisme-leucate.fr"
+  },
+  {
+   "id": "cam_port-de-plaisance-de-port-leucate-capitainer",
+   "name": "Port de plaisance de Port Leucate (capitainerie) — re-diffuseur, contact utile",
+   "place": "Port Leucate — port de plaisance",
+   "lat": 42.8557,
+   "lon": 3.0401,
+   "page": "https://www.port-leucate.fr/webcam/",
+   "operatorContact": "capitainerie@port-leucate.fr"
+  },
+  {
+   "id": "cam_camping-cap-leucate-mer-sable-soleil-re-diff",
+   "name": "Camping Cap Leucate / Mer Sable Soleil — re-diffuseur, contact utile",
+   "place": "Leucate-Plage — la camera regarde le spot juste en face du camping",
+   "lat": 42.9018,
+   "lon": 3.0533,
+   "page": "https://campingmunicipalcapleucate-mss.fr/webcam-leucate/",
+   "operatorContact": "camping.capleucate-mss@mairie-leucate.fr"
+  },
+  {
+   "id": "cam_leucate-le-canigou-viewsurf-ot-leucate",
+   "name": "Leucate — Le Canigou — Viewsurf / OT Leucate",
+   "place": "Leucate — vue vers le Canigou (interieur des terres)",
+   "lat": 42.9018,
+   "lon": 3.0533,
+   "page": "https://www.viewsurf.com/univers/plage/vue/19608-france-languedoc-roussillon-leucate-le-canigou",
+   "operatorContact": "info@tourisme-leucate.fr"
+  },
+  {
+   "id": "cam_leucate-leucate-plage-viewsurf-ot-leucate",
+   "name": "Leucate — Leucate-Plage — Viewsurf / OT Leucate",
+   "place": "Leucate-Plage (baignade + glisse par vent de secteur est)",
+   "lat": 42.9018,
+   "lon": 3.0533,
+   "page": "https://www.viewsurf.com/univers/plage/vue/17042-france-languedoc-roussillon-leucate-la-plage",
+   "operatorContact": "info@tourisme-leucate.fr"
+  },
+  {
+   "id": "cam_leucate-poste-de-secours-viewsurf-ot-leucate",
+   "name": "Leucate — Poste de Secours — Viewsurf / OT Leucate",
+   "place": "Leucate-Plage — poste de secours (Windy la reference comme « Leucate Est : Poste de Secours N6 »)",
+   "lat": 42.9018,
+   "lon": 3.0533,
+   "page": "https://www.viewsurf.com/univers/plage/vue/19610-france-languedoc-roussillon-leucate-poste-de-secours",
+   "operatorContact": "info@tourisme-leucate.fr"
+  },
+  {
+   "id": "cam_leucate-village-le-chateau-viewsurf-ot-leuca",
+   "name": "Leucate — Village / Le chateau — Viewsurf / OT Leucate",
+   "place": "Leucate village (pas un spot de glisse)",
+   "lat": 42.9098,
+   "lon": 3.028,
+   "page": "https://pv.viewsurf.com/2382/Leucate-Village",
+   "operatorContact": "info@tourisme-leucate.fr"
+  },
+  {
+   "id": "cam_la-franqui-webcam-le-bleu-winds-up-id-64",
+   "name": "La Franqui — webcam « Le Bleu » (Winds-Up id 64)",
+   "place": "La Franqui (Leucate) — plage devant Le Bleu Surf Cafe, zone kite / windsurf / wing",
+   "lat": 42.9323,
+   "lon": 3.0353,
+   "page": "https://www.winds-up.com/spot/64-la-franqui-cam-le-bleu/webcam",
+   "operatorContact": "contact@winds-up.com"
+  },
+  {
+   "id": "cam_leucate-panoramique-plage-des-coussoules-hd-",
+   "name": "Leucate — Panoramique plage des Coussoules (HD) — Viewsurf / OT Leucate",
+   "place": "Leucate — plage des Coussoules / La Franqui, vue large falaise + mer",
+   "lat": 42.9472,
+   "lon": 3.0363,
+   "page": "https://www.viewsurf.com/univers/plage/vue/17044-france-languedoc-roussillon-leucate-panoramique-hd",
+   "operatorContact": "info@tourisme-leucate.fr"
+  },
+  {
+   "id": "cam_leucate-plage-des-coussoules-vue-plage-views",
+   "name": "Leucate — Plage des Coussoules (vue plage) — Viewsurf / OT Leucate",
+   "place": "Leucate — plage des Coussoules / La Franqui (kite, windsurf, wing)",
+   "lat": 42.9472,
+   "lon": 3.0363,
+   "page": "https://www.viewsurf.com/univers/plage/vue/17014-france-languedoc-roussillon-leucate-plage-des-coussoules",
+   "operatorContact": "info@tourisme-leucate.fr"
+  },
+  {
+   "id": "cam_leucate-spot-char-a-voile-plage-des-coussoul",
+   "name": "Leucate — Spot Char a Voile, plage des Coussoules — Viewsurf / OT Leucate",
+   "place": "Leucate — zone de roulage char a voile, plage des Coussoules",
+   "lat": 42.9472,
+   "lon": 3.0363,
+   "page": "https://www.viewsurf.com/univers/plage/vue/19230-france-languedoc-roussillon-leucate-spot-char-a-voile",
+   "operatorContact": "info@tourisme-leucate.fr"
+  },
+  {
+   "id": "cam_leucate-spot-kitesurf-plage-des-coussoules-l",
+   "name": "Leucate — Spot Kitesurf, plage des Coussoules (La Franqui) — LA camera qui compte pour un kiteur",
+   "place": "Leucate (11370) — plage des Coussoules / La Franqui, LE spot kite-windsurf (site du Mondial du Vent)",
+   "lat": 42.9472,
+   "lon": 3.0363,
+   "page": "https://www.viewsurf.com/univers/plage/vue/19232-france-languedoc-roussillon-leucate-spot-kitesurf",
+   "operatorContact": "info@tourisme-leucate.fr"
+  },
+  {
+   "id": "cam_office-de-tourisme-de-leucate-page-webcam-of",
+   "name": "Office de Tourisme de Leucate — page webcam officielle, point d entree unique des 5 cameras",
+   "place": "Leucate / La Franqui / Port Leucate / etang — toutes les vues du secteur sur une page",
+   "lat": 42.9472,
+   "lon": 3.0363,
+   "page": "https://www.tourisme-leucate.fr/webcam/",
+   "operatorContact": "info@tourisme-leucate.fr"
+  },
+  {
+   "id": "cam_port-la-nouvelle-webcam-panoramique-skaping",
+   "name": "Port-la-Nouvelle — webcam panoramique Skaping",
+   "place": "Port-la-Nouvelle (11210) — plage et port, ~9 km au nord de la plage des Coussoules",
+   "lat": 43.0139,
+   "lon": 3.06518,
+   "page": "https://www.skaping.com/port-la-nouvelle",
+   "operatorContact": "info@skaping.com"
+  },
+  {
+   "id": "cam_l-ayguade-hyeres",
+   "name": "L'Ayguade (Hyères)",
+   "place": "Hyères (83) — plage de l'Ayguade, est de la rade, vue sur les îles d'Or",
+   "lat": 43.0336,
+   "lon": 6.17034,
+   "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/77-hyeres4/",
+   "operatorContact": "vision-environnement@live.fr"
+  },
+  {
+   "id": "cam_la-madrague-giens",
+   "name": "La Madrague (Giens)",
+   "place": "Giens / Hyères (83) — port de la Madrague, côté ouest de la presqu'île (repli quand ça souffle trop à l'Almanarre)",
+   "lat": 43.0399,
+   "lon": 6.11005,
+   "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/79-madrague/",
+   "operatorContact": "vision-environnement@live.fr"
+  },
+  {
+   "id": "cam_almanarre-sud-camping-international-de-giens",
+   "name": "Almanarre sud — Camping International de Giens",
+   "place": "Giens / Hyères (83) — extrémité sud de la plage de l'Almanarre, dans l'enceinte du Camping International (école de windsurf Spin Out sur place)",
+   "lat": 43.041,
+   "lon": 6.123,
+   "page": "https://en.addicted-sports.com/webcam/hyeres/almanarre/",
+   "operatorContact": "info@addicted-sports.com"
+  },
+  {
+   "id": "cam_almanarre-les-estagnets-webcam-kite-wing",
+   "name": "Almanarre – Les Estagnets (webcam kite/wing)",
+   "place": "Hyères (83) — plage de l'Almanarre, zone kite/wing des Estagnets",
+   "lat": 43.04924,
+   "lon": 6.13188,
+   "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/699-hyeres-kite/",
+   "operatorContact": "vision-environnement@live.fr"
+  },
+  {
+   "id": "cam_winds-up-almanarre-salin-des-pesquiers",
+   "name": "Winds-Up — Almanarre / Salin des Pesquiers",
+   "place": "Hyères (83) — Almanarre / Salin des Pesquiers (spot kite/windsurf de référence, station de vent + webcam)",
+   "lat": 43.0667,
+   "lon": 6.13491,
+   "page": "https://www.winds-up.com/spot/2-almanarre-salin-des-pesquiers/webcam",
+   "operatorContact": "contact@winds-up.com"
+  },
+  {
+   "id": "cam_l-almanarre-nord-olbia",
+   "name": "L'Almanarre Nord (Olbia)",
+   "place": "Hyères (83) — extrémité nord de la plage de l'Almanarre, au-dessus du site antique d'Olbia (spot windsurf/wingfoil)",
+   "lat": 43.08003,
+   "lon": 6.12304,
+   "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/75-hyeres3/",
+   "operatorContact": "vision-environnement@live.fr"
+  },
+  {
+   "id": "cam_port-saint-pierre-hyeres",
+   "name": "Port Saint-Pierre (Hyères)",
+   "place": "Hyères (83) — port Saint-Pierre, rade de Hyères (proche des spots de La Capte / Hyères-Plage)",
+   "lat": 43.08303,
+   "lon": 6.1599,
+   "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/76-hyeres2/",
+   "operatorContact": "vision-environnement@live.fr"
+  },
+  {
+   "id": "cam_berck-sur-mer-6-vues-skaping-mer-entonnoir-b",
+   "name": "Berck-sur-Mer — 6 vues Skaping (Mer, Entonnoir, Baie d'Authie, Hopale, Maritime, Poste de secours)",
+   "place": "Berck-sur-Mer (62600) — plage et baie d'Authie, spot char à voile / kite",
+   "lat": 50.405,
+   "lon": 1.565,
+   "page": "https://www.skaping.com/berck-sur-mer/mer",
+   "operatorContact": "info@skaping.com"
+  },
+  {
+   "id": "cam_merlimont-plage-vue-viewsurf-via-l-office-de",
+   "name": "Merlimont-Plage — vue Viewsurf (via l'office de tourisme)",
+   "place": "Merlimont (62155) — plage",
+   "lat": 50.453,
+   "lon": 1.57,
+   "page": "https://pv.viewsurf.com/1604/Merlimont-Plage?i=NjI1Njo",
+   "operatorContact": "contact@destinationcotedopale.com"
+  },
+  {
+   "id": "cam_cucq-stella-plage-viewsurf-panoramique-hd-2-",
+   "name": "Cucq / Stella-Plage — Viewsurf panoramique HD + 2 vues pv.viewsurf",
+   "place": "Cucq / Stella-Plage (62780) — plage, entre Le Touquet et Merlimont",
+   "lat": 50.475,
+   "lon": 1.575,
+   "page": "https://www.viewsurf.com/univers/surf/vue/16022-france-nord-pas-de-calais-cucq-panoramique-hd",
+   "operatorContact": "contact@destinationcotedopale.com"
+  },
+  {
+   "id": "cam_aeroport-du-touquet-cote-d-opale-cam1",
+   "name": "Aéroport du Touquet — Côte d'Opale (cam1)",
+   "place": "Le Touquet (62520) — aérodrome, ~2 km du spot",
+   "lat": 50.517,
+   "lon": 1.627,
+   "page": "https://www.aeroport-letouquet.com/cams/cam1.php"
+  },
+  {
+   "id": "cam_le-touquet-paris-plage-5-vues-skaping-vue-me",
+   "name": "Le Touquet-Paris-Plage — 5 vues Skaping (Vue mer, Plage sud, Centre nautique baie de Canche, Centre nautique de la Manche, Jardins du Palais)",
+   "place": "Le Touquet (62520) — plage nord/sud et bases nautiques, spot kite majeur",
+   "lat": 50.523,
+   "lon": 1.576,
+   "page": "https://www.skaping.com/le-touquet/poste-central/vue-mer",
+   "operatorContact": "office-tourisme@letouquet.com"
+  },
+  {
+   "id": "cam_neufchatel-hardelot-2-vues-viewsurf-live-pan",
+   "name": "Neufchâtel-Hardelot — 2 vues Viewsurf (Live + Panoramique HD)",
+   "place": "Hardelot-Plage (62152) — plage, spot kite et char à voile",
+   "lat": 50.635,
+   "lon": 1.576,
+   "page": "https://www.viewsurf.com/univers/surf/vue/18210-france-nord-pas-de-calais-neufchatel-hardelot-live",
+   "operatorContact": "noelle.drillaud@viewsurf.com"
+  },
+  {
+   "id": "cam_equihen-plage-webcams-locales-flux-mjpeg-dir",
+   "name": "Équihen-Plage — webcams locales (flux MJPEG direct + 2 lecteurs ipcamlive)",
+   "place": "Équihen-Plage (62224) — plage, sud de Boulogne",
+   "lat": 50.695,
+   "lon": 1.565,
+   "page": "https://equihenplage.blogspot.com/p/webcam-du-littoral-cote-dopale.html"
+  },
+  {
+   "id": "cam_le-portel-plage-skaping",
+   "name": "Le Portel — Plage (Skaping)",
+   "place": "Le Portel (62480) — plage centre, spot de glisse du Boulonnais",
+   "lat": 50.708,
+   "lon": 1.573,
+   "page": "https://www.skaping.com/le-portel/plage/live"
+  },
+  {
+   "id": "cam_boulogne-sur-mer-la-webcam-du-port-de-plaisa",
+   "name": "Boulogne-sur-Mer — la webcam du port de plaisance",
+   "place": "Boulogne-sur-Mer (62200) — port de plaisance",
+   "lat": 50.727,
+   "lon": 1.578,
+   "page": "https://www.boulogne-marina.fr/la-webcam-du-port",
+   "operatorContact": "contact@boulogne-marina.fr"
+  },
+  {
+   "id": "cam_webcam-live-a-wissant-pays-des-2-caps",
+   "name": "Webcam live à Wissant — Pays des 2 Caps",
+   "place": "Wissant — digue, vue mer entre Cap Gris-Nez et Cap Blanc-Nez",
+   "lat": 50.8865,
+   "lon": 1.6636,
+   "page": "https://www.paysdes2caps.com/webcam-wissant"
+  },
+  {
+   "id": "cam_wissant-webcam-le-direct-de-la-plage-et-du-s",
+   "name": "Wissant webcam — le direct de la plage et du spot",
+   "place": "Wissant (62179) — baie de Wissant, LE spot kite de la Côte d'Opale",
+   "lat": 50.8865,
+   "lon": 1.6636,
+   "page": "https://www.youtube.com/@wissant_webcam/live"
+  },
+  {
+   "id": "cam_sangatte-bleriot-plage-direct-youtube-live-s",
+   "name": "Sangatte / Blériot-Plage — direct YouTube « LIVE • Sangatte – Vue sur la Manche »",
+   "place": "Sangatte / Blériot-Plage (62231) — front de mer, vue Cap Blanc-Nez",
+   "lat": 50.945,
+   "lon": 1.75,
+   "page": "https://www.youtube.com/watch?v=NZy8SQ9kdbk"
+  },
+  {
+   "id": "cam_calais-2-vues-viewsurf-calais-live-calais-la",
+   "name": "Calais — 2 vues Viewsurf (Calais Live, Calais La Plage)",
+   "place": "Calais (62100) — plage de Calais",
+   "lat": 50.97,
+   "lon": 1.84,
+   "page": "https://www.viewsurf.com/univers/plage/vue/18722-france-nord-pas-de-calais-calais-live",
+   "operatorContact": "noelle.drillaud@viewsurf.com"
+  },
+  {
+   "id": "cam_gravelines-2-webcams-municipales-anse-des-es",
+   "name": "Gravelines — 2 webcams municipales (Anse des Espagnols, Vue chenal)",
+   "place": "Gravelines / Petit-Fort-Philippe (59820) — chenal de l'Aa et plage",
+   "lat": 51.01,
+   "lon": 2.1,
+   "page": "https://www.ville-gravelines.fr/decouvrir-gravelines/gravelines-en-images/les-webcams/webcam-vue-chenal",
+   "operatorContact": "contact@ville-gravelines.fr"
+  },
+  {
+   "id": "cam_dunkerque-malo-les-bains-leffrinckoucke-13-v",
+   "name": "Dunkerque / Malo-les-Bains / Leffrinckoucke — ~13 vues Viewsurf",
+   "place": "Dunkerque, Malo-les-Bains, Leffrinckoucke (59) — digue et plage, spots kite",
+   "lat": 51.045,
+   "lon": 2.39,
+   "page": "https://www.viewsurf.com/univers/plage/vue/16806-france-nord-pas-de-calais-dunkerque-live",
+   "operatorContact": "contact@dunkerque-tourisme.fr"
+  },
+  {
+   "id": "cam_bray-dunes-8-vues-viewsurf-live-panoramique-",
+   "name": "Bray-Dunes — 8 vues Viewsurf (Live, Panoramique HD, Rotonde, Mer Ouest, Mer Est, Mer Nord, Digue Est, Digue Ouest)",
+   "place": "Bray-Dunes (59123) — plage et digue de mer, spot kite/wing frontalier",
+   "lat": 51.0725,
+   "lon": 2.523,
+   "page": "https://www.viewsurf.com/univers/plage/vue/16790-france-nord-pas-de-calais-bray-dunes-live",
+   "operatorContact": "noelle.drillaud@viewsurf.com"
+  }
+ ]
+}

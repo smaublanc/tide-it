@@ -55,6 +55,8 @@
 		3F519E8D2F3C7BA400AF313B /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E622F3C7BA400AF313B /* SkeletonView.swift */; };
 		3F519E902F3C7BA400AF313B /* WindDirectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F519E912F3C7BA400AF313B /* WindDirectionPicker.swift */; };
 		3F54FB013462433C8AD3D701 /* WindStationAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F57B0A81B4CAEA0AFDA63 /* WindStationAggregator.swift */; };
+		A1B2C3D40005414243444546 /* webcams.json in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D40006414243444546 /* webcams.json */; };
+		A1B2C3D40003414243444546 /* WebcamCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D40004414243444546 /* WebcamCatalog.swift */; };
 		A1B2C3D40001414243444546 /* SourceBlocklistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D40002414243444546 /* SourceBlocklistService.swift */; };
 		3F64889A2F3FDA8E00BA5DE7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6488992F3FDA8D00BA5DE7 /* WidgetKit.framework */; };
 		3F64889C2F3FDA8E00BA5DE7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F64889B2F3FDA8E00BA5DE7 /* SwiftUI.framework */; };
@@ -249,6 +251,8 @@
 		3FD91B272F589E0900DDE842 /* TideIt.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; name = TideIt.storekit; path = "Tide It/TideIt.storekit"; sourceTree = "<group>"; };
 		3FWC00022F478A0000DD5CED /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		474F57B0A81B4CAEA0AFDA63 /* WindStationAggregator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindStationAggregator.swift; sourceTree = "<group>"; };
+		A1B2C3D40006414243444546 /* webcams.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = webcams.json; sourceTree = "<group>"; };
+		A1B2C3D40004414243444546 /* WebcamCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcamCatalog.swift; sourceTree = "<group>"; };
 		A1B2C3D40002414243444546 /* SourceBlocklistService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceBlocklistService.swift; sourceTree = "<group>"; };
 		54CB9D8857DF483FB9FA4353 /* ErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBanner.swift; sourceTree = "<group>"; };
 		59646B6C2D94005900527D45 /* CalendarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtension.swift; sourceTree = "<group>"; };
@@ -417,6 +421,7 @@
 				A1B2C30000000000000000B2 /* PecheAPiedService.swift */,
 				ED82DEB1532A4300BAA82F40 /* AviationWeatherService.swift */,
 				474F57B0A81B4CAEA0AFDA63 /* WindStationAggregator.swift */,
+				A1B2C3D40004414243444546 /* WebcamCatalog.swift */,
 				A1B2C3D40002414243444546 /* SourceBlocklistService.swift */,
 				3F4F6A102F3A754B008882A5 /* WeatherService.swift */,
 				3FA1B0002F3C100000AA1122 /* HarmonicTideEngine.swift */,
@@ -604,6 +609,7 @@
 				BE86231D2D89D53D00A36236 /* shom_ports.txt */,
 				NOAA00020001000000000001 /* noaa_stations.json */,
 				5C8F2A0100000000000000F7 /* surf_spots.json */,
+				A1B2C3D40006414243444546 /* webcams.json */,
 				TICO00020001000000000001 /* ticon_stations.json */,
 				BE8622EA2D89CBB100A36236 /* Tide_ItApp.swift */,
 				7A8B9C0D1E2F3A4B5C6D7E8F /* Localizable.xcstrings */,
@@ -858,6 +864,7 @@
 				BE86231E2D89D53D00A36236 /* shom_ports.txt in Resources */,
 				NOAA00020002000000000001 /* noaa_stations.json in Resources */,
 				5C8F2A0100000000000000F8 /* surf_spots.json in Resources */,
+				A1B2C3D40005414243444546 /* webcams.json in Resources */,
 				TICO00020002000000000001 /* ticon_stations.json in Resources */,
 				7A8B9C0D1E2F3A4B5C6D7EFF /* Localizable.xcstrings in Resources */,
 				1F0E1F0E1F0E1F0E1F0E0012 /* PrivacyInfo.xcprivacy in Resources */,
@@ -952,6 +959,7 @@
 				A1B2C30000000000000000A3 /* PecheAPiedView.swift in Sources */,
 				D1978E88B6E545CCA5C24FF5 /* AviationWeatherService.swift in Sources */,
 				3F54FB013462433C8AD3D701 /* WindStationAggregator.swift in Sources */,
+				A1B2C3D40003414243444546 /* WebcamCatalog.swift in Sources */,
 				A1B2C3D40001414243444546 /* SourceBlocklistService.swift in Sources */,
 				C139EB79939E46CFB41DC9A2 /* ObservedWindCard.swift in Sources */,
 				7407D482AA594F8CAD37E83C /* WindTideRibbon.swift in Sources */,
