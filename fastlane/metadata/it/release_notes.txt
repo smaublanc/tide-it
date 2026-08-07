@@ -1,8 +1,8 @@
 Novità:
 - Tide It individua le finestre GO con giorni di anticipo e ti avvisa: «giovedì si profila una finestra». Il giorno prima torna a dirti se regge oppure salta. La finestra annunciata è quella su cui i modelli concordano di più.
 - Aprire una notifica ti porta direttamente sullo spot annunciato, e la finestra si illumina sulla curva: vedi subito quando succede.
-- Un'icona videocamera compare nel vento reale quando una webcam inquadra la zona. Un tocco, le tre più vicine.
-- Il meteo a 7 giorni diventa fasce di colore: temperatura, vento, pioggia, umidità, pressione, UV e swell si leggono a colpo d'occhio.
+- Un'icona videocamera compare nel vento reale quando una webcam inquadra la zona: un tocco, le tre più vicine. Oltre 120 telecamere costiere, dalla Costa d'Opale ai Paesi Baschi.
+- Il meteo a 7 giorni diventa fasce di colore: temperatura, vento, pioggia, umidità, pressione, UV e swell si leggono a colpo d'occhio, con sfumature calcolate ora per ora.
 - Nuove stazioni, tra cui una posata su uno spot di kite e una a Cap Frehel.
 
 Correzioni:

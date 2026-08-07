@@ -1,8 +1,8 @@
 Neu:
 - Tide It erkennt GO-Fenster jetzt schon Tage im Voraus und sagt dir Bescheid: „Am Donnerstag zeichnet sich ein Fenster ab.“ Am Vortag meldet es sich wieder und sagt, ob es hält oder ausfällt. Angekündigt wird das Fenster, über das sich die Modelle am ehesten einig sind.
 - Eine Mitteilung zu öffnen bringt dich direkt zum genannten Spot, und das Fenster leuchtet auf der Kurve auf: du siehst sofort, wann es so weit ist.
-- Ein Kamerasymbol erscheint beim Echtzeitwind, wenn eine Webcam die Gegend zeigt. Ein Tippen, die drei nächsten.
-- Das 7-Tage-Wetter wird zu Farbbändern: Temperatur, Wind, Regen, Luftfeuchte, Luftdruck, UV und Dünung auf einen Blick lesbar.
+- Ein Kamerasymbol erscheint beim Echtzeitwind, wenn eine Webcam die Gegend zeigt: ein Tippen, die drei nächsten. Über 120 Küstenkameras, von der Opalküste bis ins Baskenland.
+- Das 7-Tage-Wetter wird zu Farbbändern: Temperatur, Wind, Regen, Luftfeuchte, Luftdruck, UV und Dünung auf einen Blick lesbar, mit stündlich berechneten Verläufen.
 - Neue Stationen, darunter eine direkt an einem Kitespot und eine am Cap Frehel.
 
 Korrekturen:

@@ -1,8 +1,8 @@
 Novidades:
 - O Tide It deteta as janelas GO com dias de antecedência e avisa-te: «desenha-se uma janela na quinta-feira». Na véspera volta para dizer se se confirma ou se cai. A janela anunciada é aquela em que os modelos mais concordam.
 - Abrir uma notificação leva-te diretamente ao spot anunciado, e a janela acende-se na curva: vês logo quando acontece.
-- Aparece um ícone de câmara no vento real quando uma webcam cobre a zona. Um toque, as três mais próximas.
-- A meteorologia a 7 dias passa a faixas de cor: temperatura, vento, chuva, humidade, pressão, UV e ondulação leem-se num relance.
+- Aparece um ícone de câmara no vento real quando uma webcam cobre a zona: um toque, as três mais próximas. Mais de 120 câmaras do litoral, da Costa de Opala ao País Basco.
+- A meteorologia a 7 dias passa a faixas de cor: temperatura, vento, chuva, humidade, pressão, UV e ondulação leem-se num relance, com degradados calculados hora a hora.
 - Novas estações, incluindo uma colocada num spot de kite e outra no Cap Frehel.
 
 Correções:

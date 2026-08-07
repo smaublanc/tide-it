@@ -1,8 +1,8 @@
 Nieuw:
 - Tide It spot GO-vensters nu dagen vooruit en waarschuwt je: "donderdag tekent zich een venster af". De dag ervoor komt het terug om te zeggen of het standhoudt of afvalt. Het aangekondigde venster is dat waarover de modellen het meest eens zijn.
 - Een melding openen brengt je meteen naar de genoemde spot, en het venster licht op in de grafiek: je ziet direct wanneer het gebeurt.
-- Er verschijnt een camerapictogram bij de actuele wind wanneer een webcam het gebied in beeld brengt. Eén tik, de drie dichtstbijzijnde.
-- Het weer over 7 dagen wordt kleurbalken: temperatuur, wind, regen, luchtvochtigheid, luchtdruk, UV en deining in één oogopslag leesbaar.
+- Er verschijnt een camerapictogram bij de actuele wind wanneer een webcam het gebied in beeld brengt: één tik, de drie dichtstbijzijnde. Ruim 120 kustcamera's, van de Opaalkust tot Baskenland.
+- Het weer over 7 dagen wordt kleurbalken: temperatuur, wind, regen, luchtvochtigheid, luchtdruk, UV en deining in één oogopslag leesbaar, met per uur berekende verlopen.
 - Nieuwe stations, waaronder één pal op een kitespot en één bij Cap Frehel.
 
 Correcties:

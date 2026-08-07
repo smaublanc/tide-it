@@ -1,8 +1,8 @@
 Nouveautés :
 - Tide It repère les fenêtres de GO plusieurs jours à l'avance et te prévient : « un créneau se dessine jeudi ». La veille, il revient te dire s'il se confirme, ou s'il tombe. Le créneau annoncé est celui sur lequel les modèles s'accordent le mieux.
 - Ouvrir une notification t'emmène directement sur le spot annoncé, et le créneau s'illumine sur la courbe : tu vois tout de suite quand ça se passe.
-- Une icône caméra apparaît dans le vent observé quand une webcam filme le secteur. Un appui, les trois plus proches.
-- La météo 7 jours passe en rubans de couleur : température, vent, pluie, humidité, pression, UV et houle se lisent d'un coup d'œil.
+- Une icône caméra apparaît dans le vent observé quand une webcam filme le secteur : un appui, les trois plus proches. Plus de 120 caméras du littoral, de la Côte d'Opale au Pays basque.
+- La météo 7 jours passe en rubans de couleur : température, vent, pluie, humidité, pression, UV et houle se lisent d'un coup d'œil, avec des dégradés calculés heure par heure.
 - De nouvelles balises, dont une posée sur un spot de kite et une au Cap Fréhel.
 
 Corrections :
