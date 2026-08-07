@@ -2,9 +2,14 @@
 import io, json, re, unicodedata, os
 
 REPO = "/Users/maublanc/Desktop/Tide It 18"
-res = json.load(io.open(os.path.join(REPO, "outreach/recherche-webcams.json"), encoding="utf-8"))
-
-cams = [it for r in res for it in (r.get("items") or []) if it.get("kind") == "webcam"]
+# Deux passes de recherche : Manche/Mediterranee, puis cote atlantique.
+cams = []
+for f in ("outreach/recherche-webcams.json", "outreach/recherche-webcams-atlantique.json"):
+    fp = os.path.join(REPO, f)
+    if not os.path.exists(fp):
+        continue
+    for r in json.load(io.open(fp, encoding="utf-8")):
+        cams += [it for it in (r.get("items") or []) if it.get("kind") == "webcam"]
 
 
 def slug(s):

@@ -1448,6 +1448,12 @@ struct WeatherBand7Days: View, Equatable {
         let cal = Calendar.inTimeZone(portTimeZone)
         let hour = cal.component(.hour, from: fc.time)
         let isNow = currentTime >= fc.time && currentTime < fc.time.addingTimeInterval(3 * 3600)
+        // Les COLONNES restent à 3 h — un chiffre toutes les heures serait illisible sur 50 pt.
+        // Mais la BANDE, elle, se dessine sur les valeurs HORAIRES de l'intervalle : le vent qui
+        // monte entre 12 h et 15 h se voit maintenant monter, au lieu d'être un aplat entre deux
+        // relevés. Calculé UNE fois par colonne et partagé par les 7 lignes (7 filtrages par
+        // colonne coûteraient sept fois plus pour le même résultat).
+        let stops = hourlyStops(from: fc, next: next)
         return VStack(spacing: 0) {
             Text("\(hour)h")
                 .font(.system(size: 10, weight: isNow ? .heavy : .medium, design: .rounded))
@@ -1469,60 +1475,76 @@ struct WeatherBand7Days: View, Equatable {
                     }
                 }
                 .frame(width: colW, height: rowH)
-                .background(bandFill(r, fc, next))
+                .background(bandFill(r, stops))
             }
         }
         .frame(width: colW)
         .background(RoundedRectangle(cornerRadius: 8).fill(isNow ? Color.cyan.opacity(0.10) : Color.clear))
     }
 
-    /// Dégradé horizontal du créneau vers le suivant. Sans suivant (fin de journée), la
-    /// couleur reste constante plutôt que de retomber vers du neutre — une chute de couleur
-    /// à minuit se lirait comme une chute de la valeur.
+    /// Les prévisions HORAIRES couvrant ce créneau de 3 h, plus la première heure du créneau
+    /// suivant : sans elle, chaque colonne finirait sur sa propre couleur et le ruban montrerait
+    /// une couture tous les 50 pt au lieu d'être continu.
+    private func hourlyStops(from fc: HourlyForecast, next: HourlyForecast?) -> [HourlyForecast] {
+        let end = next?.time ?? fc.time.addingTimeInterval(3 * 3600)
+        var out = forecasts.filter { $0.time >= fc.time && $0.time < end }.sorted { $0.time < $1.time }
+        if out.isEmpty { out = [fc] }
+        if let next { out.append(next) }
+        return out
+    }
+
+    /// Dégradé horizontal bâti sur les valeurs horaires. Une seule couleur exploitable → aplat.
     @ViewBuilder
-    private func bandFill(_ r: WRow, _ fc: HourlyForecast, _ next: HourlyForecast?) -> some View {
-        if let band = r.band, let c0 = band(fc) {
-            let c1 = next.flatMap(band) ?? c0
-            LinearGradient(colors: [c0.opacity(0.62), c1.opacity(0.62)],
-                           startPoint: .leading, endPoint: .trailing)
+    private func bandFill(_ r: WRow, _ stops: [HourlyForecast]) -> some View {
+        if let band = r.band {
+            let colors = stops.compactMap { band($0) }
+            if colors.count >= 2 {
+                LinearGradient(colors: colors.map { $0.opacity(0.62) },
+                               startPoint: .leading, endPoint: .trailing)
+            } else if let c = colors.first {
+                c.opacity(0.62)
+            } else {
+                Color.clear
+            }
         } else {
             Color.clear
         }
     }
 
-    // MARK: Rampes de couleur des bandes
+    // MARK: Rampe UNIQUE des bandes
     //
-    // Une bande monochrome ne dirait RIEN : c'est la variation qui porte l'information. Les
-    // lignes qui n'avaient qu'une teinte fixe (humidité, pression, UV) reçoivent donc ici une
-    // vraie rampe. Houle et vent réutilisent les rampes existantes (source unique).
+    // Sept rampes différentes (dont un UV vert-jaune-orange-rouge-violet et une pression
+    // violette) faisaient un arc-en-ciel hors charte. L'app parle DÉJÀ un langage d'intensité,
+    // celui de la courbe : bleu profond → teal → vert → ambre → chaud. Toutes les lignes
+    // l'empruntent désormais, chacune normalisant sa propre plage vers 0…1.
+    //
+    // Ça ne perd rien : la bande sert à lire la VARIATION d'une ligne, pas à distinguer les
+    // lignes entre elles — l'icône de gauche s'en charge. Une seule grammaire de couleur à
+    // apprendre, et elle vaut pour les sept.
 
-    /// Humidité : sec (sable chaud) → saturé (cyan profond).
-    private func humidityColor(_ pct: Double) -> Color {
-        let t = min(max(pct, 0), 100) / 100
-        return Color(red: 0.78 - 0.62 * t, green: 0.66 - 0.06 * t, blue: 0.42 + 0.44 * t)
+    /// `t` ∈ 0…1 → la rampe d'intensité de l'app.
+    private func intensityColor(_ t: Double) -> Color {
+        let x = min(max(t, 0), 1)
+        // Mêmes teintes que `windColorSmooth`, exprimées en 5 arrêts.
+        let stops: [(Double, Double, Double)] = [
+            (0.10, 0.34, 0.62),   // bleu profond
+            (0.00, 0.66, 0.78),   // teal
+            (0.24, 0.72, 0.42),   // vert
+            (0.86, 0.68, 0.22),   // ambre
+            (0.88, 0.40, 0.26)    // chaud
+        ]
+        let seg = x * Double(stops.count - 1)
+        let i = min(Int(seg), stops.count - 2)
+        let p = seg - Double(i)
+        let a = stops[i], b = stops[i + 1]
+        return Color(red: a.0 + (b.0 - a.0) * p,
+                     green: a.1 + (b.1 - a.1) * p,
+                     blue: a.2 + (b.2 - a.2) * p)
     }
 
-    /// Pression : rampe DIVERGENTE autour de 1013 hPa — c'est l'écart à la normale qui parle,
-    /// pas la valeur absolue. Basse (dépression, violet) ↔ haute (anticyclone, bleu clair).
-    private func pressureColor(_ hpa: Double) -> Color {
-        let t = min(max((hpa - 985) / 50, 0), 1)
-        if t < 0.5 {
-            let u = t * 2
-            return Color(red: 0.55 - 0.15 * u, green: 0.24 + 0.30 * u, blue: 0.62 + 0.10 * u)
-        }
-        let u = (t - 0.5) * 2
-        return Color(red: 0.40 - 0.15 * u, green: 0.54 + 0.24 * u, blue: 0.72 + 0.14 * u)
-    }
-
-    /// UV : l'échelle OMS, celle que tout le monde a déjà vue (vert → jaune → orange → rouge → violet).
-    private func uvColor(_ uv: Double) -> Color {
-        switch uv {
-        case ..<3:  return Color(red: 0.22, green: 0.68, blue: 0.35)
-        case ..<6:  return Color(red: 0.95, green: 0.80, blue: 0.18)
-        case ..<8:  return Color(red: 0.94, green: 0.55, blue: 0.16)
-        case ..<11: return Color(red: 0.87, green: 0.27, blue: 0.24)
-        default:    return Color(red: 0.60, green: 0.32, blue: 0.78)
-        }
+    /// Ramène une valeur dans sa plage utile, bornes comprises.
+    private func norm(_ v: Double, _ lo: Double, _ hi: Double) -> Double {
+        hi > lo ? min(max((v - lo) / (hi - lo), 0), 1) : 0
     }
 
     // MARK: Lignes actives du tableau (s'adaptent aux données réellement dispo)
@@ -1536,7 +1558,7 @@ struct WeatherBand7Days: View, Equatable {
             WRow(id: "temp", icon: "thermometer.medium", tint: .orange, isWeather: false,
                  text: { $0.temperature.map { self.tempInt($0) } ?? "—" },
                  color: { $0.temperature.map { self.tempColor($0) } ?? .secondary },
-                 band: { $0.temperature.map { self.tempColor($0) } }),
+                 band: { $0.temperature.map { self.intensityColor(self.norm($0, -5, 35)) } }),
             WRow(id: "wind", icon: "wind", tint: .cyan, isWeather: false,
                  text: { fc in fc.windGustKmh.map { "\(w(fc.windSpeedKmh))·\(w($0))" } ?? w(fc.windSpeedKmh) },
                  color: { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) },
@@ -1544,34 +1566,32 @@ struct WeatherBand7Days: View, Equatable {
             WRow(id: "rain", icon: "umbrella.fill", tint: .blue, isWeather: false,
                  text: { let p = Int($0.precipitationProbability ?? 0); return p >= 5 ? "\(p)%" : "·" },
                  color: { self.precipColor(Int($0.precipitationProbability ?? 0)) },
-                 // Rampe continue plutôt que les 3 paliers de `precipColor` : sur une bande,
-                 // un saut de couleur se lirait comme un saut de probabilité.
-                 band: { fc in
-                     let t = min(max((fc.precipitationProbability ?? 0) / 100, 0), 1)
-                     return Color(red: 0.20 + 0.02 * t, green: 0.34 + 0.16 * t, blue: 0.42 + 0.48 * t)
-                 }),
+                 // Rampe CONTINUE (les 3 paliers de `precipColor` feraient des marches
+                 // d'escalier sur une bande : un saut de couleur se lirait comme un saut de
+                 // probabilité).
+                 band: { self.intensityColor(self.norm($0.precipitationProbability ?? 0, 0, 100)) }),
         ]
         if forecasts.contains(where: { $0.humidity != nil }) {
             rows.append(WRow(id: "hum", icon: "humidity.fill", tint: .cyan, isWeather: false,
                  text: { $0.humidity.map { "\(Int($0.rounded()))%" } ?? "·" }, color: { _ in .cyan },
-                 band: { $0.humidity.map { self.humidityColor($0) } }))
+                 band: { $0.humidity.map { self.intensityColor(self.norm($0, 30, 100)) } }))
         }
         if forecasts.contains(where: { $0.pressure != nil }) {
             rows.append(WRow(id: "press", icon: "barometer", tint: .indigo, isWeather: false,
                  text: { $0.pressure.map { "\(Int($0.rounded()))" } ?? "·" }, color: { _ in .indigo },
-                 band: { $0.pressure.map { self.pressureColor($0) } }))
+                 // 985→1035 hPa : la plage réellement rencontrée au niveau de la mer. Hors
+                 // d'elle, la bande sature au lieu de virer à une teinte étrangère.
+                 band: { $0.pressure.map { self.intensityColor(self.norm($0, 985, 1035)) } }))
         }
         if forecasts.contains(where: { ($0.uvIndex ?? 0) > 0 }) {
             rows.append(WRow(id: "uv", icon: "sun.max.fill", tint: .yellow, isWeather: false,
                  text: { $0.uvIndex.map { "\(Int($0.rounded()))" } ?? "·" }, color: { _ in .yellow },
-                 band: { $0.uvIndex.map { self.uvColor($0) } }))
+                 band: { $0.uvIndex.map { self.intensityColor(self.norm($0, 0, 11)) } }))
         }
         if forecasts.contains(where: { $0.waveHeight != nil }) {
             rows.append(WRow(id: "wave", icon: "water.waves", tint: .teal, isWeather: false,
                  text: { $0.waveHeight.map { String(format: "%.1f", locale: Locale.current, UnitFormatter.heightValue($0, system: self.themeManager.measureSystem)) } ?? "·" }, color: { _ in .teal },
-                 // MÊME rampe que le ruban « Houle » : une hauteur doit avoir la même couleur
-                 // partout dans l'app, sinon les deux blocs se contredisent à l'œil.
-                 band: { $0.waveHeight.map { swellColor($0) } }))
+band: { $0.waveHeight.map { self.intensityColor(self.norm($0, 0, 3)) } }))
         }
         return rows
     }
