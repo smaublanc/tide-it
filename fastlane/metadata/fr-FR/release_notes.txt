@@ -1,10 +1,13 @@
+Nouveautés :
+- Tide It repère les fenêtres de GO plusieurs jours à l'avance et te prévient : « un créneau se dessine jeudi ». La veille, il revient te dire s'il se confirme, ou s'il tombe. Le créneau annoncé est celui sur lequel les modèles s'accordent le mieux.
+- Ouvrir une notification t'emmène directement sur le spot annoncé, et le créneau s'illumine sur la courbe : tu vois tout de suite quand ça se passe.
+- Une icône caméra apparaît dans le vent observé quand une webcam filme le secteur. Un appui, les trois plus proches.
+- La météo 7 jours passe en rubans de couleur : température, vent, pluie, humidité, pression, UV et houle se lisent d'un coup d'œil.
+- De nouvelles balises, dont une posée sur un spot de kite et une au Cap Fréhel.
+
 Corrections :
-- Tes favoris ne peuvent plus être effacés par une synchronisation iCloud partie trop tôt.
-- Hors ligne, les marées de secours reviennent : plus d'écran vide quand le réseau manque.
-- Les journées de marée suivent le fuseau horaire du port, et non celui de ton téléphone.
-- La cloche des alertes demande vraiment l'autorisation des notifications, et te prévient si iOS l'a refusée.
-- Chaque mesure affiche son âge : rien n'est présenté comme actuel sans l'être.
-- Cibles tactiles agrandies sur la carte, pensées pour des mains mouillées.
-- Traductions complétées dans les 12 langues : notifications, verdicts, Siri et VoiceOver.
+- Les étiquettes de la carte retrouvent leur pastille, et l'hélice du vent observé tourne enfin sans à-coups.
+- Les rubans de tendance changent bien de jour à minuit, et la balise se rafraîchit au retour dans l'app : fini le vent vieux d'une heure.
+- Tes favoris ne peuvent plus être effacés par une synchronisation iCloud partie trop tôt, les marées de secours reviennent hors ligne, et les journées suivent le fuseau du port.
 
 Toujours aussi précis, honnête et léger pour ta batterie. Bon vent et bonnes vagues !

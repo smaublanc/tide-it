@@ -1,10 +1,13 @@
+Neu:
+- Tide It erkennt GO-Fenster jetzt schon Tage im Voraus und sagt dir Bescheid: „Am Donnerstag zeichnet sich ein Fenster ab.“ Am Vortag meldet es sich wieder und sagt, ob es hält oder ausfällt. Angekündigt wird das Fenster, über das sich die Modelle am ehesten einig sind.
+- Eine Mitteilung zu öffnen bringt dich direkt zum genannten Spot, und das Fenster leuchtet auf der Kurve auf: du siehst sofort, wann es so weit ist.
+- Ein Kamerasymbol erscheint beim Echtzeitwind, wenn eine Webcam die Gegend zeigt. Ein Tippen, die drei nächsten.
+- Das 7-Tage-Wetter wird zu Farbbändern: Temperatur, Wind, Regen, Luftfeuchte, Luftdruck, UV und Dünung auf einen Blick lesbar.
+- Neue Stationen, darunter eine direkt an einem Kitespot und eine am Cap Frehel.
+
 Korrekturen:
-- Deine Favoriten können nicht mehr von einer zu früh gestarteten iCloud-Synchronisierung gelöscht werden.
-- Offline sind die Ersatzgezeiten zurück: kein leerer Bildschirm mehr, wenn das Netz fehlt.
-- Gezeitentage folgen jetzt der Zeitzone des Hafens, nicht der deines Telefons.
-- Die Alarmglocke fragt wirklich nach der Mitteilungserlaubnis und sagt dir, wenn iOS sie verweigert hat.
-- Jeder Messwert zeigt sein Alter: nichts wird als aktuell dargestellt, was es nicht ist.
-- Größere Tippflächen auf der Karte, gemacht für nasse Hände.
-- Übersetzungen in allen 12 Sprachen vervollständigt: Mitteilungen, Bewertungen, Siri und VoiceOver.
+- Die Kartenbeschriftungen sitzen wieder in ihrer Sprechblase, und der Propeller beim Echtzeitwind dreht endlich ruckelfrei.
+- Die Trendbänder wechseln um Mitternacht sauber den Tag, und die Station aktualisiert sich beim Zurückkehren in die App: Schluss mit stundenaltem Wind.
+- Deine Favoriten können nicht mehr von einer zu früh gestarteten iCloud-Synchronisierung gelöscht werden, offline sind die Ersatzgezeiten zurück, und die Tage folgen der Zeitzone des Hafens.
 
 Weiterhin präzise, ehrlich und schonend für den Akku. Guten Wind und gute Wellen!

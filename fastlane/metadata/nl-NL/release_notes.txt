@@ -1,10 +1,13 @@
+Nieuw:
+- Tide It spot GO-vensters nu dagen vooruit en waarschuwt je: "donderdag tekent zich een venster af". De dag ervoor komt het terug om te zeggen of het standhoudt of afvalt. Het aangekondigde venster is dat waarover de modellen het meest eens zijn.
+- Een melding openen brengt je meteen naar de genoemde spot, en het venster licht op in de grafiek: je ziet direct wanneer het gebeurt.
+- Er verschijnt een camerapictogram bij de actuele wind wanneer een webcam het gebied in beeld brengt. Eén tik, de drie dichtstbijzijnde.
+- Het weer over 7 dagen wordt kleurbalken: temperatuur, wind, regen, luchtvochtigheid, luchtdruk, UV en deining in één oogopslag leesbaar.
+- Nieuwe stations, waaronder één pal op een kitespot en één bij Cap Frehel.
+
 Correcties:
-- Je favorieten kunnen niet meer worden gewist door een te vroeg gestarte iCloud-synchronisatie.
-- Offline zijn de reservegetijden terug: geen leeg scherm meer als het netwerk wegvalt.
-- Getijdedagen volgen nu de tijdzone van de haven, en niet die van je telefoon.
-- De meldingsbel vraagt echt om toestemming voor meldingen en waarschuwt je als iOS die heeft geweigerd.
-- Elke meting toont haar ouderdom: niets wordt als actueel gepresenteerd als het dat niet is.
-- Grotere aanraakzones op de kaart, gemaakt voor natte handen.
-- Vertalingen voltooid in alle 12 talen: meldingen, oordelen, Siri en VoiceOver.
+- De kaartlabels zitten weer in hun ballon, en de propeller bij de actuele wind draait eindelijk zonder haperen.
+- De trendbalken wisselen om middernacht netjes van dag, en het station ververst zodra je terugkeert in de app: geen wind van een uur oud meer.
+- Je favorieten kunnen niet meer worden gewist door een te vroeg gestarte iCloud-synchronisatie, offline zijn de reservegetijden terug, en dagen volgen de tijdzone van de haven.
 
 Nog steeds nauwkeurig, eerlijk en zuinig voor je batterij. Goede wind en mooie golven!

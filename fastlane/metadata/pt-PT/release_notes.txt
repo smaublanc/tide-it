@@ -1,10 +1,13 @@
+Novidades:
+- O Tide It deteta as janelas GO com dias de antecedência e avisa-te: «desenha-se uma janela na quinta-feira». Na véspera volta para dizer se se confirma ou se cai. A janela anunciada é aquela em que os modelos mais concordam.
+- Abrir uma notificação leva-te diretamente ao spot anunciado, e a janela acende-se na curva: vês logo quando acontece.
+- Aparece um ícone de câmara no vento real quando uma webcam cobre a zona. Um toque, as três mais próximas.
+- A meteorologia a 7 dias passa a faixas de cor: temperatura, vento, chuva, humidade, pressão, UV e ondulação leem-se num relance.
+- Novas estações, incluindo uma colocada num spot de kite e outra no Cap Frehel.
+
 Correções:
-- Os teus favoritos já não podem ser apagados por uma sincronização iCloud iniciada demasiado cedo.
-- Sem ligação, as marés de reserva estão de volta: acabou o ecrã vazio quando falta rede.
-- Os dias de maré seguem o fuso horário do porto, e não o do teu telemóvel.
-- A campainha dos alertas pede mesmo a autorização de notificações e avisa-te se o iOS a recusou.
-- Cada medição mostra a sua idade: nada é apresentado como atual sem o ser.
-- Áreas de toque maiores no mapa, pensadas para mãos molhadas.
-- Traduções completadas nos 12 idiomas: notificações, veredictos, Siri e VoiceOver.
+- As etiquetas do mapa voltam para dentro da sua cápsula, e a hélice do vento real gira finalmente sem solavancos.
+- As faixas de tendência mudam de dia corretamente à meia-noite, e a estação atualiza-se ao regressares à aplicação: acabou o vento com uma hora.
+- Os teus favoritos já não podem ser apagados por uma sincronização iCloud iniciada demasiado cedo, sem ligação as marés de reserva estão de volta, e os dias seguem o fuso horário do porto.
 
 Tão preciso, honesto e leve para a bateria como sempre. Bom vento e boas ondas!

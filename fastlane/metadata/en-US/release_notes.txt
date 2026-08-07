@@ -1,10 +1,13 @@
+What's new:
+- Tide It now spots GO windows days ahead and tells you: "a session is shaping up on Thursday". The day before, it comes back to say whether it holds, or falls through. The window it announces is the one the models agree on most.
+- Opening a notification takes you straight to the spot it named, and the window lights up on the curve: you see at once when it happens.
+- A camera icon appears in the live wind when a webcam covers the area. One tap, the three nearest.
+- The 7-day weather turns into colour ribbons: temperature, wind, rain, humidity, pressure, UV and swell all readable at a glance.
+- New stations, including one sitting on a kite spot and one at Cap Frehel.
+
 Fixes:
-- Your favorites can no longer be wiped by an iCloud sync that started too early.
-- Offline fallback tides are back: no more empty screen when the network drops out.
-- Tide days now follow the port's time zone, not your phone's.
-- The alert bell actually asks for notification permission, and tells you if iOS turned it down.
-- Every reading shows its age: nothing is presented as current unless it is.
-- Bigger touch targets on the map, designed for wet hands.
-- Translations completed across all 12 languages: notifications, verdicts, Siri and VoiceOver.
+- Map labels sit back inside their pill, and the live wind propeller finally spins without stutter.
+- Trend ribbons roll over properly at midnight, and the station refreshes when you come back to the app: no more hour-old wind.
+- Your favorites can no longer be wiped by an iCloud sync that started too early, offline fallback tides are back, and days follow the port's time zone.
 
 Still as precise, honest and battery-light as ever. Fair winds and good waves!
