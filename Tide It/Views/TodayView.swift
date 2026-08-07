@@ -1317,6 +1317,12 @@ struct WeatherBand7Days: View, Equatable {
         let isWeather: Bool
         let text: (HourlyForecast) -> String
         let color: (HourlyForecast) -> Color
+        /// Couleur de la BANDE pour ce créneau. `nil` = pas de bande (ligne d'icônes ciel).
+        ///
+        /// Chaque ligne de données devient un ruban dégradé, comme les bandeaux vent et houle :
+        /// la variation se lit d'un coup d'œil au lieu de devoir comparer sept nombres. Le texte
+        /// reste par-dessus — la bande AJOUTE une lecture, elle n'en retire aucune.
+        var band: ((HourlyForecast) -> Color?)? = nil
     }
 
     private struct DayData: Identifiable {
@@ -1426,7 +1432,11 @@ struct WeatherBand7Days: View, Equatable {
                 .padding(.leading, 4)
 
                 HStack(spacing: 0) {
-                    ForEach(day.slots, id: \.time) { fc in valueColumn(fc, rows: rows) }
+                    ForEach(Array(day.slots.enumerated()), id: \.element.time) { i, fc in
+                        // Le créneau suivant sert de couleur d'arrivée : bout à bout, les
+                        // colonnes forment UN ruban continu et non une mosaïque de pavés.
+                        valueColumn(fc, next: i + 1 < day.slots.count ? day.slots[i + 1] : nil, rows: rows)
+                    }
                 }
             }
         }
@@ -1434,7 +1444,7 @@ struct WeatherBand7Days: View, Equatable {
 
     // MARK: Colonne d'un créneau 3 h (heure + valeurs empilées, alignées sur la légende)
 
-    private func valueColumn(_ fc: HourlyForecast, rows: [WRow]) -> some View {
+    private func valueColumn(_ fc: HourlyForecast, next: HourlyForecast?, rows: [WRow]) -> some View {
         let cal = Calendar.inTimeZone(portTimeZone)
         let hour = cal.component(.hour, from: fc.time)
         let isNow = currentTime >= fc.time && currentTime < fc.time.addingTimeInterval(3 * 3600)
@@ -1451,16 +1461,68 @@ struct WeatherBand7Days: View, Equatable {
                             .symbolRenderingMode(.multicolor)
                     } else {
                         Text(r.text(fc))
-                            .font(.system(size: 11, weight: .semibold, design: .rounded))
-                            .foregroundStyle(r.color(fc))
+                            .font(.system(size: 11, weight: .bold, design: .rounded))
+                            // Sur une bande, la couleur du texte n'a plus à porter la valeur :
+                            // elle doit juste rester LISIBLE. La bande, elle, dit l'intensité.
+                            .foregroundStyle(r.band == nil ? r.color(fc) : Color.primary)
                             .lineLimit(1).minimumScaleFactor(0.7)
                     }
                 }
                 .frame(width: colW, height: rowH)
+                .background(bandFill(r, fc, next))
             }
         }
         .frame(width: colW)
         .background(RoundedRectangle(cornerRadius: 8).fill(isNow ? Color.cyan.opacity(0.10) : Color.clear))
+    }
+
+    /// Dégradé horizontal du créneau vers le suivant. Sans suivant (fin de journée), la
+    /// couleur reste constante plutôt que de retomber vers du neutre — une chute de couleur
+    /// à minuit se lirait comme une chute de la valeur.
+    @ViewBuilder
+    private func bandFill(_ r: WRow, _ fc: HourlyForecast, _ next: HourlyForecast?) -> some View {
+        if let band = r.band, let c0 = band(fc) {
+            let c1 = next.flatMap(band) ?? c0
+            LinearGradient(colors: [c0.opacity(0.62), c1.opacity(0.62)],
+                           startPoint: .leading, endPoint: .trailing)
+        } else {
+            Color.clear
+        }
+    }
+
+    // MARK: Rampes de couleur des bandes
+    //
+    // Une bande monochrome ne dirait RIEN : c'est la variation qui porte l'information. Les
+    // lignes qui n'avaient qu'une teinte fixe (humidité, pression, UV) reçoivent donc ici une
+    // vraie rampe. Houle et vent réutilisent les rampes existantes (source unique).
+
+    /// Humidité : sec (sable chaud) → saturé (cyan profond).
+    private func humidityColor(_ pct: Double) -> Color {
+        let t = min(max(pct, 0), 100) / 100
+        return Color(red: 0.78 - 0.62 * t, green: 0.66 - 0.06 * t, blue: 0.42 + 0.44 * t)
+    }
+
+    /// Pression : rampe DIVERGENTE autour de 1013 hPa — c'est l'écart à la normale qui parle,
+    /// pas la valeur absolue. Basse (dépression, violet) ↔ haute (anticyclone, bleu clair).
+    private func pressureColor(_ hpa: Double) -> Color {
+        let t = min(max((hpa - 985) / 50, 0), 1)
+        if t < 0.5 {
+            let u = t * 2
+            return Color(red: 0.55 - 0.15 * u, green: 0.24 + 0.30 * u, blue: 0.62 + 0.10 * u)
+        }
+        let u = (t - 0.5) * 2
+        return Color(red: 0.40 - 0.15 * u, green: 0.54 + 0.24 * u, blue: 0.72 + 0.14 * u)
+    }
+
+    /// UV : l'échelle OMS, celle que tout le monde a déjà vue (vert → jaune → orange → rouge → violet).
+    private func uvColor(_ uv: Double) -> Color {
+        switch uv {
+        case ..<3:  return Color(red: 0.22, green: 0.68, blue: 0.35)
+        case ..<6:  return Color(red: 0.95, green: 0.80, blue: 0.18)
+        case ..<8:  return Color(red: 0.94, green: 0.55, blue: 0.16)
+        case ..<11: return Color(red: 0.87, green: 0.27, blue: 0.24)
+        default:    return Color(red: 0.60, green: 0.32, blue: 0.78)
+        }
     }
 
     // MARK: Lignes actives du tableau (s'adaptent aux données réellement dispo)
@@ -1473,29 +1535,43 @@ struct WeatherBand7Days: View, Equatable {
                  text: { _ in "" }, color: { _ in .primary }),
             WRow(id: "temp", icon: "thermometer.medium", tint: .orange, isWeather: false,
                  text: { $0.temperature.map { self.tempInt($0) } ?? "—" },
-                 color: { $0.temperature.map { self.tempColor($0) } ?? .secondary }),
+                 color: { $0.temperature.map { self.tempColor($0) } ?? .secondary },
+                 band: { $0.temperature.map { self.tempColor($0) } }),
             WRow(id: "wind", icon: "wind", tint: .cyan, isWeather: false,
                  text: { fc in fc.windGustKmh.map { "\(w(fc.windSpeedKmh))·\(w($0))" } ?? w(fc.windSpeedKmh) },
-                 color: { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) }),
+                 color: { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) },
+                 band: { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) }),
             WRow(id: "rain", icon: "umbrella.fill", tint: .blue, isWeather: false,
                  text: { let p = Int($0.precipitationProbability ?? 0); return p >= 5 ? "\(p)%" : "·" },
-                 color: { self.precipColor(Int($0.precipitationProbability ?? 0)) }),
+                 color: { self.precipColor(Int($0.precipitationProbability ?? 0)) },
+                 // Rampe continue plutôt que les 3 paliers de `precipColor` : sur une bande,
+                 // un saut de couleur se lirait comme un saut de probabilité.
+                 band: { fc in
+                     let t = min(max((fc.precipitationProbability ?? 0) / 100, 0), 1)
+                     return Color(red: 0.20 + 0.02 * t, green: 0.34 + 0.16 * t, blue: 0.42 + 0.48 * t)
+                 }),
         ]
         if forecasts.contains(where: { $0.humidity != nil }) {
             rows.append(WRow(id: "hum", icon: "humidity.fill", tint: .cyan, isWeather: false,
-                 text: { $0.humidity.map { "\(Int($0.rounded()))%" } ?? "·" }, color: { _ in .cyan }))
+                 text: { $0.humidity.map { "\(Int($0.rounded()))%" } ?? "·" }, color: { _ in .cyan },
+                 band: { $0.humidity.map { self.humidityColor($0) } }))
         }
         if forecasts.contains(where: { $0.pressure != nil }) {
             rows.append(WRow(id: "press", icon: "barometer", tint: .indigo, isWeather: false,
-                 text: { $0.pressure.map { "\(Int($0.rounded()))" } ?? "·" }, color: { _ in .indigo }))
+                 text: { $0.pressure.map { "\(Int($0.rounded()))" } ?? "·" }, color: { _ in .indigo },
+                 band: { $0.pressure.map { self.pressureColor($0) } }))
         }
         if forecasts.contains(where: { ($0.uvIndex ?? 0) > 0 }) {
             rows.append(WRow(id: "uv", icon: "sun.max.fill", tint: .yellow, isWeather: false,
-                 text: { $0.uvIndex.map { "\(Int($0.rounded()))" } ?? "·" }, color: { _ in .yellow }))
+                 text: { $0.uvIndex.map { "\(Int($0.rounded()))" } ?? "·" }, color: { _ in .yellow },
+                 band: { $0.uvIndex.map { self.uvColor($0) } }))
         }
         if forecasts.contains(where: { $0.waveHeight != nil }) {
             rows.append(WRow(id: "wave", icon: "water.waves", tint: .teal, isWeather: false,
-                 text: { $0.waveHeight.map { String(format: "%.1f", locale: Locale.current, UnitFormatter.heightValue($0, system: self.themeManager.measureSystem)) } ?? "·" }, color: { _ in .teal }))
+                 text: { $0.waveHeight.map { String(format: "%.1f", locale: Locale.current, UnitFormatter.heightValue($0, system: self.themeManager.measureSystem)) } ?? "·" }, color: { _ in .teal },
+                 // MÊME rampe que le ruban « Houle » : une hauteur doit avoir la même couleur
+                 // partout dans l'app, sinon les deux blocs se contredisent à l'œil.
+                 band: { $0.waveHeight.map { swellColor($0) } }))
         }
         return rows
     }

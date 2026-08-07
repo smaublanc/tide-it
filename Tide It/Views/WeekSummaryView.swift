@@ -209,7 +209,9 @@ private struct ForecastRibbon: View {
 
 // MARK: - Rampe couleur HOULE (hauteur, m) : ardoise → teal → vert → ambre → orange
 
-private func swellColor(_ meters: Double) -> Color {
+/// SOURCE UNIQUE de la rampe HOULE : le ruban 7 jours et les bandes du tableau météo doivent
+/// dire la même chose de la même hauteur. `internal` pour cette raison.
+func swellColor(_ meters: Double) -> Color {
     let stops: [(Double, (Double, Double, Double))] = [
         (0.0, (0.11, 0.22, 0.28)),
         (0.6, (0.12, 0.49, 0.51)),
