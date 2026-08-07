@@ -51,11 +51,16 @@ struct Webcam: Identifiable, Hashable {
 final class WebcamCatalog {
     static let shared = WebcamCatalog()
 
+    // `nonisolated` OBLIGATOIRE sur ces deux-là : elles servent de valeurs par défaut à
+    // `nearest(to:limit:maxDistance:)`, or un argument par défaut est évalué HORS de l'acteur.
+    // Sans ça, avertissement aujourd'hui et erreur en mode Swift 6. Même correctif que
+    // `WindStationAggregator.defaultSearchRadius`, qui avait déjà rencontré le piège.
+
     /// Au-delà, une webcam ne montre plus le spot qu'on regarde mais une autre plage.
     /// Une image du mauvais endroit est pire que pas d'image : elle induit en erreur.
-    static let maxDistanceMeters: CLLocationDistance = 15_000
+    nonisolated static let maxDistanceMeters: CLLocationDistance = 15_000
     /// L'utilisateur en veut une, on en propose trois. Au-delà c'est une liste, plus un choix.
-    static let maxSuggestions = 3
+    nonisolated static let maxSuggestions = 3
 
     private(set) var all: [Webcam] = []
 
