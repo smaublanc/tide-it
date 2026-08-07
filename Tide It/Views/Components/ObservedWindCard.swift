@@ -481,36 +481,49 @@ private struct SpinningPropeller: View {
     let windKmh: Double
     let color: Color
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var angle: Double = 0
+    @Environment(\.scenePhase) private var scenePhase
 
     /// Durée d'un tour (s) : plus le vent est fort, plus l'hélice tourne vite (bornée pour
     /// rester lisible — pas d'effet stroboscopique, et toujours un léger mouvement).
     private var revolution: Double { 360.0 / max(25, min(620, windKmh * 8)) }
 
+    private var spinning: Bool { !reduceMotion && windKmh > 0.5 && scenePhase == .active }
+
     var body: some View {
-        ZStack {
-            ForEach(0..<3) { i in
-                Capsule()
-                    .fill(LinearGradient(colors: [color, color.opacity(0.5)],
-                                         startPoint: .top, endPoint: .bottom))
-                    .frame(width: 5, height: 19)
-                    .offset(y: -9.5)
-                    .rotationEffect(.degrees(Double(i) * 120))
+        // L'ANGLE EST UNE FONCTION DU TEMPS, PAS UNE ANIMATION STOCKÉE.
+        //
+        // La version précédente lançait `withAnimation(.linear.repeatForever)` depuis `onAppear`.
+        // Or la carte qui contient cette hélice est re-rendue chaque minute (`currentTime` entre
+        // dans son égalité pour que l'âge de la mesure ne se fige pas) : à chaque passage,
+        // l'animation en cours était invalidée puis relancée, et l'hélice sautait. Un à-coup par
+        // minute — exactement le « pas fluide » observé.
+        //
+        // Ici l'angle se DÉDUIT de l'horloge : aucun re-rendu ne peut le perturber, et il n'y a
+        // pas de couture au passage de 360°. 30 im/s suffisent pour une pièce de 38 pt, et la
+        // rotation s'arrête dès que l'app passe en arrière-plan (batterie).
+        TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: !spinning)) { timeline in
+            ZStack {
+                ForEach(0..<3) { i in
+                    Capsule()
+                        .fill(LinearGradient(colors: [color, color.opacity(0.5)],
+                                             startPoint: .top, endPoint: .bottom))
+                        .frame(width: 5, height: 19)
+                        .offset(y: -9.5)
+                        .rotationEffect(.degrees(Double(i) * 120))
+                }
+                Circle().fill(color).frame(width: 8, height: 8)
+                Circle().fill(.white.opacity(0.9)).frame(width: 2.6, height: 2.6)
             }
-            Circle().fill(color).frame(width: 8, height: 8)
-            Circle().fill(.white.opacity(0.9)).frame(width: 2.6, height: 2.6)
+            .rotationEffect(.degrees(angle(at: timeline.date)))
         }
-        .rotationEffect(.degrees(angle))
-        .onAppear { spin() }
-        .onChange(of: windKmh) { _, _ in spin() }
     }
 
-    private func spin() {
-        guard !reduceMotion, windKmh > 0.5 else { angle = 0; return }
-        angle = 0
-        withAnimation(.linear(duration: revolution).repeatForever(autoreverses: false)) {
-            angle = 360
-        }
+    private func angle(at date: Date) -> Double {
+        guard spinning, revolution > 0 else { return 0 }
+        // Modulo sur la durée d'un tour AVANT de convertir en degrés : garde le nombre petit,
+        // donc la précision intacte même après des heures d'affichage.
+        let t = date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: revolution)
+        return t / revolution * 360
     }
 }
 

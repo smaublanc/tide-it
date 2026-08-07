@@ -1550,13 +1550,18 @@ final class DataPillMarkerView: MKAnnotationView {
         cell.frame = CGRect(x: 0, y: cellY, width: cellW, height: cellH)
         cell.layer.cornerRadius = cellH / 2
 
+        // ⚠️ L'icône et le libellé sont des enfants de `cell` : leurs cadres se posent donc dans
+        // le repère DE LA CELLULE, sans `cellY`. Ajouter cet offset (celui qui centre la cellule
+        // dans les 44 pt de zone tactile) les décalait vers le bas de ~12 pt — le texte tombait
+        // JUSTE SOUS la pastille, comme s'il n'y était pas rattaché. `favoriteDot`, lui, est un
+        // enfant de la vue d'annotation : il garde `cellY`.
         var x = hPad
         if !iconView.isHidden {
-            iconView.frame = CGRect(x: x, y: cellY + (cellH - iconSize) / 2, width: iconSize, height: iconSize)
+            iconView.frame = CGRect(x: x, y: (cellH - iconSize) / 2, width: iconSize, height: iconSize)
             x += iconSize + (hasText ? gap : 0)
         }
         if hasText {
-            label.frame = CGRect(x: x, y: cellY + (cellH - lh) / 2, width: lw, height: lh)
+            label.frame = CGRect(x: x, y: (cellH - lh) / 2, width: lw, height: lh)
         }
         favoriteDot.frame = CGRect(x: cellW - 5, y: cellY - 3, width: 8, height: 8)
         favoriteDot.layer.cornerRadius = 4
