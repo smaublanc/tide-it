@@ -1503,7 +1503,7 @@ struct WeatherBand7Days: View, Equatable {
 
     /// Opacité maximale d'une bande, atteinte au haut de la plage. Au-delà, la bande mangerait
     /// le texte qu'elle est censée accompagner.
-    private static let bandMaxAlpha: Double = 0.55
+    private static let bandMaxAlpha: Double = 0.68
 
     /// UNE SEULE TEINTE, celle du mode courant. C'est l'ALPHA qui porte la valeur : rien à
     /// zéro, plein en haut de plage.
@@ -1512,15 +1512,33 @@ struct WeatherBand7Days: View, Equatable {
     /// d'apprendre sept codes couleur. Avec une teinte unique il n'y en a plus qu'un, et il est
     /// évident sans légende : plus c'est dense, plus il y en a. Zéro vent, zéro couleur.
     ///
-    /// ⚠️ NÉON EXPLICITE, et surtout PAS `CurveMode.accent`. Les couleurs système (`.cyan`,
-    /// `.mint`) sont déjà désaturées ; passées à 55 % d'opacité sur le fond sombre, elles
-    /// tournent au BLEU-GRIS et l'identité de l'app disparaît. On repart donc des néons de la
-    /// courbe, qui sont la vraie charte.
+    /// ⚠️ NI `CurveMode.accent` (couleurs SYSTÈME déjà désaturées), NI un cyan chargé en vert.
+    ///
+    /// Deux pièges successifs, tous deux dus au fond presque noir :
+    /// 1. Composer une couleur à 55 % d'opacité par-dessus du sombre la tire vers le GRIS. Les
+    ///    couleurs système, déjà molles, y perdaient toute identité — d'où le « bleu-gris ».
+    /// 2. Un cyan à green = 0,88 composité sur ce même fond vire au PÉTROLE, pas au bleu.
+    ///    Le vert domine dès qu'on baisse la luminosité.
+    ///
+    /// On repart donc du bleu de la COURBE (`curveGlowBlue`), franchement bleu et lisible à
+    /// faible opacité, et on le déclare en couleur ADAPTATIVE : la version claire est plus
+    /// dense, sinon la bande disparaîtrait sur fond blanc. C'est la mécanique déjà employée
+    /// partout ailleurs dans l'app — et elle évite de lire `colorScheme` depuis
+    /// l'environnement, ce qu'une vue montée avec `.equatable()` ne verrait pas changer.
     private var bandBase: Color {
         switch curveMode {
-        case .classic: return Color(red: 0.16, green: 0.88, blue: 1.00)   // cyan néon (marée)
-        case .wind:    return Color(red: 0.22, green: 0.97, blue: 0.76)   // menthe néon (vent)
-        case .surf:    return Color(red: 1.00, green: 0.56, blue: 0.20)   // orange néon (surf)
+        case .classic:
+            return Color(UIColor { $0.userInterfaceStyle == .dark
+                ? UIColor(red: 0.28, green: 0.66, blue: 1.00, alpha: 1)    // azur néon (marée)
+                : UIColor(red: 0.08, green: 0.42, blue: 0.92, alpha: 1) })
+        case .wind:
+            return Color(UIColor { $0.userInterfaceStyle == .dark
+                ? UIColor(red: 0.24, green: 0.88, blue: 0.92, alpha: 1)    // cyan néon (vent)
+                : UIColor(red: 0.04, green: 0.52, blue: 0.62, alpha: 1) })
+        case .surf:
+            return Color(UIColor { $0.userInterfaceStyle == .dark
+                ? UIColor(red: 1.00, green: 0.58, blue: 0.24, alpha: 1)    // orange néon (surf)
+                : UIColor(red: 0.86, green: 0.42, blue: 0.08, alpha: 1) })
         }
     }
 
