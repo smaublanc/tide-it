@@ -35,13 +35,40 @@ Une seule version éditable à la fois sur App Store Connect.
 5. **WidgetSharedData** : tout nouveau champ doit aussi être porté par `resolvedSharedData`
    (sinon widget vide).
 
+## Le vent : qui dit quoi (règle d'architecture, non négociable)
+
+**La balise n'entre JAMAIS dans la prévision. Le réel est là pour confirmer.**
+
+| | Source | Rôle |
+|---|---|---|
+| **Prévision** | UN modèle, le mieux résolu qui réponde : `meteofrance_seamless` (AROME 1,3 km → ARPEGE) → `icon_seamless` → `gfs_seamless` | dire ce qu'il VA faire |
+| **Réel** | balise (`WindStationAggregator`), âge toujours affiché | dire ce qu'il FAIT, et confirmer l'instant présent |
+| **Confiance** | écart entre les 3 modèles (`windConfidence`) | dire à quel point les modèles s'accordent |
+
+- **Vitesse, rafale ET direction viennent du MÊME modèle.** Moyenner AROME (1,3 km) avec ICON
+  (11 km) et GFS (27 km) importait leur incapacité STRUCTURELLE à résoudre le trait de côte :
+  au Cap Ferret, AROME donnait 18 nds et la moyenne 12,5 — le Bassin abrité passait pour plus
+  venté que le front de mer. Mélanger les directions donnait en plus un cap qu'aucun modèle
+  n'avait prévu, alors que le on/off/side-shore décide d'une session.
+- **`ForecastBiasService` MESURE, il ne corrige pas.** Les deux fonctions de correction
+  (`debiased`, `debiasedSeries`) ont été supprimées : une balise abritée tirait vers le bas la
+  prévision d'un spot océan, et une balise en panne depuis la veille continuait de déformer
+  sept jours avec ses derniers échantillons (tampon 48 h). Ne pas les réintroduire.
+- **La seule intervention légitime du réel** est `ActivityScoreService.refinedForecasts` :
+  bornée à maintenant → +2 h, mesure de moins de 20 min (bouée : 60 min). C'est la CONFIRMATION
+  de l'instant, pas une retouche de prévision.
+- **Confiance plafonnée à 0,5 quand le modèle fin a disparu** (Météo-France s'arrête ~J+5).
+  Au-delà, ICON et GFS s'accordent souvent parce qu'ils commettent la MÊME erreur : leur accord
+  est un angle mort partagé, pas une preuve.
+
 ## Seuils recalibrables (constantes nommées, après retours terrain)
 - `WindSteadiness` (ObservedWindCard.swift) : `minAvgKmh=12`, `laminarMaxRatio=1.25`,
   `gustyMinRatio=1.55` — badge Laminaire/Irrégulier/Rafaleux **ET** facteur « Rafales » du
   moteur GO (kiteWingScore, poids 0.16 : laminaire=1, irrégulier 1→0.45, rafaleux 0.45→0 à ×2 ;
   rafales ≥ plafond rider `windCeiling` = gate dur 0 ; pas de donnée rafales = pas de facteur).
-- `ForecastBiasService.BiasReadout` : `minSamples=4`, `maxStationKm=25`, `maxAge=3h`,
-  `meaningfulBiasKmh=2.5` — jauge de confiance + correction premium.
+- `ForecastBiasService.BiasReadout` : `minSamples=4`, `maxStationKm=8`, `maxAge=3h`,
+  `meaningfulBiasKmh=2.5` — jauge de confiance UNIQUEMENT (plus aucune correction). 8 km et non
+  25 : au-delà, une balise est dans un autre régime de vent et son écart ne décrit plus ce spot.
 - `surfSessionStars` (ActivityScoreService.swift ~l.455) : poids/caps des étoiles surf.
 - `refinedForecasts` (ActivityScoreService.swift ~l.405) : horizon +2 h, gates d'âge balise 20 min /
   bouée 60 min.

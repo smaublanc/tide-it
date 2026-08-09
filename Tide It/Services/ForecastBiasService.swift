@@ -40,14 +40,6 @@ final class ForecastBiasService: ObservableObject {
                 && stationDistanceKm <= Self.maxStationKm
                 && lastSampleAge < Self.maxAge
         }
-        /// Biais assez net pour qu'une correction ait du sens (sinon le modèle est déjà bon → on ne
-        /// propose pas de « corriger » et on ne déforme pas la courbe pour un écart négligeable),
-        /// et pas si énorme qu'il trahisse une balise non représentative (cf. `maxCorrectableBiasKmh`).
-        var isCorrectable: Bool {
-            isReliable
-                && abs(meanBiasKmh) >= Self.meaningfulBiasKmh
-                && abs(meanBiasKmh) <= Self.maxCorrectableBiasKmh
-        }
 
         static let minSamples = 4
         /// ⚠️ RAMENÉ DE 25 km À 8 km — et c'est un correctif, pas un réglage.
@@ -143,26 +135,17 @@ final class ForecastBiasService: ObservableObject {
     /// Nombre d'échantillons accumulés (pour l'état "calibration…") — même filtre que le verdict.
     func sampleCount(for portId: String) -> Int { usableSamples(for: portId).count }
 
-    /// Corrige une valeur prévue (km/h) avec le biais appris — SI fiable. Sinon valeur brute.
-    func debiased(_ kmh: Double, portId: String) -> Double {
-        guard let r = readout(for: portId), r.isReliable else { return kmh }
-        return max(0, kmh - r.meanBiasKmh)
-    }
-
-    /// Corrige TOUTE une série de prévisions (vent moyen + rafale) par le biais local appris — SI
-    /// corrigeable. Décale moyen ET rafale du MÊME offset → préserve le facteur de rafale (un biais
-    /// SYSTÉMATIQUE du modèle se reporte aussi sur la rafale). Direction inchangée. Sinon série brute.
-    /// Alimente la correction premium de la courbe + des fenêtres GO. ⚠️ Ne JAMAIS reboucler vers
-    /// l'apprentissage (`record` lit toujours le modèle BRUT) : sinon le biais s'effondrerait à zéro.
-    func debiasedSeries(_ series: [HourlyForecast], portId: String) -> [HourlyForecast] {
-        guard let r = readout(for: portId), r.isCorrectable else { return series }
-        let b = r.meanBiasKmh
-        return series.map { f in
-            f.withWind(speed: max(0, f.windSpeedKmh - b),
-                       gust: f.windGustKmh.map { max(0, $0 - b) },
-                       direction: f.windDirection)
-        }
-    }
+    // ⚠️ AUCUNE FONCTION DE CORRECTION ICI, ET C'EST VOULU.
+    //
+    // Ce service MESURE l'écart entre le modèle et la balise, et s'arrête là. Il ne retouche
+    // aucune prévision. Deux corrections existaient (`debiased`, `debiasedSeries`) : elles
+    // retiraient de l'horizon un décalage appris sur une balise, et elles ont produit
+    // exactement ce qu'on pouvait craindre — une balise abritée tirait vers le bas la prévision
+    // d'un spot océan, et une balise tombée en panne la veille continuait de déformer sept
+    // jours de prévision avec ses derniers échantillons.
+    //
+    // La prévision est ce que disent les modèles. La balise est ce qu'il fait maintenant.
+    // Les deux se COMPARENT — c'est le rôle de `readout` — elles ne se mélangent jamais.
 
     // MARK: - Persistance (locale, bornée)
 

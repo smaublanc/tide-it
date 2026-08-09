@@ -203,48 +203,37 @@ struct TodayView: View {
     }
 
     // ─────────────────────────────────────────────────────────────────────────────────────
-    // DEUX SONDES, ET UNE SEULE RAISON DE LES DISTINGUER
+    // RÈGLE : LA BALISE N'ENTRE JAMAIS DANS LA PRÉVISION.
     //
-    // Tout ce qui est AFFICHÉ lit `forecastsForDisplay` — la série corrigée du biais local
-    // quand l'option premium est active. C'est ce qui garantit que la courbe, les rubans, le
-    // tableau météo, les particules et les fenêtres GO racontent la MÊME histoire.
+    // Une prévision est ce que disent les modèles. Une balise est ce qu'il fait maintenant.
+    // Les deux se COMPARENT, elles ne se mélangent pas. Ce qui était fait avant — retirer de
+    // tout l'horizon un décalage appris sur une balise — a produit exactement ce qu'on pouvait
+    // craindre : une balise abritée tirait vers le bas la prévision d'un spot océan, l'ordre
+    // physique des spots s'inversait, et une balise en panne depuis la veille continuait de
+    // déformer sept jours de prévision avec ses derniers échantillons.
     //
-    // L'apprentissage du biais, lui, doit lire la série BRUTE : mesurer l'écart d'un modèle
-    // déjà corrigé le ferait converger vers zéro et la jauge s'auto-annulerait.
+    // Le réel garde deux rôles, et seulement ceux-là :
+    //   1. s'AFFICHER (carte « vent observé », avec son âge) ;
+    //   2. CONFIRMER l'instant présent — le verdict live et l'affinage de la fenêtre en cours,
+    //      bornés à maintenant → +2 h et à une mesure de moins de 20 min (`refinedForecasts`).
+    // Et la jauge de confiance DIT l'écart modèle/balise sans jamais y toucher.
     // ─────────────────────────────────────────────────────────────────────────────────────
 
-    /// Sonde d'AFFICHAGE : la prévision la plus proche d'une date, dans la série montrée.
+    /// Prévision la plus proche d'une date. Source unique de tout ce qui est affiché.
     private func closestDisplayed(to date: Date) -> HourlyForecast? {
-        let series = forecastsForDisplay
-        guard !series.isEmpty else { return nil }
-        return series.min {
+        guard !openMeteoForecasts.isEmpty else { return nil }
+        return openMeteoForecasts.min {
             abs($0.time.timeIntervalSince(date)) < abs($1.time.timeIntervalSince(date))
         }
     }
 
-    /// Sonde d'APPRENTISSAGE : la sortie BRUTE du modèle « maintenant ». Réservée à
-    /// `ForecastBiasService.record` — ne jamais s'en servir pour afficher quoi que ce soit.
-    private func rawModelNow() -> HourlyForecast? {
-        guard !openMeteoForecasts.isEmpty else { return nil }
-        return openMeteoForecasts.min {
-            abs($0.time.timeIntervalSince(currentTime)) < abs($1.time.timeIntervalSince(currentTime))
-        }
-    }
+    /// Sortie du modèle « maintenant », pour l'échantillon de la jauge de confiance.
+    private func rawModelNow() -> HourlyForecast? { closestDisplayed(to: currentTime) }
 
     /// Prévision la plus proche d'une date donnée (centre du scroll = `displayedDate`). Pilote la
     /// vision houle animée du mode surf.
     private func closestForecast(to date: Date) -> HourlyForecast? {
         closestDisplayed(to: date)
-    }
-
-    /// Série de prévisions vue par la COURBE et le MOTEUR GO (jauge de confiance, stage 2). Premium +
-    /// toggle « corriger avec le réel » + biais corrigeable → on retire le biais local appris (modèle
-    /// vs balise) de tout l'horizon. Sinon série BRUTE. Source UNIQUE → courbe et fenêtres GO restent
-    /// cohérentes. ⚠️ Jamais réinjectée dans l'apprentissage (`record` lit `rawModelNow` = brut).
-    private var forecastsForDisplay: [HourlyForecast] {
-        guard themeManager.debiasGoEnabled, premiumManager.isPremium,
-              let pid = tideService.selectedPort?.id else { return openMeteoForecasts }
-        return ForecastBiasService.shared.debiasedSeries(openMeteoForecasts, portId: pid)
     }
 
     /// Message d'erreur à afficher en haut de l'écran, ou nil si tout va bien.
@@ -301,7 +290,7 @@ struct TodayView: View {
                             },
                             portTimeZone: portTimeZone,
                             curveMode: themeManager.curveMode,
-                            openMeteoForecasts: forecastsForDisplay,
+                            openMeteoForecasts: openMeteoForecasts,
                             observedWindKmh: observedWind?.reading.speedAvgKmh,
                             observedGustKmh: observedWind?.reading.gustKmh,
                             observedWindDirection: observedWind?.reading.directionDegrees,
@@ -336,7 +325,7 @@ struct TodayView: View {
                             // MODE SURF : sous la courbe (conservée), le tableau de bord HOULE « Le Banc »
                             // remplace marée/courant — verdict + note par heure + flèches + rose/table.
                             SurfDashboardCard(
-                                forecasts: forecastsForDisplay,
+                                forecasts: openMeteoForecasts,
                                 spot: tideService.selectedPort.flatMap { SpotConfigStore.shared.config(for: $0.id) },
                                 sunTimes: sunTimes,
                                 currentTime: currentTime,
@@ -398,7 +387,7 @@ struct TodayView: View {
                     // Le composant s'efface tout seul s'il n'a pas au moins deux points de prévision.
                     if !openMeteoForecasts.isEmpty {
                         WeekTrendBands(
-                            forecasts: forecastsForDisplay,
+                            forecasts: openMeteoForecasts,
                             isSurfSpot: SurfSpotCatalog.shared.spot(id: tideService.selectedPort?.id ?? "") != nil,
                             now: bandsClock,
                             calendar: calendar
@@ -412,7 +401,7 @@ struct TodayView: View {
                     if !openMeteoForecasts.isEmpty {
                         WeatherBand7Days(
                             portID: tideService.selectedPort?.id ?? "",
-                            forecasts: forecastsForDisplay,
+                            forecasts: openMeteoForecasts,
                             tideData: tideService.tideData,
                             currentTime: currentTime,
                             portTimeZone: portTimeZone
@@ -551,14 +540,13 @@ struct TodayView: View {
             // Jauge de confiance : échantillon modèle-vs-réel pour ce spot (biais local appris).
             // Le modèle = la prévision « maintenant » BRUTE (`rawModelNow`) : c'est la
             // sortie du modèle avant correction, donc la seule dont l'écart au réel ait un sens.
-            // ⚠️ JAMAIS `forecastsForDisplay` ici : la série corrigée a déjà le biais en moins,
+            // ⚠️ JAMAIS `openMeteoForecasts` ici : la série corrigée a déjà le biais en moins,
             // la réinjecter ferait converger le biais appris vers 0 — la jauge s'auto-annulerait.
-            // (Tout ce qui est AFFICHÉ passe en revanche par `forecastsForDisplay`, source unique.)
+            // (Tout ce qui est AFFICHÉ passe en revanche par `openMeteoForecasts`, source unique.)
             if let obs = observedWind, let model = rawModelNow()?.windSpeedKmh,
                let pid = tideService.selectedPort?.id {
                 ForecastBiasService.shared.record(portId: pid, modelKmh: model,
                     observedKmh: obs.reading.speedAvgKmh, distanceKm: obs.distanceKm, at: obs.reading.date)
-                if themeManager.debiasGoEnabled { recomputeGoWindows() }   // garde courbe ↔ fenêtres GO en phase
             }
         }
         // Activer/désactiver un sport — ou éditer ses conditions / sa sensibilité — doit recalculer
@@ -571,8 +559,6 @@ struct TodayView: View {
         // gardes et lit `allTideData`, indépendamment du early-return de `updateActivityScores`.
         .onChange(of: openMeteoForecasts.count) { _, _ in recomputeGoWindows() }
         // Bascule de la correction premium « avec le réel » → recalcule les fenêtres GO (la courbe, elle,
-        // se redessine seule car `forecastsForDisplay` est relue dans le body).
-        .onChange(of: themeManager.debiasGoEnabled) { _, _ in recomputeGoWindows() }
         .onAppear {
             loadPortData()
             // Staggered animation
@@ -809,8 +795,8 @@ struct TodayView: View {
     /// l'utilisateur ne voit nulle part — et il contredisait la jauge de confiance, qui
     /// apprend l'écart sur l'autre modèle. On compare désormais à CE QUE L'ÉCRAN MONTRE.
     private var predictedWindKmh: Double? {
-        guard !forecastsForDisplay.isEmpty else { return nil }
-        return forecastsForDisplay.min {
+        guard !openMeteoForecasts.isEmpty else { return nil }
+        return openMeteoForecasts.min {
             abs($0.time.timeIntervalSince(currentTime)) < abs($1.time.timeIntervalSince(currentTime))
         }?.windSpeedKmh
     }
@@ -850,7 +836,7 @@ struct TodayView: View {
         let spot = tideService.selectedPort.flatMap { SpotConfigStore.shared.config(for: $0.id) }
         // Série corrigée par le biais réel SI premium + toggle (sinon brute) → source UNIQUE pour le
         // plan, l'affinage et les étoiles, afin que les fenêtres GO collent à la courbe affichée.
-        let baseSeries = forecastsForDisplay
+        let baseSeries = openMeteoForecasts
         let plan = ActivityGoPlanner.plan(
             setups: activeSportSetups,
             forecasts: baseSeries, sunTimes: sunTimes,

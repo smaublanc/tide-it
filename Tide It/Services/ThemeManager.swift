@@ -269,17 +269,6 @@ class ThemeManager: ObservableObject {
         }
     }
 
-    /// Jauge de confiance — corriger le vent prévu (courbe + fenêtres GO) par le BIAIS LOCAL appris
-    /// (modèle vs vent réel mesuré). Premium. ACTIVÉ par défaut : c'est le comportement le plus juste
-    /// (on s'appuie sur la mesure réelle) ; réglable dans Réglages ▸ Précision. N'a d'effet QUE si une
-    /// station proche est fiable ET le biais significatif — sinon no-op (prévision brute), donc sûr.
-    @AppStorage("debiasGoEnabled") var debiasGoEnabled: Bool = true {
-        didSet {
-            objectWillChange.send()
-            CloudSyncService.shared.saveSettings()
-        }
-    }
-
     /// ColorScheme résolu (nil = système)
     var resolvedColorScheme: ColorScheme? {
         appearance.colorScheme
