@@ -57,6 +57,12 @@ Une seule version éditable à la fois sur App Store Connect.
 - **La seule intervention légitime du réel** est `ActivityScoreService.refinedForecasts` :
   bornée à maintenant → +2 h, mesure de moins de 20 min (bouée : 60 min). C'est la CONFIRMATION
   de l'instant, pas une retouche de prévision.
+- **La prévision d'un spot est échantillonnée 2 km AU LARGE** (`MarineWeatherService.samplingCoordinate`,
+  dans la direction `shoreOrientation` déclarée par le spot). AROME travaille à 1,3 km : sur une
+  côte à dune large, la maille contenant la plage est classée TERRE et sa rugosité divise le vent
+  par deux. Mesuré à Lacanau : 9,3 nds au point du spot contre 18,1 à 2 km au large. Ce n'est pas
+  un artifice pour gonfler le vent — c'est la position où l'on navigue. Sans `shoreOrientation`,
+  aucun décalage : on ne devine jamais où est la mer.
 - **Confiance plafonnée à 0,5 quand le modèle fin a disparu** (Météo-France s'arrête ~J+5).
   Au-delà, ICON et GFS s'accordent souvent parce qu'ils commettent la MÊME erreur : leur accord
   est un angle mort partagé, pas une preuve.

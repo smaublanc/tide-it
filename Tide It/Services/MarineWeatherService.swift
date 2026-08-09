@@ -365,8 +365,39 @@ class MarineWeatherService: ObservableObject {
     }
 
     /// Récupère les prévisions horaires vent + vagues pour un port sur les 14 prochains jours
+    /// Distance vers le large à laquelle la prévision d'un spot est réellement échantillonnée.
+    ///
+    /// ⚠️ CE N'EST PAS UN ARTIFICE POUR GONFLER LE VENT — c'est la position où l'on navigue.
+    ///
+    /// AROME travaille à 1,3 km. Sur une côte à dune et forêt larges (l'Aquitaine typiquement),
+    /// la maille qui contient la plage est classée TERRE : sa rugosité divise le vent par deux.
+    /// Mesuré à Lacanau le 9 août 2026 à 18 h : 9,3 nds au point du spot, 18,1 nds à 2 km au
+    /// large — la maille mer commence 800 m à l'ouest du trait de côte. Le spot affichait donc
+    /// le vent de la pinède, pas celui de l'eau, et paraissait 8 nds moins venté que le Cap
+    /// Ferret dont le point tombait, lui, sur une maille mer.
+    ///
+    /// Vérifié sur les spots déjà corrects (Le Porge, La Torche) : le décalage les déplace de
+    /// moins de 1,5 nd. Il répare les cassés sans toucher aux autres.
+    private static let offshoreSampleKm = 2.0
+
+    /// Point d'échantillonnage : décalé vers le large dans la direction que le spot déclare
+    /// lui-même (`shoreOrientation` = cap de la mer ouverte vu du spot). Sans cap connu, on
+    /// interroge le point tel quel — on ne devine jamais où est la mer.
+    nonisolated static func samplingCoordinate(latitude: Double, longitude: Double,
+                                               shoreBearingDeg: Double?) -> (lat: Double, lon: Double) {
+        guard let b = shoreBearingDeg else { return (latitude, longitude) }
+        let r = b * .pi / 180
+        let dLat = offshoreSampleKm / 111.0 * cos(r)
+        let cosLat = max(0.1, cos(latitude * .pi / 180))   // borne : évite l'explosion près des pôles
+        let dLon = offshoreSampleKm / (111.0 * cosLat) * sin(r)
+        return (latitude + dLat, longitude + dLon)
+    }
+
     func fetchHourlyForecast(for port: Port) async -> [HourlyForecast] {
-        await fetchHourlyForecast(latitude: port.latitude, longitude: port.longitude)
+        let bearing = SpotConfigStore.shared.config(for: port.id)?.shoreOrientation
+        let c = Self.samplingCoordinate(latitude: port.latitude, longitude: port.longitude,
+                                        shoreBearingDeg: bearing)
+        return await fetchHourlyForecast(latitude: c.lat, longitude: c.lon)
     }
 
     /// Pré-charge (BORNÉ) la prévision d'une coordonnée si le cache est absent/périmé ; no-op si frais.
