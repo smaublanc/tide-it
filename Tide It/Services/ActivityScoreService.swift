@@ -1075,33 +1075,38 @@ class ActivityScoreService {
             // rafaleux se pilote mal et surcharge l'aile → il pèse VRAIMENT sur la note GO
             // (l'ancien écart absolu à poids 0.10 laissait un 15 gustant 25 quasi indemne).
             // Sans donnée de rafales : PAS de facteur (on ne fabrique pas un « vent régulier »).
-            if let gust = windData.gust, gust > 0, wind > 0 {
+            // `WindSteadiness.ratio` = SOURCE UNIQUE, et elle écarte les rafales IMPOSSIBLES
+            // (inférieures à la moyenne). Sans elle, une erreur du modèle — vue en vrai à
+            // Andernos : 17,4 km/h de moyenne pour 6,8 de rafale — donnait ici le score MAXIMUM
+            // avec la mention « vent régulier », donc une note GO gonflée par une donnée fausse.
+            if let ratio = WindSteadiness.ratio(avgKmh: wind, gustKmh: windData.gust) {
                 let gScore: Double
                 let gDesc: String
-                if wind >= WindSteadiness.minAvgKmh {
-                    let ratio = gust / wind
-                    let lam = WindSteadiness.laminarMaxRatio, gus = WindSteadiness.gustyMinRatio
-                    if ratio <= lam {
-                        gScore = 1
-                        gDesc = "Vent régulier (laminaire)"
-                    } else if ratio < gus {
-                        gScore = 1 - 0.55 * (ratio - lam) / (gus - lam)          // 1 → 0.45 (continu)
-                        gDesc = "Vent irrégulier (rafales ×\(String(format: "%.1f", locale: Locale.current, ratio)))"
-                    } else {
-                        gScore = 0.45 * Self.rampDown(ratio, lo: gus, hi: 2.0)   // 0.45 → 0 à ×2
-                        gDesc = "Rafaleux (×\(String(format: "%.1f", locale: Locale.current, ratio))) : instable"
-                    }
+                let lam = WindSteadiness.laminarMaxRatio, gus = WindSteadiness.gustyMinRatio
+                if ratio <= lam {
+                    gScore = 1
+                    gDesc = "Vent régulier (laminaire)"
+                } else if ratio < gus {
+                    gScore = 1 - 0.55 * (ratio - lam) / (gus - lam)          // 1 → 0.45 (continu)
+                    gDesc = "Vent irrégulier (rafales ×\(String(format: "%.1f", locale: Locale.current, ratio)))"
                 } else {
-                    // Vent moyen trop faible pour un ratio significatif (même garde que le badge)
-                    // → on retombe sur l'écart absolu, seul lisible à ces vitesses.
-                    let gustDiff = gust - wind
-                    gScore = Self.rampDown(gustDiff, lo: 5, hi: 25)
-                    gDesc = gustDiff < 8 ? "Vent régulier" : "Rafales (+\(fmtWind(gustDiff)))"
+                    gScore = 0.45 * Self.rampDown(ratio, lo: gus, hi: 2.0)   // 0.45 → 0 à ×2
+                    gDesc = "Rafaleux (×\(String(format: "%.1f", locale: Locale.current, ratio))) : instable"
                 }
                 factors.append(ScoringFactor(name: "Rafales", weight: 0.16, score: gScore, detail: gDesc))
                 // Gate sécurité SYMÉTRIQUE du gate vent moyen : des rafales au-delà du plafond
                 // praticable du rider (riderMaxWind / niveau — « au-delà c'est trop ») = danger,
                 // même si la moyenne est dans la plage (40 gustant 70 passait sans ça).
+                if let gust = windData.gust, gust >= windCeiling { hardCap = 0 }
+
+            } else if let gust = windData.gust, gust >= wind, wind > 0, wind < WindSteadiness.minAvgKmh {
+                // Vent moyen trop faible pour qu'un RATIO veuille dire quelque chose (même garde
+                // que le badge) → on retombe sur l'écart absolu, seul lisible à ces vitesses.
+                // La condition `gust >= wind` reste : une rafale impossible n'entre nulle part.
+                let gustDiff = gust - wind
+                let gScore = Self.rampDown(gustDiff, lo: 5, hi: 25)
+                let gDesc = gustDiff < 8 ? "Vent régulier" : "Rafales (+\(fmtWind(gustDiff)))"
+                factors.append(ScoringFactor(name: "Rafales", weight: 0.16, score: gScore, detail: gDesc))
                 if gust >= windCeiling { hardCap = 0 }
             }
         } else {

@@ -435,10 +435,23 @@ enum WindSteadiness {
     static let laminarMaxRatio = 1.25
     static let gustyMinRatio = 1.55
 
+    /// Ratio rafales/moyen, ou `nil` quand la donnée ne peut pas être crue. SOURCE UNIQUE :
+    /// le badge de la carte et le facteur « Rafales » du moteur GO passent tous deux par ici.
+    ///
+    /// ⚠️ UNE RAFALE INFÉRIEURE À LA MOYENNE EST PHYSIQUEMENT IMPOSSIBLE — c'est une erreur du
+    /// modèle, pas une mesure. Vu en vrai à Andernos : 17,4 km/h de moyenne pour 6,8 de rafale.
+    /// Sans ce garde-fou, le ratio tombe sous 1 et produit le verdict le PLUS FLATTEUR
+    /// (« laminaire », score 1/1) à partir d'une valeur fausse — donc une note GO gonflée.
+    /// Règle d'honnêteté : une donnée absurde est une donnée ABSENTE, pas une bonne nouvelle.
+    static func ratio(avgKmh: Double, gustKmh: Double?) -> Double? {
+        guard let gust = gustKmh, gust > 0,
+              avgKmh >= minAvgKmh,
+              gust >= avgKmh else { return nil }
+        return gust / avgKmh
+    }
+
     init?(reading: WindReading) {
-        guard let gust = reading.gustKmh, gust > 0,
-              reading.speedAvgKmh >= Self.minAvgKmh else { return nil }
-        let ratio = gust / reading.speedAvgKmh
+        guard let ratio = Self.ratio(avgKmh: reading.speedAvgKmh, gustKmh: reading.gustKmh) else { return nil }
         if ratio <= Self.laminarMaxRatio { self = .laminar }
         else if ratio >= Self.gustyMinRatio { self = .gusty(factor: (ratio * 10).rounded() / 10) }
         else { self = .irregular }
