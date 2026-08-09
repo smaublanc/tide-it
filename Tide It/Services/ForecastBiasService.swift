@@ -41,11 +41,31 @@ final class ForecastBiasService: ObservableObject {
                 && lastSampleAge < Self.maxAge
         }
         /// Biais assez net pour qu'une correction ait du sens (sinon le modèle est déjà bon → on ne
-        /// propose pas de « corriger » et on ne déforme pas la courbe pour un écart négligeable).
-        var isCorrectable: Bool { isReliable && abs(meanBiasKmh) >= Self.meaningfulBiasKmh }
+        /// propose pas de « corriger » et on ne déforme pas la courbe pour un écart négligeable),
+        /// et pas si énorme qu'il trahisse une balise non représentative (cf. `maxCorrectableBiasKmh`).
+        var isCorrectable: Bool {
+            isReliable
+                && abs(meanBiasKmh) >= Self.meaningfulBiasKmh
+                && abs(meanBiasKmh) <= Self.maxCorrectableBiasKmh
+        }
 
         static let minSamples = 4
-        static let maxStationKm = 25.0
+        /// ⚠️ RAMENÉ DE 25 km À 8 km — et c'est un correctif, pas un réglage.
+        ///
+        /// Sur une côte, le régime de vent change en quelques kilomètres : l'océan et un bassin
+        /// abrité n'ont rien à voir. À 25 km, une balise du Bassin d'Arcachon « corrigeait » la
+        /// prévision du Cap Ferret et de Lacanau, pourtant plein océan. Elle mesure forcément
+        /// moins que le modèle ne prévoit au large → le biais était positif → la correction
+        /// RETIRAIT du vent aux spots océan pendant qu'elle en AJOUTAIT à Andernos.
+        ///
+        /// Résultat constaté à 18 h : l'app affichait Andernos 15 nds contre Cap Ferret 12,
+        /// quand le modèle brut disait Cap Ferret 17,2 et Andernos 11,4. L'ORDRE PHYSIQUE ÉTAIT
+        /// INVERSÉ — le Bassin abrité paraissait plus venté que le front de mer.
+        ///
+        /// 8 km, c'est la distance en deçà de laquelle une balise partage encore l'exposition du
+        /// spot. Au-delà, pas de correction : montrer la prévision brute vaut infiniment mieux
+        /// que la déformer avec une mesure prise dans un autre régime.
+        static let maxStationKm = 8.0
         static let maxAge: TimeInterval = 3 * 3600   // 3 h
         static let meaningfulBiasKmh = 2.5           // seuil verdict amber/cyan ET correction (source unique)
         /// Âge maximal d'un échantillon RETENU dans la moyenne. Le tampon est borné en NOMBRE
@@ -54,6 +74,12 @@ final class ForecastBiasService: ObservableObject {
         /// entre-temps, deux balises différentes. Le biais d'un modèle est saisonnier et local :
         /// au-delà de quelques jours, un vieil échantillon décrit une autre situation.
         static let maxSampleAge: TimeInterval = 48 * 3600   // 48 h
+        /// Au-delà, l'écart n'est plus un biais de modèle mais le signe que la balise ne décrit
+        /// pas ce spot (abri, relief, capteur mal exposé). On garde alors la JAUGE — l'écart est
+        /// une information — mais on ne touche PAS à la prévision : appliquer 10 km/h de décalage
+        /// à tout un horizon de 7 jours sur la foi d'une poignée d'échantillons ferait plus de
+        /// dégâts que le biais lui-même.
+        static let maxCorrectableBiasKmh = 10.0
     }
 
     private var buffers: [String: [Sample]] = [:]
