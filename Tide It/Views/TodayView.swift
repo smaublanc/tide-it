@@ -240,7 +240,7 @@ struct TodayView: View {
     /// Série de prévisions vue par la COURBE et le MOTEUR GO (jauge de confiance, stage 2). Premium +
     /// toggle « corriger avec le réel » + biais corrigeable → on retire le biais local appris (modèle
     /// vs balise) de tout l'horizon. Sinon série BRUTE. Source UNIQUE → courbe et fenêtres GO restent
-    /// cohérentes. ⚠️ Jamais réinjectée dans l'apprentissage (`record` lit `closestForecastNow` = brut).
+    /// cohérentes. ⚠️ Jamais réinjectée dans l'apprentissage (`record` lit `rawModelNow` = brut).
     private var forecastsForDisplay: [HourlyForecast] {
         guard themeManager.debiasGoEnabled, premiumManager.isPremium,
               let pid = tideService.selectedPort?.id else { return openMeteoForecasts }
