@@ -87,7 +87,7 @@ final class WebcamCatalog {
 
     /// Les webcams les plus proches d'un point, retraits appliqués.
     ///
-    /// Le filtre de retrait est posé ICI, seul chemin d'accès au catalogue : un exploitant qui
+    /// Le filtre de retrait est posé ICI, seul chein d'accès au catalogue : un exploitant qui
     /// demande à ne plus y figurer disparaît de partout sans qu'on ait à se souvenir des écrans
     /// qui l'affichaient — même raisonnement que `WindStationAggregator.rebuildDedup`.
     func nearest(to coord: CLLocationCoordinate2D,

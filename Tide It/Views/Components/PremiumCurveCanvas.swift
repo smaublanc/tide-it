@@ -42,8 +42,6 @@ struct PremiumCurveCanvas: View {
     var observedGustKmh: Double? = nil
     var observedWindDirection: Double? = nil
     var observedWindAgeMinutes: Int? = nil
-    /// Une balise de vent réel est disponible pour ce spot → active le label « Go X% » vivant.
-    var hasBalise: Bool = false
     var riderMinKmh: Double = 12
     var riderMaxKmh: Double = 65
     /// Hauteur d'eau minimale du spot (m) — fenêtres GO exclues quand la marée est plus basse.
@@ -1406,36 +1404,6 @@ struct PremiumCurveCanvas: View {
 
     /// Indice de confiance 0–100 % : à quel point le vent RÉELLEMENT observé (balise, frais)
     /// colle aux conditions du sport pour cette fenêtre. nil si pas de mesure fraîche/exploitable.
-    private func goPercentage(for setup: SportSetup) -> Int? {
-        guard let obs = observedWindKmh else { return nil }
-        if let age = observedWindAgeMinutes, age > 20 { return nil }   // mesure trop vieille → pas de %
-        guard let wind = setup.conditions.first(where: { $0.type == .windSpeed }) else { return nil }
-        // Bornes min/max selon l'opérateur (avant : seul .between donnait un %).
-        let minKmh: Double
-        let maxKmh: Double?
-        switch wind.operator1 {
-        case .between:     minKmh = wind.value1; maxKmh = wind.value2
-        case .greaterThan: minKmh = wind.value1; maxKmh = nil
-        case .lessThan:    minKmh = 0;           maxKmh = wind.value1
-        case .equals:      minKmh = wind.value1; maxKmh = wind.value1
-        }
-
-        var score = 100.0
-        if obs < minKmh { score = max(0, 100 - (minKmh - obs) * 8) }              // -8 %/km/h sous le mini
-        else if let hi = maxKmh, obs > hi { score = max(0, 100 - (obs - hi) * 6) } // -6 %/km/h au-dessus du maxi
-
-        if let g = observedGustKmh, let hi = maxKmh, g > hi {
-            score = max(0, score - (g - hi) * 3)                                  // rafale au-dessus → pénalité
-        }
-        if let dir = observedWindDirection,
-           let dc = setup.conditions.first(where: { $0.type == .windDirection }) {
-            let center = dc.windDirectionCenter ?? dc.value1
-            let spread = dc.windDirectionSpread ?? dc.value2 ?? 45
-            let off = WindTidePlanner.angularDistance(dir, center) - spread
-            if off > 0 { score = max(0, score - off * 0.8) }              // hors secteur → pénalité
-        }
-        return Int(score.rounded())
-    }
 
     private func drawWindLayer(context: inout GraphicsContext, size: CGSize) {
         // Région DÉDIÉE en haut (la marée aplatie occupe le bas) → courbes remontées.
@@ -1572,7 +1540,6 @@ struct PremiumCurveCanvas: View {
         for (li, sport) in sports.enumerated() {
             let color = sport.color
             let y = bandTop + CGFloat(li) * (laneH + gap)
-            let setup = sportSetups.first(where: { $0.sport == sport })
             for g in goWindows where g.sport == sport {
                 let x0 = windX(g.start, width: size.width), x1 = windX(g.end, width: size.width)
                 guard x1 > -12, x0 < size.width + 12 else { continue }
@@ -1616,13 +1583,18 @@ struct PremiumCurveCanvas: View {
                         .font(.system(size: 9, weight: .semibold)).foregroundColor(color))
                     context.draw(label, at: CGPoint(x: x0 + 6, y: topY), anchor: .leading)
                 }
-                // « Go X% » live (imminent + balise) SINON durée (HAUT-droite)
-                let goPct: Int? = (hasBalise && isImminent(g.start, g.end)) ? setup.flatMap { goPercentage(for: $0) } : nil
-                if let pct = goPct, w > 60, laneH > 12 {
-                    let tag = context.resolve(Text("Go \(pct)%")
-                        .font(.system(size: 10, weight: .bold, design: .rounded)).foregroundColor(color))
-                    context.draw(tag, at: CGPoint(x: x1 - 6, y: topY), anchor: .trailing)
-                } else if w > 56, laneH > 12 {
+                // DURÉE de la fenêtre (HAUT-droite).
+                //
+                // ⚠️ Le « Go X% » live qui occupait cette place a été RETIRÉ. Il calculait un
+                // pourcentage à partir de la seule mesure balise comparée au seuil du rider —
+                // et affichait « Go 88 % » sur 9 nds de vent réel, parce que la pénalité sous le
+                // minimum (−8 %/km/h) s'érodait bien trop doucement pour dire « il n'y a pas
+                // assez de vent ». Un chiffre faux mais précis est pire qu'aucun chiffre.
+                //
+                // Le verdict de l'instant reste porté par ce qui le mérite : la notification
+                // « le vent s'établit » (balise + 20 min de vent confirmé) et les ÉTOILES de la
+                // fenêtre, qui reposent sur le scoring complet et non sur un seul seuil.
+                if w > 56, laneH > 12 {
                     let mins = max(0, Int(g.end.timeIntervalSince(g.start) / 60))
                     let durText = mins >= 60
                         ? (mins % 60 == 0 ? "\(mins / 60) h" : "\(mins / 60) h\(String(format: "%02d", mins % 60))")

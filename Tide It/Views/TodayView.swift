@@ -295,7 +295,6 @@ struct TodayView: View {
                             observedGustKmh: observedWind?.reading.gustKmh,
                             observedWindDirection: observedWind?.reading.directionDegrees,
                             observedWindAgeMinutes: observedWind?.reading.ageMinutes,
-                            hasBalise: observedWind != nil,
                             riderMinKmh: themeManager.riderMinWindKmh,
                             riderMaxKmh: themeManager.riderMaxWindKmh,
                             minWaterHeight: tideService.selectedPort.flatMap { SpotConfigStore.shared.config(for: $0.id)?.minWaterHeight },
@@ -969,7 +968,6 @@ struct PremiumTideGraphView: View {
     var observedGustKmh: Double? = nil
     var observedWindDirection: Double? = nil
     var observedWindAgeMinutes: Int? = nil
-    var hasBalise: Bool = false
     var riderMinKmh: Double = 12
     var riderMaxKmh: Double = 65
     var minWaterHeight: Double? = nil
@@ -1080,7 +1078,6 @@ struct PremiumTideGraphView: View {
                             observedGustKmh: observedGustKmh,
                             observedWindDirection: observedWindDirection,
                             observedWindAgeMinutes: observedWindAgeMinutes,
-                            hasBalise: hasBalise,
                             riderMinKmh: riderMinKmh,
                             riderMaxKmh: riderMaxKmh,
                             minWaterHeight: minWaterHeight,
