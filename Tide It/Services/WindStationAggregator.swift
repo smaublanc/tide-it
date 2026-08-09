@@ -24,12 +24,24 @@ import os.log
 final class WindStationAggregator: ObservableObject {
     static let shared = WindStationAggregator()
 
-    /// Rayon de recherche par défaut. Élargi à 60 km pour couvrir « presque tous les
-    /// ports du monde » : un aéroport METAR ou une bouée NDBC est presque toujours à
-    /// moins de 60 km d'un port. Le classement préfère de toute façon la plus proche,
-    /// donc une balise lointaine n'apparaît que s'il n'y a rien de plus près.
+    /// Rayon de recherche d'une balise. ⚠️ RAMENÉ DE 60 km À 15 km — c'est un correctif.
+    ///
+    /// 60 km avaient été choisis pour « couvrir presque tous les ports du monde ». Mais sur une
+    /// côte, le régime de vent change en quelques kilomètres : à 60 km, la balise présentée
+    /// comme LE RÉEL DU SPOT décrit un autre endroit. Constaté au Cap Ferret : l'app affichait
+    /// « réel 9 nds » à côté d'une prévision de 17, la mesure venant d'une station située à
+    /// l'intérieur des terres, derrière la forêt. Les deux valeurs étaient justes chacune chez
+    /// elle, et leur mise côte à côte ne voulait rien dire.
+    ///
+    /// Ce n'est pas qu'un affichage : cette mesure pilote le « Go X% » live et l'affinage de la
+    /// fenêtre en cours. Une balise lointaine décidait donc d'un verdict de session.
+    ///
+    /// Le réel est là pour CONFIRMER — et une confirmation doit venir du même endroit. Au-delà
+    /// de 15 km, on n'affiche pas de balise : ne rien montrer vaut mieux que montrer le vent
+    /// d'ailleurs. Même raisonnement que `ForecastBiasService.maxStationKm` (8 km), un peu plus
+    /// large parce qu'ici on informe au lieu de corriger.
     /// `nonisolated` car lue depuis des contextes non-MainActor (default args).
-    nonisolated static let defaultSearchRadius: CLLocationDistance = 60_000
+    nonisolated static let defaultSearchRadius: CLLocationDistance = 15_000
 
     /// Seuil de dédup : on considère deux stations < 500 m comme doublon
     private let dedupeRadiusMeters: CLLocationDistance = 500

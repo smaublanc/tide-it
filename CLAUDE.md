@@ -54,6 +54,11 @@ Une seule version éditable à la fois sur App Store Connect.
   (`debiased`, `debiasedSeries`) ont été supprimées : une balise abritée tirait vers le bas la
   prévision d'un spot océan, et une balise en panne depuis la veille continuait de déformer
   sept jours avec ses derniers échantillons (tampon 48 h). Ne pas les réintroduire.
+- **Balise affichée : 15 km maximum** (`WindStationAggregator.defaultSearchRadius`, était 60 km).
+  Au Cap Ferret, l'app montrait « réel 9 nds » face à une prévision de 17 : la mesure venait
+  d'une station à l'intérieur des terres. Les deux valeurs étaient justes chacune chez elle et
+  leur juxtaposition ne voulait rien dire — or cette mesure pilote aussi le « Go X% » live.
+  Une confirmation doit venir du même endroit ; sinon, ne rien montrer.
 - **La seule intervention légitime du réel** est `ActivityScoreService.refinedForecasts` :
   bornée à maintenant → +2 h, mesure de moins de 20 min (bouée : 60 min). C'est la CONFIRMATION
   de l'instant, pas une retouche de prévision.
