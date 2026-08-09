@@ -397,8 +397,7 @@ struct TodayView: View {
                             forecasts: openMeteoForecasts,
                             tideData: tideService.tideData,
                             currentTime: currentTime,
-                            portTimeZone: portTimeZone,
-                            curveMode: themeManager.curveMode
+                            portTimeZone: portTimeZone
                         )
                         .equatable()
                         .padding(.horizontal, DS.pagePadding)
@@ -1286,11 +1285,6 @@ struct WeatherBand7Days: View, Equatable {
     let tideData: [TideData]
     let currentTime: Date
     let portTimeZone: TimeZone
-    /// Mode courant : c'est LUI qui donne la teinte des bandes (cyan en classique, menthe en
-    /// vent, orange en surf). Passé en propriété et NON lu depuis `themeManager` : avec
-    /// `.equatable()`, un objet d'environnement n'entre dans aucune comparaison — changer de
-    /// mode n'aurait pas repeint le tableau.
-    let curveMode: CurveMode
     @EnvironmentObject private var themeManager: ThemeManager
 
     static func == (lhs: WeatherBand7Days, rhs: WeatherBand7Days) -> Bool {
@@ -1300,7 +1294,6 @@ struct WeatherBand7Days: View, Equatable {
         // l'ancien port). On compare les valeurs réelles → météo/marée différentes ⇒ recalcul.
         lhs.portID == rhs.portID &&
         lhs.portTimeZone == rhs.portTimeZone &&
-        lhs.curveMode == rhs.curveMode &&
         Calendar.current.isDate(lhs.currentTime, equalTo: rhs.currentTime, toGranularity: .hour) &&
         lhs.forecasts == rhs.forecasts &&
         lhs.tideData == rhs.tideData
@@ -1512,38 +1505,18 @@ struct WeatherBand7Days: View, Equatable {
     /// d'apprendre sept codes couleur. Avec une teinte unique il n'y en a plus qu'un, et il est
     /// évident sans légende : plus c'est dense, plus il y en a. Zéro vent, zéro couleur.
     ///
-    /// ⚠️ NI `CurveMode.accent` (couleurs SYSTÈME déjà désaturées), NI un cyan chargé en vert.
+    /// UNE LIGNE SUR DEUX, dans les deux couleurs de la courbe de marée — `tideHigh` (cyan) et
+    /// `tideLow` (magenta), celles-là mêmes qui dessinent les points de pleine et basse mer.
     ///
-    /// Deux pièges successifs, tous deux dus au fond presque noir :
-    /// 1. Composer une couleur à 55 % d'opacité par-dessus du sombre la tire vers le GRIS. Les
-    ///    couleurs système, déjà molles, y perdaient toute identité — d'où le « bleu-gris ».
-    /// 2. Un cyan à green = 0,88 composité sur ce même fond vire au PÉTROLE, pas au bleu.
-    ///    Le vert domine dès qu'on baisse la luminosité.
+    /// L'alternance n'est pas décorative : sept bandes de la MÊME teinte formaient un bloc où
+    /// l'œil ne savait plus quelle ligne il suivait. Une couleur sur deux redonne des repères
+    /// horizontaux, sans réintroduire les sept codes couleur qu'on venait de supprimer — il n'y
+    /// a toujours que deux teintes, et aucune ne signifie quoi que ce soit sur la valeur.
+    /// C'est l'ALPHA, et lui seul, qui porte l'intensité.
     ///
-    /// On repart donc du bleu de la COURBE (`curveGlowBlue`), franchement bleu et lisible à
-    /// faible opacité, et on le déclare en couleur ADAPTATIVE : la version claire est plus
-    /// dense, sinon la bande disparaîtrait sur fond blanc. C'est la mécanique déjà employée
-    /// partout ailleurs dans l'app — et elle évite de lire `colorScheme` depuis
-    /// l'environnement, ce qu'une vue montée avec `.equatable()` ne verrait pas changer.
-    private var bandBase: Color {
-        switch curveMode {
-        case .classic:
-            return Color(UIColor { $0.userInterfaceStyle == .dark
-                ? UIColor(red: 0.28, green: 0.66, blue: 1.00, alpha: 1)    // azur néon (marée)
-                : UIColor(red: 0.08, green: 0.42, blue: 0.92, alpha: 1) })
-        case .wind:
-            return Color(UIColor { $0.userInterfaceStyle == .dark
-                ? UIColor(red: 0.24, green: 0.88, blue: 0.92, alpha: 1)    // cyan néon (vent)
-                : UIColor(red: 0.04, green: 0.52, blue: 0.62, alpha: 1) })
-        case .surf:
-            return Color(UIColor { $0.userInterfaceStyle == .dark
-                ? UIColor(red: 1.00, green: 0.58, blue: 0.24, alpha: 1)    // orange néon (surf)
-                : UIColor(red: 0.86, green: 0.42, blue: 0.08, alpha: 1) })
-        }
-    }
-
-    private func bandTint(_ level: Double) -> Color {
-        bandBase.opacity(min(max(level, 0), 1) * Self.bandMaxAlpha)
+    /// L'icône de gauche prend la couleur de SA bande : la ligne se lit comme un tout.
+    private func bandTint(_ level: Double, base: Color) -> Color {
+        base.opacity(min(max(level, 0), 1) * Self.bandMaxAlpha)
     }
 
     /// Dégradé horizontal bâti sur les valeurs horaires. Une seule valeur → aplat.
@@ -1552,10 +1525,10 @@ struct WeatherBand7Days: View, Equatable {
         if let level = r.level {
             let levels = stops.compactMap { level($0) }
             if levels.count >= 2 {
-                LinearGradient(colors: levels.map { bandTint($0) },
+                LinearGradient(colors: levels.map { bandTint($0, base: r.tint) },
                                startPoint: .leading, endPoint: .trailing)
             } else if let l = levels.first {
-                bandTint(l)
+                bandTint(l, base: r.tint)
             } else {
                 Color.clear
             }
@@ -1645,6 +1618,16 @@ struct WeatherBand7Days: View, Equatable {
             rows.append(WRow(id: "wave", icon: "water.waves", tint: .teal, isWeather: false,
                  text: { $0.waveHeight.map { String(format: "%.1f", locale: Locale.current, UnitFormatter.heightValue($0, system: self.themeManager.measureSystem)) } ?? "·" }, color: { _ in .teal },
 level: autoLevel({ $0.waveHeight }, minSpan: 0.5, anchorZero: true)))
+        }
+        // Une ligne sur deux. Appliqué APRÈS coup, sur les seules lignes à bande : l'ordre des
+        // lignes dépend des données réellement disponibles (pas d'humidité ⇒ pas de ligne), et
+        // l'alternance doit rester visuellement régulière quoi qu'il manque.
+        var flip = false
+        rows = rows.map { r in
+            guard r.level != nil else { return r }
+            defer { flip.toggle() }
+            return WRow(id: r.id, icon: r.icon, tint: flip ? .tideLow : .tideHigh,
+                        isWeather: r.isWeather, text: r.text, color: r.color, level: r.level)
         }
         return rows
     }
