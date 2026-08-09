@@ -422,9 +422,20 @@ final class WindEstablishingService {
         let window: GoWindow
         let confidence: Double   // accord inter-modèles moyen sur les heures de la fenêtre
         let hours: Double
-        /// On préfère une fenêtre SÛRE à une fenêtre longue : la confiance domine, la durée
-        /// ne départage que les quasi-ex æquo (au-delà de 4 h, une heure de plus ne change rien).
-        var rank: Double { confidence * 100 + min(hours, 4) }
+        /// On préfère une fenêtre SÛRE à une fenêtre longue — mais SEULEMENT là où la confiance
+        /// veut encore dire quelque chose.
+        ///
+        /// Mesuré sur 2 800 heures de vent observé (17 stations côtières, août 2026), l'erreur
+        /// réelle du modèle par tranche de confiance :
+        ///     0,20–0,50 → 3,48 km/h     0,70–0,85 → 2,17
+        ///     0,50–0,70 → 2,53          0,85–1,00 → 2,27 puis 2,34
+        /// L'accord entre modèles discrimine donc FORT jusqu'à ~0,75, puis PLUS DU TOUT : au-delà,
+        /// l'erreur ne baisse plus, elle remonte même légèrement. Départager 0,88 de 0,96 revenait
+        /// à trancher sur du bruit — et à écarter des fenêtres plus longues pour rien.
+        /// On sature donc la confiance à 0,75 dans le classement ; au-dessus, c'est la durée
+        /// qui décide.
+        static let confidenceCeiling = 0.75
+        var rank: Double { min(confidence, Self.confidenceCeiling) * 100 + min(hours, 4) }
     }
 
     /// Scan quotidien du planning d'activité, en arrière-plan. Premium + spots abonnés seulement.

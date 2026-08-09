@@ -57,6 +57,35 @@ Une seule version éditable à la fois sur App Store Connect.
 - **La seule intervention légitime du réel** est `ActivityScoreService.refinedForecasts` :
   bornée à maintenant → +2 h, mesure de moins de 20 min (bouée : 60 min). C'est la CONFIRMATION
   de l'instant, pas une retouche de prévision.
+### Audit de calibration (9 août 2026 — 17 stations côtières, 2 800 heures mesurées)
+
+Vent horaire RÉELLEMENT observé (réseau METAR public) confronté à chaque modèle au même point.
+
+| modèle | biais | **RMSE** | MAE |
+|---|---|---|---|
+| **meteofrance_seamless** | −0,65 | **3,29** | 2,44 |
+| meteofrance_arome_france_hd | −0,65 | 4,02 | 3,05 |
+| best_match | −1,65 | 4,08 | 2,98 |
+| icon_seamless | **−3,09** | 5,04 | 3,85 |
+| gfs_seamless | −0,73 | 5,23 | 3,92 |
+| ecmwf_ifs025 | −3,10 | 5,79 | 4,43 |
+
+- **Météo-France gagne sur 16 stations sur 17.** L'ancienne moyenne 0,50/0,30/0,20 donnait 3,44 —
+  soit PIRE que Météo-France seul. Moyenner dégradait la prévision.
+- **ICON sous-estime le vent côtier de 3,1 km/h en moyenne** (ECMWF aussi). Ce n'est pas du
+  bruit : c'est l'incapacité d'une maille de 11 km à résoudre un trait de côte.
+- **Des coefficients ne valent PAS le détour.** Optimum mesuré (MF 0,75 / GFS 0,15 / AROME 0,05 /
+  ICON 0,05) : RMSE 3,18. Mais en VALIDATION CROISÉE (poids appris sur la moitié du réseau,
+  testés sur l'autre, 12 découpages) le gain tombe à **+0,07 km/h** (σ 0,04) — un tiers du gain
+  apparent était du surajustement. 0,07 km/h, c'est 0,04 nœud : invisible. Le modèle seul est
+  retenu, et il garde l'avantage décisif de donner vitesse, rafale ET direction cohérentes.
+- **L'accord entre modèles prédit l'erreur, mais seulement jusqu'à 0,75.** Erreur par tranche de
+  confiance : 3,48 (0,2–0,5) → 2,53 → 2,17 (0,7–0,85) → 2,27 → 2,34. Au-delà de ~0,75 elle ne
+  baisse plus. D'où `AheadCandidate.confidenceCeiling` : classer 0,96 devant 0,88 était trancher
+  sur du bruit. Le seuil de rejet à 0,6 est en revanche VALIDÉ (l'erreur y bondit).
+
+Scripts de l'audit : `scratchpad/audit_modeles.py`, `audit_poids.py`, `audit_valid.py`.
+
 - **NE PAS décaler le point d'échantillonnage vers le large.** Essayé (2 km dans la direction
   `shoreOrientation`), mesuré, RETIRÉ. La maille TERRE d'AROME décrit assez bien la zone où l'on
   navigue vraiment — les premières centaines de mètres, encore sous influence côtière — alors que
