@@ -196,14 +196,35 @@ struct TodayView: View {
         // Mode vent : couleur immédiate des particules = force du vent à l'instant courant
         // (fallback/au repos). Au défilement, ParticleFlowBus.windTint (centre de la courbe)
         // prend le relais, lu en direct par le Canvas. Le sens de dérive suit la marée.
-        if themeManager.windMode, let fc = closestForecastNow() {
+        if themeManager.windMode, let fc = closestDisplayed(to: currentTime) {
             return (base.direction, PremiumCurveCanvas.windColorSmooth(fc.windSpeedKmh))
         }
         return base
     }
 
-    /// Prévision la plus proche de l'instant courant (pour la couleur vent des particules).
-    private func closestForecastNow() -> HourlyForecast? {
+    // ─────────────────────────────────────────────────────────────────────────────────────
+    // DEUX SONDES, ET UNE SEULE RAISON DE LES DISTINGUER
+    //
+    // Tout ce qui est AFFICHÉ lit `forecastsForDisplay` — la série corrigée du biais local
+    // quand l'option premium est active. C'est ce qui garantit que la courbe, les rubans, le
+    // tableau météo, les particules et les fenêtres GO racontent la MÊME histoire.
+    //
+    // L'apprentissage du biais, lui, doit lire la série BRUTE : mesurer l'écart d'un modèle
+    // déjà corrigé le ferait converger vers zéro et la jauge s'auto-annulerait.
+    // ─────────────────────────────────────────────────────────────────────────────────────
+
+    /// Sonde d'AFFICHAGE : la prévision la plus proche d'une date, dans la série montrée.
+    private func closestDisplayed(to date: Date) -> HourlyForecast? {
+        let series = forecastsForDisplay
+        guard !series.isEmpty else { return nil }
+        return series.min {
+            abs($0.time.timeIntervalSince(date)) < abs($1.time.timeIntervalSince(date))
+        }
+    }
+
+    /// Sonde d'APPRENTISSAGE : la sortie BRUTE du modèle « maintenant ». Réservée à
+    /// `ForecastBiasService.record` — ne jamais s'en servir pour afficher quoi que ce soit.
+    private func rawModelNow() -> HourlyForecast? {
         guard !openMeteoForecasts.isEmpty else { return nil }
         return openMeteoForecasts.min {
             abs($0.time.timeIntervalSince(currentTime)) < abs($1.time.timeIntervalSince(currentTime))
@@ -213,10 +234,7 @@ struct TodayView: View {
     /// Prévision la plus proche d'une date donnée (centre du scroll = `displayedDate`). Pilote la
     /// vision houle animée du mode surf.
     private func closestForecast(to date: Date) -> HourlyForecast? {
-        guard !openMeteoForecasts.isEmpty else { return nil }
-        return openMeteoForecasts.min {
-            abs($0.time.timeIntervalSince(date)) < abs($1.time.timeIntervalSince(date))
-        }
+        closestDisplayed(to: date)
     }
 
     /// Série de prévisions vue par la COURBE et le MOTEUR GO (jauge de confiance, stage 2). Premium +
@@ -318,7 +336,7 @@ struct TodayView: View {
                             // MODE SURF : sous la courbe (conservée), le tableau de bord HOULE « Le Banc »
                             // remplace marée/courant — verdict + note par heure + flèches + rose/table.
                             SurfDashboardCard(
-                                forecasts: openMeteoForecasts,
+                                forecasts: forecastsForDisplay,
                                 spot: tideService.selectedPort.flatMap { SpotConfigStore.shared.config(for: $0.id) },
                                 sunTimes: sunTimes,
                                 currentTime: currentTime,
@@ -380,7 +398,7 @@ struct TodayView: View {
                     // Le composant s'efface tout seul s'il n'a pas au moins deux points de prévision.
                     if !openMeteoForecasts.isEmpty {
                         WeekTrendBands(
-                            forecasts: openMeteoForecasts,
+                            forecasts: forecastsForDisplay,
                             isSurfSpot: SurfSpotCatalog.shared.spot(id: tideService.selectedPort?.id ?? "") != nil,
                             now: bandsClock,
                             calendar: calendar
@@ -394,7 +412,7 @@ struct TodayView: View {
                     if !openMeteoForecasts.isEmpty {
                         WeatherBand7Days(
                             portID: tideService.selectedPort?.id ?? "",
-                            forecasts: openMeteoForecasts,
+                            forecasts: forecastsForDisplay,
                             tideData: tideService.tideData,
                             currentTime: currentTime,
                             portTimeZone: portTimeZone
@@ -531,10 +549,12 @@ struct TodayView: View {
                     portName: tideService.selectedPort?.name)
             }
             // Jauge de confiance : échantillon modèle-vs-réel pour ce spot (biais local appris).
-            // Le modèle = la prévision « maintenant » d'Open-Meteo (`closestForecastNow`), CAR c'est
-            // CE modèle que la courbe + les fenêtres GO consomment et que la correction premium ajuste.
-            // ⚠️ TOUJOURS le flux BRUT (jamais `forecastsForDisplay`) sinon boucle de feedback → biais → 0.
-            if let obs = observedWind, let model = closestForecastNow()?.windSpeedKmh,
+            // Le modèle = la prévision « maintenant » BRUTE (`rawModelNow`) : c'est la
+            // sortie du modèle avant correction, donc la seule dont l'écart au réel ait un sens.
+            // ⚠️ JAMAIS `forecastsForDisplay` ici : la série corrigée a déjà le biais en moins,
+            // la réinjecter ferait converger le biais appris vers 0 — la jauge s'auto-annulerait.
+            // (Tout ce qui est AFFICHÉ passe en revanche par `forecastsForDisplay`, source unique.)
+            if let obs = observedWind, let model = rawModelNow()?.windSpeedKmh,
                let pid = tideService.selectedPort?.id {
                 ForecastBiasService.shared.record(portId: pid, modelKmh: model,
                     observedKmh: obs.reading.speedAvgKmh, distanceKm: obs.distanceKm, at: obs.reading.date)
@@ -782,8 +802,17 @@ struct TodayView: View {
         .buttonStyle(.plain)
     }
 
+    /// Le « prévu » auquel la carte compare la balise.
+    ///
+    /// ⚠️ Il venait d'un TROISIÈME modèle (WeatherKit `currentWeather`), qui n'alimente RIEN
+    /// d'autre dans l'écran. L'écart affiché se mesurait donc contre une prévision que
+    /// l'utilisateur ne voit nulle part — et il contredisait la jauge de confiance, qui
+    /// apprend l'écart sur l'autre modèle. On compare désormais à CE QUE L'ÉCRAN MONTRE.
     private var predictedWindKmh: Double? {
-        weatherService.currentWeather?.wind.speed.converted(to: .kilometersPerHour).value
+        guard !forecastsForDisplay.isEmpty else { return nil }
+        return forecastsForDisplay.min {
+            abs($0.time.timeIntervalSince(currentTime)) < abs($1.time.timeIntervalSince(currentTime))
+        }?.windSpeedKmh
     }
 
     private func updateActivityScores() {
@@ -802,7 +831,7 @@ struct TodayView: View {
             marineConditions: marineService.currentConditions,
             currentTime: currentTime,
             observed: observedTuple,
-            windConfidence: closestForecastNow()?.windConfidence,
+            windConfidence: closestDisplayed(to: currentTime)?.windConfidence,
             // Config du spot sélectionné → le verdict live honore enfin orientation/offshore/
             // exposition/gate de marée (indispensable au surf ; améliore aussi le kite).
             spot: tideService.selectedPort.flatMap { SpotConfigStore.shared.config(for: $0.id) }
