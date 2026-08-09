@@ -10313,6 +10313,7 @@
       }
     },
     "Ajuste la courbe et les fenêtres GO selon le vent réellement mesuré près de toi, quand une station proche est fiable." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -22101,6 +22102,7 @@
       }
     },
     "Corriger le vent avec le réel" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
