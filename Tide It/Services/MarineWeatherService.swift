@@ -159,66 +159,75 @@ private struct WeatherExtrasResponse: Codable {
 
 // MARK: - Combinaison d'ensemble (logique pure, testable)
 
-/// Une mesure de vent d'un modèle, avec son poids dans l'ensemble.
+/// Une mesure de vent d'un modèle. L'ORDRE du tableau vaut priorité (cf. `WindEnsemble.blend`).
 struct WindModelReading {
-    let weight: Double
     let speed: Double?
     let gust: Double?
     let dir: Double?
 }
 
 enum WindEnsemble {
-    /// Poids par modèle : AROME prioritaire (plus fin), puis ICON, puis GFS.
-    static let modelWeights: [(suffix: String, weight: Double)] = [
-        ("meteofrance_seamless", 0.50),
-        ("icon_seamless", 0.30),
-        ("gfs_seamless", 0.20),
-    ]
+    /// Ordre de PRÉFÉRENCE — du mieux résolu au plus grossier. Ce n'est plus une pondération.
+    ///
+    /// `meteofrance_seamless` enchaîne AROME HD (1,3 km) sur les 2 premiers jours, AROME (2,5 km),
+    /// puis ARPEGE au-delà : c'est la meilleure chaîne disponible sur la France. ICON (11 km) et
+    /// GFS (27 km) ne servent plus que de FILET pour les spots hors domaine français, et de
+    /// second avis pour mesurer la confiance.
+    static let modelPriority = ["meteofrance_seamless", "icon_seamless", "gfs_seamless"]
 
-    /// Combine les mesures de plusieurs modèles pour une heure donnée.
-    /// - Vitesse/rafale : moyenne pondérée (sur les modèles disponibles, renormalisée).
-    /// - Direction : moyenne circulaire pondérée (gère le passage 360°/0°).
-    /// - Fiabilité : 1 quand les modèles s'accordent, baisse avec l'écart de vitesse.
+    /// Combine les modèles pour une heure donnée.
+    ///
+    /// ⚠️ LA VALEUR N'EST PLUS UNE MOYENNE PONDÉRÉE, ET C'EST UN CORRECTIF DE FOND.
+    ///
+    /// Moyenner réduit l'erreur quand les modèles se trompent de façon INDÉPENDANTE et
+    /// aléatoire. Ici, non : à 11 km (ICON) et 27 km (GFS) de maille, un point côtier tombe
+    /// dans une case qui mélange terre et mer. Leur erreur n'est pas du bruit, c'est une
+    /// incapacité STRUCTURELLE à voir le trait de côte — et la moyenner revient à l'importer.
+    ///
+    /// Mesuré au Cap Ferret, 18 h, 7 août 2026 : AROME 18,0 nds (front de mer), ICON 7,6, GFS
+    /// 6,1. La moyenne pondérée sortait 12,5 nds — soit un tiers de vent en moins qu'annoncé
+    /// par le seul modèle capable de résoudre la côte. Andernos, dans le Bassin abrité, s'en
+    /// trouvait plus venté que le front de mer : l'ordre physique était inversé.
+    ///
+    /// Désormais : la vitesse, la rafale ET la direction viennent du MÊME modèle, le mieux
+    /// résolu qui réponde. Prendre la direction d'un autre donnerait un cap qu'aucun modèle
+    /// n'a prévu — or on/off/side-shore décide d'une session.
+    ///
+    /// L'écart entre modèles reste calculé : il ne pilote plus la valeur, seulement la
+    /// CONFIANCE. C'est son rôle légitime — un désaccord est une incertitude, pas une valeur.
+    ///
     /// - Returns: nil si aucun modèle n'a fourni de vitesse.
     nonisolated static func blend(_ readings: [WindModelReading])
         -> (speed: Double, gust: Double?, dir: Double, confidence: Double, count: Int)? {
         let valid = readings.filter { $0.speed != nil }
-        guard !valid.isEmpty else { return nil }
-        let totalW = valid.reduce(0.0) { $0 + $1.weight }
-        guard totalW > 0 else { return nil }
+        guard let best = valid.first, let speed = best.speed else { return nil }
 
-        let speed = valid.reduce(0.0) { $0 + $1.weight * ($1.speed ?? 0) } / totalW
+        // Rafale et direction du MÊME modèle. S'il ne les publie pas, on complète avec le
+        // suivant plutôt que de perdre l'information — mais jamais en mélangeant des valeurs.
+        let gust = best.gust ?? valid.first(where: { $0.gust != nil })?.gust
+        let dir  = best.dir  ?? valid.first(where: { $0.dir  != nil })?.dir ?? 0
 
-        // Rafale : moyenne pondérée sur les modèles qui en fournissent.
-        let gustReadings = valid.filter { $0.gust != nil }
-        let gustW = gustReadings.reduce(0.0) { $0 + $1.weight }
-        let gust: Double? = gustW > 0
-            ? gustReadings.reduce(0.0) { $0 + $1.weight * ($1.gust ?? 0) } / gustW
-            : nil
-
-        // Direction : moyenne circulaire pondérée.
-        let dirReadings = valid.filter { $0.dir != nil }
-        var dir = 0.0
-        if !dirReadings.isEmpty {
-            var sumSin = 0.0, sumCos = 0.0
-            for r in dirReadings {
-                let rad = (r.dir ?? 0) * .pi / 180
-                sumSin += r.weight * sin(rad)
-                sumCos += r.weight * cos(rad)
-            }
-            let a = atan2(sumSin, sumCos) * 180 / .pi
-            dir = a < 0 ? a + 360 : a
-        }
-
-        // Fiabilité : à partir de l'étalement des vitesses entre modèles.
+        // Confiance : étalement des vitesses entre TOUS les modèles disponibles.
         let speeds = valid.compactMap { $0.speed }
-        let confidence: Double
+        var confidence: Double
         if speeds.count >= 2, let mn = speeds.min(), let mx = speeds.max() {
-            let spread = mx - mn
             // 0 km/h d'écart → 1,0 ; 18 km/h d'écart ou plus → 0,2.
-            confidence = max(0.2, min(1.0, 1 - spread / 18.0))
+            confidence = max(0.2, min(1.0, 1 - (mx - mn) / 18.0))
         } else {
             confidence = 0.55  // un seul modèle → pas de recoupement possible
+        }
+
+        // PLAFOND QUAND LE MODÈLE FIN A DISPARU.
+        //
+        // La chaîne Météo-France s'arrête vers J+5 ; au-delà il ne reste qu'ICON (11 km) et GFS
+        // (27 km). Or ces deux-là s'accordent souvent — parce qu'ils commettent la MÊME erreur :
+        // à cette maille, un point côtier tombe dans une case mêlant terre et mer, et tous deux
+        // sous-lisent le vent de mer. Leur accord n'est donc pas une preuve, c'est un angle mort
+        // partagé. Sans ce plafond, l'app annonçait sa plus grande confiance pile là où elle en
+        // avait le moins — et le repérage anticipé, qui choisit la fenêtre « la plus sûre »,
+        // aurait préféré J+6 à J+3.
+        if readings.first?.speed == nil {
+            confidence = min(confidence, 0.5)
         }
 
         return (speed, gust, dir, confidence, valid.count)
@@ -419,18 +428,16 @@ class MarineWeatherService: ObservableObject {
             for i in 0..<times.count {
                 guard let date = parseDate(times[i]) else { continue }
 
-                // Combine les 3 modèles pour cette heure (AROME prioritaire).
+                // ORDRE = PRIORITÉ (cf. WindEnsemble.modelPriority) : le premier qui répond
+                // donne la valeur. Les suivants ne servent qu'à mesurer la confiance.
                 let readings: [WindModelReading] = [
-                    WindModelReading(weight: 0.50,
-                                     speed: h.wind_speed_10m_meteofrance_seamless?[safe: i].flatMap { $0 },
+                    WindModelReading(speed: h.wind_speed_10m_meteofrance_seamless?[safe: i].flatMap { $0 },
                                      gust: h.wind_gusts_10m_meteofrance_seamless?[safe: i].flatMap { $0 },
                                      dir: h.wind_direction_10m_meteofrance_seamless?[safe: i].flatMap { $0 }),
-                    WindModelReading(weight: 0.30,
-                                     speed: h.wind_speed_10m_icon_seamless?[safe: i].flatMap { $0 },
+                    WindModelReading(speed: h.wind_speed_10m_icon_seamless?[safe: i].flatMap { $0 },
                                      gust: h.wind_gusts_10m_icon_seamless?[safe: i].flatMap { $0 },
                                      dir: h.wind_direction_10m_icon_seamless?[safe: i].flatMap { $0 }),
-                    WindModelReading(weight: 0.20,
-                                     speed: h.wind_speed_10m_gfs_seamless?[safe: i].flatMap { $0 },
+                    WindModelReading(speed: h.wind_speed_10m_gfs_seamless?[safe: i].flatMap { $0 },
                                      gust: h.wind_gusts_10m_gfs_seamless?[safe: i].flatMap { $0 },
                                      dir: h.wind_direction_10m_gfs_seamless?[safe: i].flatMap { $0 }),
                 ]
