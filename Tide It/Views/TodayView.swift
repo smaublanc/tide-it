@@ -1329,7 +1329,7 @@ struct WeatherBand7Days: View, Equatable {
         ///
         /// La ligne dit « voilà où j'en suis dans ma plage », elle ne choisit pas de couleur :
         /// la teinte est décidée à UN SEUL endroit (`bandFill`). C'est ce qui garantit que les
-        /// sept lignes parlent la même langue.
+        /// sept lignes parlent la même langue. Construit par `autoLevel`.
         var level: ((HourlyForecast) -> Double?)? = nil
     }
 
@@ -1505,14 +1505,27 @@ struct WeatherBand7Days: View, Equatable {
     /// le texte qu'elle est censée accompagner.
     private static let bandMaxAlpha: Double = 0.55
 
-    /// UNE SEULE TEINTE, celle du mode courant (cyan en classique, menthe en vent, orange en
-    /// surf). C'est l'ALPHA qui porte la valeur : rien à zéro, plein en haut de plage.
+    /// UNE SEULE TEINTE, celle du mode courant. C'est l'ALPHA qui porte la valeur : rien à
+    /// zéro, plein en haut de plage.
     ///
     /// Sept rampes de teintes faisaient un arc-en-ciel hors charte, et surtout elles demandaient
     /// d'apprendre sept codes couleur. Avec une teinte unique il n'y en a plus qu'un, et il est
     /// évident sans légende : plus c'est dense, plus il y en a. Zéro vent, zéro couleur.
+    ///
+    /// ⚠️ NÉON EXPLICITE, et surtout PAS `CurveMode.accent`. Les couleurs système (`.cyan`,
+    /// `.mint`) sont déjà désaturées ; passées à 55 % d'opacité sur le fond sombre, elles
+    /// tournent au BLEU-GRIS et l'identité de l'app disparaît. On repart donc des néons de la
+    /// courbe, qui sont la vraie charte.
+    private var bandBase: Color {
+        switch curveMode {
+        case .classic: return Color(red: 0.16, green: 0.88, blue: 1.00)   // cyan néon (marée)
+        case .wind:    return Color(red: 0.22, green: 0.97, blue: 0.76)   // menthe néon (vent)
+        case .surf:    return Color(red: 1.00, green: 0.56, blue: 0.20)   // orange néon (surf)
+        }
+    }
+
     private func bandTint(_ level: Double) -> Color {
-        curveMode.accent.opacity(min(max(level, 0), 1) * Self.bandMaxAlpha)
+        bandBase.opacity(min(max(level, 0), 1) * Self.bandMaxAlpha)
     }
 
     /// Dégradé horizontal bâti sur les valeurs horaires. Une seule valeur → aplat.
@@ -1533,9 +1546,40 @@ struct WeatherBand7Days: View, Equatable {
         }
     }
 
-    /// Ramène une valeur dans sa plage utile, bornes comprises.
-    private func norm(_ v: Double, _ lo: Double, _ hi: Double) -> Double {
-        hi > lo ? min(max((v - lo) / (hi - lo), 0), 1) : 0
+    /// Construit le niveau 0…1 d'une ligne en calant l'échelle sur les données RÉELLEMENT
+    /// affichées, et non sur une plage théorique.
+    ///
+    /// Pourquoi : la température était bornée à −5…35 °C. Une journée d'été n'occupe que 15 %
+    /// d'une telle plage — la bande semblait plate alors que la journée montait de 6 °C. En
+    /// calant l'échelle sur le min et le max de la semaine affichée, la variation remplit la
+    /// bande et redevient lisible.
+    ///
+    /// `minSpan` empêche le mensonge inverse : sans lui, une semaine variant d'un demi-degré
+    /// serait étirée en dégradé spectaculaire. En dessous de ce plancher, la bande reste
+    /// volontairement terne — parce qu'il ne se passe rien.
+    ///
+    /// `anchorZero` garde le zéro visible pour les grandeurs dont le zéro veut dire « rien » :
+    /// pas de vent, pas de pluie, pas d'UV, pas de houle → pas de couleur. Pour la température,
+    /// l'humidité et la pression, le zéro de l'échelle n'a aucun sens : on laisse flotter.
+    private func autoLevel(_ pick: @escaping (HourlyForecast) -> Double?,
+                           minSpan: Double,
+                           anchorZero: Bool = false) -> (HourlyForecast) -> Double? {
+        let vals = forecasts.compactMap(pick)
+        guard let dataLo = vals.min(), let dataHi = vals.max() else { return { _ in nil } }
+        var lo = anchorZero ? 0 : dataLo
+        var hi = max(dataHi, lo)
+        if hi - lo < minSpan {
+            if anchorZero {
+                hi = lo + minSpan
+            } else {
+                let mid = (lo + hi) / 2
+                lo = mid - minSpan / 2
+                hi = mid + minSpan / 2
+            }
+        }
+        let span = hi - lo
+        guard span > 0 else { return { _ in nil } }
+        return { fc in pick(fc).map { min(max(($0 - lo) / span, 0), 1) } }
     }
 
     // MARK: Lignes actives du tableau (s'adaptent aux données réellement dispo)
@@ -1549,40 +1593,40 @@ struct WeatherBand7Days: View, Equatable {
             WRow(id: "temp", icon: "thermometer.medium", tint: .orange, isWeather: false,
                  text: { $0.temperature.map { self.tempInt($0) } ?? "—" },
                  color: { $0.temperature.map { self.tempColor($0) } ?? .secondary },
-                 level: { $0.temperature.map { self.norm($0, -5, 35) } }),
+                 level: autoLevel({ $0.temperature }, minSpan: 8)),
             WRow(id: "wind", icon: "wind", tint: .cyan, isWeather: false,
                  text: { fc in fc.windGustKmh.map { "\(w(fc.windSpeedKmh))·\(w($0))" } ?? w(fc.windSpeedKmh) },
                  color: { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) },
-                 level: { self.norm($0.windSpeedKmh, 0, 45) }),
+                 level: autoLevel({ $0.windSpeedKmh }, minSpan: 12, anchorZero: true)),
             WRow(id: "rain", icon: "umbrella.fill", tint: .blue, isWeather: false,
                  text: { let p = Int($0.precipitationProbability ?? 0); return p >= 5 ? "\(p)%" : "·" },
                  color: { self.precipColor(Int($0.precipitationProbability ?? 0)) },
                  // Rampe CONTINUE (les 3 paliers de `precipColor` feraient des marches
                  // d'escalier sur une bande : un saut de couleur se lirait comme un saut de
                  // probabilité).
-                 level: { self.norm($0.precipitationProbability ?? 0, 0, 100) }),
+                 level: autoLevel({ $0.precipitationProbability ?? 0 }, minSpan: 30, anchorZero: true)),
         ]
         if forecasts.contains(where: { $0.humidity != nil }) {
             rows.append(WRow(id: "hum", icon: "humidity.fill", tint: .cyan, isWeather: false,
                  text: { $0.humidity.map { "\(Int($0.rounded()))%" } ?? "·" }, color: { _ in .cyan },
-                 level: { $0.humidity.map { self.norm($0, 30, 100) } }))
+                 level: autoLevel({ $0.humidity }, minSpan: 15)))
         }
         if forecasts.contains(where: { $0.pressure != nil }) {
             rows.append(WRow(id: "press", icon: "barometer", tint: .indigo, isWeather: false,
                  text: { $0.pressure.map { "\(Int($0.rounded()))" } ?? "·" }, color: { _ in .indigo },
                  // 985→1035 hPa : la plage réellement rencontrée au niveau de la mer. Hors
                  // d'elle, la bande sature au lieu de virer à une teinte étrangère.
-                 level: { $0.pressure.map { self.norm($0, 985, 1035) } }))
+                 level: autoLevel({ $0.pressure }, minSpan: 10)))
         }
         if forecasts.contains(where: { ($0.uvIndex ?? 0) > 0 }) {
             rows.append(WRow(id: "uv", icon: "sun.max.fill", tint: .yellow, isWeather: false,
                  text: { $0.uvIndex.map { "\(Int($0.rounded()))" } ?? "·" }, color: { _ in .yellow },
-                 level: { $0.uvIndex.map { self.norm($0, 0, 11) } }))
+                 level: autoLevel({ $0.uvIndex }, minSpan: 4, anchorZero: true)))
         }
         if forecasts.contains(where: { $0.waveHeight != nil }) {
             rows.append(WRow(id: "wave", icon: "water.waves", tint: .teal, isWeather: false,
                  text: { $0.waveHeight.map { String(format: "%.1f", locale: Locale.current, UnitFormatter.heightValue($0, system: self.themeManager.measureSystem)) } ?? "·" }, color: { _ in .teal },
-level: { $0.waveHeight.map { self.norm($0, 0, 3) } }))
+level: autoLevel({ $0.waveHeight }, minSpan: 0.5, anchorZero: true)))
         }
         return rows
     }

@@ -24260,7 +24260,6 @@
       }
     },
     "Débloque toutes les features sans achat. DEBUG uniquement." : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -35743,6 +35742,9 @@
           }
         }
       }
+    },
+    "J+%lld" : {
+
     },
     "J+30" : {
       "localizations" : {
@@ -53626,7 +53628,6 @@
       }
     },
     "Premium forcé (test)" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -56750,6 +56751,12 @@
           }
         }
       }
+    },
+    "Rejouer la veille du jour repéré" : {
+
+    },
+    "Repérage anticipé : scanner" : {
+
     },
     "Repérez les meilleures basses mers, votre fenêtre d'estran découvert et l'heure de retour de l'eau." : {
       "localizations" : {
