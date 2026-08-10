@@ -89,7 +89,27 @@ Vent horaire RÉELLEMENT observé (réseau METAR public) confronté à chaque mo
   baisse plus. D'où `AheadCandidate.confidenceCeiling` : classer 0,96 devant 0,88 était trancher
   sur du bruit. Le seuil de rejet à 0,6 est en revanche VALIDÉ (l'erreur y bondit).
 
-Scripts de l'audit : `scratchpad/audit_modeles.py`, `audit_poids.py`, `audit_valid.py`.
+Scripts de l'audit : `audit/audit_modeles.py`, `audit_poids.py`, `audit_valid.py`.
+
+### Audit profond (10 août 2026 — 3 130 couples, bootstrap par blocs jour × station)
+
+- **Météo-France gagne les QUATRE façades**, et le plus largement là où on l'attendait le moins :
+  +0,94 km/h d'avance en Méditerranée–Corse contre +0,40 en Bretagne. Sur 2 000 tirages, la
+  probabilité qu'un autre modèle le batte est de **0,0 % partout**. Un choix de modèle PAR RÉGION
+  serait une régression : ne pas le tenter.
+- **⚠️ `best_match` n'est PAS un mélange — c'est un choix par point, et Open-Meteo y choisit ICON**
+  sur TOUTE la Manche, plus Nice, Bastia et Ajaccio : exactement les traits de côte qu'une maille
+  de 11 km ne sait pas résoudre. Demander explicitement `meteofrance_seamless` en premier n'est
+  pas une préférence, c'est ce qui protège l'app de ce piège. Ne jamais retomber sur `best_match`.
+- **Dans la zone NAVIGABLE, le réglage est déjà à son meilleur.** Biais de MF conditionné sur la
+  valeur affichée : −1,02 / −0,51 / −0,47 km/h (tranches 0-10 / 10-20 / 20-30), et l'erreur
+  RELATIVE s'améliore quand ça monte : 45 % → 21 % → **17 %** du vent moyen.
+- **Le « biais qui se creuse dans le vent fort » est un artefact.** Conditionner sur l'observation
+  (variable bruitée) fabrique un retour à la moyenne : en conditionnant sur le modèle, le signe
+  s'INVERSE. Ne pas « corriger » ce faux biais.
+- **RÉSERVE MAJEURE** : ces mesures portent sur 8 jours d'août. Vent maximal observé **20 nds**,
+  zéro heure au-delà de 25 nds. Le régime qui compte vraiment pour le kite n'est PAS dans
+  l'échantillon — rejouer les scripts en hiver avant toute conclusion sur le vent fort.
 
 - **NE PAS décaler le point d'échantillonnage vers le large.** Essayé (2 km dans la direction
   `shoreOrientation`), mesuré, RETIRÉ. La maille TERRE d'AROME décrit assez bien la zone où l'on
