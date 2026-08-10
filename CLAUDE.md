@@ -121,6 +121,42 @@ Scripts de l'audit : `audit/audit_modeles.py`, `audit_poids.py`, `audit_valid.py
   Au-delà, ICON et GFS s'accordent souvent parce qu'ils commettent la MÊME erreur : leur accord
   est un angle mort partagé, pas une preuve.
 
+### Ce que l'audit a changé — et ce qu'il a REFUSÉ de changer
+
+**Appliqué** (défauts STRUCTURELS, valables partout sur la planète) :
+- **Seuils de rafales dédoublés.** La rafale d'un modèle est un maximum HORAIRE, celle d'une
+  balise une moyenne sur 10 min : deux échelles, un seul jeu de seuils. Médiane du ratio prévu
+  1,72 quand ça rafale vraiment, 1,56 sinon — le seuil du badge (1,55) passait SOUS les deux.
+  L'app criait « rafaleux » sur **80,6 %** de ses heures ventées, dont **53 % de faux prouvés**,
+  pour 11,3 points de note GO en moins. Côté prévision : 1,45 / 1,70, poids 0,16 → **0,10**
+  (l'AUC de 0,773 soutient un facteur modéré, pas une pénalité de 11 points). Le badge balise
+  garde 1,25 / 1,55, calibrés sur la mesure — NE PAS les réunifier.
+- **Marge de 10 km/h avant le gate dur de rafales** (= l'erreur type du modèle sur la rafale).
+  Sans elle, les gates hauts se déclenchaient à tort **38 %** (50 km/h) à **51 %** (62 km/h) du
+  temps. Un gate de sécurité qui crie faux une fois sur deux finit ignoré, donc dangereux.
+
+**REFUSÉ, et c'est le plus important** — mesuré puis écarté, ne pas retenter :
+- **Corriger le biais de Météo-France** : gain hors échantillon +0,026 ± 0,062 km/h, et NÉGATIF
+  en multiplicatif. P(gain > 0,3) = 0 % sur 400 découpages.
+- **Corriger l'amplitude de la brise thermique** : le modèle est À L'HEURE (décalage mesuré
+  +0,10 h ± 0,17 — aucun déphasage), il sous-développe le pic de 2,4 km/h, mais la correction
+  ne rend que +0,246 km/h — sous le seuil de bruit.
+- **Un modèle par façade maritime** : 0,0 % de probabilité qu'un autre batte Météo-France, sur
+  les quatre façades.
+- **Les 15 autres modèles testés** (AROME 2,5 km, ARPEGE, AIFS, UKMO ×3, KNMI, DMI, ICON-EU,
+  ICON-D2, ARPAE, GEM, JMA) : aucun ne bat `meteofrance_seamless`, écart au deuxième +0,60 km/h
+  [IC95 +0,44 ; +0,77]. Les paris régionaux sont réfutés : UKMO 2 km perd 1,54 km/h sur la
+  Manche et la Bretagne.
+- **Réordonner ICON/GFS dans le repli.** GFS bat ICON de +0,70 km/h à J+5 *en France* — mais
+  l'audit est FRANÇAIS, et le repli sert surtout le RESTE DU MONDE, où l'ordre doit rester celui
+  de la résolution (ICON 11 km avant GFS 27 km). Et GFS est catastrophique sur la rafale
+  (biais −10,3 km/h, corrélation du ratio −0,07 : aucune information). On ne réordonne pas une
+  chaîne mondiale sur une mesure locale.
+
+⚠️ **PORTÉE DE L'AUDIT** : littoral français, été. Vent maximal observé 20 nds. Rien de ce qui
+précède ne vaut mesure hors de France ni en vent fort — seuls les défauts d'ÉCHELLE (rafales,
+gates) ont été appliqués, parce qu'ils tiennent à la nature des données, pas à la géographie.
+
 ## Seuils recalibrables (constantes nommées, après retours terrain)
 - `WindSteadiness` (ObservedWindCard.swift) : `minAvgKmh=12`, `laminarMaxRatio=1.25`,
   `gustyMinRatio=1.55` — badge Laminaire/Irrégulier/Rafaleux **ET** facteur « Rafales » du

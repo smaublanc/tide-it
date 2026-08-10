@@ -347,6 +347,30 @@ class ActivityScoreService {
 
     /// Rampe descendante — 1 à `lo`, 0 à `hi`, clampé
     /// Usage : plus c'est bas mieux c'est (ex: hauteur vagues pour baignade)
+    // MARK: - Rafales : seuils de PRÉVISION (≠ seuils du badge balise)
+    //
+    // Audit du 10 août 2026 — 22 356 heures appariées, 17 stations côtières, 159 rafales
+    // réellement reportées par le réseau METAR. Deux classes certaines (127 heures prouvées
+    // rafaleuses, 135 prouvées non rafaleuses) donnent à `meteofrance_seamless` une AUC de
+    // 0,773 sur la rafalosité, contre 0,374 pour le vent moyen seul : le ratio porte une
+    // information RÉELLE, indépendante de la force du vent. Le facteur est donc conservé.
+    //
+    // Mais son ÉCHELLE diffère de celle du badge. La rafale d'un modèle est un maximum horaire,
+    // celle d'une balise une moyenne sur 10 minutes. Médiane du ratio prévu : 1,72 quand ça
+    // rafale vraiment, 1,56 quand ça ne rafale pas — le seuil du badge (1,55) passe SOUS les
+    // deux. Résultat mesuré : « rafaleux » sur 80,6 % des heures ventées, dont 53 % de faux
+    // démontrés, pour une pénalité moyenne de 11,3 points de note GO.
+    //
+    // ⚠️ Ces seuils valent pour la PRÉVISION uniquement. `WindSteadiness` garde 1,25 / 1,55
+    // pour le badge, calibré sur la mesure — ne pas les réunifier « pour simplifier ».
+    static let forecastLaminarMaxRatio = 1.45
+    static let forecastGustyMinRatio = 1.70
+    /// Poids ramené de 0,16 à 0,10 : même recalé, le facteur garde ~38 % de faux « rafaleux ».
+    /// Une AUC de 0,77 soutient un facteur MODÉRÉ, pas une pénalité de 11 points.
+    static let forecastGustWeight = 0.10
+    /// Marge avant d'armer le gate dur, = l'erreur type du modèle sur la rafale (10,2 km/h).
+    static let gustGateMarginKmh = 10.0
+
     private static func rampDown(_ v: Double, lo: Double, hi: Double) -> Double {
         max(0, min(1, (hi - v) / (hi - lo)))
     }
@@ -1082,7 +1106,13 @@ class ActivityScoreService {
             if let ratio = WindSteadiness.ratio(avgKmh: wind, gustKmh: windData.gust) {
                 let gScore: Double
                 let gDesc: String
-                let lam = WindSteadiness.laminarMaxRatio, gus = WindSteadiness.gustyMinRatio
+                // SEUILS DE PRÉVISION, distincts de ceux du badge balise. Mesuré sur 22 356
+                // heures et 159 rafales réellement reportées : la rafale d'un modèle est un
+                // MAXIMUM HORAIRE, celle d'une balise une moyenne sur 10 min — deux échelles.
+                // Médiane du ratio prévu quand ça rafale VRAIMENT : 1,72 ; quand ça ne rafale
+                // pas : 1,56. Le seuil du badge (1,55) est sous les DEUX : l'app criait
+                // « rafaleux » sur 80,6 % de ses heures ventées, dont 53 % de FAUX prouvés.
+                let lam = Self.forecastLaminarMaxRatio, gus = Self.forecastGustyMinRatio
                 if ratio <= lam {
                     gScore = 1
                     gDesc = "Vent régulier (laminaire)"
@@ -1090,14 +1120,17 @@ class ActivityScoreService {
                     gScore = 1 - 0.55 * (ratio - lam) / (gus - lam)          // 1 → 0.45 (continu)
                     gDesc = "Vent irrégulier (rafales ×\(String(format: "%.1f", locale: Locale.current, ratio)))"
                 } else {
-                    gScore = 0.45 * Self.rampDown(ratio, lo: gus, hi: 2.0)   // 0.45 → 0 à ×2
+                    gScore = 0.45 * Self.rampDown(ratio, lo: gus, hi: 2.2)   // 0.45 → 0 à ×2,2
                     gDesc = "Rafaleux (×\(String(format: "%.1f", locale: Locale.current, ratio))) : instable"
                 }
-                factors.append(ScoringFactor(name: "Rafales", weight: 0.16, score: gScore, detail: gDesc))
-                // Gate sécurité SYMÉTRIQUE du gate vent moyen : des rafales au-delà du plafond
-                // praticable du rider (riderMaxWind / niveau — « au-delà c'est trop ») = danger,
-                // même si la moyenne est dans la plage (40 gustant 70 passait sans ça).
-                if let gust = windData.gust, gust >= windCeiling { hardCap = 0 }
+                factors.append(ScoringFactor(name: "Rafales", weight: Self.forecastGustWeight,
+                                             score: gScore, detail: gDesc))
+                // Gate sécurité : rafales au-delà du plafond praticable du rider = danger.
+                // MARGE OBLIGATOIRE : l'erreur type du modèle sur la rafale est de 10,2 km/h.
+                // Sans marge, les gates hauts se déclenchaient à tort 38 % (50 km/h) à 51 %
+                // (62 km/h) du temps — un gate de sécurité qui crie faux une fois sur deux
+                // finit ignoré, donc dangereux.
+                if let gust = windData.gust, gust >= windCeiling + Self.gustGateMarginKmh { hardCap = 0 }
 
             } else if let gust = windData.gust, gust >= wind, wind > 0, wind < WindSteadiness.minAvgKmh {
                 // Vent moyen trop faible pour qu'un RATIO veuille dire quelque chose (même garde
