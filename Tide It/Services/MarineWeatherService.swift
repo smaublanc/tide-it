@@ -139,6 +139,42 @@ private struct WindEnsembleResponse: Codable {
         let wind_gusts_10m_gfs_seamless: [Double?]?
         let wind_direction_10m_gfs_seamless: [Double?]?
     }
+
+    /// Réduit le voisinage à UNE série : médiane heure par heure pour la vitesse et la rafale,
+    /// direction prise au CENTRE.
+    ///
+    /// Pourquoi la médiane et pas la moyenne : elle prend le régime MAJORITAIRE du secteur.
+    /// Si quatre mailles sur cinq sont en mer et une en forêt, on lit la mer — et l'inverse
+    /// aussi. Une moyenne, elle, se laisse tirer par la maille aberrante.
+    ///
+    /// Pourquoi la direction reste celle du CENTRE : le cap ne souffre pas de la discontinuité
+    /// de rugosité qui frappe la vitesse, et une médiane de caps n'a pas de sens sur un cercle
+    /// (350° et 10° ont pour médiane 180°, soit l'exact opposé du vent réel).
+    static func medianOfNeighbourhood(_ all: [WindEnsembleResponse],
+                                      centre: WindEnsembleResponse) -> WindEnsembleResponse {
+        func med(_ series: [[Double?]?], _ n: Int) -> [Double?] {
+            (0..<n).map { i in
+                let vals = series.compactMap { $0?[safe: i].flatMap { $0 } }.sorted()
+                guard !vals.isEmpty else { return nil }
+                return vals.count % 2 == 1 ? vals[vals.count / 2]
+                                           : (vals[vals.count / 2 - 1] + vals[vals.count / 2]) / 2
+            }
+        }
+        let hs = all.compactMap(\.hourly)
+        guard let c = centre.hourly, let times = c.time else { return centre }
+        let n = times.count
+        return WindEnsembleResponse(hourly: Hourly(
+            time: times,
+            wind_speed_10m_meteofrance_seamless: med(hs.map(\.wind_speed_10m_meteofrance_seamless), n),
+            wind_gusts_10m_meteofrance_seamless: med(hs.map(\.wind_gusts_10m_meteofrance_seamless), n),
+            wind_direction_10m_meteofrance_seamless: c.wind_direction_10m_meteofrance_seamless,
+            wind_speed_10m_icon_seamless: med(hs.map(\.wind_speed_10m_icon_seamless), n),
+            wind_gusts_10m_icon_seamless: med(hs.map(\.wind_gusts_10m_icon_seamless), n),
+            wind_direction_10m_icon_seamless: c.wind_direction_10m_icon_seamless,
+            wind_speed_10m_gfs_seamless: med(hs.map(\.wind_speed_10m_gfs_seamless), n),
+            wind_gusts_10m_gfs_seamless: med(hs.map(\.wind_gusts_10m_gfs_seamless), n),
+            wind_direction_10m_gfs_seamless: c.wind_direction_10m_gfs_seamless))
+    }
 }
 
 // MARK: - Extras météo (modèle best_match — variables non ventées)
@@ -507,11 +543,43 @@ class MarineWeatherService: ObservableObject {
 
     /// Prévisions vent issues de 3 modèles (AROME + ICON + GFS) en une requête, pour
     /// combinaison d'ensemble. AROME (1,3 km) donne le vent côtier/thermique le plus fin.
+    /// Rayon du VOISINAGE échantillonné autour du spot.
+    ///
+    /// ⚠️ CE N'EST PAS UN DÉCALAGE VERS LE LARGE — cette idée-là a été essayée, mesurée et
+    /// retirée (elle surestimait de 8 à 9 nds). C'est un voisinage SYMÉTRIQUE : on ne suppose
+    /// jamais de quel côté est la mer.
+    ///
+    /// LE DÉFAUT CORRIGÉ. Un modèle classe chaque maille TERRE ou MER, et la rugosité change
+    /// le vent d'un facteur deux d'une maille à l'autre. Un spot dont la coordonnée tombe du
+    /// mauvais côté lit le vent de la forêt. Mesuré à Lacanau le 9 août : 9,3 nds au point du
+    /// spot, 18,1 nds à 1,1 km à l'ouest — la bascule tient à 800 mètres de pointage.
+    ///
+    /// MESURE DE L'AMPLEUR (1 624 heures, 10 stations côtières) : l'étendue du vent sur un
+    /// voisinage de 2 km vaut 3,15 km/h en médiane, 8,0 au p90 et jusqu'à 24,7. Autrement dit,
+    /// déplacer une épingle de 2 km sur une carte pouvait changer la prévision de 13 nœuds.
+    ///
+    /// COÛT EN JUSTESSE : NUL. Backtest contre le vent réellement mesuré — point unique
+    /// RMSE 3,46 / moyenne du voisinage 3,49 / MÉDIANE du voisinage 3,45. La médiane est
+    /// retenue : elle est (marginalement) la plus juste et, surtout, elle prend le régime
+    /// MAJORITAIRE du secteur au lieu de se laisser emporter par une maille aberrante.
+    private static let neighbourhoodKm = 2.0
+
+    /// Le point du spot + 4 voisins cardinaux. Une SEULE requête (Open-Meteo accepte plusieurs
+    /// coordonnées), donc un seul aller-retour réseau — la batterie ne paie pas la robustesse.
+    nonisolated static func neighbourhood(latitude: Double, longitude: Double) -> [(lat: Double, lon: Double)] {
+        let dLat = neighbourhoodKm / 111.0
+        let dLon = neighbourhoodKm / (111.0 * max(0.1, cos(latitude * .pi / 180)))
+        return [(latitude, longitude),
+                (latitude + dLat, longitude), (latitude - dLat, longitude),
+                (latitude, longitude + dLon), (latitude, longitude - dLon)]
+    }
+
     private func fetchWindEnsemble(latitude: Double, longitude: Double) async -> WindEnsembleResponse? {
         guard var components = URLComponents(string: "https://api.open-meteo.com/v1/forecast") else { return nil }
+        let pts = Self.neighbourhood(latitude: latitude, longitude: longitude)
         components.queryItems = [
-            URLQueryItem(name: "latitude", value: String(format: "%.4f", latitude)),
-            URLQueryItem(name: "longitude", value: String(format: "%.4f", longitude)),
+            URLQueryItem(name: "latitude", value: pts.map { String(format: "%.4f", $0.lat) }.joined(separator: ",")),
+            URLQueryItem(name: "longitude", value: pts.map { String(format: "%.4f", $0.lon) }.joined(separator: ",")),
             URLQueryItem(name: "hourly", value: "wind_speed_10m,wind_gusts_10m,wind_direction_10m"),
             URLQueryItem(name: "models", value: "meteofrance_seamless,icon_seamless,gfs_seamless"),
             URLQueryItem(name: "wind_speed_unit", value: "kmh"),
@@ -531,7 +599,13 @@ class MarineWeatherService: ObservableObject {
                 }
                 return nil
             }
-            return try JSONDecoder().decode(WindEnsembleResponse.self, from: data)
+            // Plusieurs coordonnées → l'API renvoie un TABLEAU. On garde le repli sur un objet
+            // seul au cas où elle n'en renverrait qu'un.
+            let dec = JSONDecoder()
+            var all = (try? dec.decode([WindEnsembleResponse].self, from: data)) ?? []
+            if all.isEmpty { all = [try dec.decode(WindEnsembleResponse.self, from: data)] }
+            guard let centre = all.first else { return nil }
+            return all.count > 1 ? WindEnsembleResponse.medianOfNeighbourhood(all, centre: centre) : centre
         } catch {
             // L'annulation (changement de port rapide) n'est pas une erreur.
             if (error as? URLError)?.code != .cancelled && !(error is CancellationError) {

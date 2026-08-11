@@ -111,6 +111,18 @@ Scripts de l'audit : `audit/audit_modeles.py`, `audit_poids.py`, `audit_valid.py
   zéro heure au-delà de 25 nds. Le régime qui compte vraiment pour le kite n'est PAS dans
   l'échantillon — rejouer les scripts en hiver avant toute conclusion sur le vent fort.
 
+- **Échantillonnage par VOISINAGE (`MarineWeatherService.neighbourhood`, rayon 2 km, MÉDIANE).**
+  Un modèle classe chaque maille TERRE ou MER : la rugosité change le vent d'un facteur deux
+  d'une maille à l'autre, et un spot dont la coordonnée tombe du mauvais côté lit le vent de la
+  forêt. Mesuré à Lacanau : 9,3 nds au point du spot contre 18,1 à 1,1 km — la bascule tient à
+  800 m de pointage. Ampleur mesurée sur 1 624 heures et 10 stations : étendue de **3,15 km/h en
+  médiane, 8,0 au p90, 24,7 au maximum**. Déplacer une épingle de 2 km changeait la prévision de
+  13 nœuds.
+  **Coût en justesse : NUL** — backtest contre le vent mesuré : point 3,46 / moyenne 3,49 /
+  MÉDIANE **3,45**. La médiane prend le régime MAJORITAIRE du secteur ; une moyenne se laisse
+  tirer par la maille aberrante. Direction prise au CENTRE (une médiane de caps n'a pas de sens
+  sur un cercle : 350° et 10° donneraient 180°). UNE seule requête réseau (Open-Meteo accepte
+  plusieurs coordonnées) — la batterie ne paie pas la robustesse. Script : `audit/audit_robustesse.py`.
 - **NE PAS décaler le point d'échantillonnage vers le large.** Essayé (2 km dans la direction
   `shoreOrientation`), mesuré, RETIRÉ. La maille TERRE d'AROME décrit assez bien la zone où l'on
   navigue vraiment — les premières centaines de mètres, encore sous influence côtière — alors que
