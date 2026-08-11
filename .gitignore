@@ -1,51 +1,46 @@
-# Xcode
-build/
-DerivedData/
-*.xcuserstate
-*.xcworkspace/xcuserdata/
-*.xcodeproj/xcuserdata/
-*.xcodeproj/project.xcworkspace/xcuserdata/
-
-# macOS
-.DS_Store
-*.swp
-
-# SPM
-.swiftpm/
-.build/
-Packages/
-Package.pins
-Package.resolved
-*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
 
 # CocoaPods / Carthage (si jamais)
-Pods/
-Carthage/Build/
-
+# Config locale Claude / agents
+# Gros artefacts de travail (gardés en local, hors git)
+# SPM
+# Secrets — NE PAS COMMITER
+# Xcode
 # fastlane
-fastlane/report.xml
+# macOS
+*.p8
+*.swp
+*.xcconfig.local
+*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+*.zip
+.DS_Store
+.appstoreconnect/
+.build/
+.claude/
+.swiftpm/
+Carthage/Build/
+DerivedData/
+Package.pins
+Package.resolved
+Packages/
+Pods/
+Secrets.plist
+Tide It/Services/APIKeys.swift
+build/
 fastlane/Preview.html
+fastlane/app_previews/
+fastlane/key.json
+fastlane/report.xml
+fastlane/screenshots/
 fastlane/screenshots/**/*.png
 fastlane/test_output
-
-# Secrets — NE PAS COMMITER
-Tide It/Services/APIKeys.swift
-*.xcconfig.local
-Secrets.plist
-*.p8
-fastlane/key.json
-.appstoreconnect/
-
-# Gros artefacts de travail (gardés en local, hors git)
-build/
-previews/
-tex/
 go appstore v5/
+previews/
+scratchpad/
 scripts 2/
 swell-illustration-mode-surf/
-*.zip
-
-# Config locale Claude / agents
-.claude/
-fastlane/screenshots/
-fastlane/app_previews/
+tex/
+wgt.html

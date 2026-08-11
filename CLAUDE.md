@@ -220,6 +220,12 @@ gates) ont été appliqués, parce qu'ils tiennent à la nature des données, pa
   seule définition) **ou a disparu** — une station qui se tait sort des 30 min de
   `nearestReading` et, sans ce cas, plus aucune tentative jusqu'au changement de port. Pas de
   polling : le TTL de 3 min de l'agrégateur borne le réseau, une mesure fraîche ne déclenche rien.
+- **Constante d'une classe `@MainActor` lue hors acteur → `nonisolated`.** Avertissement
+  aujourd'hui, ERREUR en Swift 6. Rencontré TROIS fois : `WindStationAggregator.defaultSearchRadius`,
+  `WebcamCatalog.maxDistanceMeters`/`maxSuggestions`, `MarineWeatherService.neighbourhoodKm`.
+  Le cas typique est une constante servant de VALEUR PAR DÉFAUT à un argument — un argument par
+  défaut est évalué hors de l'acteur. Réflexe : toute `static let` lue depuis une fonction
+  `nonisolated` doit l'être aussi.
 - **Jour = fuseau du PORT** partout, jamais `Calendar.current` (cf. `Calendar.inTimeZone`). Vaut
   aussi pour le `DateFormatter` des libellés : sinon un minuit « port » se formate à la veille.
 

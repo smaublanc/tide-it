@@ -562,7 +562,12 @@ class MarineWeatherService: ObservableObject {
     /// RMSE 3,46 / moyenne du voisinage 3,49 / MÉDIANE du voisinage 3,45. La médiane est
     /// retenue : elle est (marginalement) la plus juste et, surtout, elle prend le régime
     /// MAJORITAIRE du secteur au lieu de se laisser emporter par une maille aberrante.
-    private static let neighbourhoodKm = 2.0
+    /// `nonisolated` OBLIGATOIRE : lue depuis `neighbourhood(latitude:longitude:)`, elle-même
+    /// nonisolated. Sans ça, avertissement aujourd'hui et ERREUR en mode Swift 6. C'est la
+    /// TROISIÈME fois que ce piège se présente dans ce dépôt (après
+    /// `WindStationAggregator.defaultSearchRadius` et `WebcamCatalog.maxDistanceMeters`) :
+    /// toute constante d'une classe @MainActor lue depuis un contexte nonisolated doit l'être.
+    nonisolated private static let neighbourhoodKm = 2.0
 
     /// Le point du spot + 4 voisins cardinaux. Une SEULE requête (Open-Meteo accepte plusieurs
     /// coordonnées), donc un seul aller-retour réseau — la batterie ne paie pas la robustesse.
