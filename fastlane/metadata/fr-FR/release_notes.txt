@@ -1,13 +1,21 @@
+Le vent, revu de fond en comble :
+- Fini la moyenne entre plusieurs modèles. Elle lissait le trait de côte : un spot de plein océan pouvait s'afficher moins venté qu'un plan d'eau abrité situé à 20 km. Tide It s'appuie maintenant sur le modèle le mieux résolu qui couvre ton spot, et la vitesse, la rafale et la direction viennent toutes du même : le on-shore annoncé est celui qui a vraiment été prévu.
+- Ce choix a été confronté à 2 800 heures de vent réellement mesuré sur 17 points du littoral. Une quinzaine d'autres modèles et une pondération sur mesure ont été testés, puis écartés : aucun ne faisait mieux.
+- La prévision ne dépend plus de la façon dont l'épingle est posée. Près d'une côte, 2 km de décalage pouvaient changer le vent annoncé de 13 nœuds ; le secteur est désormais lu dans son ensemble.
+- La balise ne retouche plus la prévision : elle confirme l'instant présent, et seulement si elle est assez proche. Une mesure prise à 40 km ne dit rien de ton spot.
+- L'alerte rafales criait sur 8 heures ventées sur 10, à tort une fois sur deux. Recalibrée, elle ne se déclenche plus que quand ça rafale vraiment. Les seuils de sécurité gardent maintenant une marge.
+- Le « Go » en pourcentage a été retiré : un chiffre faux mais précis est pire que pas de chiffre. Les étoiles des fenêtres et l'alerte « le vent s'établit » restent.
+
 Nouveautés :
-- Tide It repère les fenêtres de GO plusieurs jours à l'avance et te prévient : « un créneau se dessine jeudi ». La veille, il revient te dire s'il se confirme, ou s'il tombe. Le créneau annoncé est celui sur lequel les modèles s'accordent le mieux.
-- Ouvrir une notification t'emmène directement sur le spot annoncé, et le créneau s'illumine sur la courbe : tu vois tout de suite quand ça se passe.
-- Une icône caméra apparaît dans le vent observé quand une webcam filme le secteur : un appui, les trois plus proches. Plus de 120 caméras du littoral, de la Côte d'Opale au Pays basque.
-- La météo 7 jours passe en rubans de couleur : température, vent, pluie, humidité, pression, UV et houle se lisent d'un coup d'œil, avec des dégradés calculés heure par heure.
+- Tide It repère les fenêtres de GO plusieurs jours à l'avance et te prévient. La veille, il revient te dire si le créneau se confirme, ou s'il tombe.
+- Ouvrir une notification t'emmène directement sur le spot annoncé, et le créneau s'illumine sur la courbe.
+- Une icône caméra apparaît dans le vent observé quand une webcam filme le secteur : plus de 120 caméras du littoral.
+- La météo 7 jours passe en rubans de couleur, sur la même palette que la courbe de vent : un jaune veut dire la même chose partout.
 - De nouvelles balises, dont une posée sur un spot de kite et une au Cap Fréhel.
 
 Corrections :
 - Les étiquettes de la carte retrouvent leur pastille, et l'hélice du vent observé tourne enfin sans à-coups.
-- Les rubans de tendance changent bien de jour à minuit, et la balise se rafraîchit au retour dans l'app : fini le vent vieux d'une heure.
-- Tes favoris ne peuvent plus être effacés par une synchronisation iCloud partie trop tôt, les marées de secours reviennent hors ligne, et les journées suivent le fuseau du port.
+- Les rubans changent bien de jour à minuit, et la balise se rafraîchit au retour dans l'app : fini le vent vieux d'une heure.
+- Tes favoris ne peuvent plus être effacés par une synchronisation partie trop tôt, les marées de secours reviennent hors ligne, et les journées suivent le fuseau du port.
 
 Toujours aussi précis, honnête et léger pour ta batterie. Bon vent et bonnes vagues !

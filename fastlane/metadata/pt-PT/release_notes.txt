@@ -1,13 +1,21 @@
+O vento, revisto de alto a baixo:
+- Acabou a média entre vários modelos. Ela suavizava a linha de costa: um spot em mar aberto podia surgir menos ventoso do que um plano de água abrigado a 20 km. O Tide It usa agora o modelo mais bem resolvido que cobre o teu spot, e velocidade, rajada e direção vêm todas do mesmo: o onshore que vês é o que foi realmente previsto.
+- Esta escolha foi confrontada com 2.800 horas de vento realmente medido em 17 pontos do litoral. Outros quinze modelos e uma ponderação à medida foram testados e depois postos de lado: nenhum era melhor.
+- A previsão já não depende de onde o pino foi colocado. Perto da costa, 2 km de desvio podiam mudar a previsão em 13 nós; agora lê-se todo o setor de uma vez.
+- A estação já não retoca a previsão: confirma o momento presente, e só se estiver perto o suficiente. Uma medição feita a 40 km não diz nada sobre o teu spot.
+- O aviso de rajadas disparava em 8 de cada 10 horas com vento, e metade das vezes sem razão. Recalibrado, só dispara quando há mesmo rajadas. Os limiares de segurança guardam agora uma margem.
+- O "Go" em percentagem foi retirado: um número preciso mas errado é pior do que número nenhum. As estrelas das janelas e o aviso "o vento está a estabelecer-se" mantêm-se.
+
 Novidades:
-- O Tide It deteta as janelas GO com dias de antecedência e avisa-te: «desenha-se uma janela na quinta-feira». Na véspera volta para dizer se se confirma ou se cai. A janela anunciada é aquela em que os modelos mais concordam.
-- Abrir uma notificação leva-te diretamente ao spot anunciado, e a janela acende-se na curva: vês logo quando acontece.
-- Aparece um ícone de câmara no vento real quando uma webcam cobre a zona: um toque, as três mais próximas. Mais de 120 câmaras do litoral, da Costa de Opala ao País Basco.
-- A meteorologia a 7 dias passa a faixas de cor: temperatura, vento, chuva, humidade, pressão, UV e ondulação leem-se num relance, com degradados calculados hora a hora.
-- Novas estações, incluindo uma colocada num spot de kite e outra no Cap Frehel.
+- O Tide It deteta as janelas de GO com vários dias de antecedência e avisa-te. Na véspera, volta para dizer se a janela se confirma ou se cai.
+- Abrir uma notificação leva-te diretamente ao spot anunciado, e a janela acende-se na curva.
+- Aparece um ícone de câmara no vento observado quando uma webcam filma a zona: mais de 120 câmaras do litoral.
+- A meteorologia a 7 dias passa a faixas de cor, na mesma paleta da curva de vento: um amarelo quer dizer o mesmo em todo o lado.
+- Novas estações, incluindo uma num spot de kite e outra em Cap Frehel.
 
 Correções:
-- As etiquetas do mapa voltam para dentro da sua cápsula, e a hélice do vento real gira finalmente sem solavancos.
-- As faixas de tendência mudam de dia corretamente à meia-noite, e a estação atualiza-se ao regressares à aplicação: acabou o vento com uma hora.
-- Os teus favoritos já não podem ser apagados por uma sincronização iCloud iniciada demasiado cedo, sem ligação as marés de reserva estão de volta, e os dias seguem o fuso horário do porto.
+- As etiquetas do mapa recuperam o seu ponto, e a hélice do vento observado gira finalmente sem solavancos.
+- As faixas mudam de dia à meia-noite, e a estação atualiza-se ao regressares à app: acabou o vento com uma hora.
+- Os teus favoritos já não podem ser apagados por uma sincronização iniciada cedo demais, as marés de recurso voltam offline, e os dias seguem o fuso horário do porto.
 
 Tão preciso, honesto e leve para a bateria como sempre. Bom vento e boas ondas!

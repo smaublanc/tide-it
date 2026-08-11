@@ -1317,6 +1317,14 @@ struct WeatherBand7Days: View, Equatable {
     private let hourH: CGFloat = 16
     private let rowH: CGFloat = 22
     private let legendW: CGFloat = 30
+    /// Filet entre deux lignes. Sans lui, sept bandes colorées se touchent et forment un bloc
+    /// où l'œil perd la ligne qu'il suit. 2 pt suffisent à détacher chaque ruban.
+    /// DOIT être le même dans la légende et dans les colonnes, sinon les icônes se décalent
+    /// des bandes qu'elles désignent.
+    private let rowGap: CGFloat = 2
+    /// Rayon des extrémités d'un ruban de jour. Chaque jour devient un segment aux bouts
+    /// arrondis au lieu d'un pavé — c'est ce qui remplace l'ancien trait vertical séparateur.
+    private let bandRadius: CGFloat = 7
 
     /// Jour de tête courant (index) — pour vibrer au changement de jour pendant le scroll.
     @State private var lastWeatherDay: Int = -1
@@ -1336,6 +1344,16 @@ struct WeatherBand7Days: View, Equatable {
         /// la teinte est décidée à UN SEUL endroit (`bandFill`). C'est ce qui garantit que les
         /// sept lignes parlent la même langue. Construit par `autoLevel`.
         var level: ((HourlyForecast) -> Double?)? = nil
+        /// Position sur le SPECTRE, en km/h, quand la ligne peut y être placée pour de vrai.
+        /// Seul le vent la fournit : sa bande devient alors STRICTEMENT la même couleur que le
+        /// ruban de vent au-dessus, à la même heure. Les autres lignes empruntent le spectre
+        /// via leur niveau (cf. `spectrumPosition`) — elles n'ont pas de km/h à y placer.
+        var spectrumKmh: ((HourlyForecast) -> Double?)? = nil
+        /// La ligne DISPARAÎT quand sa valeur tombe à zéro : pas de vent, pas de pluie, pas
+        /// d'UV, pas de houle ⇒ pas de couleur. Faux pour les grandeurs dont le zéro ne veut
+        /// rien dire (température, humidité, pression) : une bande vide y signifierait
+        /// « pas de mesure », ce qui serait un mensonge.
+        var fadesToNothing: Bool = false
     }
 
     private struct DayData: Identifiable {
@@ -1406,7 +1424,9 @@ struct WeatherBand7Days: View, Equatable {
     // MARK: Légende d'icônes FIGÉE (à gauche, ne défile pas avec les créneaux)
 
     private func legendColumn(_ rows: [WRow]) -> some View {
-        VStack(spacing: 0) {
+        // `rowGap` DOIT être identique à celui de `valueColumn` : c'est ce qui garde chaque
+        // icône en face de la bande qu'elle désigne.
+        VStack(spacing: rowGap) {
             Color.clear.frame(height: dayHeaderH + hourH)   // aligne sous l'en-tête jour + heure
             ForEach(rows) { r in
                 Image(systemName: r.icon)
@@ -1422,11 +1442,12 @@ struct WeatherBand7Days: View, Equatable {
     // MARK: Groupe de colonnes d'un jour (en-tête jour + créneaux 3 h empilés)
 
     private func dayColumnGroup(_ day: DayData, rows: [WRow], isFirst: Bool) -> some View {
+        // Plus de trait vertical entre les jours : les rubans ont maintenant les bouts arrondis
+        // (`bandRadius`), le blanc qui les sépare suffit et pèse moins à l'œil.
+        // Le retrait de 9 pt reprend EXACTEMENT la largeur de l'ancien trait (1 pt) et de ses
+        // marges (4 + 4) — `hapticOnDayChange` calcule la largeur d'un jour avec ce 9, et la
+        // vibration au changement de jour se décalerait si l'un des deux bougeait sans l'autre.
         HStack(spacing: 0) {
-            if !isFirst {
-                Rectangle().fill(Color.glassHighlight.opacity(0.12)).frame(width: 1)
-                    .padding(.vertical, 6).padding(.horizontal, 4)
-            }
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 6) {
                     Text(day.label)
@@ -1448,16 +1469,31 @@ struct WeatherBand7Days: View, Equatable {
                     ForEach(Array(day.slots.enumerated()), id: \.element.time) { i, fc in
                         // Le créneau suivant sert de couleur d'arrivée : bout à bout, les
                         // colonnes forment UN ruban continu et non une mosaïque de pavés.
-                        valueColumn(fc, next: i + 1 < day.slots.count ? day.slots[i + 1] : nil, rows: rows)
+                        valueColumn(fc, next: i + 1 < day.slots.count ? day.slots[i + 1] : nil,
+                                    rows: rows,
+                                    isDayStart: i == 0, isDayEnd: i == day.slots.count - 1)
                     }
                 }
             }
+            .padding(.leading, isFirst ? 0 : 9)
         }
     }
 
     // MARK: Colonne d'un créneau 3 h (heure + valeurs empilées, alignées sur la légende)
 
-    private func valueColumn(_ fc: HourlyForecast, next: HourlyForecast?, rows: [WRow]) -> some View {
+    /// Extrémités d'un ruban : arrondies au premier et au dernier créneau du JOUR, droites au
+    /// milieu. Bout à bout, les colonnes d'un même jour forment un segment continu aux bouts
+    /// adoucis — c'est ce qui a permis de retirer le trait vertical entre les jours.
+    private func bandCap(isDayStart: Bool, isDayEnd: Bool) -> UnevenRoundedRectangle {
+        UnevenRoundedRectangle(topLeadingRadius: isDayStart ? bandRadius : 0,
+                               bottomLeadingRadius: isDayStart ? bandRadius : 0,
+                               bottomTrailingRadius: isDayEnd ? bandRadius : 0,
+                               topTrailingRadius: isDayEnd ? bandRadius : 0,
+                               style: .continuous)
+    }
+
+    private func valueColumn(_ fc: HourlyForecast, next: HourlyForecast?, rows: [WRow],
+                             isDayStart: Bool, isDayEnd: Bool) -> some View {
         let cal = Calendar.inTimeZone(portTimeZone)
         let hour = cal.component(.hour, from: fc.time)
         let isNow = currentTime >= fc.time && currentTime < fc.time.addingTimeInterval(3 * 3600)
@@ -1467,10 +1503,16 @@ struct WeatherBand7Days: View, Equatable {
         // relevés. Calculé UNE fois par colonne et partagé par les 7 lignes (7 filtrages par
         // colonne coûteraient sept fois plus pour le même résultat).
         let stops = hourlyStops(from: fc, next: next)
-        return VStack(spacing: 0) {
+        let cap = bandCap(isDayStart: isDayStart, isDayEnd: isDayEnd)
+        return VStack(spacing: rowGap) {
             Text("\(hour)h")
                 .font(.system(size: 10, weight: isNow ? .heavy : .medium, design: .rounded))
-                .foregroundStyle(isNow ? Color.cyan : .secondary)
+                .monospacedDigit()
+                // Repère NEUTRE, et c'est délibéré : le cyan d'avant se superposait aux bandes
+                // et faussait la couleur qu'on venait de rendre porteuse de sens.
+                .foregroundStyle(isNow ? Color.primary : .secondary)
+                .padding(.horizontal, isNow ? 6 : 0)
+                .background(isNow ? Capsule().fill(Color.primary.opacity(0.14)) : nil)
                 .frame(height: hourH)
             ForEach(rows) { r in
                 Group {
@@ -1481,18 +1523,22 @@ struct WeatherBand7Days: View, Equatable {
                     } else {
                         Text(r.text(fc))
                             .font(.system(size: 11, weight: .bold, design: .rounded))
+                            .monospacedDigit()
                             // Sur une bande, la couleur du texte n'a plus à porter la valeur :
                             // elle doit juste rester LISIBLE. La bande, elle, dit l'intensité.
-                            .foregroundStyle(r.level == nil ? r.color(fc) : Color.primary)
+                            .foregroundStyle(r.level == nil ? r.color(fc) : bandTextColor(r, stops))
                             .lineLimit(1).minimumScaleFactor(0.7)
                     }
                 }
                 .frame(width: colW, height: rowH)
-                .background(bandFill(r, stops))
+                .background { bandFill(r, stops).clipShape(cap) }
             }
         }
         .frame(width: colW)
-        .background(RoundedRectangle(cornerRadius: 8).fill(isNow ? Color.cyan.opacity(0.10) : Color.clear))
+        // Cadre fin plutôt qu'aplat teinté : il situe l'instant sans rien repeindre.
+        .overlay(RoundedRectangle(cornerRadius: 10, style: .continuous)
+            .strokeBorder(Color.primary.opacity(0.28), lineWidth: 1)
+            .opacity(isNow ? 1 : 0))
     }
 
     /// Les prévisions HORAIRES couvrant ce créneau de 3 h, plus la première heure du créneau
@@ -1508,45 +1554,94 @@ struct WeatherBand7Days: View, Equatable {
 
     /// Opacité maximale d'une bande, atteinte au haut de la plage. Au-delà, la bande mangerait
     /// le texte qu'elle est censée accompagner.
-    private static let bandMaxAlpha: Double = 0.68
+    private static let bandMaxAlpha: Double = 0.72
+    /// Opacité d'une bande au BAS de sa plage. Non nulle : sur le spectre, c'est la TEINTE qui
+    /// porte la valeur, et une bande transparente à zéro casserait le ruban en pointillés.
+    /// Les lignes dont le zéro veut dire « rien » (`fadesToNothing`) s'effacent quand même.
+    private static let bandFloorAlpha: Double = 0.16
+    /// Haut du spectre, en km/h — `windColorSmooth` sature à 50. Les lignes qui ne sont pas du
+    /// vent y étalent leur niveau 0…1, ce qui leur fait parcourir le spectre ENTIER.
+    private static let spectrumTopKmh: Double = 50
+    /// Au-dessus, la bande est trop lumineuse pour du texte clair. Seuil sur la luminance
+    /// perçue (Rec. 709) une fois l'alpha composité sur le fond sombre.
+    private static let darkTextLuminance: Double = 0.42
 
-    /// UNE SEULE TEINTE, celle du mode courant. C'est l'ALPHA qui porte la valeur : rien à
-    /// zéro, plein en haut de plage.
+    /// LE SPECTRE DU RUBAN DE VENT, celui qui court au-dessus de ce tableau
+    /// (`PremiumCurveCanvas.windColorSmooth` : bleu profond → teal → vert → jaune → rouge).
     ///
-    /// Sept rampes de teintes faisaient un arc-en-ciel hors charte, et surtout elles demandaient
-    /// d'apprendre sept codes couleur. Avec une teinte unique il n'y en a plus qu'un, et il est
-    /// évident sans légende : plus c'est dense, plus il y en a. Zéro vent, zéro couleur.
+    /// Une seule grammaire de couleur pour tout l'écran. La ligne « vent » y est placée par sa
+    /// VRAIE valeur en km/h : à 14 h, sa bande est exactement de la couleur qu'a le ruban à
+    /// 14 h — même donnée, même teinte, aucune traduction à faire dans la tête. Les six autres
+    /// lignes empruntent le même spectre en y étalant leur niveau 0…1, si bien qu'un jaune veut
+    /// dire « haut de plage » partout, sans qu'il faille apprendre sept codes couleur.
     ///
-    /// UNE LIGNE SUR DEUX, dans les deux couleurs de la courbe de marée — `tideHigh` (cyan) et
-    /// `tideLow` (magenta), celles-là mêmes qui dessinent les points de pleine et basse mer.
+    /// Ce que ça remplace, et pourquoi : d'abord sept rampes distinctes (arc-en-ciel hors
+    /// charte), puis deux teintes alternées où seul l'ALPHA portait la valeur. L'alternance
+    /// donnait bien des repères horizontaux, mais au prix d'une couleur qui ne voulait rien
+    /// dire — et d'un dégradé pauvre, du transparent au cyan. Le spectre rend la lecture
+    /// immédiate (le chaud saute aux yeux), et les repères horizontaux sont désormais donnés
+    /// par la GÉOMÉTRIE : `rowGap` détache les rubans, `bandRadius` leur arrondit les bouts.
     ///
-    /// L'alternance n'est pas décorative : sept bandes de la MÊME teinte formaient un bloc où
-    /// l'œil ne savait plus quelle ligne il suivait. Une couleur sur deux redonne des repères
-    /// horizontaux, sans réintroduire les sept codes couleur qu'on venait de supprimer — il n'y
-    /// a toujours que deux teintes, et aucune ne signifie quoi que ce soit sur la valeur.
-    /// C'est l'ALPHA, et lui seul, qui porte l'intensité.
+    /// L'alpha ne code plus la valeur, il donne de la PROFONDEUR : plancher `bandFloorAlpha`
+    /// en bas de plage, `bandMaxAlpha` en haut. Il ne redescend à zéro que pour les lignes
+    /// dont le zéro signifie « rien » (`fadesToNothing`) — pas de vent, pas de couleur.
     ///
-    /// L'icône de gauche prend la couleur de SA bande : la ligne se lit comme un tout.
-    private func bandTint(_ level: Double, base: Color) -> Color {
-        base.opacity(min(max(level, 0), 1) * Self.bandMaxAlpha)
+    /// L'icône de gauche garde SA couleur d'identité (thermomètre orange, parapluie bleu) :
+    /// l'icône dit CE QUE C'EST, la bande dit COMBIEN. Deux rôles, deux codes, aucun conflit.
+    private func bandTint(_ level: Double, kmh: Double, fades: Bool) -> Color {
+        let l = min(max(level, 0), 1)
+        // Sous 2 %, la valeur est un zéro franc : la bande s'efface au lieu de teinter en bleu
+        // profond un créneau où il ne se passe rien.
+        if fades && l < 0.02 { return .clear }
+        return PremiumCurveCanvas.windColorSmooth(kmh)
+            .opacity(Self.bandFloorAlpha + (Self.bandMaxAlpha - Self.bandFloorAlpha) * l)
+    }
+
+    /// Où placer un créneau sur le spectre, en km/h. Le vent y va par sa vraie valeur ; les
+    /// autres lignes par leur niveau étalé sur toute la rampe.
+    private func spectrumPosition(_ r: WRow, _ fc: HourlyForecast, level: Double) -> Double {
+        if let real = r.spectrumKmh?(fc) { return real }
+        return level * Self.spectrumTopKmh
     }
 
     /// Dégradé horizontal bâti sur les valeurs horaires. Une seule valeur → aplat.
     @ViewBuilder
     private func bandFill(_ r: WRow, _ stops: [HourlyForecast]) -> some View {
         if let level = r.level {
-            let levels = stops.compactMap { level($0) }
-            if levels.count >= 2 {
-                LinearGradient(colors: levels.map { bandTint($0, base: r.tint) },
-                               startPoint: .leading, endPoint: .trailing)
-            } else if let l = levels.first {
-                bandTint(l, base: r.tint)
+            let cols: [Color] = stops.compactMap { fc in
+                level(fc).map { bandTint($0, kmh: spectrumPosition(r, fc, level: $0), fades: r.fadesToNothing) }
+            }
+            if cols.count >= 2 {
+                LinearGradient(colors: cols, startPoint: .leading, endPoint: .trailing)
+            } else if let c = cols.first {
+                c
             } else {
                 Color.clear
             }
         } else {
             Color.clear
         }
+    }
+
+    /// Couleur du texte posé SUR une bande — clair par défaut, sombre dès que la bande vire au
+    /// jaune-orange. Sans ça, « 32 » en blanc sur une bande jaune vif est illisible, et c'est
+    /// précisément la valeur qu'il ne faut pas rater.
+    ///
+    /// La luminance est lue sur la couleur RÉELLE de la bande (`UIColor`), pas devinée à partir
+    /// du niveau : le spectre reste ainsi la seule source de vérité — le jour où sa rampe
+    /// change, le contraste suit tout seul.
+    private func bandTextColor(_ r: WRow, _ stops: [HourlyForecast]) -> Color {
+        guard let level = r.level else { return .primary }
+        // Le texte est centré : c'est la couleur du MILIEU du créneau qui est sous les chiffres.
+        let mid = stops[stops.count / 2]
+        guard let l = level(mid) else { return .primary }
+        let c = bandTint(l, kmh: spectrumPosition(r, mid, level: l), fades: r.fadesToNothing)
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+        guard UIColor(c).getRed(&red, green: &green, blue: &blue, alpha: &alpha) else { return .primary }
+        // Composité sur le fond sombre du panneau : une bande à 20 % d'opacité n'éclaire pas.
+        let lum = (0.2126 * Double(red) + 0.7152 * Double(green) + 0.0722 * Double(blue)) * Double(alpha)
+        // `.primary` et non blanc : en mode clair, le texte hors bande doit rester noir.
+        return lum > Self.darkTextLuminance ? Color.black.opacity(0.85) : .primary
     }
 
     /// Construit le niveau 0…1 d'une ligne en calant l'échelle sur les données RÉELLEMENT
@@ -1600,14 +1695,18 @@ struct WeatherBand7Days: View, Equatable {
             WRow(id: "wind", icon: "wind", tint: .cyan, isWeather: false,
                  text: { fc in fc.windGustKmh.map { "\(w(fc.windSpeedKmh))·\(w($0))" } ?? w(fc.windSpeedKmh) },
                  color: { PremiumCurveCanvas.windColorSmooth($0.windSpeedKmh) },
-                 level: autoLevel({ $0.windSpeedKmh }, minSpan: 12, anchorZero: true)),
+                 level: autoLevel({ $0.windSpeedKmh }, minSpan: 12, anchorZero: true),
+                 // La SEULE ligne qui se place sur le spectre par sa vraie valeur : sa bande est
+                 // alors exactement de la couleur du ruban de vent au-dessus, à la même heure.
+                 spectrumKmh: { $0.windSpeedKmh }, fadesToNothing: true),
             WRow(id: "rain", icon: "umbrella.fill", tint: .blue, isWeather: false,
                  text: { let p = Int($0.precipitationProbability ?? 0); return p >= 5 ? "\(p)%" : "·" },
                  color: { self.precipColor(Int($0.precipitationProbability ?? 0)) },
                  // Rampe CONTINUE (les 3 paliers de `precipColor` feraient des marches
                  // d'escalier sur une bande : un saut de couleur se lirait comme un saut de
                  // probabilité).
-                 level: autoLevel({ $0.precipitationProbability ?? 0 }, minSpan: 30, anchorZero: true)),
+                 level: autoLevel({ $0.precipitationProbability ?? 0 }, minSpan: 30, anchorZero: true),
+                 fadesToNothing: true),
         ]
         if forecasts.contains(where: { $0.humidity != nil }) {
             rows.append(WRow(id: "hum", icon: "humidity.fill", tint: .cyan, isWeather: false,
@@ -1624,23 +1723,18 @@ struct WeatherBand7Days: View, Equatable {
         if forecasts.contains(where: { ($0.uvIndex ?? 0) > 0 }) {
             rows.append(WRow(id: "uv", icon: "sun.max.fill", tint: .yellow, isWeather: false,
                  text: { $0.uvIndex.map { "\(Int($0.rounded()))" } ?? "·" }, color: { _ in .yellow },
-                 level: autoLevel({ $0.uvIndex }, minSpan: 4, anchorZero: true)))
+                 level: autoLevel({ $0.uvIndex }, minSpan: 4, anchorZero: true),
+                 fadesToNothing: true))
         }
         if forecasts.contains(where: { $0.waveHeight != nil }) {
             rows.append(WRow(id: "wave", icon: "water.waves", tint: .teal, isWeather: false,
                  text: { $0.waveHeight.map { String(format: "%.1f", locale: Locale.current, UnitFormatter.heightValue($0, system: self.themeManager.measureSystem)) } ?? "·" }, color: { _ in .teal },
-level: autoLevel({ $0.waveHeight }, minSpan: 0.5, anchorZero: true)))
+                 level: autoLevel({ $0.waveHeight }, minSpan: 0.5, anchorZero: true),
+                 fadesToNothing: true))
         }
-        // Une ligne sur deux. Appliqué APRÈS coup, sur les seules lignes à bande : l'ordre des
-        // lignes dépend des données réellement disponibles (pas d'humidité ⇒ pas de ligne), et
-        // l'alternance doit rester visuellement régulière quoi qu'il manque.
-        var flip = false
-        rows = rows.map { r in
-            guard r.level != nil else { return r }
-            defer { flip.toggle() }
-            return WRow(id: r.id, icon: r.icon, tint: flip ? .tideLow : .tideHigh,
-                        isWeather: r.isWeather, text: r.text, color: r.color, level: r.level)
-        }
+        // Plus d'alternance cyan/magenta ici : les repères horizontaux viennent maintenant de la
+        // géométrie (`rowGap` + bouts arrondis), et la couleur est rendue au spectre, qui la
+        // charge enfin de sens. Chaque icône garde donc SA teinte d'identité.
         return rows
     }
 

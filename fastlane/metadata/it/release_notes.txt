@@ -1,13 +1,21 @@
+Il vento, rivisto da cima a fondo:
+- Basta con la media tra più modelli. Appiattiva la linea di costa: uno spot in mare aperto poteva risultare meno ventoso di uno specchio d'acqua riparato a 20 km. Tide It usa ora il modello meglio risolto che copre il tuo spot, e velocità, raffica e direzione vengono tutte dallo stesso: l'onshore che vedi è quello davvero previsto.
+- Questa scelta è stata messa alla prova su 2.800 ore di vento realmente misurato in 17 punti della costa. Altri quindici modelli e una ponderazione su misura sono stati testati e poi scartati: nessuno faceva meglio.
+- La previsione non dipende più da dove è stato messo il segnaposto. Vicino alla costa, 2 km di scarto potevano cambiare la previsione di 13 nodi; ora si legge tutto il settore insieme.
+- La stazione non ritocca più la previsione: conferma l'istante presente, e solo se è abbastanza vicina. Una misura presa a 40 km non dice nulla del tuo spot.
+- L'avviso raffiche scattava su 8 ore ventose su 10, a torto una volta su due. Ricalibrato, scatta solo quando raffica davvero. Le soglie di sicurezza ora tengono un margine.
+- Il "Go" in percentuale è stato tolto: un numero preciso ma sbagliato è peggio di nessun numero. Restano le stelle delle finestre e l'avviso "il vento si sta stabilizzando".
+
 Novità:
-- Tide It individua le finestre GO con giorni di anticipo e ti avvisa: «giovedì si profila una finestra». Il giorno prima torna a dirti se regge oppure salta. La finestra annunciata è quella su cui i modelli concordano di più.
-- Aprire una notifica ti porta direttamente sullo spot annunciato, e la finestra si illumina sulla curva: vedi subito quando succede.
-- Un'icona videocamera compare nel vento reale quando una webcam inquadra la zona: un tocco, le tre più vicine. Oltre 120 telecamere costiere, dalla Costa d'Opale ai Paesi Baschi.
-- Il meteo a 7 giorni diventa fasce di colore: temperatura, vento, pioggia, umidità, pressione, UV e swell si leggono a colpo d'occhio, con sfumature calcolate ora per ora.
-- Nuove stazioni, tra cui una posata su uno spot di kite e una a Cap Frehel.
+- Tide It individua le finestre di GO con diversi giorni di anticipo e ti avvisa. Il giorno prima torna a dirti se la finestra tiene o se salta.
+- Aprire una notifica ti porta direttamente sullo spot annunciato, e la finestra si illumina sulla curva.
+- Nel vento osservato compare un'icona fotocamera quando una webcam riprende la zona: oltre 120 telecamere della costa.
+- Il meteo 7 giorni diventa nastri di colore, sulla stessa palette della curva del vento: un giallo vuol dire la stessa cosa ovunque.
+- Nuove stazioni, tra cui una su uno spot da kite e una a Cap Frehel.
 
 Correzioni:
-- Le etichette della mappa tornano dentro la loro pillola, e l'elica del vento reale gira finalmente senza scatti.
-- Le fasce di tendenza cambiano giorno correttamente a mezzanotte, e la stazione si aggiorna al rientro nell'app: basta vento vecchio di un'ora.
-- I tuoi preferiti non possono più essere cancellati da una sincronizzazione iCloud partita troppo presto, offline tornano le maree di riserva, e le giornate seguono il fuso orario del porto.
+- Le etichette della mappa ritrovano il loro punto, e l'elica del vento osservato gira finalmente senza scatti.
+- I nastri cambiano giorno a mezzanotte, e la stazione si aggiorna al rientro nell'app: basta vento vecchio di un'ora.
+- I tuoi preferiti non possono più essere cancellati da una sincronizzazione partita troppo presto, le maree di riserva tornano offline, e i giorni seguono il fuso orario del porto.
 
-Sempre preciso, onesto e leggero per la batteria. Buon vento e buone onde!
+Sempre altrettanto preciso, onesto e leggero per la batteria. Buon vento e buone onde!

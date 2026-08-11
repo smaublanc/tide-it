@@ -1,13 +1,21 @@
-What's new:
-- Tide It now spots GO windows days ahead and tells you: "a session is shaping up on Thursday". The day before, it comes back to say whether it holds, or falls through. The window it announces is the one the models agree on most.
-- Opening a notification takes you straight to the spot it named, and the window lights up on the curve: you see at once when it happens.
-- A camera icon appears in the live wind when a webcam covers the area: one tap, the three nearest. Over 120 coastal cameras, from the Opal Coast to the Basque Country.
-- The 7-day weather turns into colour ribbons: temperature, wind, rain, humidity, pressure, UV and swell all readable at a glance, with gradients computed hour by hour.
-- New stations, including one sitting on a kite spot and one at Cap Frehel.
+Wind, rebuilt from the ground up:
+- No more averaging several models together. It smoothed out the coastline: an open-ocean spot could show less wind than a sheltered stretch of water 20 km inland. Tide It now uses the best-resolved model that covers your spot, and speed, gusts and direction all come from that same one - the onshore you are shown is the one that was actually forecast.
+- That choice was tested against 2,800 hours of genuinely measured wind at 17 coastal points. Fifteen other models and a custom weighting were tried, then dropped: none did better.
+- The forecast no longer depends on where the pin was dropped. Near a coast, moving it 2 km could change the forecast by 13 knots; the whole sector is now read at once.
+- The wind station no longer edits the forecast. It confirms the present moment, and only when it is close enough. A reading taken 40 km away tells you nothing about your spot.
+- The gust warning fired on 8 windy hours out of 10, wrongly half the time. Recalibrated, it now only fires when it really is gusty. Safety thresholds now keep a margin.
+- The percentage "Go" is gone: a precise but wrong number is worse than no number at all. Window ratings and the "wind is settling in" alert stay.
+
+New:
+- Tide It spots GO windows several days ahead and tells you. The day before, it comes back to say whether the window is holding, or falling apart.
+- Opening a notification takes you straight to the spot, and the window lights up on the curve.
+- A camera icon appears in observed wind when a webcam covers the area: over 120 coastal cameras.
+- The 7-day weather becomes colour ribbons, on the same palette as the wind curve: yellow means the same thing everywhere.
+- New wind stations, including one sitting on a kite spot and one at Cap Frehel.
 
 Fixes:
-- Map labels sit back inside their pill, and the live wind propeller finally spins without stutter.
-- Trend ribbons roll over properly at midnight, and the station refreshes when you come back to the app: no more hour-old wind.
-- Your favorites can no longer be wiped by an iCloud sync that started too early, offline fallback tides are back, and days follow the port's time zone.
+- Map labels get their dot back, and the observed-wind propeller finally spins without stuttering.
+- Ribbons change day at midnight, and the station refreshes when you return to the app: no more hour-old wind.
+- Your favourites can no longer be wiped by a sync that started too early, backup tides are back offline, and days follow the port's own time zone.
 
-Still as precise, honest and battery-light as ever. Fair winds and good waves!
+Still as precise, as honest, and as easy on your battery. Fair winds and good waves!
