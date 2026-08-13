@@ -1,3 +1,5 @@
+Une journée sans créneau vous dit enfin POURQUOI : « pas de fenêtre · max 8 nœuds ». Deux spots se comparent alors d'un coup d'oeil, sans rien ouvrir. Un silence ne devrait jamais passer pour une panne.
+
 Apple Watch — la montre applique enfin les mêmes règles que le téléphone :
 - Le vent réel ne peut plus venir d'une balise située à 30 km. Rayon ramené à 15 km, comme sur l'iPhone : une confirmation qui vient d'ailleurs ne confirme rien. Et c'est au poignet, sur la plage et sans téléphone, que ça compte le plus.
 - Quand une balise ne publie pas sa direction, la flèche ne pointe plus le nord par défaut. Elle s'efface, et la montre reprend le vent du téléphone plutôt que d'inventer un cap.

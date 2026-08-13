@@ -1,3 +1,5 @@
+A day with no slot now tells you WHY: "no window - max 8 knots". Two spots can be compared at a glance, without opening anything. Silence should never look like a breakdown.
+
 Apple Watch - the watch finally follows the same rules as the phone:
 - Real wind can no longer come from a station 30 km away. The radius is down to 15 km, matching the iPhone: a confirmation from somewhere else confirms nothing. And the wrist is exactly where it matters most, on the beach with no phone.
 - When a station does not publish its direction, the arrow no longer defaults to due north. It disappears, and the watch falls back to the phone's wind instead of inventing a heading.

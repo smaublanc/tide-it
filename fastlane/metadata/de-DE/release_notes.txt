@@ -1,3 +1,5 @@
+Ein Tag ohne Zeitfenster sagt jetzt WARUM: "kein Fenster - max. 8 Knoten". Zwei Spots lassen sich so auf einen Blick vergleichen, ohne etwas zu öffnen. Schweigen darf nie wie ein Defekt aussehen.
+
 Apple Watch - die Uhr folgt endlich denselben Regeln wie das Telefon:
 - Der reale Wind darf nicht mehr von einer Station in 30 km Entfernung stammen. Der Radius liegt jetzt bei 15 km wie auf dem iPhone: Eine Bestätigung von anderswo bestätigt gar nichts. Und genau am Handgelenk zählt sie am meisten, am Strand und ohne Telefon.
 - Wenn eine Station keine Richtung liefert, zeigt der Pfeil nicht mehr ersatzweise nach Norden. Er verschwindet, und die Uhr greift auf den Wind des Telefons zurück, statt eine Richtung zu erfinden.

@@ -1,3 +1,5 @@
+Un día sin ventana te dice por fin POR QUÉ: "sin ventana - máx 8 nudos". Así dos spots se comparan de un vistazo, sin abrir nada. Un silencio no debería parecer una avería.
+
 Apple Watch: el reloj aplica por fin las mismas reglas que el teléfono.
 - El viento real ya no puede venir de una estación situada a 30 km. El radio baja a 15 km, como en el iPhone: una confirmación que viene de otro sitio no confirma nada. Y es en la muñeca, en la playa y sin teléfono, donde más importa.
 - Cuando una estación no publica su dirección, la flecha ya no apunta al norte por defecto. Desaparece, y el reloj recupera el viento del teléfono en lugar de inventarse un rumbo.

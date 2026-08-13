@@ -21,6 +21,12 @@ chaque build annonçait « SUCCEEDED » en toute bonne foi. `build-for-testing` 
 pour la même durée. Ne pas revenir à `build`.
 Aucun simulateur n'est booté : `generic/platform=iOS Simulator` compile seulement.
 
+⚠️ **Mais `build-for-testing` vaut pour DEBUG SEULEMENT.** En `-configuration Release` il échoue
+sur `Unable to find module dependency: 'Tide_It'` — et c'est NORMAL : la suite fait
+`@testable import Tide_It`, or `ENABLE_TESTABILITY` n'est à YES qu'en Debug. Ce n'est pas un
+défaut de l'app, les tests n'ont pas à exister en Release. Pour la vérification Release
+d'avant-archive, utiliser `build` tout court (app + widgets + Watch, sans les tests).
+
 ## Release App Store
 Runbook complet : `fastlane/README_DELIVER.md` (procédure générique + pièges vérifiés).
 Résumé : bump `MARKETING_VERSION`/`CURRENT_PROJECT_VERSION` (pbxproj, 12 configs) → notes de maj
