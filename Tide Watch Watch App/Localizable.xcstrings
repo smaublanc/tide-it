@@ -1,2971 +1,3356 @@
 {
-  "sourceLanguage" : "fr",
-  "strings" : {
-    "%lld" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
+  "sourceLanguage": "fr",
+  "strings": {
+    "%lld": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
-          }
-        }
-      }
-    },
-    "basse mer" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Niedrigwasser"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "low tide"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "bajamar"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "basse mer"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "bassa marea"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "laagwater"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "baixa-mar"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "低潮"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "乾潮"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "干潮"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "간조"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "भाटा"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
           }
         }
       }
     },
-    "Basse mer" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Niedrigwasser"
+    "BM": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NW"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Low tide"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LT"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bajamar"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BM"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Basse mer"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BM"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bassa marea"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BM"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Laagwater"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LW"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Baixa-mar"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BM"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "低潮"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "低潮"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "乾潮"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乾潮"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "干潮"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "干潮"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "간조"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "간조"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "निम्न ज्वार"
-          }
-        }
-      }
-    },
-    "BM" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NW"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LT"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BM"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BM"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BM"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LW"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BM"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "低潮"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "乾潮"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "干潮"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "간조"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "भाटा"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "भाटा"
           }
         }
       }
     },
-    "Choisir un port" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hafen wählen"
+    "Basse mer": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niedrigwasser"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Choose a port"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Low tide"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Elegir un puerto"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bajamar"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Choisir un port"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basse mer"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scegli un porto"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bassa marea"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kies een haven"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laagwater"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escolher um porto"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baixa-mar"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "选择港口"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "低潮"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選擇港口"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乾潮"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "港を選ぶ"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "干潮"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "항구 선택"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "간조"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "एक पोर्ट चुनें"
-          }
-        }
-      }
-    },
-    "Choisissez le port à afficher" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wählen Sie den anzuzeigenden Hafen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Choose the port to display"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Elige el puerto a mostrar"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Choisissez le port à afficher"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scegli il porto da mostrare"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kies de haven om weer te geven"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escolhe o porto a mostrar"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "选择要显示的港口"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選擇要顯示的港口"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "表示する港を選んでください"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "표시할 항구를 선택하세요"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "दिखाने के लिए पोर्ट चुनें"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निम्न ज्वार"
           }
         }
       }
     },
-    "coef" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "coef"
+    "COEF": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "COEF"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "coef"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "COEF"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "coef"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "COEF"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "coef"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "COEF"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "coef"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "COEF"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "coëf"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "COEF"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "coef"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系数"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "系数"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "係數"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "係數"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "係数"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "係数"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "계수"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "계수"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "गुणांक"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "COEF"
           }
         }
       }
     },
-    "Coef" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coef"
+    "CYCLE": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ZYKLUS"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coef"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CYCLE"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coef"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CICLO"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coef"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CICLO"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coef"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CYCLUS"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coëf"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CICLO"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coef"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "周期"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "系数"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週期"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "係數"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイクル"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "係数"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "주기"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "계수"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "गुणांक"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चक्र"
           }
         }
       }
     },
-    "COEF" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "COEF"
+    "Choisir un port": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hafen wählen"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "COEF"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a port"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "COEF"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir un puerto"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "COEF"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisir un port"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "COEF"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli un porto"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "COEF"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kies een haven"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "系数"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolher um porto"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "係數"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择港口"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "係数"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇港口"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "계수"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "港を選ぶ"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "COEF"
-          }
-        }
-      }
-    },
-    "Complication marée pour l'écran de verrouillage, StandBy et Apple Watch" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tiden-Komplikation für Sperrbildschirm, StandBy und Apple Watch"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "항구 선택"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tide complication for Lock Screen, StandBy and Apple Watch"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Complicación de marea para la pantalla bloqueada, StandBy y Apple Watch"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Complication marée pour l'écran de verrouillage, StandBy et Apple Watch"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Complicazione marea per schermata di blocco, StandBy e Apple Watch"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Getijcomplicatie voor het vergrendelscherm, StandBy en Apple Watch"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Complicação de maré para o ecrã de bloqueio, StandBy e Apple Watch"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "适用于锁屏、待机显示和 Apple Watch 的潮汐组件"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "適用於鎖定畫面、待機顯示與 Apple Watch 的潮汐快捷功能"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ロック画面、StandBy、Apple Watch向けの潮汐コンプリケーション"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "잠금 화면, StandBy, Apple Watch용 조석 컴플리케이션"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lock Screen, StandBy और Apple Watch के लिए ज्वार-भाटा कॉम्प्लिकेशन"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक पोर्ट चुनें"
           }
         }
       }
     },
-    "CYCLE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ZYKLUS"
+    "Choisissez le port à afficher": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wählen Sie den anzuzeigenden Hafen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CYCLE"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose the port to display"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CICLO"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige el puerto a mostrar"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CICLO"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez le port à afficher"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CYCLUS"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli il porto da mostrare"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CICLO"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kies de haven om weer te geven"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "周期"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolhe o porto a mostrar"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "週期"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择要显示的港口"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "サイクル"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇要顯示的港口"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "주기"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "表示する港を選んでください"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "चक्र"
-          }
-        }
-      }
-    },
-    "Descendante" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fallend"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "표시할 항구를 선택하세요"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Falling"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bajando"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descendante"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Calante"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vallend"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vazante"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "下降"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "退潮中"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "下げ潮"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "내림"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "उतरता"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दिखाने के लिए पोर्ट चुनें"
           }
         }
       }
     },
-    "Hauteur" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Höhe"
+    "Coef": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coef"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Height"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coef"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Altura"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coef"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hauteur"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coef"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Altezza"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coef"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hoogte"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coëf"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Altura"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coef"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "高度"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系数"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "高度"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "係數"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "高さ"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "係数"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "높이"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "계수"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ऊँचाई"
-          }
-        }
-      }
-    },
-    "Hauteur, tendance et prochaine marée sur votre cadran" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Höhe, Tendenz und nächste Tide auf dem Zifferblatt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Height, trend and next tide on your watch face"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Altura, tendencia y próxima marea en la esfera"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hauteur, tendance et prochaine marée sur votre cadran"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Altezza, tendenza e prossima marea sul quadrante"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hoogte, trend en volgend getij op je wijzerplaat"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Altura, tendência e próxima maré no teu mostrador"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "表盘上显示潮高、趋势和下一次潮汐"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "錶面上顯示潮高、趨勢和下一次潮汐"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文字盤に潮位・傾向・次の潮汐を表示"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "시계 화면에 조위, 추세, 다음 물때 표시"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "आपके वॉच फ़ेस पर ऊँचाई, रुझान और अगला ज्वार"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गुणांक"
           }
         }
       }
     },
-    "maintenant" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "now"
+    "Complication marée pour l'écran de verrouillage, StandBy et Apple Watch": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiden-Komplikation für Sperrbildschirm, StandBy und Apple Watch"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "jetzt"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tide complication for Lock Screen, StandBy and Apple Watch"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ahora"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complicación de marea para la pantalla bloqueada, StandBy y Apple Watch"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ora"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complication marée pour l'écran de verrouillage, StandBy et Apple Watch"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "nu"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complicazione marea per schermata di blocco, StandBy e Apple Watch"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "agora"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Getijcomplicatie voor het vergrendelscherm, StandBy en Apple Watch"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "现在"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complicação de maré para o ecrã de bloqueio, StandBy e Apple Watch"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "現在"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "适用于锁屏、待机显示和 Apple Watch 的潮汐组件"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "今"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "適用於鎖定畫面、待機顯示與 Apple Watch 的潮汐快捷功能"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "지금"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ロック画面、StandBy、Apple Watch向けの潮汐コンプリケーション"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "अभी"
-          }
-        }
-      }
-    },
-    "marée descendante" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "fallende Tide"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잠금 화면, StandBy, Apple Watch용 조석 컴플리케이션"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "falling tide"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "marea bajando"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "marée descendante"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "marea calante"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "afgaand getij"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "maré vazante"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "退潮"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "退潮"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "下げ潮"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "썰물"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "उतरता ज्वार"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lock Screen, StandBy और Apple Watch के लिए ज्वार-भाटा कॉम्प्लिकेशन"
           }
         }
       }
     },
-    "Marée en cours, prochaine et suivante" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktuelle, nächste und folgende Tide"
+    "Descendante": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fallend"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Current, next and following tide"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falling"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marea actual, próxima y siguiente"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bajando"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marée en cours, prochaine et suivante"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descendante"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marea attuale, prossima e successiva"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calante"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Huidig, volgend en daaropvolgend getij"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vallend"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maré atual, próxima e seguinte"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vazante"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "当前、下次及之后的潮汐"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下降"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "目前、下一次與後一次潮汐"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退潮中"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "現在・次・その次の潮汐"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下げ潮"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "현재, 다음, 그 다음 조석"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "내림"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "वर्तमान, अगला और उसके बाद का ज्वार-भाटा"
-          }
-        }
-      }
-    },
-    "marée montante" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "steigende Tide"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "rising tide"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "marea subiendo"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "marée montante"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "marea crescente"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "opkomend getij"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "maré enchente"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "涨潮"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "漲潮"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "上げ潮"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "밀물"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "चढ़ता ज्वार"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उतरता"
           }
         }
       }
     },
-    "Marées" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tiden"
+    "Hauteur": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Höhe"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tides"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Height"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mareas"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altura"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marées"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hauteur"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maree"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altezza"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Getijden"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoogte"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marés"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altura"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "潮汐"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高度"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "潮汐"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高度"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "潮汐"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高さ"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "조석"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "높이"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ज्वार-भाटे"
-          }
-        }
-      }
-    },
-    "Marées – Écran" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tiden – Bildschirm"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tides – Screen"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mareas – Pantalla"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marées – Écran"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maree – Schermo"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Getijden – Scherm"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marés – Ecrã"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "潮汐 – 屏幕"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "潮汐——畫面"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "潮汐 – 画面"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "조석 – 화면"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ज्वार-भाटे – स्क्रीन"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ऊँचाई"
           }
         }
       }
     },
-    "Marées : SHOM, NOAA." : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marées : SHOM, NOAA."
+    "Hauteur, tendance et prochaine marée sur votre cadran": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Höhe, Tendenz und nächste Tide auf dem Zifferblatt"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tides: SHOM, NOAA."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Height, trend and next tide on your watch face"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gezeiten: SHOM, NOAA."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altura, tendencia y próxima marea en la esfera"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mareas: SHOM, NOAA."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hauteur, tendance et prochaine marée sur votre cadran"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maree: SHOM, NOAA."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altezza, tendenza e prossima marea sul quadrante"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Getijden: SHOM, NOAA."
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoogte, trend en volgend getij op je wijzerplaat"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marés: SHOM, NOAA."
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altura, tendência e próxima maré no teu mostrador"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "潮汐：SHOM、NOAA。"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "表盘上显示潮高、趋势和下一次潮汐"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "潮汐：SHOM、NOAA。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "錶面上顯示潮高、趨勢和下一次潮汐"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "潮汐：SHOM、NOAA。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文字盤に潮位・傾向・次の潮汐を表示"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "조석: SHOM, NOAA."
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시계 화면에 조위, 추세, 다음 물때 표시"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ज्वार: SHOM, NOAA."
-          }
-        }
-      }
-    },
-    "Marées (configurable)" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tiden (konfigurierbar)"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tides (configurable)"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mareas (configurable)"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marées (configurable)"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maree (configurabile)"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Getijden (instelbaar)"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marés (configurável)"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "潮汐（可配置）"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "潮汐（可設定）"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "潮汐（設定可能）"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "조석 (설정 가능)"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ज्वार-भाटे (कॉन्फ़िगर करने योग्य)"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके वॉच फ़ेस पर ऊँचाई, रुझान और अगला ज्वार"
           }
         }
       }
     },
-    "Mis à jour %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktualisiert %@"
+    "Marée en cours, prochaine et suivante": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktuelle, nächste und folgende Tide"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Updated %@"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current, next and following tide"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Actualizado %@"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marea actual, próxima y siguiente"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mis à jour %@"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marée en cours, prochaine et suivante"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aggiornato %@"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marea attuale, prossima e successiva"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bijgewerkt %@"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huidig, volgend en daaropvolgend getij"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Atualizado %@"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maré atual, próxima e seguinte"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "更新于 %@"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前、下次及之后的潮汐"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "更新於 %@"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目前、下一次與後一次潮汐"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "更新: %@"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "現在・次・その次の潮汐"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "업데이트: %@"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "현재, 다음, 그 다음 조석"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "अपडेट: %@"
-          }
-        }
-      }
-    },
-    "Montante" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Steigend"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rising"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Subiendo"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Montante"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crescente"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Opkomend"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A subir"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "上升"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "漲潮中"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "上げ潮"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "올라옴"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "चढ़ता"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वर्तमान, अगला और उसके बाद का ज्वार-भाटा"
           }
         }
       }
     },
-    "Ouvre Tide It sur ton iPhone\nune fois pour charger tes spots." : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ouvre Tide It sur ton iPhone\nune fois pour charger tes spots."
+    "Marées": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiden"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open Tide It on your iPhone\nonce to load your spots."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tides"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Öffne Tide It einmal auf deinem iPhone,\num deine Spots zu laden."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mareas"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abre Tide It una vez en tu iPhone\npara cargar tus spots."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marées"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apri Tide It una volta sul tuo iPhone\nper caricare i tuoi spot."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maree"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open Tide It één keer op je iPhone\nom je spots te laden."
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Getijden"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abre o Tide It uma vez no teu iPhone\npara carregar os teus spots."
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marés"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "请在 iPhone 上打开一次 Tide It\n以加载你的地点。"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "潮汐"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "請在 iPhone 上開啟一次 Tide It\n以載入你的地點。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "潮汐"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "一度iPhoneでTide Itを開いて\nスポットを読み込んでください。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "潮汐"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iPhone에서 Tide It을 한 번 열어\n스폿을 불러오세요."
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "조석"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "अपने स्पॉट लोड करने के लिए iPhone पर\nएक बार Tide It खोलें।"
-          }
-        }
-      }
-    },
-    "Ouvrez Tide It" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Öffne Tide It"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open Tide It"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abre Tide It"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ouvrez Tide It"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apri Tide It"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open Tide It"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abre o Tide It"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "打开 Tide It"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "開啟 Tide It"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tide Itを開いてください"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tide It을 여세요"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tide It खोलें"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज्वार-भाटे"
           }
         }
       }
     },
-    "Ouvrez Tide It sur votre iPhone pour voir vos marées" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Öffne Tide It auf deinem iPhone, um deine Tiden zu sehen"
+    "Marées (configurable)": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiden (konfigurierbar)"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open Tide It on your iPhone to see your tides"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tides (configurable)"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abre Tide It en tu iPhone para ver tus mareas"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mareas (configurable)"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ouvrez Tide It sur votre iPhone pour voir vos marées"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marées (configurable)"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apri Tide It sul tuo iPhone per vedere le tue maree"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maree (configurabile)"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open Tide It op je iPhone om je getijden te zien"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Getijden (instelbaar)"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abre o Tide It no teu iPhone para veres as tuas marés"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marés (configurável)"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 iPhone 上打开 Tide It 查看潮汐"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "潮汐（可配置）"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 iPhone 上開啟 Tide It 查看潮汐"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "潮汐（可設定）"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iPhoneでTide Itを開いて潮汐を表示"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "潮汐（設定可能）"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iPhone에서 Tide It을 열어 물때를 확인하세요"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "조석 (설정 가능)"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "अपनी ज्वार जानकारी देखने के लिए iPhone पर Tide It खोलें"
-          }
-        }
-      }
-    },
-    "Ouvrir Tide It" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tide It öffnen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open Tide It"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abrir Tide It"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ouvrir Tide It"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apri Tide It"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tide It openen"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abrir o Tide It"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "打开 Tide It"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "開啟 Tide It"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tide Itを開く"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tide It 열기"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tide It खोलें"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज्वार-भाटे (कॉन्फ़िगर करने योग्य)"
           }
         }
       }
     },
-    "pleine mer" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hochwasser"
+    "Marées : SHOM, NOAA.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marées : SHOM, NOAA."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "high tide"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tides: SHOM, NOAA."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "pleamar"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gezeiten: SHOM, NOAA."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "pleine mer"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mareas: SHOM, NOAA."
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "alta marea"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maree: SHOM, NOAA."
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "hoogwater"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Getijden: SHOM, NOAA."
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "preia-mar"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marés: SHOM, NOAA."
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "高潮"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "潮汐：SHOM、NOAA。"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "滿潮"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "潮汐：SHOM、NOAA。"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "満潮"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "潮汐：SHOM、NOAA。"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "만조"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "조석: SHOM, NOAA."
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ज्वार"
-          }
-        }
-      }
-    },
-    "Pleine mer" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hochwasser"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "High tide"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pleamar"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pleine mer"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alta marea"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hoogwater"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Preia-mar"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "高潮"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "滿潮"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "満潮"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "만조"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ज्वार"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज्वार: SHOM, NOAA."
           }
         }
       }
     },
-    "PM" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HW"
+    "Marées – Écran": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiden – Bildschirm"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HT"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tides – Screen"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PM"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mareas – Pantalla"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PM"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marées – Écran"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "AM"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maree – Schermo"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HW"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Getijden – Scherm"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PM"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marés – Ecrã"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "高潮"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "潮汐 – 屏幕"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "滿潮"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "潮汐——畫面"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "満潮"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "潮汐 – 画面"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "만조"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "조석 – 화면"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ज्वार"
-          }
-        }
-      }
-    },
-    "Pour voir vos marées" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Um Ihre Tiden zu sehen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "To see your tides"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Para ver tus mareas"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pour voir vos marées"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Per vedere le tue maree"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Om je getijden te zien"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Para ver as tuas marés"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以查看你的潮汐"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "查看你的潮汐"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "潮汐を見るには"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "조석을 보려면"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "अपने ज्वार-भाटे देखने के लिए"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज्वार-भाटे – स्क्रीन"
           }
         }
       }
     },
-    "Première synchro" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Première synchro"
+    "Mis à jour %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktualisiert %@"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "First sync"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Updated %@"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erste Synchronisierung"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualizado %@"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Primera sincronización"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mis à jour %@"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Prima sincronizzazione"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiornato %@"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eerste synchronisatie"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bijgewerkt %@"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Primeira sincronização"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atualizado %@"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "首次同步"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更新于 %@"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "首次同步"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更新於 %@"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "初回同期"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更新: %@"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "첫 동기화"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "업데이트: %@"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "पहला सिंक"
-          }
-        }
-      }
-    },
-    "Prévisions : Open-Meteo." : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Prévisions : Open-Meteo."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Forecasts: Open-Meteo."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vorhersagen: Open-Meteo."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Previsiones: Open-Meteo."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Previsioni: Open-Meteo."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verwachtingen: Open-Meteo."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Previsões: Open-Meteo."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "预报：Open-Meteo。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "預報：Open-Meteo。"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "予報：Open-Meteo。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "예보: Open-Meteo."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "पूर्वानुमान: Open-Meteo."
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपडेट: %@"
           }
         }
       }
     },
-    "Prochaine %@ à %@." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nächste %@ um %@."
+    "Montante": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Steigend"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Next %@ at %@."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rising"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Próxima %@ a las %@."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subiendo"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Prochaine %@ à %@."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Montante"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Prossima %@ alle %@."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crescente"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Volgende %@ om %@."
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opkomend"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Próxima %@ às %@."
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A subir"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "下次%@：%@。"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上升"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "下次%@：%@。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "漲潮中"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "次の%@は%@。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上げ潮"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "다음 %@: %@."
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "올라옴"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "अगली %@ %@ पर।"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चढ़ता"
           }
         }
       }
     },
-    "Sélectionnez le port à afficher dans le widget." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wählen Sie den im Widget anzuzeigenden Hafen."
+    "Ouvre Tide It sur ton iPhone\nune fois pour charger tes spots.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvre Tide It sur ton iPhone\nune fois pour charger tes spots."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Select the port to display in the widget."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Tide It on your iPhone\nonce to load your spots."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Selecciona el puerto a mostrar en el widget."
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffne Tide It einmal auf deinem iPhone,\num deine Spots zu laden."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sélectionnez le port à afficher dans le widget."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Tide It una vez en tu iPhone\npara cargar tus spots."
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seleziona il porto da mostrare nel widget."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri Tide It una volta sul tuo iPhone\nper caricare i tuoi spot."
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kies de haven die in de widget wordt getoond."
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Tide It één keer op je iPhone\nom je spots te laden."
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seleciona o porto a mostrar no widget."
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre o Tide It uma vez no teu iPhone\npara carregar os teus spots."
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "选择要在小组件中显示的港口。"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在 iPhone 上打开一次 Tide It\n以加载你的地点。"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選擇要在小工具中顯示的港口。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請在 iPhone 上開啟一次 Tide It\n以載入你的地點。"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ウィジェットに表示する港を選択してください。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一度iPhoneでTide Itを開いて\nスポットを読み込んでください。"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "위젯에 표시할 항구를 선택하세요."
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone에서 Tide It을 한 번 열어\n스폿을 불러오세요."
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "विजेट में दिखाने के लिए पोर्ट चुनें।"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपने स्पॉट लोड करने के लिए iPhone पर\nएक बार Tide It खोलें।"
           }
         }
       }
     },
-    "Sources des données" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sources des données"
+    "Ouvrez Tide It": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffne Tide It"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Data sources"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Tide It"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Datenquellen"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Tide It"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fuentes de datos"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrez Tide It"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fonti dei dati"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri Tide It"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Databronnen"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Tide It"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fontes de dados"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre o Tide It"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "数据来源"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开 Tide It"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "資料來源"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開啟 Tide It"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "データソース"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tide Itを開いてください"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "데이터 출처"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tide It을 여세요"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "डेटा स्रोत"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tide It खोलें"
           }
         }
       }
     },
-    "sur votre iPhone\npour voir vos marées" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "auf deinem iPhone,\num deine Tiden zu sehen"
+    "Ouvrez Tide It sur votre iPhone pour voir vos marées": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffne Tide It auf deinem iPhone, um deine Tiden zu sehen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "on your iPhone\nto see your tides"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Tide It on your iPhone to see your tides"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "en tu iPhone\npara ver tus mareas"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Tide It en tu iPhone para ver tus mareas"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "sur votre iPhone\npour voir vos marées"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrez Tide It sur votre iPhone pour voir vos marées"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "sul tuo iPhone\nper vedere le tue maree"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri Tide It sul tuo iPhone per vedere le tue maree"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "op je iPhone\nom je getijden te zien"
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Tide It op je iPhone om je getijden te zien"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "no teu iPhone\npara veres as tuas marés"
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre o Tide It no teu iPhone para veres as tuas marés"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 iPhone 上\n查看潮汐"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 iPhone 上打开 Tide It 查看潮汐"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 iPhone 上\n查看潮汐"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 iPhone 上開啟 Tide It 查看潮汐"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iPhoneで開いて\n潮汐を表示"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhoneでTide Itを開いて潮汐を表示"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iPhone에서 열어\n물때를 확인하세요"
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone에서 Tide It을 열어 물때를 확인하세요"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iPhone पर खोलें\nज्वार देखने के लिए"
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपनी ज्वार जानकारी देखने के लिए iPhone पर Tide It खोलें"
           }
         }
       }
     },
-    "Vent observé : Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA." : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vent observé : Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+    "Ouvrir Tide It": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tide It öffnen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Observed wind: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Tide It"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gemessener Wind: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Tide It"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Viento observado: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir Tide It"
           }
         },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vento osservato: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri Tide It"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gemeten wind: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tide It openen"
           }
         },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vento observado: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir o Tide It"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "实测风：Pioupiou（CC-BY 4.0）、winds.mobi、NDBC、METAR / NOAA。"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开 Tide It"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "實測風：Pioupiou（CC-BY 4.0）、winds.mobi、NDBC、METAR / NOAA。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開啟 Tide It"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "実測風：Pioupiou（CC-BY 4.0）、winds.mobi、NDBC、METAR / NOAA。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tide Itを開く"
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "실측 바람: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tide It 열기"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "मापी गई हवा: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tide It खोलें"
+          }
+        }
+      }
+    },
+    "PM": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HW"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HT"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PM"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PM"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AM"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HW"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PM"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高潮"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "滿潮"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "満潮"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "만조"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज्वार"
+          }
+        }
+      }
+    },
+    "PROCHAINE": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NÄCHSTE"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NEXT"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRÓXIMA"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PROCHAINE"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगला"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PROSSIMA"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "次"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다음"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VOLGENDE"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRÓXIMA"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下一次"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下一次"
+          }
+        }
+      }
+    },
+    "Pleine mer": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hochwasser"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "High tide"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pleamar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pleine mer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alta marea"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoogwater"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preia-mar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高潮"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "滿潮"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "満潮"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "만조"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज्वार"
+          }
+        }
+      }
+    },
+    "Pour voir vos marées": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um Ihre Tiden zu sehen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To see your tides"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para ver tus mareas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour voir vos marées"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per vedere le tue maree"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Om je getijden te zien"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para ver as tuas marés"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以查看你的潮汐"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看你的潮汐"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "潮汐を見るには"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "조석을 보려면"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपने ज्वार-भाटे देखने के लिए"
+          }
+        }
+      }
+    },
+    "Première synchro": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Première synchro"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First sync"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erste Synchronisierung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Primera sincronización"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prima sincronizzazione"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eerste synchronisatie"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Primeira sincronização"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "首次同步"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "首次同步"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "初回同期"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "첫 동기화"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पहला सिंक"
+          }
+        }
+      }
+    },
+    "Prochaine %@ à %@.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nächste %@ um %@."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next %@ at %@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próxima %@ a las %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prochaine %@ à %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prossima %@ alle %@."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volgende %@ om %@."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próxima %@ às %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下次%@：%@。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下次%@：%@。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "次の%@は%@。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다음 %@: %@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगली %@ %@ पर।"
+          }
+        }
+      }
+    },
+    "Prévisions : Open-Meteo.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prévisions : Open-Meteo."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forecasts: Open-Meteo."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vorhersagen: Open-Meteo."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previsiones: Open-Meteo."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previsioni: Open-Meteo."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwachtingen: Open-Meteo."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previsões: Open-Meteo."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "预报：Open-Meteo。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "預報：Open-Meteo。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "予報：Open-Meteo。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "예보: Open-Meteo."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पूर्वानुमान: Open-Meteo."
+          }
+        }
+      }
+    },
+    "SUIVANTE": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DANACH"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AFTER"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SIGUIENTE"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SUIVANTE"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उसके बाद"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SUCCESSIVA"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "その次"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "그다음"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DAARNA"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SEGUINTE"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "再下次"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "再下次"
+          }
+        }
+      }
+    },
+    "Sources des données": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sources des données"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data sources"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datenquellen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuentes de datos"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fonti dei dati"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Databronnen"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fontes de dados"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "数据来源"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "資料來源"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "データソース"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "데이터 출처"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डेटा स्रोत"
+          }
+        }
+      }
+    },
+    "Sélectionnez le port à afficher dans le widget.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wählen Sie den im Widget anzuzeigenden Hafen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select the port to display in the widget."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecciona el puerto a mostrar en el widget."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sélectionnez le port à afficher dans le widget."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleziona il porto da mostrare nel widget."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kies de haven die in de widget wordt getoond."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleciona o porto a mostrar no widget."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择要在小组件中显示的港口。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇要在小工具中顯示的港口。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウィジェットに表示する港を選択してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "위젯에 표시할 항구를 선택하세요."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "विजेट में दिखाने के लिए पोर्ट चुनें।"
+          }
+        }
+      }
+    },
+    "Vent observé : Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vent observé : Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observed wind: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gemessener Wind: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viento observado: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vento osservato: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gemeten wind: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vento observado: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "实测风：Pioupiou（CC-BY 4.0）、winds.mobi、NDBC、METAR / NOAA。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "實測風：Pioupiou（CC-BY 4.0）、winds.mobi、NDBC、METAR / NOAA。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "実測風：Pioupiou（CC-BY 4.0）、winds.mobi、NDBC、METAR / NOAA。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "실측 바람: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मापी गई हवा: Pioupiou (CC-BY 4.0), winds.mobi, NDBC, METAR / NOAA."
+          }
+        }
+      }
+    },
+    "balise": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Station"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "station"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "estación"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "balise"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्टेशन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "stazione"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "観測局"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "관측소"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "station"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "estação"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "测风站"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測風站"
+          }
+        }
+      }
+    },
+    "basse mer": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niedrigwasser"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "low tide"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bajamar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "basse mer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bassa marea"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "laagwater"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "baixa-mar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "低潮"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乾潮"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "干潮"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "간조"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "भाटा"
+          }
+        }
+      }
+    },
+    "coef": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "coef"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "coef"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "coef"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "coef"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "coef"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "coëf"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "coef"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系数"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "係數"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "係数"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "계수"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गुणांक"
+          }
+        }
+      }
+    },
+    "il y a %lld min": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vor %lld Min."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min ago"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hace %lld min"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "il y a %lld min"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld मिनट पहले"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min fa"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld分前"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld분 전"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min geleden"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "há %lld min"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分钟前"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分鐘前"
+          }
+        }
+      }
+    },
+    "maintenant": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "now"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "jetzt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ahora"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ora"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "nu"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "agora"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "现在"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "現在"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지금"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अभी"
+          }
+        }
+      }
+    },
+    "marée descendante": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fallende Tide"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "falling tide"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "marea bajando"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "marée descendante"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "marea calante"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "afgaand getij"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "maré vazante"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退潮"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退潮"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下げ潮"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "썰물"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उतरता ज्वार"
+          }
+        }
+      }
+    },
+    "marée montante": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "steigende Tide"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "rising tide"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "marea subiendo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "marée montante"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "marea crescente"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "opkomend getij"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "maré enchente"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "涨潮"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "漲潮"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上げ潮"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "밀물"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चढ़ता ज्वार"
+          }
+        }
+      }
+    },
+    "pleine mer": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hochwasser"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "high tide"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pleamar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pleine mer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "alta marea"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hoogwater"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "preia-mar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高潮"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "滿潮"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "満潮"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "만조"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज्वार"
+          }
+        }
+      }
+    },
+    "sur votre iPhone\npour voir vos marées": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "auf deinem iPhone,\num deine Tiden zu sehen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "on your iPhone\nto see your tides"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "en tu iPhone\npara ver tus mareas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sur votre iPhone\npour voir vos marées"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sul tuo iPhone\nper vedere le tue maree"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "op je iPhone\nom je getijden te zien"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no teu iPhone\npara veres as tuas marés"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 iPhone 上\n查看潮汐"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 iPhone 上\n查看潮汐"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhoneで開いて\n潮汐を表示"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone에서 열어\n물때를 확인하세요"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone पर खोलें\nज्वार देखने के लिए"
+          }
+        }
+      }
+    },
+    "à l'instant": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "gerade eben"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "just now"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ahora mismo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "à l'instant"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अभी"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "proprio ora"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "たった今"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "방금"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "zojuist"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "agora mesmo"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刚刚"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "剛剛"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

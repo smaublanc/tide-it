@@ -1,21 +1,10 @@
-Le vent, revu de fond en comble :
-- Fini la moyenne entre plusieurs modèles. Elle lissait le trait de côte : un spot de plein océan pouvait s'afficher moins venté qu'un plan d'eau abrité situé à 20 km. Tide It s'appuie maintenant sur le modèle le mieux résolu qui couvre ton spot, et la vitesse, la rafale et la direction viennent toutes du même : le on-shore annoncé est celui qui a vraiment été prévu.
-- Ce choix a été confronté à 2 800 heures de vent réellement mesuré sur 17 points du littoral. Une quinzaine d'autres modèles et une pondération sur mesure ont été testés, puis écartés : aucun ne faisait mieux.
-- La prévision ne dépend plus de la façon dont l'épingle est posée. Près d'une côte, 2 km de décalage pouvaient changer le vent annoncé de 13 nœuds ; le secteur est désormais lu dans son ensemble.
-- La balise ne retouche plus la prévision : elle confirme l'instant présent, et seulement si elle est assez proche. Une mesure prise à 40 km ne dit rien de ton spot.
-- L'alerte rafales criait sur 8 heures ventées sur 10, à tort une fois sur deux. Recalibrée, elle ne se déclenche plus que quand ça rafale vraiment. Les seuils de sécurité gardent maintenant une marge.
-- Le « Go » en pourcentage a été retiré : un chiffre faux mais précis est pire que pas de chiffre. Les étoiles des fenêtres et l'alerte « le vent s'établit » restent.
+Apple Watch — la montre applique enfin les mêmes règles que le téléphone :
+- Le vent réel ne peut plus venir d'une balise située à 30 km. Rayon ramené à 15 km, comme sur l'iPhone : une confirmation qui vient d'ailleurs ne confirme rien. Et c'est au poignet, sur la plage et sans téléphone, que ça compte le plus.
+- Quand une balise ne publie pas sa direction, la flèche ne pointe plus le nord par défaut. Elle s'efface, et la montre reprend le vent du téléphone plutôt que d'inventer un cap.
+- Les libellés des marées et l'âge de la mesure s'affichent enfin dans votre langue. Ils étaient restés en français partout ailleurs.
 
-Nouveautés :
-- Tide It repère les fenêtres de GO plusieurs jours à l'avance et te prévient. La veille, il revient te dire si le créneau se confirme, ou s'il tombe.
-- Ouvrir une notification t'emmène directement sur le spot annoncé, et le créneau s'illumine sur la courbe.
-- Une icône caméra apparaît dans le vent observé quand une webcam filme le secteur : plus de 120 caméras du littoral.
-- La météo 7 jours passe en rubans de couleur, sur la même palette que la courbe de vent : un jaune veut dire la même chose partout.
-- De nouvelles balises, dont une posée sur un spot de kite et une au Cap Fréhel.
+Sur l'iPhone :
+- Les chiffres du bandeau météo restent lisibles sur les bandes les plus claires.
+- Changement de spot plus fluide : le calcul de la prévision ne retient plus l'affichage.
 
-Corrections :
-- Les étiquettes de la carte retrouvent leur pastille, et l'hélice du vent observé tourne enfin sans à-coups.
-- Les rubans changent bien de jour à minuit, et la balise se rafraîchit au retour dans l'app : fini le vent vieux d'une heure.
-- Tes favoris ne peuvent plus être effacés par une synchronisation partie trop tôt, les marées de secours reviennent hors ligne, et les journées suivent le fuseau du port.
-
-Toujours aussi précis, honnête et léger pour ta batterie. Bon vent et bonnes vagues !
+Bon vent et bonnes vagues !

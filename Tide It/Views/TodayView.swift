@@ -1632,16 +1632,22 @@ struct WeatherBand7Days: View, Equatable {
     /// change, le contraste suit tout seul.
     private func bandTextColor(_ r: WRow, _ stops: [HourlyForecast]) -> Color {
         guard let level = r.level else { return .primary }
-        // Le texte est centré : c'est la couleur du MILIEU du créneau qui est sous les chiffres.
-        let mid = stops[stops.count / 2]
-        guard let l = level(mid) else { return .primary }
-        let c = bandTint(l, kmh: spectrumPosition(r, mid, level: l), fades: r.fadesToNothing)
-        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
-        guard UIColor(c).getRed(&red, green: &green, blue: &blue, alpha: &alpha) else { return .primary }
-        // Composité sur le fond sombre du panneau : une bande à 20 % d'opacité n'éclaire pas.
-        let lum = (0.2126 * Double(red) + 0.7152 * Double(green) + 0.0722 * Double(blue)) * Double(alpha)
+        // La bande est un DÉGRADÉ sur la largeur de la case, et les chiffres la traversent.
+        // C'est donc le point le plus LUMINEUX du créneau qui décide, pas celui du milieu :
+        // à une transition vert → jaune, le milieu peut rester sombre pendant que la moitié
+        // droite du texte se retrouve sur du jaune vif. C'est le pire cas qui se lit mal.
+        var maxLum = 0.0
+        for fc in stops {
+            guard let l = level(fc) else { continue }
+            let c = bandTint(l, kmh: spectrumPosition(r, fc, level: l), fades: r.fadesToNothing)
+            var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+            guard UIColor(c).getRed(&red, green: &green, blue: &blue, alpha: &alpha) else { continue }
+            // Composité sur le fond sombre du panneau : une bande à 20 % d'opacité n'éclaire pas.
+            let lum = (0.2126 * Double(red) + 0.7152 * Double(green) + 0.0722 * Double(blue)) * Double(alpha)
+            maxLum = max(maxLum, lum)
+        }
         // `.primary` et non blanc : en mode clair, le texte hors bande doit rester noir.
-        return lum > Self.darkTextLuminance ? Color.black.opacity(0.85) : .primary
+        return maxLum > Self.darkTextLuminance ? Color.black.opacity(0.85) : .primary
     }
 
     /// Construit le niveau 0…1 d'une ligne en calant l'échelle sur les données RÉELLEMENT

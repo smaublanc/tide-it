@@ -229,12 +229,17 @@ gates) ont été appliqués, parce qu'ils tiennent à la nature des données, pa
   seule définition) **ou a disparu** — une station qui se tait sort des 30 min de
   `nearestReading` et, sans ce cas, plus aucune tentative jusqu'au changement de port. Pas de
   polling : le TTL de 3 min de l'agrégateur borne le réseau, une mesure fraîche ne déclenche rien.
-- **Constante d'une classe `@MainActor` lue hors acteur → `nonisolated`.** Avertissement
-  aujourd'hui, ERREUR en Swift 6. Rencontré TROIS fois : `WindStationAggregator.defaultSearchRadius`,
-  `WebcamCatalog.maxDistanceMeters`/`maxSuggestions`, `MarineWeatherService.neighbourhoodKm`.
-  Le cas typique est une constante servant de VALEUR PAR DÉFAUT à un argument — un argument par
-  défaut est évalué hors de l'acteur. Réflexe : toute `static let` lue depuis une fonction
-  `nonisolated` doit l'être aussi.
+- **Membre isolé lu depuis un contexte qui ne l'est pas → `nonisolated`.** Avertissement
+  aujourd'hui, ERREUR en Swift 6. Rencontré QUATRE fois, sous DEUX formes :
+  1. *Constante servant de valeur par défaut à un argument* — un argument par défaut est évalué
+     HORS de l'acteur : `WindStationAggregator.defaultSearchRadius`,
+     `WebcamCatalog.maxDistanceMeters`/`maxSuggestions`, `MarineWeatherService.neighbourhoodKm`.
+  2. *`init` d'un `actor` appelant une méthode isolée* — un `init` d'acteur est nonisolated :
+     `WatchSourceBlocklist.applyCached()`. Correctif : une fonction `nonisolated static` SANS
+     effet de bord qui RENVOIE la valeur, que l'`init` affecte lui-même.
+
+  Réflexe : tout membre lu depuis une fonction `nonisolated` (ou un `init` d'acteur) doit l'être
+  aussi — et s'il mute l'état, le transformer en fonction pure qui rend la valeur.
 - **Jour = fuseau du PORT** partout, jamais `Calendar.current` (cf. `Calendar.inTimeZone`). Vaut
   aussi pour le `DateFormatter` des libellés : sinon un minuit « port » se formate à la veille.
 

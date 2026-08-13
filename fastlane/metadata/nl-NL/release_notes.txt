@@ -1,21 +1,10 @@
-De wind, van de grond af herzien:
-- Geen gemiddelde meer van meerdere modellen. Dat vlakte de kustlijn af: een spot aan open zee kon minder winderig lijken dan een beschut water 20 km landinwaarts. Tide It gebruikt nu het best opgeloste model dat jouw spot dekt, en snelheid, vlagen en richting komen allemaal uit datzelfde model: de onshore die je ziet, is die er echt voorspeld is.
-- Die keuze is getoetst aan 2.800 uur werkelijk gemeten wind op 17 punten langs de kust. Vijftien andere modellen en een op maat gemaakte weging zijn getest en weer geschrapt: geen enkele deed het beter.
-- De verwachting hangt niet meer af van waar de speld is gezet. Vlak bij de kust kon 2 km verschuiving de verwachting 13 knopen veranderen; nu wordt het hele gebied in één keer gelezen.
-- Het meetstation corrigeert de verwachting niet meer. Het bevestigt het huidige moment, en alleen als het dichtbij genoeg staat. Een meting op 40 km zegt niets over jouw spot.
-- De vlagenwaarschuwing ging af bij 8 van de 10 winderige uren, en de helft daarvan ten onrechte. Opnieuw geijkt gaat hij alleen nog af als het echt vlagerig is. Veiligheidsdrempels houden nu een marge aan.
-- De "Go" in procenten is weg: een precies maar fout getal is erger dan geen getal. De beoordeling van de vensters en de melding "de wind zet door" blijven.
+Apple Watch - het horloge volgt eindelijk dezelfde regels als de telefoon:
+- De echte wind mag niet meer van een station op 30 km komen. De straal gaat naar 15 km, net als op de iPhone: een bevestiging van elders bevestigt niets. En juist aan de pols telt dat het zwaarst, op het strand zonder telefoon.
+- Als een station geen richting doorgeeft, wijst de pijl niet langer standaard naar het noorden. Hij verdwijnt, en het horloge valt terug op de wind van de telefoon in plaats van een koers te verzinnen.
+- De getijlabels en de leeftijd van de meting verschijnen eindelijk in jouw taal. Overal elders waren ze in het Frans gebleven.
 
-Nieuw:
-- Tide It ziet GO-vensters dagen van tevoren aankomen en waarschuwt je. De dag ervoor laat het weten of het venster standhoudt of wegvalt.
-- Een melding openen brengt je direct naar de genoemde spot, en het venster licht op in de curve.
-- Er verschijnt een camerapictogram bij de waargenomen wind als een webcam het gebied filmt: ruim 120 camera's langs de kust.
-- Het weer over 7 dagen wordt kleurbanden, in hetzelfde palet als de windcurve: geel betekent overal hetzelfde.
-- Nieuwe meetstations, waaronder één op een kitespot en één op Cap Frehel.
+Op de iPhone:
+- De cijfers in de weerband blijven leesbaar boven de lichtste banden.
+- Vlotter wisselen van spot: de berekening van de verwachting houdt het scherm niet meer op.
 
-Opgelost:
-- De kaartlabels hebben hun stip terug, en de propeller bij de waargenomen wind draait eindelijk zonder haperen.
-- De banden wisselen om middernacht van dag, en het station ververst zodra je terugkeert in de app: geen wind van een uur oud meer.
-- Je favorieten kunnen niet meer worden gewist door een te vroeg gestarte synchronisatie, de reservegetijden zijn offline terug, en dagen volgen de tijdzone van de haven.
-
-Nog altijd even nauwkeurig, eerlijk en zuinig voor je batterij. Goede wind en mooie golven!
+Goede wind en mooie golven!

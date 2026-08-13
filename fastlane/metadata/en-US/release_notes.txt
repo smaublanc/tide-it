@@ -1,21 +1,10 @@
-Wind, rebuilt from the ground up:
-- No more averaging several models together. It smoothed out the coastline: an open-ocean spot could show less wind than a sheltered stretch of water 20 km inland. Tide It now uses the best-resolved model that covers your spot, and speed, gusts and direction all come from that same one - the onshore you are shown is the one that was actually forecast.
-- That choice was tested against 2,800 hours of genuinely measured wind at 17 coastal points. Fifteen other models and a custom weighting were tried, then dropped: none did better.
-- The forecast no longer depends on where the pin was dropped. Near a coast, moving it 2 km could change the forecast by 13 knots; the whole sector is now read at once.
-- The wind station no longer edits the forecast. It confirms the present moment, and only when it is close enough. A reading taken 40 km away tells you nothing about your spot.
-- The gust warning fired on 8 windy hours out of 10, wrongly half the time. Recalibrated, it now only fires when it really is gusty. Safety thresholds now keep a margin.
-- The percentage "Go" is gone: a precise but wrong number is worse than no number at all. Window ratings and the "wind is settling in" alert stay.
+Apple Watch - the watch finally follows the same rules as the phone:
+- Real wind can no longer come from a station 30 km away. The radius is down to 15 km, matching the iPhone: a confirmation from somewhere else confirms nothing. And the wrist is exactly where it matters most, on the beach with no phone.
+- When a station does not publish its direction, the arrow no longer defaults to due north. It disappears, and the watch falls back to the phone's wind instead of inventing a heading.
+- Tide labels and the age of the reading now appear in your language. They had stayed in French everywhere else.
 
-New:
-- Tide It spots GO windows several days ahead and tells you. The day before, it comes back to say whether the window is holding, or falling apart.
-- Opening a notification takes you straight to the spot, and the window lights up on the curve.
-- A camera icon appears in observed wind when a webcam covers the area: over 120 coastal cameras.
-- The 7-day weather becomes colour ribbons, on the same palette as the wind curve: yellow means the same thing everywhere.
-- New wind stations, including one sitting on a kite spot and one at Cap Frehel.
+On iPhone:
+- The figures in the weather ribbon stay readable over the brightest bands.
+- Smoother spot switching: the forecast calculation no longer holds up the display.
 
-Fixes:
-- Map labels get their dot back, and the observed-wind propeller finally spins without stuttering.
-- Ribbons change day at midnight, and the station refreshes when you return to the app: no more hour-old wind.
-- Your favourites can no longer be wiped by a sync that started too early, backup tides are back offline, and days follow the port's own time zone.
-
-Still as precise, as honest, and as easy on your battery. Fair winds and good waves!
+Fair winds and good waves!

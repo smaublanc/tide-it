@@ -318,14 +318,19 @@ private struct TideMainView: View {
     /// « Station · il y a X min » — provenance et fraîcheur de la balise vent affichée.
     private func windSourceLabel(_ w: EffWind) -> String? {
         let station = (w.station?.isEmpty == false) ? w.station : nil
+        // `String(localized:)` OBLIGATOIRE : cette chaîne est construite par interpolation puis
+        // passée à `Text(label)`, or `Text(uneVariable)` est VERBATIM (règle 1 de CLAUDE.md).
+        // Sans ça, l'âge de la mesure s'affichait « il y a 12 min » sur les 12 langues — et
+        // c'est précisément l'information qui porte la promesse d'honnêteté de l'app.
         let age: String? = w.date.map { d in
             let mins = max(0, Int(Date().timeIntervalSince(d) / 60))
-            return mins == 0 ? "à l'instant" : "il y a \(mins) min"
+            return mins == 0 ? String(localized: "à l'instant")
+                             : String(localized: "il y a \(mins) min")
         }
         switch (station, age) {
         case let (s?, a?): return "\(s) · \(a)"
         case let (s?, nil): return s
-        case let (nil, a?): return "balise · \(a)"
+        case let (nil, a?): return "\(String(localized: "balise")) · \(a)"
         default: return nil
         }
     }
@@ -577,7 +582,11 @@ private struct TideMainView: View {
 // MARK: - Watch Tide Row
 
 private struct WatchTideRow: View {
-    let label: String
+    /// `LocalizedStringKey` et non `String` : les appelants passent des LITTÉRAUX
+    /// (« PROCHAINE », « SUIVANTE »), or `Text(uneVariableString)` est verbatim — les deux
+    /// libellés s'affichaient donc en français sur les 12 langues. Typé ainsi, le littéral
+    /// devient une clé et SwiftUI le localise.
+    let label: LocalizedStringKey
     let date: Date
     let height: Double
     let isHigh: Bool

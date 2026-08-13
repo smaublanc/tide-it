@@ -571,6 +571,19 @@ class MarineWeatherService: ObservableObject {
 
     /// Le point du spot + 4 voisins cardinaux. Une SEULE requête (Open-Meteo accepte plusieurs
     /// coordonnées), donc un seul aller-retour réseau — la batterie ne paie pas la robustesse.
+    /// Décode la réponse et réduit le voisinage à UNE série. `nonisolated` : appelée depuis un
+    /// `Task.detached`, elle ne doit rien exiger du thread principal.
+    ///
+    /// Plusieurs coordonnées → l'API renvoie un TABLEAU. Le repli sur un objet seul est conservé
+    /// au cas où elle n'en renverrait qu'un (une seule coordonnée acceptée, ou API modifiée).
+    nonisolated private static func decodeAndReduce(_ data: Data) -> WindEnsembleResponse? {
+        let dec = JSONDecoder()
+        var all = (try? dec.decode([WindEnsembleResponse].self, from: data)) ?? []
+        if all.isEmpty, let one = try? dec.decode(WindEnsembleResponse.self, from: data) { all = [one] }
+        guard let centre = all.first else { return nil }
+        return all.count > 1 ? WindEnsembleResponse.medianOfNeighbourhood(all, centre: centre) : centre
+    }
+
     nonisolated static func neighbourhood(latitude: Double, longitude: Double) -> [(lat: Double, lon: Double)] {
         let dLat = neighbourhoodKm / 111.0
         let dLon = neighbourhoodKm / (111.0 * max(0.1, cos(latitude * .pi / 180)))
@@ -604,13 +617,19 @@ class MarineWeatherService: ObservableObject {
                 }
                 return nil
             }
-            // Plusieurs coordonnées → l'API renvoie un TABLEAU. On garde le repli sur un objet
-            // seul au cas où elle n'en renverrait qu'un.
-            let dec = JSONDecoder()
-            var all = (try? dec.decode([WindEnsembleResponse].self, from: data)) ?? []
-            if all.isEmpty { all = [try dec.decode(WindEnsembleResponse.self, from: data)] }
-            guard let centre = all.first else { return nil }
-            return all.count > 1 ? WindEnsembleResponse.medianOfNeighbourhood(all, centre: centre) : centre
+            // HORS DU THREAD PRINCIPAL — obligatoire depuis l'échantillonnage par voisinage.
+            //
+            // Cette classe est `@MainActor` : sans `Task.detached`, le décodage tournerait sur
+            // le thread qui dessine. Ça passait avec UNE série (~1 080 valeurs) ; le voisinage
+            // en demande CINQ, soit ~5 400 valeurs à décoder puis à réduire en médiane — et ça
+            // se produit à chaque changement de spot, exactement quand l'utilisateur regarde
+            // l'écran bouger. La robustesse de la prévision ne doit pas se payer en saccade.
+            //
+            // `WindEnsembleResponse` est un `struct` privé de valeurs pures, donc `Sendable` :
+            // le résultat retraverse l'acteur sans copie défensive.
+            return await Task.detached(priority: .userInitiated) {
+                Self.decodeAndReduce(data)
+            }.value
         } catch {
             // L'annulation (changement de port rapide) n'est pas une erreur.
             if (error as? URLError)?.code != .cancelled && !(error is CancellationError) {

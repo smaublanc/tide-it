@@ -1,21 +1,10 @@
-Der Wind, von Grund auf überarbeitet:
-- Kein Mittelwert aus mehreren Modellen mehr. Er glättete die Küstenlinie: Ein Spot am offenen Meer konnte weniger windig wirken als ein geschütztes Gewässer 20 km landeinwärts. Tide It nutzt jetzt das am besten aufgelöste Modell, das deinen Spot abdeckt, und Geschwindigkeit, Böen und Richtung stammen alle aus demselben: Der angezeigte Onshore ist der, der wirklich vorhergesagt wurde.
-- Diese Wahl wurde an 2.800 Stunden tatsächlich gemessenem Wind an 17 Küstenpunkten geprüft. Fünfzehn weitere Modelle und eine maßgeschneiderte Gewichtung wurden getestet und wieder verworfen: Keines war besser.
-- Die Vorhersage hängt nicht mehr davon ab, wo die Nadel gesetzt wurde. An der Küste konnten 2 km Versatz die Vorhersage um 13 Knoten verändern; jetzt wird der gesamte Sektor auf einmal gelesen.
-- Die Messstation korrigiert die Vorhersage nicht mehr. Sie bestätigt den aktuellen Moment, und nur wenn sie nah genug ist. Eine Messung aus 40 km Entfernung sagt nichts über deinen Spot.
-- Die Böenwarnung schlug bei 8 von 10 windigen Stunden an, in der Hälfte der Fälle zu Unrecht. Neu kalibriert löst sie nur noch aus, wenn es wirklich böig ist. Sicherheitsschwellen halten jetzt eine Reserve.
-- Das "Go" in Prozent ist weg: Eine präzise, aber falsche Zahl ist schlimmer als gar keine. Die Bewertung der Fenster und die Meldung "Der Wind baut sich auf" bleiben.
+Apple Watch - die Uhr folgt endlich denselben Regeln wie das Telefon:
+- Der reale Wind darf nicht mehr von einer Station in 30 km Entfernung stammen. Der Radius liegt jetzt bei 15 km wie auf dem iPhone: Eine Bestätigung von anderswo bestätigt gar nichts. Und genau am Handgelenk zählt sie am meisten, am Strand und ohne Telefon.
+- Wenn eine Station keine Richtung liefert, zeigt der Pfeil nicht mehr ersatzweise nach Norden. Er verschwindet, und die Uhr greift auf den Wind des Telefons zurück, statt eine Richtung zu erfinden.
+- Die Gezeiten-Beschriftungen und das Alter der Messung erscheinen endlich in deiner Sprache. Sie waren überall sonst auf Französisch geblieben.
 
-Neu:
-- Tide It erkennt GO-Fenster mehrere Tage im Voraus und meldet sie. Am Vortag meldet es sich erneut, ob das Fenster hält oder wegfällt.
-- Eine Mitteilung zu öffnen bringt dich direkt zum genannten Spot, und das Fenster leuchtet auf der Kurve auf.
-- Ein Kamerasymbol erscheint beim beobachteten Wind, wenn eine Webcam den Bereich filmt: über 120 Küstenkameras.
-- Das 7-Tage-Wetter wird zu Farbbändern, in derselben Palette wie die Windkurve: Gelb bedeutet überall dasselbe.
-- Neue Messstationen, darunter eine direkt an einem Kitespot und eine am Cap Frehel.
+Auf dem iPhone:
+- Die Zahlen im Wetterband bleiben auch über den hellsten Streifen lesbar.
+- Flüssigerer Spot-Wechsel: Die Berechnung der Vorhersage bremst die Anzeige nicht mehr.
 
-Korrekturen:
-- Die Kartenbeschriftungen haben ihren Punkt zurück, und der Propeller beim beobachteten Wind dreht endlich ruckelfrei.
-- Die Bänder wechseln um Mitternacht den Tag, und die Messstation aktualisiert sich bei der Rückkehr in die App: Schluss mit stundenaltem Wind.
-- Deine Favoriten können nicht mehr durch eine zu früh gestartete Synchronisierung gelöscht werden, die Ersatzgezeiten sind offline wieder da, und die Tage folgen der Zeitzone des Hafens.
-
-Weiterhin präzise, ehrlich und schonend für deinen Akku. Guten Wind und gute Wellen!
+Guten Wind und gute Wellen!

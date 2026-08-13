@@ -1,21 +1,10 @@
-El viento, revisado a fondo:
-- Se acabó la media entre varios modelos. Suavizaba la línea de costa: un spot en mar abierto podía aparecer menos ventoso que un plano de agua resguardado a 20 km. Tide It usa ahora el modelo mejor resuelto que cubre tu spot, y velocidad, racha y dirección vienen todas del mismo: el onshore que ves es el que de verdad se ha previsto.
-- Esta decisión se ha contrastado con 2.800 horas de viento realmente medido en 17 puntos del litoral. Se probaron otros quince modelos y una ponderación a medida, y se descartaron: ninguno lo hacía mejor.
-- La previsión ya no depende de dónde se colocó el pin. Cerca de la costa, 2 km de desplazamiento podían cambiar la previsión en 13 nudos; ahora se lee todo el sector a la vez.
-- La estación ya no retoca la previsión: confirma el momento presente, y solo si está lo bastante cerca. Una medida tomada a 40 km no dice nada de tu spot.
-- El aviso de rachas saltaba en 8 de cada 10 horas con viento, y la mitad de las veces sin motivo. Recalibrado, solo salta cuando racha de verdad. Los umbrales de seguridad ahora guardan un margen.
-- El "Go" en porcentaje se ha retirado: una cifra precisa pero falsa es peor que ninguna cifra. Se mantienen las estrellas de las ventanas y el aviso "el viento se establece".
+Apple Watch: el reloj aplica por fin las mismas reglas que el teléfono.
+- El viento real ya no puede venir de una estación situada a 30 km. El radio baja a 15 km, como en el iPhone: una confirmación que viene de otro sitio no confirma nada. Y es en la muñeca, en la playa y sin teléfono, donde más importa.
+- Cuando una estación no publica su dirección, la flecha ya no apunta al norte por defecto. Desaparece, y el reloj recupera el viento del teléfono en lugar de inventarse un rumbo.
+- Las etiquetas de las mareas y la antigüedad de la medida aparecen por fin en tu idioma. Se habían quedado en francés en todos los demás.
 
-Novedades:
-- Tide It detecta las ventanas de GO con varios días de antelación y te avisa. La víspera vuelve para decirte si se confirma o si se cae.
-- Abrir una notificación te lleva directo al spot anunciado, y la ventana se ilumina en la curva.
-- Aparece un icono de cámara en el viento observado cuando una webcam filma la zona: más de 120 cámaras del litoral.
-- La meteo de 7 días pasa a cintas de color, con la misma paleta que la curva de viento: un amarillo significa lo mismo en todas partes.
-- Nuevas estaciones, una de ellas en un spot de kite y otra en Cap Frehel.
+En el iPhone:
+- Las cifras de la cinta meteorológica siguen siendo legibles sobre las bandas más claras.
+- Cambio de spot más fluido: el cálculo de la previsión ya no retiene la pantalla.
 
-Correcciones:
-- Las etiquetas del mapa recuperan su punto, y la hélice del viento observado gira por fin sin tirones.
-- Las cintas cambian de día a medianoche, y la estación se actualiza al volver a la app: se acabó el viento de hace una hora.
-- Tus favoritos ya no pueden borrarse por una sincronización lanzada demasiado pronto, las mareas de respaldo vuelven sin conexión, y los días siguen el huso horario del puerto.
-
-Igual de preciso, honesto y ligero para tu batería. ¡Buen viento y buenas olas!
+¡Buen viento y buenas olas!
