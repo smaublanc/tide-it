@@ -1,1115 +1,1121 @@
 {
- "_lisezmoi": "Catalogue des webcams du littoral. Par defaut l'app OUVRE la page de l'exploitant : un lien n'est pas une contrefacon. Le champ 'embed' n'apparait QUE sur les cameras dont l'exploitant a donne un accord ECRIT (guideline App Store 5.2 : rejouer le flux d'un tiers sans accord fait retirer l'APPLICATION, pas la fonctionnalite). Le retrait a la demande passe par docs/blocklist.json, cle 'webcams'.",
- "version": 1,
- "updated": "2026-08-07",
- "webcams": [
-  {
-   "id": "cam_le-barcares-les-dosses-park-dosses-webcam-sk",
-   "name": "Le Barcares — Les Dosses / Park Dosses — webcam Skaping",
-   "place": "Le Barcares (66420) — Les Dosses, spot kite / wing sur l etang de Leucate-Salses, ~2 km au sud de Port Leucate",
-   "lat": 42.83733,
-   "lon": 3.02344,
-   "page": "https://www.skaping.com/le-barcares/dosses",
-   "operatorContact": "info@skaping.com"
-  },
-  {
-   "id": "cam_cercle-de-voile-du-cap-leucate-re-diffuseur-",
-   "name": "Cercle de Voile du Cap Leucate — re-diffuseur des vues Viewsurf, contact utile",
-   "place": "Etang de Leucate — base nautique (windsurf, foil, catamaran, char a voile, paddle)",
-   "lat": 42.8494,
-   "lon": 3.0368,
-   "page": "https://cercledevoile.com/webcams/",
-   "operatorContact": "contact.voile@cercledevoile.com"
-  },
-  {
-   "id": "cam_leucate-base-de-voile-la-marina-etang-de-leu",
-   "name": "Leucate — Base de Voile « La Marina » (etang de Leucate) — Viewsurf / OT Leucate",
-   "place": "Etang de Leucate / base de voile — plan d eau plat, spot d apprentissage kite et wing",
-   "lat": 42.8494,
-   "lon": 3.0368,
-   "page": "https://www.viewsurf.com/univers/plage/vue/18158-france-languedoc-roussillon-leucate-base-de-voile",
-   "operatorContact": "info@tourisme-leucate.fr"
-  },
-  {
-   "id": "cam_leucate-le-port-port-leucate-viewsurf-ot-leu",
-   "name": "Leucate — Le Port (Port Leucate) — Viewsurf / OT Leucate",
-   "place": "Port Leucate — port de plaisance, quais",
-   "lat": 42.8557,
-   "lon": 3.0401,
-   "page": "https://www.viewsurf.com/univers/plage/vue/17040-france-languedoc-roussillon-leucate-le-port",
-   "operatorContact": "info@tourisme-leucate.fr"
-  },
-  {
-   "id": "cam_port-de-plaisance-de-port-leucate-capitainer",
-   "name": "Port de plaisance de Port Leucate (capitainerie) — re-diffuseur, contact utile",
-   "place": "Port Leucate — port de plaisance",
-   "lat": 42.8557,
-   "lon": 3.0401,
-   "page": "https://www.port-leucate.fr/webcam/",
-   "operatorContact": "capitainerie@port-leucate.fr"
-  },
-  {
-   "id": "cam_camping-cap-leucate-mer-sable-soleil-re-diff",
-   "name": "Camping Cap Leucate / Mer Sable Soleil — re-diffuseur, contact utile",
-   "place": "Leucate-Plage — la camera regarde le spot juste en face du camping",
-   "lat": 42.9018,
-   "lon": 3.0533,
-   "page": "https://campingmunicipalcapleucate-mss.fr/webcam-leucate/",
-   "operatorContact": "camping.capleucate-mss@mairie-leucate.fr"
-  },
-  {
-   "id": "cam_leucate-le-canigou-viewsurf-ot-leucate",
-   "name": "Leucate — Le Canigou — Viewsurf / OT Leucate",
-   "place": "Leucate — vue vers le Canigou (interieur des terres)",
-   "lat": 42.9018,
-   "lon": 3.0533,
-   "page": "https://www.viewsurf.com/univers/plage/vue/19608-france-languedoc-roussillon-leucate-le-canigou",
-   "operatorContact": "info@tourisme-leucate.fr"
-  },
-  {
-   "id": "cam_leucate-leucate-plage-viewsurf-ot-leucate",
-   "name": "Leucate — Leucate-Plage — Viewsurf / OT Leucate",
-   "place": "Leucate-Plage (baignade + glisse par vent de secteur est)",
-   "lat": 42.9018,
-   "lon": 3.0533,
-   "page": "https://www.viewsurf.com/univers/plage/vue/17042-france-languedoc-roussillon-leucate-la-plage",
-   "operatorContact": "info@tourisme-leucate.fr"
-  },
-  {
-   "id": "cam_leucate-poste-de-secours-viewsurf-ot-leucate",
-   "name": "Leucate — Poste de Secours — Viewsurf / OT Leucate",
-   "place": "Leucate-Plage — poste de secours (Windy la reference comme « Leucate Est : Poste de Secours N6 »)",
-   "lat": 42.9018,
-   "lon": 3.0533,
-   "page": "https://www.viewsurf.com/univers/plage/vue/19610-france-languedoc-roussillon-leucate-poste-de-secours",
-   "operatorContact": "info@tourisme-leucate.fr"
-  },
-  {
-   "id": "cam_leucate-village-le-chateau-viewsurf-ot-leuca",
-   "name": "Leucate — Village / Le chateau — Viewsurf / OT Leucate",
-   "place": "Leucate village (pas un spot de glisse)",
-   "lat": 42.9098,
-   "lon": 3.028,
-   "page": "https://pv.viewsurf.com/2382/Leucate-Village",
-   "operatorContact": "info@tourisme-leucate.fr"
-  },
-  {
-   "id": "cam_la-franqui-webcam-le-bleu-winds-up-id-64",
-   "name": "La Franqui — webcam « Le Bleu » (Winds-Up id 64)",
-   "place": "La Franqui (Leucate) — plage devant Le Bleu Surf Cafe, zone kite / windsurf / wing",
-   "lat": 42.9323,
-   "lon": 3.0353,
-   "page": "https://www.winds-up.com/spot/64-la-franqui-cam-le-bleu/webcam",
-   "operatorContact": "contact@winds-up.com"
-  },
-  {
-   "id": "cam_leucate-panoramique-plage-des-coussoules-hd-",
-   "name": "Leucate — Panoramique plage des Coussoules (HD) — Viewsurf / OT Leucate",
-   "place": "Leucate — plage des Coussoules / La Franqui, vue large falaise + mer",
-   "lat": 42.9472,
-   "lon": 3.0363,
-   "page": "https://www.viewsurf.com/univers/plage/vue/17044-france-languedoc-roussillon-leucate-panoramique-hd",
-   "operatorContact": "info@tourisme-leucate.fr"
-  },
-  {
-   "id": "cam_leucate-plage-des-coussoules-vue-plage-views",
-   "name": "Leucate — Plage des Coussoules (vue plage) — Viewsurf / OT Leucate",
-   "place": "Leucate — plage des Coussoules / La Franqui (kite, windsurf, wing)",
-   "lat": 42.9472,
-   "lon": 3.0363,
-   "page": "https://www.viewsurf.com/univers/plage/vue/17014-france-languedoc-roussillon-leucate-plage-des-coussoules",
-   "operatorContact": "info@tourisme-leucate.fr"
-  },
-  {
-   "id": "cam_leucate-spot-char-a-voile-plage-des-coussoul",
-   "name": "Leucate — Spot Char a Voile, plage des Coussoules — Viewsurf / OT Leucate",
-   "place": "Leucate — zone de roulage char a voile, plage des Coussoules",
-   "lat": 42.9472,
-   "lon": 3.0363,
-   "page": "https://www.viewsurf.com/univers/plage/vue/19230-france-languedoc-roussillon-leucate-spot-char-a-voile",
-   "operatorContact": "info@tourisme-leucate.fr"
-  },
-  {
-   "id": "cam_leucate-spot-kitesurf-plage-des-coussoules-l",
-   "name": "Leucate — Spot Kitesurf, plage des Coussoules (La Franqui) — LA camera qui compte pour un kiteur",
-   "place": "Leucate (11370) — plage des Coussoules / La Franqui, LE spot kite-windsurf (site du Mondial du Vent)",
-   "lat": 42.9472,
-   "lon": 3.0363,
-   "page": "https://www.viewsurf.com/univers/plage/vue/19232-france-languedoc-roussillon-leucate-spot-kitesurf",
-   "operatorContact": "info@tourisme-leucate.fr"
-  },
-  {
-   "id": "cam_office-de-tourisme-de-leucate-page-webcam-of",
-   "name": "Office de Tourisme de Leucate — page webcam officielle, point d entree unique des 5 cameras",
-   "place": "Leucate / La Franqui / Port Leucate / etang — toutes les vues du secteur sur une page",
-   "lat": 42.9472,
-   "lon": 3.0363,
-   "page": "https://www.tourisme-leucate.fr/webcam/",
-   "operatorContact": "info@tourisme-leucate.fr"
-  },
-  {
-   "id": "cam_port-la-nouvelle-webcam-panoramique-skaping",
-   "name": "Port-la-Nouvelle — webcam panoramique Skaping",
-   "place": "Port-la-Nouvelle (11210) — plage et port, ~9 km au nord de la plage des Coussoules",
-   "lat": 43.0139,
-   "lon": 3.06518,
-   "page": "https://www.skaping.com/port-la-nouvelle",
-   "operatorContact": "info@skaping.com"
-  },
-  {
-   "id": "cam_l-ayguade-hyeres",
-   "name": "L'Ayguade (Hyères)",
-   "place": "Hyères (83) — plage de l'Ayguade, est de la rade, vue sur les îles d'Or",
-   "lat": 43.0336,
-   "lon": 6.17034,
-   "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/77-hyeres4/",
-   "operatorContact": "vision-environnement@live.fr"
-  },
-  {
-   "id": "cam_la-madrague-giens",
-   "name": "La Madrague (Giens)",
-   "place": "Giens / Hyères (83) — port de la Madrague, côté ouest de la presqu'île (repli quand ça souffle trop à l'Almanarre)",
-   "lat": 43.0399,
-   "lon": 6.11005,
-   "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/79-madrague/",
-   "operatorContact": "vision-environnement@live.fr"
-  },
-  {
-   "id": "cam_almanarre-sud-camping-international-de-giens",
-   "name": "Almanarre sud — Camping International de Giens",
-   "place": "Giens / Hyères (83) — extrémité sud de la plage de l'Almanarre, dans l'enceinte du Camping International (école de windsurf Spin Out sur place)",
-   "lat": 43.041,
-   "lon": 6.123,
-   "page": "https://en.addicted-sports.com/webcam/hyeres/almanarre/",
-   "operatorContact": "info@addicted-sports.com"
-  },
-  {
-   "id": "cam_almanarre-les-estagnets-webcam-kite-wing",
-   "name": "Almanarre – Les Estagnets (webcam kite/wing)",
-   "place": "Hyères (83) — plage de l'Almanarre, zone kite/wing des Estagnets",
-   "lat": 43.04924,
-   "lon": 6.13188,
-   "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/699-hyeres-kite/",
-   "operatorContact": "vision-environnement@live.fr"
-  },
-  {
-   "id": "cam_winds-up-almanarre-salin-des-pesquiers",
-   "name": "Winds-Up — Almanarre / Salin des Pesquiers",
-   "place": "Hyères (83) — Almanarre / Salin des Pesquiers (spot kite/windsurf de référence, station de vent + webcam)",
-   "lat": 43.0667,
-   "lon": 6.13491,
-   "page": "https://www.winds-up.com/spot/2-almanarre-salin-des-pesquiers/webcam",
-   "operatorContact": "contact@winds-up.com"
-  },
-  {
-   "id": "cam_l-almanarre-nord-olbia",
-   "name": "L'Almanarre Nord (Olbia)",
-   "place": "Hyères (83) — extrémité nord de la plage de l'Almanarre, au-dessus du site antique d'Olbia (spot windsurf/wingfoil)",
-   "lat": 43.08003,
-   "lon": 6.12304,
-   "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/75-hyeres3/",
-   "operatorContact": "vision-environnement@live.fr"
-  },
-  {
-   "id": "cam_port-saint-pierre-hyeres",
-   "name": "Port Saint-Pierre (Hyères)",
-   "place": "Hyères (83) — port Saint-Pierre, rade de Hyères (proche des spots de La Capte / Hyères-Plage)",
-   "lat": 43.08303,
-   "lon": 6.1599,
-   "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/76-hyeres2/",
-   "operatorContact": "vision-environnement@live.fr"
-  },
-  {
-   "id": "cam_hendaye-plage-du-casino-et-des-jumeaux",
-   "name": "Hendaye - Plage du Casino et des Jumeaux",
-   "place": "Hendaye (64) - Grande Plage / Ondarraitz, secteur casino",
-   "lat": 43.3723,
-   "lon": -1.7734,
-   "page": "https://gosurf.fr/webcam/fr/8/Hendaye-Plage-du-Casino-et-des-Jumeaux",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_hendaye-abbadia-chateau-observatoire-panoram",
-   "name": "Hendaye - Abbadia (Chateau-Observatoire), panoramique",
-   "place": "Hendaye (64) - Pointe Sainte-Anne / Abbadia, vue vers Hondarribia et le Cap du Figuier",
-   "lat": 43.3774,
-   "lon": -1.7492,
-   "page": "https://www.skaping.com/hendaye/abbadia",
-   "operatorContact": "info@skaping.com"
-  },
-  {
-   "id": "cam_hendaye-plage-d-ondarraitz",
-   "name": "Hendaye - Plage d'Ondarraitz",
-   "place": "Hendaye (64) - plage d'Ondarraitz (spot ecole / longboard)",
-   "lat": 43.3785,
-   "lon": -1.7571,
-   "page": "https://gosurf.fr/webcam/fr/63/Hendaye-Plage-d-Ondarraitz",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_hendaye-plage-des-jumeaux-ville-d-hendaye",
-   "name": "Hendaye - Plage des Jumeaux (Ville d'Hendaye)",
-   "place": "Hendaye (64) - Grande Plage, vue vers les Deux Jumeaux",
-   "lat": 43.3785,
-   "lon": -1.7571,
-   "page": "https://www.hendaye.fr/fr/hendaye-decouverte/presentation/webcam/"
-  },
-  {
-   "id": "cam_saint-jean-de-luz-7-vues-office-de-tourisme",
-   "name": "Saint-Jean-de-Luz - 7 vues (Office de tourisme)",
-   "place": "Saint-Jean-de-Luz / Ciboure (64) - baie, Grande Plage, spot Sainte-Barbe, chenal du port, Fort de Socoa",
-   "lat": 43.3913,
-   "lon": -1.6618,
-   "page": "https://www.saint-jean-de-luz.com/webcams/",
-   "operatorContact": "saintjeandeluz@otpaysbasque.com"
-  },
-  {
-   "id": "cam_ciboure-plage-de-la-bougie-socoa",
-   "name": "Ciboure - Plage de la Bougie (Socoa)",
-   "place": "Ciboure (64) - plage de la Bougie / Socoa, fond de baie de Saint-Jean-de-Luz",
-   "lat": 43.3961,
-   "lon": -1.6835,
-   "page": "https://gosurf.fr/webcam/fr/69/Ciboure-Plage-de-la-Bougie",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_saint-jean-de-luz-sainte-barbe-et-la-baie",
-   "name": "Saint-Jean-de-Luz - Sainte-Barbe et la Baie",
-   "place": "Saint-Jean-de-Luz (64) - spot de Sainte-Barbe (digue) + baie",
-   "lat": 43.3994,
-   "lon": -1.6638,
-   "page": "https://gosurf.fr/webcam/fr/11/Saint-Jean-de-Luz-Sainte-Barbe-et-la-Baie",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_guethary-bidart-parlementia",
-   "name": "Guethary / Bidart - Parlementia",
-   "place": "Guethary - Bidart (64) - spot de big wave Parlementia (limite communale)",
-   "lat": 43.4282,
-   "lon": -1.6069,
-   "page": "https://gosurf.fr/webcam/fr/13/Bidart-Guethary-Parlementia",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_bidart-plage-du-centre",
-   "name": "Bidart - Plage du Centre",
-   "place": "Bidart (64) - plage du Centre (spot principal de Bidart)",
-   "lat": 43.4374,
-   "lon": -1.5961,
-   "page": "https://gosurf.fr/webcam/fr/147/Bidart-Plage-du-Centre",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_bidart-webcam-office-de-tourisme",
-   "name": "Bidart - Webcam Office de Tourisme",
-   "place": "Bidart (64) - plage du Centre / littoral bidartar",
-   "lat": 43.4374,
-   "lon": -1.5961,
-   "page": "https://www.bidarttourisme.com/organisez-votre-sejour/pratique/webcam/"
-  },
-  {
-   "id": "cam_biarritz-cote-des-basques-panoramique",
-   "name": "Biarritz - Cote des Basques panoramique",
-   "place": "Biarritz (64) - Cote des Basques, vue panoramique",
-   "lat": 43.4749,
-   "lon": -1.5688,
-   "page": "https://www.biarritz.fr/les-webcams/cote-des-basques-panoramique"
-  },
-  {
-   "id": "cam_biarritz-la-cote-des-basques",
-   "name": "Biarritz - La Cote des Basques",
-   "place": "Biarritz (64) - Cote des Basques (spot historique, longboard)",
-   "lat": 43.4749,
-   "lon": -1.5688,
-   "page": "https://gosurf.fr/webcam/fr/7/Biarritz-La-Cote-des-Basques",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_biarritz-rocher-de-la-vierge",
-   "name": "Biarritz - Rocher de la Vierge",
-   "place": "Biarritz (64) - Rocher de la Vierge / Port Vieux, entre Grande Plage et Cote des Basques",
-   "lat": 43.4841,
-   "lon": -1.5705,
-   "page": "https://www.biarritz.fr/les-webcams/rocher-de-la-la-vierge"
-  },
-  {
-   "id": "cam_biarritz-grande-plage-1-ville-de-biarritz",
-   "name": "Biarritz - Grande Plage 1 (Ville de Biarritz)",
-   "place": "Biarritz (64) - Grande Plage, vue 1",
-   "lat": 43.4853,
-   "lon": -1.5584,
-   "page": "https://www.biarritz.fr/les-webcams/grande-plage-1"
-  },
-  {
-   "id": "cam_biarritz-grande-plage-2-ville-de-biarritz",
-   "name": "Biarritz - Grande Plage 2 (Ville de Biarritz)",
-   "place": "Biarritz (64) - Grande Plage, vue 2",
-   "lat": 43.4853,
-   "lon": -1.5584,
-   "page": "https://www.biarritz.fr/les-webcams/grande-plage-2"
-  },
-  {
-   "id": "cam_biarritz-la-grande-plage-go-surf",
-   "name": "Biarritz - La Grande Plage (GO SURF)",
-   "place": "Biarritz (64) - Grande Plage",
-   "lat": 43.4853,
-   "lon": -1.5584,
-   "page": "https://gosurf.fr/webcam/fr/84/Biarritz-La-Grande-Plage",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_biarritz-vue-du-casino-et-de-l-hotel-du-pala",
-   "name": "Biarritz - Vue du Casino et de l'Hotel du Palais",
-   "place": "Biarritz (64) - Grande Plage, secteur casino municipal",
-   "lat": 43.4853,
-   "lon": -1.5584,
-   "page": "https://gosurf.fr/webcam/fr/48/Biarritz-Vue-du-Casino-et-de-l-Hotel-du-Palais",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_biarritz-grande-plage-vue-du-phare-et-de-la-",
-   "name": "Biarritz - Grande Plage, vue du Phare et de la Roche Plate",
-   "place": "Biarritz (64) - nord de la Grande Plage, Miramar / Roche Plate",
-   "lat": 43.4883,
-   "lon": -1.5552,
-   "page": "https://gosurf.fr/webcam/fr/39/Biarritz-La-Grande-Plage-Vue-du-Phare-et-de-la-Roche-plate",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_anglet-plage-du-club",
-   "name": "Anglet - Plage du Club",
-   "place": "Anglet (64) - plage du Club",
-   "lat": 43.4994,
-   "lon": -1.5438,
-   "page": "https://gosurf.fr/webcam/fr/149/Anglet-Plage-du-Club",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_anglet-plage-des-sables-d-or",
-   "name": "Anglet - Plage des Sables d'Or",
-   "place": "Anglet (64) - plage des Sables d'Or",
-   "lat": 43.5016,
-   "lon": -1.541,
-   "page": "https://gosurf.fr/webcam/fr/152/Anglet-Plage-des-Sables-d-or",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_anglet-plage-de-marinella-sables-d-or",
-   "name": "Anglet - Plage de Marinella / Sables d'Or",
-   "place": "Anglet (64) - plage de Marinella",
-   "lat": 43.5045,
-   "lon": -1.5391,
-   "page": "https://gosurf.fr/webcam/fr/153/Anglet-Plage-de-Marinella-Sables-d-Or",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_anglet-chambre-d-amour-panoramique-360",
-   "name": "Anglet - Chambre d'Amour, panoramique 360",
-   "place": "Anglet (64) - Chambre d'Amour, panoramique littoral angloy",
-   "lat": 43.5098,
-   "lon": -1.5357,
-   "page": "https://www.skaping.com/anglet/chambre-d-amour",
-   "operatorContact": "info@skaping.com"
-  },
-  {
-   "id": "cam_anglet-petite-chambre-d-amour-ville-d-anglet",
-   "name": "Anglet - Petite Chambre d'Amour (Ville d'Anglet)",
-   "place": "Anglet (64) - plage de la Petite Chambre d'Amour",
-   "lat": 43.5098,
-   "lon": -1.5357,
-   "page": "https://www.anglet.fr/outils/webcams/",
-   "operatorContact": "contact@anglet.fr"
-  },
-  {
-   "id": "cam_anglet-madrague-ocean-dunes",
-   "name": "Anglet - Madrague, Ocean, Dunes",
-   "place": "Anglet (64) - plages de la Madrague / Ocean / Dunes",
-   "lat": 43.5106,
-   "lon": -1.5342,
-   "page": "https://gosurf.fr/webcam/fr/58/Anglet-Madrague-Ocean-Dunes",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_anglet-plage-de-l-ocean-vvf",
-   "name": "Anglet - Plage de l'Ocean / VVF",
-   "place": "Anglet (64) - plage de l'Ocean (ex-VVF)",
-   "lat": 43.5145,
-   "lon": -1.5317,
-   "page": "https://gosurf.fr/webcam/fr/6/Anglet-Plage-du-VVF",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_anglet-plage-des-cavaliers",
-   "name": "Anglet - Plage des Cavaliers",
-   "place": "Anglet (64) - plage des Cavaliers (spot de reference, competitions)",
-   "lat": 43.522,
-   "lon": -1.5264,
-   "page": "https://gosurf.fr/webcam/fr/40/Anglet-Plage-des-Cavaliers",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_anglet-plage-de-la-barre",
-   "name": "Anglet - Plage de la Barre",
-   "place": "Anglet (64) - plage de la Barre, embouchure de l'Adour",
-   "lat": 43.5259,
-   "lon": -1.5242,
-   "page": "https://gosurf.fr/webcam/fr/150/Anglet-Plage-de-la-Barre",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_ondres-plage-centrale",
-   "name": "Ondres - Plage Centrale",
-   "place": "Ondres (40) - Ondres-Plage, spot de beach-break Landes sud",
-   "lat": 43.5686,
-   "lon": -1.4572,
-   "page": "https://gosurf.fr/webcam/fr/190/Ondres-Plage-Centrale",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_labenne-plage-centrale-labenne-ocean",
-   "name": "Labenne - Plage Centrale (Labenne-Ocean)",
-   "place": "Labenne (40) - Labenne-Ocean, plage centrale",
-   "lat": 43.5959,
-   "lon": -1.4636,
-   "page": "https://www.landesatlantiquesud.com/webcams/labenne/",
-   "operatorContact": "labenne@landesatlantiquesud.com"
-  },
-  {
-   "id": "cam_capbreton-plage-du-santocha-la-piste",
-   "name": "Capbreton - Plage du Santocha / La Piste",
-   "place": "Capbreton (40) - plages du Santocha et de La Piste (spots nord, tres frequentes des surfeurs)",
-   "lat": 43.6458,
-   "lon": -1.4457,
-   "page": "https://gosurf.fr/webcam/fr/83/Capbreton-Plage-du-Santosha-de-La-Piste",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_capbreton-plage-du-prevent",
-   "name": "Capbreton - Plage du Prevent",
-   "place": "Capbreton (40) - plage du Prevent, juste au nord du port",
-   "lat": 43.6496,
-   "lon": -1.446,
-   "page": "https://gosurf.fr/webcam/fr/19/Capbreton-Plage-du-Prevent",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_capbreton-port-quai-du-vieux-adour",
-   "name": "Capbreton - Port, quai du Vieux-Adour",
-   "place": "Capbreton (40) - port de peche, quai du Vieux-Adour",
-   "lat": 43.651,
-   "lon": -1.4405,
-   "page": "https://www.cc-macs.org/port-de-capbreton/webcams-port-de-capbreton/",
-   "operatorContact": "contact@cc-macs.org"
-  },
-  {
-   "id": "cam_capbreton-la-passe-entree-du-port",
-   "name": "Capbreton - La Passe (entree du port)",
-   "place": "Capbreton (40) - entree du port / estacade, passe entre les digues",
-   "lat": 43.6544,
-   "lon": -1.4447,
-   "page": "https://www.cc-macs.org/port-de-capbreton/webcams-port-de-capbreton/",
-   "operatorContact": "contact@cc-macs.org"
-  },
-  {
-   "id": "cam_hossegor-plage-sud-ocean",
-   "name": "Hossegor - Plage Sud (Ocean)",
-   "place": "Soorts-Hossegor (40) - plage sud, cote Capbreton",
-   "lat": 43.6601,
-   "lon": -1.4448,
-   "page": "https://www.plages-landes.info/hossegor/plage-centrale-ocean/webcam-plage-centrale-hossegor/"
-  },
-  {
-   "id": "cam_hossegor-la-centrale",
-   "name": "Hossegor - La Centrale",
-   "place": "Soorts-Hossegor (40) - plage centrale / La Centrale",
-   "lat": 43.6649,
-   "lon": -1.4431,
-   "page": "https://gosurf.fr/webcam/fr/21/Hossegor-La-Centrale",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_hossegor-la-graviere",
-   "name": "Hossegor - La Graviere",
-   "place": "Soorts-Hossegor (40) - La Graviere (tube, spot mondialement connu)",
-   "lat": 43.6713,
-   "lon": -1.442,
-   "page": "https://www.quiksilver.fr/surf-webcams/hossegor.html",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_hossegor-plage-de-la-nord",
-   "name": "Hossegor - Plage de La Nord",
-   "place": "Soorts-Hossegor (40) - La Nord, extremite nord (spot de gros, limite Seignosse)",
-   "lat": 43.679,
-   "lon": -1.4402,
-   "page": "https://gosurf.fr/webcam/fr/170/Hossegor-Plage-de-la-Nord",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_seignosse-bourdaines-estagnots",
-   "name": "Seignosse - Bourdaines / Estagnots",
-   "place": "Seignosse (40) - plages des Bourdaines et des Estagnots",
-   "lat": 43.6979,
-   "lon": -1.4392,
-   "page": "https://gosurf.fr/webcam/fr/79/Seignosse-Plage-des-Bourdaines-Plage-des-Estagnots",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_seignosse-webcams-des-postes-de-secours-offi",
-   "name": "Seignosse - Webcams des postes de secours (Office de Tourisme)",
-   "place": "Seignosse (40) - Bourdaines, Estagnots, Penon, Casernes (vues selectionnables)",
-   "lat": 43.6979,
-   "lon": -1.4392,
-   "page": "https://www.seignosse-tourisme.com/decouvrir-seignosse/les-plages-de-seignosse/webcams/",
-   "operatorContact": "contact@seignosse-tourisme.com"
-  },
-  {
-   "id": "cam_seignosse-plage-du-penon",
-   "name": "Seignosse - Plage du Penon",
-   "place": "Seignosse (40) - Le Penon, spot principal de la station",
-   "lat": 43.7094,
-   "lon": -1.4366,
-   "page": "https://gosurf.fr/webcam/fr/49/Seignosse-Plage-du-Penon",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_vieux-boucau-plage-de-vieux-boucau",
-   "name": "Vieux-Boucau - Plage de Vieux-Boucau",
-   "place": "Vieux-Boucau-les-Bains (40) - plage centrale, embouchure du courant de Soustons",
-   "lat": 43.7878,
-   "lon": -1.414,
-   "page": "https://gosurf.fr/webcam/fr/85/Vieux-Boucau-Plage-de-Vieux-Boucau",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_moliets-plage-sud",
-   "name": "Moliets - Plage Sud",
-   "place": "Moliets-et-Maa (40) - Moliets-Plage, partie sud vers le golf",
-   "lat": 43.848,
-   "lon": -1.395,
-   "page": "https://gosurf.fr/webcam/fr/188/Moliets-Plage-Sud",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_moliets-golf-de-moliets-ocean",
-   "name": "Moliets - Golf de Moliets / Ocean",
-   "place": "Moliets-et-Maa (40) - front de mer cote golf",
-   "lat": 43.853,
-   "lon": -1.3934,
-   "page": "https://www.plages-landes.info/moliets-et-maa/plage-centrale-4/webcam-plage-centrale-moliets/"
-  },
-  {
-   "id": "cam_moliets-plage-centrale",
-   "name": "Moliets - Plage Centrale",
-   "place": "Moliets-et-Maa (40) - Moliets-Plage, plage centrale surveillee",
-   "lat": 43.853,
-   "lon": -1.3934,
-   "page": "https://gosurf.fr/webcam/fr/187/Moliets-Plage-Centrale",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_moliets-plage-nord",
-   "name": "Moliets - Plage Nord",
-   "place": "Moliets-et-Maa (40) - Moliets-Plage, partie nord vers le courant d'Huchet",
-   "lat": 43.857,
-   "lon": -1.3915,
-   "page": "https://gosurf.fr/webcam/fr/186/Moliets-Plage-Nord",
-   "operatorContact": "hello@gosurf.fr"
-  },
-  {
-   "id": "cam_mimizan-plage-sud",
-   "name": "Mimizan - Plage Sud",
-   "place": "Mimizan-Plage (40), plage Sud (rive sud du courant)",
-   "lat": 44.2085,
-   "lon": -1.292,
-   "page": "https://viewsurf.com/univers/surf/vue/731-france-aquitaine-mimizan-plage-sud",
-   "operatorContact": "contact@mimizan-tourisme.com"
-  },
-  {
-   "id": "cam_mimizan-panoramique-video",
-   "name": "Mimizan - Panoramique video",
-   "place": "Mimizan-Plage (40), panoramique video",
-   "lat": 44.2128,
-   "lon": -1.2928,
-   "page": "https://viewsurf.com/univers/surf/vue/3112-france-aquitaine-mimizan-panoramique-video",
-   "operatorContact": "contact@mimizan-tourisme.com"
-  },
-  {
-   "id": "cam_mimizan-panoramique-hd",
-   "name": "Mimizan - Panoramique HD",
-   "place": "Mimizan-Plage (40), panoramique HD front de mer",
-   "lat": 44.213,
-   "lon": -1.2925,
-   "page": "https://viewsurf.com/univers/surf/vue/726-france-aquitaine-mimizan-panoramique-hd",
-   "operatorContact": "contact@mimizan-tourisme.com"
-  },
-  {
-   "id": "cam_mimizan-plage-ouest",
-   "name": "Mimizan - Plage Ouest",
-   "place": "Mimizan-Plage (40), plage Ouest",
-   "lat": 44.213,
-   "lon": -1.294,
-   "page": "https://viewsurf.com/univers/surf/vue/729-france-aquitaine-mimizan-plage-ouest",
-   "operatorContact": "contact@mimizan-tourisme.com"
-  },
-  {
-   "id": "cam_mimizan-plage-nord",
-   "name": "Mimizan - Plage Nord",
-   "place": "Mimizan-Plage (40), plage Nord",
-   "lat": 44.216,
-   "lon": -1.293,
-   "page": "https://viewsurf.com/univers/surf/vue/727-france-aquitaine-mimizan-plage-nord",
-   "operatorContact": "contact@mimizan-tourisme.com"
-  },
-  {
-   "id": "cam_biscarrosse-sud",
-   "name": "Biscarrosse - Sud",
-   "place": "Biscarrosse-Plage (40), plage Sud",
-   "lat": 44.439,
-   "lon": -1.252,
-   "page": "https://viewsurf.com/univers/surf/vue/13396-france-aquitaine-biscarrosse-sud"
-  },
-  {
-   "id": "cam_biscarrosse-la-grande-baine",
-   "name": "Biscarrosse - La Grande Baine",
-   "place": "Biscarrosse-Plage (40), secteur de la Grande Baine",
-   "lat": 44.4425,
-   "lon": -1.2515,
-   "page": "https://viewsurf.com/univers/surf/vue/11526-france-aquitaine-biscarrosse-la-grande-baine"
-  },
-  {
-   "id": "cam_biscarrosse-plage-centrale-la-centrale",
-   "name": "Biscarrosse - Plage Centrale (La Centrale)",
-   "place": "Biscarrosse-Plage (40), plage centrale - beach break",
-   "lat": 44.4462,
-   "lon": -1.2513,
-   "page": "https://viewsurf.com/univers/surf/vue/11524-france-aquitaine-biscarrosse-la-centrale"
-  },
-  {
-   "id": "cam_biscarrosse-plage",
-   "name": "Biscarrosse - Plage",
-   "place": "Biscarrosse-Plage (40), front de mer",
-   "lat": 44.4468,
-   "lon": -1.2512,
-   "page": "https://viewsurf.com/univers/surf/vue/11360-france-aquitaine-biscarrosse-plage"
-  },
-  {
-   "id": "cam_biscarrosse-live",
-   "name": "Biscarrosse - Live",
-   "place": "Biscarrosse-Plage (40), flux live panoramique",
-   "lat": 44.447,
-   "lon": -1.251,
-   "page": "https://viewsurf.com/univers/surf/vue/11358-france-aquitaine-biscarrosse-live"
-  },
-  {
-   "id": "cam_biscarrosse-panoramique-hd",
-   "name": "Biscarrosse - Panoramique HD",
-   "place": "Biscarrosse-Plage (40), panoramique HD",
-   "lat": 44.4472,
-   "lon": -1.2508,
-   "page": "https://viewsurf.com/univers/surf/vue/11362-france-aquitaine-biscarrosse-panoramique-hd"
-  },
-  {
-   "id": "cam_biscarrosse-la-nord",
-   "name": "Biscarrosse - La Nord",
-   "place": "Biscarrosse-Plage (40), plage Nord",
-   "lat": 44.4515,
-   "lon": -1.2502,
-   "page": "https://viewsurf.com/univers/surf/vue/11530-france-aquitaine-biscarrosse-la-nord"
-  },
-  {
-   "id": "cam_biscarrosse-rond-point-de-la-nord",
-   "name": "Biscarrosse - Rond-point de la Nord",
-   "place": "Biscarrosse-Plage (40), rond-point de la plage Nord",
-   "lat": 44.4522,
-   "lon": -1.2495,
-   "page": "https://viewsurf.com/univers/surf/vue/11528-france-aquitaine-biscarrosse-rond-point-de-la-nord"
-  },
-  {
-   "id": "cam_la-teste-de-buch-plage-de-la-salie-sud",
-   "name": "La Teste-de-Buch - Plage de la Salie Sud",
-   "place": "La Teste-de-Buch (33), plage de la Salie Sud",
-   "lat": 44.557,
-   "lon": -1.241,
-   "page": "https://viewsurf.com/univers/surf/vue/18464-france-aquitaine-la-teste-de-buch-plage-de-la-salie-sud"
-  },
-  {
-   "id": "cam_la-teste-de-buch-plage-de-la-salie",
-   "name": "La Teste-de-Buch - Plage de la Salie",
-   "place": "La Teste-de-Buch (33), plage de la Salie (vue generale)",
-   "lat": 44.57,
-   "lon": -1.239,
-   "page": "https://viewsurf.com/univers/surf/vue/18462-france-aquitaine-la-teste-de-buch-plage-de-la-salie"
-  },
-  {
-   "id": "cam_la-teste-de-buch-plage-de-la-salie-second-id",
-   "name": "La Teste-de-Buch - Plage de la Salie (second id)",
-   "place": "La Teste-de-Buch (33), plage de la Salie (second cadrage)",
-   "lat": 44.572,
-   "lon": -1.2385,
-   "page": "https://viewsurf.com/univers/surf/vue/18468-france-aquitaine-la-teste-de-buch-plage-de-la-salie"
-  },
-  {
-   "id": "cam_la-teste-de-buch-plage-de-la-salie-nord",
-   "name": "La Teste-de-Buch - Plage de la Salie Nord",
-   "place": "La Teste-de-Buch (33), plage de la Salie Nord - spot de surf au sud du Bassin",
-   "lat": 44.5765,
-   "lon": -1.2375,
-   "page": "https://viewsurf.com/univers/surf/vue/18466-france-aquitaine-la-teste-de-buch-plage-de-la-salie-nord"
-  },
-  {
-   "id": "cam_arcachon-le-port",
-   "name": "Arcachon - Le Port",
-   "place": "Arcachon (33), port de plaisance",
-   "lat": 44.6613,
-   "lon": -1.1702,
-   "page": "https://viewsurf.com/univers/plage/vue/19408-france-aquitaine-arcachon-le-port",
-   "operatorContact": "tourisme@arcachon.com"
-  },
-  {
-   "id": "cam_arcachon-live-installation-recente",
-   "name": "Arcachon - Live (installation recente)",
-   "place": "Arcachon (33), front de mer (seconde camera « live », ajoutee vers 2024)",
-   "lat": 44.6635,
-   "lon": -1.1665,
-   "page": "https://viewsurf.com/univers/plage/vue/19410-france-aquitaine-arcachon-live",
-   "operatorContact": "tourisme@arcachon.com"
-  },
-  {
-   "id": "cam_arcachon-live",
-   "name": "Arcachon - Live",
-   "place": "Arcachon (33), front de mer (flux « live »)",
-   "lat": 44.664,
-   "lon": -1.1685,
-   "page": "https://viewsurf.com/univers/plage/vue/13340-france-aquitaine-arcachon-live",
-   "operatorContact": "tourisme@arcachon.com"
-  },
-  {
-   "id": "cam_arcachon-panoramique-hd",
-   "name": "Arcachon - Panoramique HD",
-   "place": "Arcachon (33), panoramique front de mer / Bassin",
-   "lat": 44.664,
-   "lon": -1.168,
-   "page": "https://viewsurf.com/univers/plage/vue/13338-france-aquitaine-arcachon-panoramique-hd",
-   "operatorContact": "tourisme@arcachon.com"
-  },
-  {
-   "id": "cam_arcachon-jetee-thiers",
-   "name": "Arcachon - Jetee Thiers",
-   "place": "Arcachon (33), jetee Thiers / front de mer",
-   "lat": 44.6645,
-   "lon": -1.169,
-   "page": "https://viewsurf.com/univers/plage/vue/13336-france-aquitaine-arcachon-jetee-thiers",
-   "operatorContact": "tourisme@arcachon.com"
-  },
-  {
-   "id": "cam_port-de-la-vigne-cam-01",
-   "name": "Port de la Vigne - CAM 01",
-   "place": "Lege-Cap-Ferret (33), port de la Vigne (Bassin d Arcachon, pointe du Cap Ferret)",
-   "lat": 44.6742,
-   "lon": -1.2428,
-   "page": "https://www.portdelavigne.fr/",
-   "operatorContact": "contact@portdelavigne.fr"
-  },
-  {
-   "id": "cam_port-de-la-vigne-cam-02",
-   "name": "Port de la Vigne - CAM 02",
-   "place": "Lege-Cap-Ferret (33), port de la Vigne (second angle)",
-   "lat": 44.6742,
-   "lon": -1.2428,
-   "page": "https://www.portdelavigne.fr/",
-   "operatorContact": "contact@portdelavigne.fr"
-  },
-  {
-   "id": "cam_le-betey-andernos-webcam-kite-barrel-surfing",
-   "name": "Le Betey Andernos - webcam kite (Barrel Surfing)",
-   "place": "Andernos-les-Bains (33), plage du Betey - spot de kitesurf du Bassin",
-   "lat": 44.7395,
-   "lon": -1.1005,
-   "page": "https://barrelsurfing.fr/le-betey-andernos/",
-   "operatorContact": "barrelsurfing@gmail.com"
-  },
-  {
-   "id": "cam_andernos-les-bains-esplanade-de-la-jetee",
-   "name": "Andernos-les-Bains - Esplanade de la Jetee",
-   "place": "Andernos-les-Bains (33), esplanade de la jetee",
-   "lat": 44.7445,
-   "lon": -1.1048,
-   "page": "https://viewsurf.com/univers/plage/vue/6774-france-aquitaine-andernos-les-bains-esplanade-de-la-jetee",
-   "operatorContact": "contact@andernos-tourisme.fr"
-  },
-  {
-   "id": "cam_andernos-les-bains-cabanes-tchanquees",
-   "name": "Andernos-les-Bains - Cabanes tchanquees",
-   "place": "Andernos-les-Bains (33), vue vers les cabanes tchanquees / ile aux Oiseaux",
-   "lat": 44.7448,
-   "lon": -1.106,
-   "page": "https://viewsurf.com/univers/plage/vue/6764-france-aquitaine-andernos-les-bains-cabanees-tchanquees",
-   "operatorContact": "contact@andernos-tourisme.fr"
-  },
-  {
-   "id": "cam_andernos-les-bains-la-jetee",
-   "name": "Andernos-les-Bains - La jetee",
-   "place": "Andernos-les-Bains (33), jetee (Bassin d Arcachon, nord du Bassin)",
-   "lat": 44.7448,
-   "lon": -1.1062,
-   "page": "https://viewsurf.com/univers/plage/vue/6768-france-aquitaine-andernos-les-bains-la-jetee",
-   "operatorContact": "contact@andernos-tourisme.fr"
-  },
-  {
-   "id": "cam_andernos-les-bains-panoramique",
-   "name": "Andernos-les-Bains - Panoramique",
-   "place": "Andernos-les-Bains (33), panoramique nord du Bassin",
-   "lat": 44.7448,
-   "lon": -1.1055,
-   "page": "https://viewsurf.com/univers/plage/vue/6772-france-aquitaine-andernos-les-bains-panoramique",
-   "operatorContact": "contact@andernos-tourisme.fr"
-  },
-  {
-   "id": "cam_andernos-les-bains-eglise-et-vestiges",
-   "name": "Andernos-les-Bains - Eglise et vestiges",
-   "place": "Andernos-les-Bains (33), eglise Saint-Eloi et vestiges gallo-romains, bord de Bassin",
-   "lat": 44.7462,
-   "lon": -1.1042,
-   "page": "https://viewsurf.com/univers/plage/vue/6766-france-aquitaine-andernos-les-bains-eglise-et-vestiges",
-   "operatorContact": "contact@andernos-tourisme.fr"
-  },
-  {
-   "id": "cam_andernos-les-bains-le-port-ostreicole",
-   "name": "Andernos-les-Bains - Le Port ostreicole",
-   "place": "Andernos-les-Bains (33), port ostreicole",
-   "lat": 44.748,
-   "lon": -1.1018,
-   "page": "https://viewsurf.com/univers/plage/vue/6770-france-aquitaine-andernos-les-bains-le-port-ostreicole",
-   "operatorContact": "contact@andernos-tourisme.fr"
-  },
-  {
-   "id": "cam_grand-crohot-webcam-surf-barrel-surfing",
-   "name": "Grand Crohot - webcam surf (Barrel Surfing)",
-   "place": "Lege-Cap-Ferret (33), plage du Grand Crohot - spot de surf",
-   "lat": 44.7838,
-   "lon": -1.2422,
-   "page": "https://barrelsurfing.fr/grand-crohot/",
-   "operatorContact": "barrelsurfing@gmail.com"
-  },
-  {
-   "id": "cam_le-porge-ocean-plage-du-gressier-panoramique",
-   "name": "Le Porge Ocean - plage du Gressier (panoramique 360 / 6K)",
-   "place": "Le Porge (33), plage du Gressier",
-   "lat": 44.8938,
-   "lon": -1.2171,
-   "page": "https://www.skaping.com/medoc-plein-sud/le-porge-ocean/live",
-   "operatorContact": "accueil@medocpleinsud.com"
-  },
-  {
-   "id": "cam_lacanau-plage-centrale",
-   "name": "Lacanau - Plage Centrale",
-   "place": "Lacanau-Ocean (33), plage centrale / spot du Lacanau Pro",
-   "lat": 45.0002,
-   "lon": -1.1985,
-   "page": "https://viewsurf.com/univers/surf/vue/656-france-aquitaine-lacanau-plage-centrale",
-   "operatorContact": "info@medoc-atlantique-tourisme.com"
-  },
-  {
-   "id": "cam_lacanau-panoramique-video-live",
-   "name": "Lacanau - Panoramique video live",
-   "place": "Lacanau-Ocean (33), panoramique front de mer",
-   "lat": 45.0005,
-   "lon": -1.199,
-   "page": "https://viewsurf.com/univers/surf/vue/7168-france-aquitaine-lacanau-panoramique-video-live",
-   "operatorContact": "info@medoc-atlantique-tourisme.com"
-  },
-  {
-   "id": "cam_lacanau-sud-du-poste-de-secours-nord",
-   "name": "Lacanau - Sud du poste de secours Nord",
-   "place": "Lacanau-Ocean (33), sud du poste de secours Nord",
-   "lat": 45.002,
-   "lon": -1.199,
-   "page": "https://viewsurf.com/univers/surf/vue/654-france-aquitaine-lacanau-sud-du-poste-de-secours-nord",
-   "operatorContact": "info@medoc-atlantique-tourisme.com"
-  },
-  {
-   "id": "cam_lacanau-poste-de-secours-nord",
-   "name": "Lacanau - Poste de Secours Nord",
-   "place": "Lacanau-Ocean (33), poste de secours Nord",
-   "lat": 45.004,
-   "lon": -1.1997,
-   "page": "https://viewsurf.com/univers/surf/vue/660-france-aquitaine-lacanau-poste-de-secours-nord",
-   "operatorContact": "info@medoc-atlantique-tourisme.com"
-  },
-  {
-   "id": "cam_lacanau-lacanau-surf-club",
-   "name": "Lacanau - Lacanau Surf Club",
-   "place": "Lacanau-Ocean (33), plage Nord devant le Surf Club",
-   "lat": 45.006,
-   "lon": -1.2,
-   "page": "https://viewsurf.com/univers/surf/vue/658-france-aquitaine-lacanau-lacanau-surf-club",
-   "operatorContact": "info@medoc-atlantique-tourisme.com"
-  },
-  {
-   "id": "cam_carcans-la-plage",
-   "name": "Carcans - La Plage",
-   "place": "Carcans-Maubuisson (33), plage surveillee du lac d Hourtin-Carcans (a verifier : ocean ou lac)",
-   "lat": 45.067,
-   "lon": -1.139,
-   "page": "https://viewsurf.com/univers/surf/vue/1255-france-aquitaine-carcans-la-plage",
-   "operatorContact": "info@medoc-atlantique-tourisme.com"
-  },
-  {
-   "id": "cam_hourtin-port",
-   "name": "Hourtin - Port",
-   "place": "Hourtin (33), port de plaisance sur le lac d Hourtin-Carcans",
-   "lat": 45.1666,
-   "lon": -1.0718,
-   "page": "https://viewsurf.com/univers/plage/vue/18164-france-aquitaine-hourtin-port",
-   "operatorContact": "info@medoc-atlantique-tourisme.com"
-  },
-  {
-   "id": "cam_hourtin-plage",
-   "name": "Hourtin - Plage",
-   "place": "Hourtin-Plage (33), plage ocean",
-   "lat": 45.2137,
-   "lon": -1.1647,
-   "page": "https://viewsurf.com/univers/plage/vue/11106-france-aquitaine-hourtin-plage",
-   "operatorContact": "info@medoc-atlantique-tourisme.com"
-  },
-  {
-   "id": "cam_berck-sur-mer-6-vues-skaping-mer-entonnoir-b",
-   "name": "Berck-sur-Mer — 6 vues Skaping (Mer, Entonnoir, Baie d'Authie, Hopale, Maritime, Poste de secours)",
-   "place": "Berck-sur-Mer (62600) — plage et baie d'Authie, spot char à voile / kite",
-   "lat": 50.405,
-   "lon": 1.565,
-   "page": "https://www.skaping.com/berck-sur-mer/mer",
-   "operatorContact": "info@skaping.com"
-  },
-  {
-   "id": "cam_merlimont-plage-vue-viewsurf-via-l-office-de",
-   "name": "Merlimont-Plage — vue Viewsurf (via l'office de tourisme)",
-   "place": "Merlimont (62155) — plage",
-   "lat": 50.453,
-   "lon": 1.57,
-   "page": "https://pv.viewsurf.com/1604/Merlimont-Plage?i=NjI1Njo",
-   "operatorContact": "contact@destinationcotedopale.com"
-  },
-  {
-   "id": "cam_cucq-stella-plage-viewsurf-panoramique-hd-2-",
-   "name": "Cucq / Stella-Plage — Viewsurf panoramique HD + 2 vues pv.viewsurf",
-   "place": "Cucq / Stella-Plage (62780) — plage, entre Le Touquet et Merlimont",
-   "lat": 50.475,
-   "lon": 1.575,
-   "page": "https://www.viewsurf.com/univers/surf/vue/16022-france-nord-pas-de-calais-cucq-panoramique-hd",
-   "operatorContact": "contact@destinationcotedopale.com"
-  },
-  {
-   "id": "cam_aeroport-du-touquet-cote-d-opale-cam1",
-   "name": "Aéroport du Touquet — Côte d'Opale (cam1)",
-   "place": "Le Touquet (62520) — aérodrome, ~2 km du spot",
-   "lat": 50.517,
-   "lon": 1.627,
-   "page": "https://www.aeroport-letouquet.com/cams/cam1.php"
-  },
-  {
-   "id": "cam_le-touquet-paris-plage-5-vues-skaping-vue-me",
-   "name": "Le Touquet-Paris-Plage — 5 vues Skaping (Vue mer, Plage sud, Centre nautique baie de Canche, Centre nautique de la Manche, Jardins du Palais)",
-   "place": "Le Touquet (62520) — plage nord/sud et bases nautiques, spot kite majeur",
-   "lat": 50.523,
-   "lon": 1.576,
-   "page": "https://www.skaping.com/le-touquet/poste-central/vue-mer",
-   "operatorContact": "office-tourisme@letouquet.com"
-  },
-  {
-   "id": "cam_neufchatel-hardelot-2-vues-viewsurf-live-pan",
-   "name": "Neufchâtel-Hardelot — 2 vues Viewsurf (Live + Panoramique HD)",
-   "place": "Hardelot-Plage (62152) — plage, spot kite et char à voile",
-   "lat": 50.635,
-   "lon": 1.576,
-   "page": "https://www.viewsurf.com/univers/surf/vue/18210-france-nord-pas-de-calais-neufchatel-hardelot-live",
-   "operatorContact": "noelle.drillaud@viewsurf.com"
-  },
-  {
-   "id": "cam_equihen-plage-webcams-locales-flux-mjpeg-dir",
-   "name": "Équihen-Plage — webcams locales (flux MJPEG direct + 2 lecteurs ipcamlive)",
-   "place": "Équihen-Plage (62224) — plage, sud de Boulogne",
-   "lat": 50.695,
-   "lon": 1.565,
-   "page": "https://equihenplage.blogspot.com/p/webcam-du-littoral-cote-dopale.html"
-  },
-  {
-   "id": "cam_le-portel-plage-skaping",
-   "name": "Le Portel — Plage (Skaping)",
-   "place": "Le Portel (62480) — plage centre, spot de glisse du Boulonnais",
-   "lat": 50.708,
-   "lon": 1.573,
-   "page": "https://www.skaping.com/le-portel/plage/live"
-  },
-  {
-   "id": "cam_boulogne-sur-mer-la-webcam-du-port-de-plaisa",
-   "name": "Boulogne-sur-Mer — la webcam du port de plaisance",
-   "place": "Boulogne-sur-Mer (62200) — port de plaisance",
-   "lat": 50.727,
-   "lon": 1.578,
-   "page": "https://www.boulogne-marina.fr/la-webcam-du-port",
-   "operatorContact": "contact@boulogne-marina.fr"
-  },
-  {
-   "id": "cam_webcam-live-a-wissant-pays-des-2-caps",
-   "name": "Webcam live à Wissant — Pays des 2 Caps",
-   "place": "Wissant — digue, vue mer entre Cap Gris-Nez et Cap Blanc-Nez",
-   "lat": 50.8865,
-   "lon": 1.6636,
-   "page": "https://www.paysdes2caps.com/webcam-wissant"
-  },
-  {
-   "id": "cam_wissant-webcam-le-direct-de-la-plage-et-du-s",
-   "name": "Wissant webcam — le direct de la plage et du spot",
-   "place": "Wissant (62179) — baie de Wissant, LE spot kite de la Côte d'Opale",
-   "lat": 50.8865,
-   "lon": 1.6636,
-   "page": "https://www.youtube.com/@wissant_webcam/live"
-  },
-  {
-   "id": "cam_sangatte-bleriot-plage-direct-youtube-live-s",
-   "name": "Sangatte / Blériot-Plage — direct YouTube « LIVE • Sangatte – Vue sur la Manche »",
-   "place": "Sangatte / Blériot-Plage (62231) — front de mer, vue Cap Blanc-Nez",
-   "lat": 50.945,
-   "lon": 1.75,
-   "page": "https://www.youtube.com/watch?v=NZy8SQ9kdbk"
-  },
-  {
-   "id": "cam_calais-2-vues-viewsurf-calais-live-calais-la",
-   "name": "Calais — 2 vues Viewsurf (Calais Live, Calais La Plage)",
-   "place": "Calais (62100) — plage de Calais",
-   "lat": 50.97,
-   "lon": 1.84,
-   "page": "https://www.viewsurf.com/univers/plage/vue/18722-france-nord-pas-de-calais-calais-live",
-   "operatorContact": "noelle.drillaud@viewsurf.com"
-  },
-  {
-   "id": "cam_gravelines-2-webcams-municipales-anse-des-es",
-   "name": "Gravelines — 2 webcams municipales (Anse des Espagnols, Vue chenal)",
-   "place": "Gravelines / Petit-Fort-Philippe (59820) — chenal de l'Aa et plage",
-   "lat": 51.01,
-   "lon": 2.1,
-   "page": "https://www.ville-gravelines.fr/decouvrir-gravelines/gravelines-en-images/les-webcams/webcam-vue-chenal",
-   "operatorContact": "contact@ville-gravelines.fr"
-  },
-  {
-   "id": "cam_dunkerque-malo-les-bains-leffrinckoucke-13-v",
-   "name": "Dunkerque / Malo-les-Bains / Leffrinckoucke — ~13 vues Viewsurf",
-   "place": "Dunkerque, Malo-les-Bains, Leffrinckoucke (59) — digue et plage, spots kite",
-   "lat": 51.045,
-   "lon": 2.39,
-   "page": "https://www.viewsurf.com/univers/plage/vue/16806-france-nord-pas-de-calais-dunkerque-live",
-   "operatorContact": "contact@dunkerque-tourisme.fr"
-  },
-  {
-   "id": "cam_bray-dunes-8-vues-viewsurf-live-panoramique-",
-   "name": "Bray-Dunes — 8 vues Viewsurf (Live, Panoramique HD, Rotonde, Mer Ouest, Mer Est, Mer Nord, Digue Est, Digue Ouest)",
-   "place": "Bray-Dunes (59123) — plage et digue de mer, spot kite/wing frontalier",
-   "lat": 51.0725,
-   "lon": 2.523,
-   "page": "https://www.viewsurf.com/univers/plage/vue/16790-france-nord-pas-de-calais-bray-dunes-live",
-   "operatorContact": "noelle.drillaud@viewsurf.com"
-  }
- ]
+  "_lisezmoi": "Catalogue des webcams du littoral. Par defaut l'app OUVRE la page de l'exploitant : un lien n'est pas une contrefacon. Le champ 'embed' n'apparait QUE sur les cameras dont l'exploitant a donne un accord ECRIT (guideline App Store 5.2 : rejouer le flux d'un tiers sans accord fait retirer l'APPLICATION, pas la fonctionnalite). Le retrait a la demande passe par docs/blocklist.json, cle 'webcams'.",
+  "version": 1,
+  "updated": "2026-08-07",
+  "webcams": [
+    {
+      "id": "cam_le-barcares-les-dosses-park-dosses-webcam-sk",
+      "name": "Le Barcares — Les Dosses / Park Dosses — webcam Skaping",
+      "place": "Le Barcares (66420) — Les Dosses, spot kite / wing sur l etang de Leucate-Salses, ~2 km au sud de Port Leucate",
+      "lat": 42.83733,
+      "lon": 3.02344,
+      "page": "https://www.skaping.com/le-barcares/dosses",
+      "operatorContact": "info@skaping.com"
+    },
+    {
+      "id": "cam_cercle-de-voile-du-cap-leucate-re-diffuseur-",
+      "name": "Cercle de Voile du Cap Leucate — re-diffuseur des vues Viewsurf, contact utile",
+      "place": "Etang de Leucate — base nautique (windsurf, foil, catamaran, char a voile, paddle)",
+      "lat": 42.8494,
+      "lon": 3.0368,
+      "page": "https://cercledevoile.com/webcams/",
+      "operatorContact": "contact.voile@cercledevoile.com"
+    },
+    {
+      "id": "cam_leucate-base-de-voile-la-marina-etang-de-leu",
+      "name": "Leucate — Base de Voile « La Marina » (etang de Leucate) — Viewsurf / OT Leucate",
+      "place": "Etang de Leucate / base de voile — plan d eau plat, spot d apprentissage kite et wing",
+      "lat": 42.8494,
+      "lon": 3.0368,
+      "page": "https://www.viewsurf.com/univers/plage/vue/18158-france-languedoc-roussillon-leucate-base-de-voile",
+      "operatorContact": "info@tourisme-leucate.fr"
+    },
+    {
+      "id": "cam_leucate-le-port-port-leucate-viewsurf-ot-leu",
+      "name": "Leucate — Le Port (Port Leucate) — Viewsurf / OT Leucate",
+      "place": "Port Leucate — port de plaisance, quais",
+      "lat": 42.8557,
+      "lon": 3.0401,
+      "page": "https://www.viewsurf.com/univers/plage/vue/17040-france-languedoc-roussillon-leucate-le-port",
+      "operatorContact": "info@tourisme-leucate.fr"
+    },
+    {
+      "id": "cam_port-de-plaisance-de-port-leucate-capitainer",
+      "name": "Port de plaisance de Port Leucate (capitainerie) — re-diffuseur, contact utile",
+      "place": "Port Leucate — port de plaisance",
+      "lat": 42.8557,
+      "lon": 3.0401,
+      "page": "https://www.port-leucate.fr/webcam/",
+      "operatorContact": "capitainerie@port-leucate.fr"
+    },
+    {
+      "id": "cam_camping-cap-leucate-mer-sable-soleil-re-diff",
+      "name": "Camping Cap Leucate / Mer Sable Soleil — re-diffuseur, contact utile",
+      "place": "Leucate-Plage — la camera regarde le spot juste en face du camping",
+      "lat": 42.9018,
+      "lon": 3.0533,
+      "page": "https://campingmunicipalcapleucate-mss.fr/webcam-leucate/",
+      "operatorContact": "camping.capleucate-mss@mairie-leucate.fr"
+    },
+    {
+      "id": "cam_leucate-le-canigou-viewsurf-ot-leucate",
+      "name": "Leucate — Le Canigou — Viewsurf / OT Leucate",
+      "place": "Leucate — vue vers le Canigou (interieur des terres)",
+      "lat": 42.9018,
+      "lon": 3.0533,
+      "page": "https://www.viewsurf.com/univers/plage/vue/19608-france-languedoc-roussillon-leucate-le-canigou",
+      "operatorContact": "info@tourisme-leucate.fr"
+    },
+    {
+      "id": "cam_leucate-leucate-plage-viewsurf-ot-leucate",
+      "name": "Leucate — Leucate-Plage — Viewsurf / OT Leucate",
+      "place": "Leucate-Plage (baignade + glisse par vent de secteur est)",
+      "lat": 42.9018,
+      "lon": 3.0533,
+      "page": "https://www.viewsurf.com/univers/plage/vue/17042-france-languedoc-roussillon-leucate-la-plage",
+      "operatorContact": "info@tourisme-leucate.fr"
+    },
+    {
+      "id": "cam_leucate-poste-de-secours-viewsurf-ot-leucate",
+      "name": "Leucate — Poste de Secours — Viewsurf / OT Leucate",
+      "place": "Leucate-Plage — poste de secours (Windy la reference comme « Leucate Est : Poste de Secours N6 »)",
+      "lat": 42.9018,
+      "lon": 3.0533,
+      "page": "https://www.viewsurf.com/univers/plage/vue/19610-france-languedoc-roussillon-leucate-poste-de-secours",
+      "operatorContact": "info@tourisme-leucate.fr"
+    },
+    {
+      "id": "cam_leucate-village-le-chateau-viewsurf-ot-leuca",
+      "name": "Leucate — Village / Le chateau — Viewsurf / OT Leucate",
+      "place": "Leucate village (pas un spot de glisse)",
+      "lat": 42.9098,
+      "lon": 3.028,
+      "page": "https://pv.viewsurf.com/2382/Leucate-Village",
+      "operatorContact": "info@tourisme-leucate.fr"
+    },
+    {
+      "id": "cam_la-franqui-webcam-le-bleu-winds-up-id-64",
+      "name": "La Franqui — webcam « Le Bleu » (Winds-Up id 64)",
+      "place": "La Franqui (Leucate) — plage devant Le Bleu Surf Cafe, zone kite / windsurf / wing",
+      "lat": 42.9323,
+      "lon": 3.0353,
+      "page": "https://www.winds-up.com/spot/64-la-franqui-cam-le-bleu/webcam",
+      "operatorContact": "contact@winds-up.com",
+      "embed": false,
+      "embedRefusedByOperator": true,
+      "authorizationNote": "Winds-Up (Jean-Louis RIBOT, contact@winds-up.com) — accord ecrit du 13 aout 2026 : NOM + LIEN autorises, REDIFFUSION DU FLUX REFUSEE (\"je refuse que la webcam soit rediffusee\"). embed doit rester false. Autorisation revocable a tout moment sur simple demande. La phrase pre-remplie du courrier disait \"afficher le flux\" : c'est la condition manuscrite qui prime, et elle refuse la rediffusion."
+    },
+    {
+      "id": "cam_leucate-panoramique-plage-des-coussoules-hd-",
+      "name": "Leucate — Panoramique plage des Coussoules (HD) — Viewsurf / OT Leucate",
+      "place": "Leucate — plage des Coussoules / La Franqui, vue large falaise + mer",
+      "lat": 42.9472,
+      "lon": 3.0363,
+      "page": "https://www.viewsurf.com/univers/plage/vue/17044-france-languedoc-roussillon-leucate-panoramique-hd",
+      "operatorContact": "info@tourisme-leucate.fr"
+    },
+    {
+      "id": "cam_leucate-plage-des-coussoules-vue-plage-views",
+      "name": "Leucate — Plage des Coussoules (vue plage) — Viewsurf / OT Leucate",
+      "place": "Leucate — plage des Coussoules / La Franqui (kite, windsurf, wing)",
+      "lat": 42.9472,
+      "lon": 3.0363,
+      "page": "https://www.viewsurf.com/univers/plage/vue/17014-france-languedoc-roussillon-leucate-plage-des-coussoules",
+      "operatorContact": "info@tourisme-leucate.fr"
+    },
+    {
+      "id": "cam_leucate-spot-char-a-voile-plage-des-coussoul",
+      "name": "Leucate — Spot Char a Voile, plage des Coussoules — Viewsurf / OT Leucate",
+      "place": "Leucate — zone de roulage char a voile, plage des Coussoules",
+      "lat": 42.9472,
+      "lon": 3.0363,
+      "page": "https://www.viewsurf.com/univers/plage/vue/19230-france-languedoc-roussillon-leucate-spot-char-a-voile",
+      "operatorContact": "info@tourisme-leucate.fr"
+    },
+    {
+      "id": "cam_leucate-spot-kitesurf-plage-des-coussoules-l",
+      "name": "Leucate — Spot Kitesurf, plage des Coussoules (La Franqui) — LA camera qui compte pour un kiteur",
+      "place": "Leucate (11370) — plage des Coussoules / La Franqui, LE spot kite-windsurf (site du Mondial du Vent)",
+      "lat": 42.9472,
+      "lon": 3.0363,
+      "page": "https://www.viewsurf.com/univers/plage/vue/19232-france-languedoc-roussillon-leucate-spot-kitesurf",
+      "operatorContact": "info@tourisme-leucate.fr"
+    },
+    {
+      "id": "cam_office-de-tourisme-de-leucate-page-webcam-of",
+      "name": "Office de Tourisme de Leucate — page webcam officielle, point d entree unique des 5 cameras",
+      "place": "Leucate / La Franqui / Port Leucate / etang — toutes les vues du secteur sur une page",
+      "lat": 42.9472,
+      "lon": 3.0363,
+      "page": "https://www.tourisme-leucate.fr/webcam/",
+      "operatorContact": "info@tourisme-leucate.fr"
+    },
+    {
+      "id": "cam_port-la-nouvelle-webcam-panoramique-skaping",
+      "name": "Port-la-Nouvelle — webcam panoramique Skaping",
+      "place": "Port-la-Nouvelle (11210) — plage et port, ~9 km au nord de la plage des Coussoules",
+      "lat": 43.0139,
+      "lon": 3.06518,
+      "page": "https://www.skaping.com/port-la-nouvelle",
+      "operatorContact": "info@skaping.com"
+    },
+    {
+      "id": "cam_l-ayguade-hyeres",
+      "name": "L'Ayguade (Hyères)",
+      "place": "Hyères (83) — plage de l'Ayguade, est de la rade, vue sur les îles d'Or",
+      "lat": 43.0336,
+      "lon": 6.17034,
+      "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/77-hyeres4/",
+      "operatorContact": "vision-environnement@live.fr"
+    },
+    {
+      "id": "cam_la-madrague-giens",
+      "name": "La Madrague (Giens)",
+      "place": "Giens / Hyères (83) — port de la Madrague, côté ouest de la presqu'île (repli quand ça souffle trop à l'Almanarre)",
+      "lat": 43.0399,
+      "lon": 6.11005,
+      "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/79-madrague/",
+      "operatorContact": "vision-environnement@live.fr"
+    },
+    {
+      "id": "cam_almanarre-sud-camping-international-de-giens",
+      "name": "Almanarre sud — Camping International de Giens",
+      "place": "Giens / Hyères (83) — extrémité sud de la plage de l'Almanarre, dans l'enceinte du Camping International (école de windsurf Spin Out sur place)",
+      "lat": 43.041,
+      "lon": 6.123,
+      "page": "https://en.addicted-sports.com/webcam/hyeres/almanarre/",
+      "operatorContact": "info@addicted-sports.com"
+    },
+    {
+      "id": "cam_almanarre-les-estagnets-webcam-kite-wing",
+      "name": "Almanarre – Les Estagnets (webcam kite/wing)",
+      "place": "Hyères (83) — plage de l'Almanarre, zone kite/wing des Estagnets",
+      "lat": 43.04924,
+      "lon": 6.13188,
+      "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/699-hyeres-kite/",
+      "operatorContact": "vision-environnement@live.fr"
+    },
+    {
+      "id": "cam_winds-up-almanarre-salin-des-pesquiers",
+      "name": "Winds-Up — Almanarre / Salin des Pesquiers",
+      "place": "Hyères (83) — Almanarre / Salin des Pesquiers (spot kite/windsurf de référence, station de vent + webcam)",
+      "lat": 43.0667,
+      "lon": 6.13491,
+      "page": "https://www.winds-up.com/spot/2-almanarre-salin-des-pesquiers/webcam",
+      "operatorContact": "contact@winds-up.com",
+      "embed": false,
+      "embedRefusedByOperator": true,
+      "authorizationNote": "Winds-Up (Jean-Louis RIBOT, contact@winds-up.com) — accord ecrit du 13 aout 2026 : NOM + LIEN autorises, REDIFFUSION DU FLUX REFUSEE (\"je refuse que la webcam soit rediffusee\"). embed doit rester false. Autorisation revocable a tout moment sur simple demande. La phrase pre-remplie du courrier disait \"afficher le flux\" : c'est la condition manuscrite qui prime, et elle refuse la rediffusion."
+    },
+    {
+      "id": "cam_l-almanarre-nord-olbia",
+      "name": "L'Almanarre Nord (Olbia)",
+      "place": "Hyères (83) — extrémité nord de la plage de l'Almanarre, au-dessus du site antique d'Olbia (spot windsurf/wingfoil)",
+      "lat": 43.08003,
+      "lon": 6.12304,
+      "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/75-hyeres3/",
+      "operatorContact": "vision-environnement@live.fr"
+    },
+    {
+      "id": "cam_port-saint-pierre-hyeres",
+      "name": "Port Saint-Pierre (Hyères)",
+      "place": "Hyères (83) — port Saint-Pierre, rade de Hyères (proche des spots de La Capte / Hyères-Plage)",
+      "lat": 43.08303,
+      "lon": 6.1599,
+      "page": "https://www.vision-environnement.com/webcam/france/provence-alpes-cote-d-azur/76-hyeres2/",
+      "operatorContact": "vision-environnement@live.fr"
+    },
+    {
+      "id": "cam_hendaye-plage-du-casino-et-des-jumeaux",
+      "name": "Hendaye - Plage du Casino et des Jumeaux",
+      "place": "Hendaye (64) - Grande Plage / Ondarraitz, secteur casino",
+      "lat": 43.3723,
+      "lon": -1.7734,
+      "page": "https://gosurf.fr/webcam/fr/8/Hendaye-Plage-du-Casino-et-des-Jumeaux",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_hendaye-abbadia-chateau-observatoire-panoram",
+      "name": "Hendaye - Abbadia (Chateau-Observatoire), panoramique",
+      "place": "Hendaye (64) - Pointe Sainte-Anne / Abbadia, vue vers Hondarribia et le Cap du Figuier",
+      "lat": 43.3774,
+      "lon": -1.7492,
+      "page": "https://www.skaping.com/hendaye/abbadia",
+      "operatorContact": "info@skaping.com"
+    },
+    {
+      "id": "cam_hendaye-plage-d-ondarraitz",
+      "name": "Hendaye - Plage d'Ondarraitz",
+      "place": "Hendaye (64) - plage d'Ondarraitz (spot ecole / longboard)",
+      "lat": 43.3785,
+      "lon": -1.7571,
+      "page": "https://gosurf.fr/webcam/fr/63/Hendaye-Plage-d-Ondarraitz",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_hendaye-plage-des-jumeaux-ville-d-hendaye",
+      "name": "Hendaye - Plage des Jumeaux (Ville d'Hendaye)",
+      "place": "Hendaye (64) - Grande Plage, vue vers les Deux Jumeaux",
+      "lat": 43.3785,
+      "lon": -1.7571,
+      "page": "https://www.hendaye.fr/fr/hendaye-decouverte/presentation/webcam/"
+    },
+    {
+      "id": "cam_saint-jean-de-luz-7-vues-office-de-tourisme",
+      "name": "Saint-Jean-de-Luz - 7 vues (Office de tourisme)",
+      "place": "Saint-Jean-de-Luz / Ciboure (64) - baie, Grande Plage, spot Sainte-Barbe, chenal du port, Fort de Socoa",
+      "lat": 43.3913,
+      "lon": -1.6618,
+      "page": "https://www.saint-jean-de-luz.com/webcams/",
+      "operatorContact": "saintjeandeluz@otpaysbasque.com"
+    },
+    {
+      "id": "cam_ciboure-plage-de-la-bougie-socoa",
+      "name": "Ciboure - Plage de la Bougie (Socoa)",
+      "place": "Ciboure (64) - plage de la Bougie / Socoa, fond de baie de Saint-Jean-de-Luz",
+      "lat": 43.3961,
+      "lon": -1.6835,
+      "page": "https://gosurf.fr/webcam/fr/69/Ciboure-Plage-de-la-Bougie",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_saint-jean-de-luz-sainte-barbe-et-la-baie",
+      "name": "Saint-Jean-de-Luz - Sainte-Barbe et la Baie",
+      "place": "Saint-Jean-de-Luz (64) - spot de Sainte-Barbe (digue) + baie",
+      "lat": 43.3994,
+      "lon": -1.6638,
+      "page": "https://gosurf.fr/webcam/fr/11/Saint-Jean-de-Luz-Sainte-Barbe-et-la-Baie",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_guethary-bidart-parlementia",
+      "name": "Guethary / Bidart - Parlementia",
+      "place": "Guethary - Bidart (64) - spot de big wave Parlementia (limite communale)",
+      "lat": 43.4282,
+      "lon": -1.6069,
+      "page": "https://gosurf.fr/webcam/fr/13/Bidart-Guethary-Parlementia",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_bidart-plage-du-centre",
+      "name": "Bidart - Plage du Centre",
+      "place": "Bidart (64) - plage du Centre (spot principal de Bidart)",
+      "lat": 43.4374,
+      "lon": -1.5961,
+      "page": "https://gosurf.fr/webcam/fr/147/Bidart-Plage-du-Centre",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_bidart-webcam-office-de-tourisme",
+      "name": "Bidart - Webcam Office de Tourisme",
+      "place": "Bidart (64) - plage du Centre / littoral bidartar",
+      "lat": 43.4374,
+      "lon": -1.5961,
+      "page": "https://www.bidarttourisme.com/organisez-votre-sejour/pratique/webcam/"
+    },
+    {
+      "id": "cam_biarritz-cote-des-basques-panoramique",
+      "name": "Biarritz - Cote des Basques panoramique",
+      "place": "Biarritz (64) - Cote des Basques, vue panoramique",
+      "lat": 43.4749,
+      "lon": -1.5688,
+      "page": "https://www.biarritz.fr/les-webcams/cote-des-basques-panoramique"
+    },
+    {
+      "id": "cam_biarritz-la-cote-des-basques",
+      "name": "Biarritz - La Cote des Basques",
+      "place": "Biarritz (64) - Cote des Basques (spot historique, longboard)",
+      "lat": 43.4749,
+      "lon": -1.5688,
+      "page": "https://gosurf.fr/webcam/fr/7/Biarritz-La-Cote-des-Basques",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_biarritz-rocher-de-la-vierge",
+      "name": "Biarritz - Rocher de la Vierge",
+      "place": "Biarritz (64) - Rocher de la Vierge / Port Vieux, entre Grande Plage et Cote des Basques",
+      "lat": 43.4841,
+      "lon": -1.5705,
+      "page": "https://www.biarritz.fr/les-webcams/rocher-de-la-la-vierge"
+    },
+    {
+      "id": "cam_biarritz-grande-plage-1-ville-de-biarritz",
+      "name": "Biarritz - Grande Plage 1 (Ville de Biarritz)",
+      "place": "Biarritz (64) - Grande Plage, vue 1",
+      "lat": 43.4853,
+      "lon": -1.5584,
+      "page": "https://www.biarritz.fr/les-webcams/grande-plage-1"
+    },
+    {
+      "id": "cam_biarritz-grande-plage-2-ville-de-biarritz",
+      "name": "Biarritz - Grande Plage 2 (Ville de Biarritz)",
+      "place": "Biarritz (64) - Grande Plage, vue 2",
+      "lat": 43.4853,
+      "lon": -1.5584,
+      "page": "https://www.biarritz.fr/les-webcams/grande-plage-2"
+    },
+    {
+      "id": "cam_biarritz-la-grande-plage-go-surf",
+      "name": "Biarritz - La Grande Plage (GO SURF)",
+      "place": "Biarritz (64) - Grande Plage",
+      "lat": 43.4853,
+      "lon": -1.5584,
+      "page": "https://gosurf.fr/webcam/fr/84/Biarritz-La-Grande-Plage",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_biarritz-vue-du-casino-et-de-l-hotel-du-pala",
+      "name": "Biarritz - Vue du Casino et de l'Hotel du Palais",
+      "place": "Biarritz (64) - Grande Plage, secteur casino municipal",
+      "lat": 43.4853,
+      "lon": -1.5584,
+      "page": "https://gosurf.fr/webcam/fr/48/Biarritz-Vue-du-Casino-et-de-l-Hotel-du-Palais",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_biarritz-grande-plage-vue-du-phare-et-de-la-",
+      "name": "Biarritz - Grande Plage, vue du Phare et de la Roche Plate",
+      "place": "Biarritz (64) - nord de la Grande Plage, Miramar / Roche Plate",
+      "lat": 43.4883,
+      "lon": -1.5552,
+      "page": "https://gosurf.fr/webcam/fr/39/Biarritz-La-Grande-Plage-Vue-du-Phare-et-de-la-Roche-plate",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_anglet-plage-du-club",
+      "name": "Anglet - Plage du Club",
+      "place": "Anglet (64) - plage du Club",
+      "lat": 43.4994,
+      "lon": -1.5438,
+      "page": "https://gosurf.fr/webcam/fr/149/Anglet-Plage-du-Club",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_anglet-plage-des-sables-d-or",
+      "name": "Anglet - Plage des Sables d'Or",
+      "place": "Anglet (64) - plage des Sables d'Or",
+      "lat": 43.5016,
+      "lon": -1.541,
+      "page": "https://gosurf.fr/webcam/fr/152/Anglet-Plage-des-Sables-d-or",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_anglet-plage-de-marinella-sables-d-or",
+      "name": "Anglet - Plage de Marinella / Sables d'Or",
+      "place": "Anglet (64) - plage de Marinella",
+      "lat": 43.5045,
+      "lon": -1.5391,
+      "page": "https://gosurf.fr/webcam/fr/153/Anglet-Plage-de-Marinella-Sables-d-Or",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_anglet-chambre-d-amour-panoramique-360",
+      "name": "Anglet - Chambre d'Amour, panoramique 360",
+      "place": "Anglet (64) - Chambre d'Amour, panoramique littoral angloy",
+      "lat": 43.5098,
+      "lon": -1.5357,
+      "page": "https://www.skaping.com/anglet/chambre-d-amour",
+      "operatorContact": "info@skaping.com"
+    },
+    {
+      "id": "cam_anglet-petite-chambre-d-amour-ville-d-anglet",
+      "name": "Anglet - Petite Chambre d'Amour (Ville d'Anglet)",
+      "place": "Anglet (64) - plage de la Petite Chambre d'Amour",
+      "lat": 43.5098,
+      "lon": -1.5357,
+      "page": "https://www.anglet.fr/outils/webcams/",
+      "operatorContact": "contact@anglet.fr"
+    },
+    {
+      "id": "cam_anglet-madrague-ocean-dunes",
+      "name": "Anglet - Madrague, Ocean, Dunes",
+      "place": "Anglet (64) - plages de la Madrague / Ocean / Dunes",
+      "lat": 43.5106,
+      "lon": -1.5342,
+      "page": "https://gosurf.fr/webcam/fr/58/Anglet-Madrague-Ocean-Dunes",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_anglet-plage-de-l-ocean-vvf",
+      "name": "Anglet - Plage de l'Ocean / VVF",
+      "place": "Anglet (64) - plage de l'Ocean (ex-VVF)",
+      "lat": 43.5145,
+      "lon": -1.5317,
+      "page": "https://gosurf.fr/webcam/fr/6/Anglet-Plage-du-VVF",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_anglet-plage-des-cavaliers",
+      "name": "Anglet - Plage des Cavaliers",
+      "place": "Anglet (64) - plage des Cavaliers (spot de reference, competitions)",
+      "lat": 43.522,
+      "lon": -1.5264,
+      "page": "https://gosurf.fr/webcam/fr/40/Anglet-Plage-des-Cavaliers",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_anglet-plage-de-la-barre",
+      "name": "Anglet - Plage de la Barre",
+      "place": "Anglet (64) - plage de la Barre, embouchure de l'Adour",
+      "lat": 43.5259,
+      "lon": -1.5242,
+      "page": "https://gosurf.fr/webcam/fr/150/Anglet-Plage-de-la-Barre",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_ondres-plage-centrale",
+      "name": "Ondres - Plage Centrale",
+      "place": "Ondres (40) - Ondres-Plage, spot de beach-break Landes sud",
+      "lat": 43.5686,
+      "lon": -1.4572,
+      "page": "https://gosurf.fr/webcam/fr/190/Ondres-Plage-Centrale",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_labenne-plage-centrale-labenne-ocean",
+      "name": "Labenne - Plage Centrale (Labenne-Ocean)",
+      "place": "Labenne (40) - Labenne-Ocean, plage centrale",
+      "lat": 43.5959,
+      "lon": -1.4636,
+      "page": "https://www.landesatlantiquesud.com/webcams/labenne/",
+      "operatorContact": "labenne@landesatlantiquesud.com"
+    },
+    {
+      "id": "cam_capbreton-plage-du-santocha-la-piste",
+      "name": "Capbreton - Plage du Santocha / La Piste",
+      "place": "Capbreton (40) - plages du Santocha et de La Piste (spots nord, tres frequentes des surfeurs)",
+      "lat": 43.6458,
+      "lon": -1.4457,
+      "page": "https://gosurf.fr/webcam/fr/83/Capbreton-Plage-du-Santosha-de-La-Piste",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_capbreton-plage-du-prevent",
+      "name": "Capbreton - Plage du Prevent",
+      "place": "Capbreton (40) - plage du Prevent, juste au nord du port",
+      "lat": 43.6496,
+      "lon": -1.446,
+      "page": "https://gosurf.fr/webcam/fr/19/Capbreton-Plage-du-Prevent",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_capbreton-port-quai-du-vieux-adour",
+      "name": "Capbreton - Port, quai du Vieux-Adour",
+      "place": "Capbreton (40) - port de peche, quai du Vieux-Adour",
+      "lat": 43.651,
+      "lon": -1.4405,
+      "page": "https://www.cc-macs.org/port-de-capbreton/webcams-port-de-capbreton/",
+      "operatorContact": "contact@cc-macs.org"
+    },
+    {
+      "id": "cam_capbreton-la-passe-entree-du-port",
+      "name": "Capbreton - La Passe (entree du port)",
+      "place": "Capbreton (40) - entree du port / estacade, passe entre les digues",
+      "lat": 43.6544,
+      "lon": -1.4447,
+      "page": "https://www.cc-macs.org/port-de-capbreton/webcams-port-de-capbreton/",
+      "operatorContact": "contact@cc-macs.org"
+    },
+    {
+      "id": "cam_hossegor-plage-sud-ocean",
+      "name": "Hossegor - Plage Sud (Ocean)",
+      "place": "Soorts-Hossegor (40) - plage sud, cote Capbreton",
+      "lat": 43.6601,
+      "lon": -1.4448,
+      "page": "https://www.plages-landes.info/hossegor/plage-centrale-ocean/webcam-plage-centrale-hossegor/"
+    },
+    {
+      "id": "cam_hossegor-la-centrale",
+      "name": "Hossegor - La Centrale",
+      "place": "Soorts-Hossegor (40) - plage centrale / La Centrale",
+      "lat": 43.6649,
+      "lon": -1.4431,
+      "page": "https://gosurf.fr/webcam/fr/21/Hossegor-La-Centrale",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_hossegor-la-graviere",
+      "name": "Hossegor - La Graviere",
+      "place": "Soorts-Hossegor (40) - La Graviere (tube, spot mondialement connu)",
+      "lat": 43.6713,
+      "lon": -1.442,
+      "page": "https://www.quiksilver.fr/surf-webcams/hossegor.html",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_hossegor-plage-de-la-nord",
+      "name": "Hossegor - Plage de La Nord",
+      "place": "Soorts-Hossegor (40) - La Nord, extremite nord (spot de gros, limite Seignosse)",
+      "lat": 43.679,
+      "lon": -1.4402,
+      "page": "https://gosurf.fr/webcam/fr/170/Hossegor-Plage-de-la-Nord",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_seignosse-bourdaines-estagnots",
+      "name": "Seignosse - Bourdaines / Estagnots",
+      "place": "Seignosse (40) - plages des Bourdaines et des Estagnots",
+      "lat": 43.6979,
+      "lon": -1.4392,
+      "page": "https://gosurf.fr/webcam/fr/79/Seignosse-Plage-des-Bourdaines-Plage-des-Estagnots",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_seignosse-webcams-des-postes-de-secours-offi",
+      "name": "Seignosse - Webcams des postes de secours (Office de Tourisme)",
+      "place": "Seignosse (40) - Bourdaines, Estagnots, Penon, Casernes (vues selectionnables)",
+      "lat": 43.6979,
+      "lon": -1.4392,
+      "page": "https://www.seignosse-tourisme.com/decouvrir-seignosse/les-plages-de-seignosse/webcams/",
+      "operatorContact": "contact@seignosse-tourisme.com"
+    },
+    {
+      "id": "cam_seignosse-plage-du-penon",
+      "name": "Seignosse - Plage du Penon",
+      "place": "Seignosse (40) - Le Penon, spot principal de la station",
+      "lat": 43.7094,
+      "lon": -1.4366,
+      "page": "https://gosurf.fr/webcam/fr/49/Seignosse-Plage-du-Penon",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_vieux-boucau-plage-de-vieux-boucau",
+      "name": "Vieux-Boucau - Plage de Vieux-Boucau",
+      "place": "Vieux-Boucau-les-Bains (40) - plage centrale, embouchure du courant de Soustons",
+      "lat": 43.7878,
+      "lon": -1.414,
+      "page": "https://gosurf.fr/webcam/fr/85/Vieux-Boucau-Plage-de-Vieux-Boucau",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_moliets-plage-sud",
+      "name": "Moliets - Plage Sud",
+      "place": "Moliets-et-Maa (40) - Moliets-Plage, partie sud vers le golf",
+      "lat": 43.848,
+      "lon": -1.395,
+      "page": "https://gosurf.fr/webcam/fr/188/Moliets-Plage-Sud",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_moliets-golf-de-moliets-ocean",
+      "name": "Moliets - Golf de Moliets / Ocean",
+      "place": "Moliets-et-Maa (40) - front de mer cote golf",
+      "lat": 43.853,
+      "lon": -1.3934,
+      "page": "https://www.plages-landes.info/moliets-et-maa/plage-centrale-4/webcam-plage-centrale-moliets/"
+    },
+    {
+      "id": "cam_moliets-plage-centrale",
+      "name": "Moliets - Plage Centrale",
+      "place": "Moliets-et-Maa (40) - Moliets-Plage, plage centrale surveillee",
+      "lat": 43.853,
+      "lon": -1.3934,
+      "page": "https://gosurf.fr/webcam/fr/187/Moliets-Plage-Centrale",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_moliets-plage-nord",
+      "name": "Moliets - Plage Nord",
+      "place": "Moliets-et-Maa (40) - Moliets-Plage, partie nord vers le courant d'Huchet",
+      "lat": 43.857,
+      "lon": -1.3915,
+      "page": "https://gosurf.fr/webcam/fr/186/Moliets-Plage-Nord",
+      "operatorContact": "hello@gosurf.fr"
+    },
+    {
+      "id": "cam_mimizan-plage-sud",
+      "name": "Mimizan - Plage Sud",
+      "place": "Mimizan-Plage (40), plage Sud (rive sud du courant)",
+      "lat": 44.2085,
+      "lon": -1.292,
+      "page": "https://viewsurf.com/univers/surf/vue/731-france-aquitaine-mimizan-plage-sud",
+      "operatorContact": "contact@mimizan-tourisme.com"
+    },
+    {
+      "id": "cam_mimizan-panoramique-video",
+      "name": "Mimizan - Panoramique video",
+      "place": "Mimizan-Plage (40), panoramique video",
+      "lat": 44.2128,
+      "lon": -1.2928,
+      "page": "https://viewsurf.com/univers/surf/vue/3112-france-aquitaine-mimizan-panoramique-video",
+      "operatorContact": "contact@mimizan-tourisme.com"
+    },
+    {
+      "id": "cam_mimizan-panoramique-hd",
+      "name": "Mimizan - Panoramique HD",
+      "place": "Mimizan-Plage (40), panoramique HD front de mer",
+      "lat": 44.213,
+      "lon": -1.2925,
+      "page": "https://viewsurf.com/univers/surf/vue/726-france-aquitaine-mimizan-panoramique-hd",
+      "operatorContact": "contact@mimizan-tourisme.com"
+    },
+    {
+      "id": "cam_mimizan-plage-ouest",
+      "name": "Mimizan - Plage Ouest",
+      "place": "Mimizan-Plage (40), plage Ouest",
+      "lat": 44.213,
+      "lon": -1.294,
+      "page": "https://viewsurf.com/univers/surf/vue/729-france-aquitaine-mimizan-plage-ouest",
+      "operatorContact": "contact@mimizan-tourisme.com"
+    },
+    {
+      "id": "cam_mimizan-plage-nord",
+      "name": "Mimizan - Plage Nord",
+      "place": "Mimizan-Plage (40), plage Nord",
+      "lat": 44.216,
+      "lon": -1.293,
+      "page": "https://viewsurf.com/univers/surf/vue/727-france-aquitaine-mimizan-plage-nord",
+      "operatorContact": "contact@mimizan-tourisme.com"
+    },
+    {
+      "id": "cam_biscarrosse-sud",
+      "name": "Biscarrosse - Sud",
+      "place": "Biscarrosse-Plage (40), plage Sud",
+      "lat": 44.439,
+      "lon": -1.252,
+      "page": "https://viewsurf.com/univers/surf/vue/13396-france-aquitaine-biscarrosse-sud"
+    },
+    {
+      "id": "cam_biscarrosse-la-grande-baine",
+      "name": "Biscarrosse - La Grande Baine",
+      "place": "Biscarrosse-Plage (40), secteur de la Grande Baine",
+      "lat": 44.4425,
+      "lon": -1.2515,
+      "page": "https://viewsurf.com/univers/surf/vue/11526-france-aquitaine-biscarrosse-la-grande-baine"
+    },
+    {
+      "id": "cam_biscarrosse-plage-centrale-la-centrale",
+      "name": "Biscarrosse - Plage Centrale (La Centrale)",
+      "place": "Biscarrosse-Plage (40), plage centrale - beach break",
+      "lat": 44.4462,
+      "lon": -1.2513,
+      "page": "https://viewsurf.com/univers/surf/vue/11524-france-aquitaine-biscarrosse-la-centrale"
+    },
+    {
+      "id": "cam_biscarrosse-plage",
+      "name": "Biscarrosse - Plage",
+      "place": "Biscarrosse-Plage (40), front de mer",
+      "lat": 44.4468,
+      "lon": -1.2512,
+      "page": "https://viewsurf.com/univers/surf/vue/11360-france-aquitaine-biscarrosse-plage"
+    },
+    {
+      "id": "cam_biscarrosse-live",
+      "name": "Biscarrosse - Live",
+      "place": "Biscarrosse-Plage (40), flux live panoramique",
+      "lat": 44.447,
+      "lon": -1.251,
+      "page": "https://viewsurf.com/univers/surf/vue/11358-france-aquitaine-biscarrosse-live"
+    },
+    {
+      "id": "cam_biscarrosse-panoramique-hd",
+      "name": "Biscarrosse - Panoramique HD",
+      "place": "Biscarrosse-Plage (40), panoramique HD",
+      "lat": 44.4472,
+      "lon": -1.2508,
+      "page": "https://viewsurf.com/univers/surf/vue/11362-france-aquitaine-biscarrosse-panoramique-hd"
+    },
+    {
+      "id": "cam_biscarrosse-la-nord",
+      "name": "Biscarrosse - La Nord",
+      "place": "Biscarrosse-Plage (40), plage Nord",
+      "lat": 44.4515,
+      "lon": -1.2502,
+      "page": "https://viewsurf.com/univers/surf/vue/11530-france-aquitaine-biscarrosse-la-nord"
+    },
+    {
+      "id": "cam_biscarrosse-rond-point-de-la-nord",
+      "name": "Biscarrosse - Rond-point de la Nord",
+      "place": "Biscarrosse-Plage (40), rond-point de la plage Nord",
+      "lat": 44.4522,
+      "lon": -1.2495,
+      "page": "https://viewsurf.com/univers/surf/vue/11528-france-aquitaine-biscarrosse-rond-point-de-la-nord"
+    },
+    {
+      "id": "cam_la-teste-de-buch-plage-de-la-salie-sud",
+      "name": "La Teste-de-Buch - Plage de la Salie Sud",
+      "place": "La Teste-de-Buch (33), plage de la Salie Sud",
+      "lat": 44.557,
+      "lon": -1.241,
+      "page": "https://viewsurf.com/univers/surf/vue/18464-france-aquitaine-la-teste-de-buch-plage-de-la-salie-sud"
+    },
+    {
+      "id": "cam_la-teste-de-buch-plage-de-la-salie",
+      "name": "La Teste-de-Buch - Plage de la Salie",
+      "place": "La Teste-de-Buch (33), plage de la Salie (vue generale)",
+      "lat": 44.57,
+      "lon": -1.239,
+      "page": "https://viewsurf.com/univers/surf/vue/18462-france-aquitaine-la-teste-de-buch-plage-de-la-salie"
+    },
+    {
+      "id": "cam_la-teste-de-buch-plage-de-la-salie-second-id",
+      "name": "La Teste-de-Buch - Plage de la Salie (second id)",
+      "place": "La Teste-de-Buch (33), plage de la Salie (second cadrage)",
+      "lat": 44.572,
+      "lon": -1.2385,
+      "page": "https://viewsurf.com/univers/surf/vue/18468-france-aquitaine-la-teste-de-buch-plage-de-la-salie"
+    },
+    {
+      "id": "cam_la-teste-de-buch-plage-de-la-salie-nord",
+      "name": "La Teste-de-Buch - Plage de la Salie Nord",
+      "place": "La Teste-de-Buch (33), plage de la Salie Nord - spot de surf au sud du Bassin",
+      "lat": 44.5765,
+      "lon": -1.2375,
+      "page": "https://viewsurf.com/univers/surf/vue/18466-france-aquitaine-la-teste-de-buch-plage-de-la-salie-nord"
+    },
+    {
+      "id": "cam_arcachon-le-port",
+      "name": "Arcachon - Le Port",
+      "place": "Arcachon (33), port de plaisance",
+      "lat": 44.6613,
+      "lon": -1.1702,
+      "page": "https://viewsurf.com/univers/plage/vue/19408-france-aquitaine-arcachon-le-port",
+      "operatorContact": "tourisme@arcachon.com"
+    },
+    {
+      "id": "cam_arcachon-live-installation-recente",
+      "name": "Arcachon - Live (installation recente)",
+      "place": "Arcachon (33), front de mer (seconde camera « live », ajoutee vers 2024)",
+      "lat": 44.6635,
+      "lon": -1.1665,
+      "page": "https://viewsurf.com/univers/plage/vue/19410-france-aquitaine-arcachon-live",
+      "operatorContact": "tourisme@arcachon.com"
+    },
+    {
+      "id": "cam_arcachon-live",
+      "name": "Arcachon - Live",
+      "place": "Arcachon (33), front de mer (flux « live »)",
+      "lat": 44.664,
+      "lon": -1.1685,
+      "page": "https://viewsurf.com/univers/plage/vue/13340-france-aquitaine-arcachon-live",
+      "operatorContact": "tourisme@arcachon.com"
+    },
+    {
+      "id": "cam_arcachon-panoramique-hd",
+      "name": "Arcachon - Panoramique HD",
+      "place": "Arcachon (33), panoramique front de mer / Bassin",
+      "lat": 44.664,
+      "lon": -1.168,
+      "page": "https://viewsurf.com/univers/plage/vue/13338-france-aquitaine-arcachon-panoramique-hd",
+      "operatorContact": "tourisme@arcachon.com"
+    },
+    {
+      "id": "cam_arcachon-jetee-thiers",
+      "name": "Arcachon - Jetee Thiers",
+      "place": "Arcachon (33), jetee Thiers / front de mer",
+      "lat": 44.6645,
+      "lon": -1.169,
+      "page": "https://viewsurf.com/univers/plage/vue/13336-france-aquitaine-arcachon-jetee-thiers",
+      "operatorContact": "tourisme@arcachon.com"
+    },
+    {
+      "id": "cam_port-de-la-vigne-cam-01",
+      "name": "Port de la Vigne - CAM 01",
+      "place": "Lege-Cap-Ferret (33), port de la Vigne (Bassin d Arcachon, pointe du Cap Ferret)",
+      "lat": 44.6742,
+      "lon": -1.2428,
+      "page": "https://www.portdelavigne.fr/",
+      "operatorContact": "contact@portdelavigne.fr"
+    },
+    {
+      "id": "cam_port-de-la-vigne-cam-02",
+      "name": "Port de la Vigne - CAM 02",
+      "place": "Lege-Cap-Ferret (33), port de la Vigne (second angle)",
+      "lat": 44.6742,
+      "lon": -1.2428,
+      "page": "https://www.portdelavigne.fr/",
+      "operatorContact": "contact@portdelavigne.fr"
+    },
+    {
+      "id": "cam_le-betey-andernos-webcam-kite-barrel-surfing",
+      "name": "Le Betey Andernos - webcam kite (Barrel Surfing)",
+      "place": "Andernos-les-Bains (33), plage du Betey - spot de kitesurf du Bassin",
+      "lat": 44.7395,
+      "lon": -1.1005,
+      "page": "https://barrelsurfing.fr/le-betey-andernos/",
+      "operatorContact": "barrelsurfing@gmail.com"
+    },
+    {
+      "id": "cam_andernos-les-bains-esplanade-de-la-jetee",
+      "name": "Andernos-les-Bains - Esplanade de la Jetee",
+      "place": "Andernos-les-Bains (33), esplanade de la jetee",
+      "lat": 44.7445,
+      "lon": -1.1048,
+      "page": "https://viewsurf.com/univers/plage/vue/6774-france-aquitaine-andernos-les-bains-esplanade-de-la-jetee",
+      "operatorContact": "contact@andernos-tourisme.fr"
+    },
+    {
+      "id": "cam_andernos-les-bains-cabanes-tchanquees",
+      "name": "Andernos-les-Bains - Cabanes tchanquees",
+      "place": "Andernos-les-Bains (33), vue vers les cabanes tchanquees / ile aux Oiseaux",
+      "lat": 44.7448,
+      "lon": -1.106,
+      "page": "https://viewsurf.com/univers/plage/vue/6764-france-aquitaine-andernos-les-bains-cabanees-tchanquees",
+      "operatorContact": "contact@andernos-tourisme.fr"
+    },
+    {
+      "id": "cam_andernos-les-bains-la-jetee",
+      "name": "Andernos-les-Bains - La jetee",
+      "place": "Andernos-les-Bains (33), jetee (Bassin d Arcachon, nord du Bassin)",
+      "lat": 44.7448,
+      "lon": -1.1062,
+      "page": "https://viewsurf.com/univers/plage/vue/6768-france-aquitaine-andernos-les-bains-la-jetee",
+      "operatorContact": "contact@andernos-tourisme.fr"
+    },
+    {
+      "id": "cam_andernos-les-bains-panoramique",
+      "name": "Andernos-les-Bains - Panoramique",
+      "place": "Andernos-les-Bains (33), panoramique nord du Bassin",
+      "lat": 44.7448,
+      "lon": -1.1055,
+      "page": "https://viewsurf.com/univers/plage/vue/6772-france-aquitaine-andernos-les-bains-panoramique",
+      "operatorContact": "contact@andernos-tourisme.fr"
+    },
+    {
+      "id": "cam_andernos-les-bains-eglise-et-vestiges",
+      "name": "Andernos-les-Bains - Eglise et vestiges",
+      "place": "Andernos-les-Bains (33), eglise Saint-Eloi et vestiges gallo-romains, bord de Bassin",
+      "lat": 44.7462,
+      "lon": -1.1042,
+      "page": "https://viewsurf.com/univers/plage/vue/6766-france-aquitaine-andernos-les-bains-eglise-et-vestiges",
+      "operatorContact": "contact@andernos-tourisme.fr"
+    },
+    {
+      "id": "cam_andernos-les-bains-le-port-ostreicole",
+      "name": "Andernos-les-Bains - Le Port ostreicole",
+      "place": "Andernos-les-Bains (33), port ostreicole",
+      "lat": 44.748,
+      "lon": -1.1018,
+      "page": "https://viewsurf.com/univers/plage/vue/6770-france-aquitaine-andernos-les-bains-le-port-ostreicole",
+      "operatorContact": "contact@andernos-tourisme.fr"
+    },
+    {
+      "id": "cam_grand-crohot-webcam-surf-barrel-surfing",
+      "name": "Grand Crohot - webcam surf (Barrel Surfing)",
+      "place": "Lege-Cap-Ferret (33), plage du Grand Crohot - spot de surf",
+      "lat": 44.7838,
+      "lon": -1.2422,
+      "page": "https://barrelsurfing.fr/grand-crohot/",
+      "operatorContact": "barrelsurfing@gmail.com"
+    },
+    {
+      "id": "cam_le-porge-ocean-plage-du-gressier-panoramique",
+      "name": "Le Porge Ocean - plage du Gressier (panoramique 360 / 6K)",
+      "place": "Le Porge (33), plage du Gressier",
+      "lat": 44.8938,
+      "lon": -1.2171,
+      "page": "https://www.skaping.com/medoc-plein-sud/le-porge-ocean/live",
+      "operatorContact": "accueil@medocpleinsud.com"
+    },
+    {
+      "id": "cam_lacanau-plage-centrale",
+      "name": "Lacanau - Plage Centrale",
+      "place": "Lacanau-Ocean (33), plage centrale / spot du Lacanau Pro",
+      "lat": 45.0002,
+      "lon": -1.1985,
+      "page": "https://viewsurf.com/univers/surf/vue/656-france-aquitaine-lacanau-plage-centrale",
+      "operatorContact": "info@medoc-atlantique-tourisme.com"
+    },
+    {
+      "id": "cam_lacanau-panoramique-video-live",
+      "name": "Lacanau - Panoramique video live",
+      "place": "Lacanau-Ocean (33), panoramique front de mer",
+      "lat": 45.0005,
+      "lon": -1.199,
+      "page": "https://viewsurf.com/univers/surf/vue/7168-france-aquitaine-lacanau-panoramique-video-live",
+      "operatorContact": "info@medoc-atlantique-tourisme.com"
+    },
+    {
+      "id": "cam_lacanau-sud-du-poste-de-secours-nord",
+      "name": "Lacanau - Sud du poste de secours Nord",
+      "place": "Lacanau-Ocean (33), sud du poste de secours Nord",
+      "lat": 45.002,
+      "lon": -1.199,
+      "page": "https://viewsurf.com/univers/surf/vue/654-france-aquitaine-lacanau-sud-du-poste-de-secours-nord",
+      "operatorContact": "info@medoc-atlantique-tourisme.com"
+    },
+    {
+      "id": "cam_lacanau-poste-de-secours-nord",
+      "name": "Lacanau - Poste de Secours Nord",
+      "place": "Lacanau-Ocean (33), poste de secours Nord",
+      "lat": 45.004,
+      "lon": -1.1997,
+      "page": "https://viewsurf.com/univers/surf/vue/660-france-aquitaine-lacanau-poste-de-secours-nord",
+      "operatorContact": "info@medoc-atlantique-tourisme.com"
+    },
+    {
+      "id": "cam_lacanau-lacanau-surf-club",
+      "name": "Lacanau - Lacanau Surf Club",
+      "place": "Lacanau-Ocean (33), plage Nord devant le Surf Club",
+      "lat": 45.006,
+      "lon": -1.2,
+      "page": "https://viewsurf.com/univers/surf/vue/658-france-aquitaine-lacanau-lacanau-surf-club",
+      "operatorContact": "info@medoc-atlantique-tourisme.com"
+    },
+    {
+      "id": "cam_carcans-la-plage",
+      "name": "Carcans - La Plage",
+      "place": "Carcans-Maubuisson (33), plage surveillee du lac d Hourtin-Carcans (a verifier : ocean ou lac)",
+      "lat": 45.067,
+      "lon": -1.139,
+      "page": "https://viewsurf.com/univers/surf/vue/1255-france-aquitaine-carcans-la-plage",
+      "operatorContact": "info@medoc-atlantique-tourisme.com"
+    },
+    {
+      "id": "cam_hourtin-port",
+      "name": "Hourtin - Port",
+      "place": "Hourtin (33), port de plaisance sur le lac d Hourtin-Carcans",
+      "lat": 45.1666,
+      "lon": -1.0718,
+      "page": "https://viewsurf.com/univers/plage/vue/18164-france-aquitaine-hourtin-port",
+      "operatorContact": "info@medoc-atlantique-tourisme.com"
+    },
+    {
+      "id": "cam_hourtin-plage",
+      "name": "Hourtin - Plage",
+      "place": "Hourtin-Plage (33), plage ocean",
+      "lat": 45.2137,
+      "lon": -1.1647,
+      "page": "https://viewsurf.com/univers/plage/vue/11106-france-aquitaine-hourtin-plage",
+      "operatorContact": "info@medoc-atlantique-tourisme.com"
+    },
+    {
+      "id": "cam_berck-sur-mer-6-vues-skaping-mer-entonnoir-b",
+      "name": "Berck-sur-Mer — 6 vues Skaping (Mer, Entonnoir, Baie d'Authie, Hopale, Maritime, Poste de secours)",
+      "place": "Berck-sur-Mer (62600) — plage et baie d'Authie, spot char à voile / kite",
+      "lat": 50.405,
+      "lon": 1.565,
+      "page": "https://www.skaping.com/berck-sur-mer/mer",
+      "operatorContact": "info@skaping.com"
+    },
+    {
+      "id": "cam_merlimont-plage-vue-viewsurf-via-l-office-de",
+      "name": "Merlimont-Plage — vue Viewsurf (via l'office de tourisme)",
+      "place": "Merlimont (62155) — plage",
+      "lat": 50.453,
+      "lon": 1.57,
+      "page": "https://pv.viewsurf.com/1604/Merlimont-Plage?i=NjI1Njo",
+      "operatorContact": "contact@destinationcotedopale.com"
+    },
+    {
+      "id": "cam_cucq-stella-plage-viewsurf-panoramique-hd-2-",
+      "name": "Cucq / Stella-Plage — Viewsurf panoramique HD + 2 vues pv.viewsurf",
+      "place": "Cucq / Stella-Plage (62780) — plage, entre Le Touquet et Merlimont",
+      "lat": 50.475,
+      "lon": 1.575,
+      "page": "https://www.viewsurf.com/univers/surf/vue/16022-france-nord-pas-de-calais-cucq-panoramique-hd",
+      "operatorContact": "contact@destinationcotedopale.com"
+    },
+    {
+      "id": "cam_aeroport-du-touquet-cote-d-opale-cam1",
+      "name": "Aéroport du Touquet — Côte d'Opale (cam1)",
+      "place": "Le Touquet (62520) — aérodrome, ~2 km du spot",
+      "lat": 50.517,
+      "lon": 1.627,
+      "page": "https://www.aeroport-letouquet.com/cams/cam1.php"
+    },
+    {
+      "id": "cam_le-touquet-paris-plage-5-vues-skaping-vue-me",
+      "name": "Le Touquet-Paris-Plage — 5 vues Skaping (Vue mer, Plage sud, Centre nautique baie de Canche, Centre nautique de la Manche, Jardins du Palais)",
+      "place": "Le Touquet (62520) — plage nord/sud et bases nautiques, spot kite majeur",
+      "lat": 50.523,
+      "lon": 1.576,
+      "page": "https://www.skaping.com/le-touquet/poste-central/vue-mer",
+      "operatorContact": "office-tourisme@letouquet.com"
+    },
+    {
+      "id": "cam_neufchatel-hardelot-2-vues-viewsurf-live-pan",
+      "name": "Neufchâtel-Hardelot — 2 vues Viewsurf (Live + Panoramique HD)",
+      "place": "Hardelot-Plage (62152) — plage, spot kite et char à voile",
+      "lat": 50.635,
+      "lon": 1.576,
+      "page": "https://www.viewsurf.com/univers/surf/vue/18210-france-nord-pas-de-calais-neufchatel-hardelot-live",
+      "operatorContact": "noelle.drillaud@viewsurf.com"
+    },
+    {
+      "id": "cam_equihen-plage-webcams-locales-flux-mjpeg-dir",
+      "name": "Équihen-Plage — webcams locales (flux MJPEG direct + 2 lecteurs ipcamlive)",
+      "place": "Équihen-Plage (62224) — plage, sud de Boulogne",
+      "lat": 50.695,
+      "lon": 1.565,
+      "page": "https://equihenplage.blogspot.com/p/webcam-du-littoral-cote-dopale.html"
+    },
+    {
+      "id": "cam_le-portel-plage-skaping",
+      "name": "Le Portel — Plage (Skaping)",
+      "place": "Le Portel (62480) — plage centre, spot de glisse du Boulonnais",
+      "lat": 50.708,
+      "lon": 1.573,
+      "page": "https://www.skaping.com/le-portel/plage/live"
+    },
+    {
+      "id": "cam_boulogne-sur-mer-la-webcam-du-port-de-plaisa",
+      "name": "Boulogne-sur-Mer — la webcam du port de plaisance",
+      "place": "Boulogne-sur-Mer (62200) — port de plaisance",
+      "lat": 50.727,
+      "lon": 1.578,
+      "page": "https://www.boulogne-marina.fr/la-webcam-du-port",
+      "operatorContact": "contact@boulogne-marina.fr"
+    },
+    {
+      "id": "cam_webcam-live-a-wissant-pays-des-2-caps",
+      "name": "Webcam live à Wissant — Pays des 2 Caps",
+      "place": "Wissant — digue, vue mer entre Cap Gris-Nez et Cap Blanc-Nez",
+      "lat": 50.8865,
+      "lon": 1.6636,
+      "page": "https://www.paysdes2caps.com/webcam-wissant"
+    },
+    {
+      "id": "cam_wissant-webcam-le-direct-de-la-plage-et-du-s",
+      "name": "Wissant webcam — le direct de la plage et du spot",
+      "place": "Wissant (62179) — baie de Wissant, LE spot kite de la Côte d'Opale",
+      "lat": 50.8865,
+      "lon": 1.6636,
+      "page": "https://www.youtube.com/@wissant_webcam/live"
+    },
+    {
+      "id": "cam_sangatte-bleriot-plage-direct-youtube-live-s",
+      "name": "Sangatte / Blériot-Plage — direct YouTube « LIVE • Sangatte – Vue sur la Manche »",
+      "place": "Sangatte / Blériot-Plage (62231) — front de mer, vue Cap Blanc-Nez",
+      "lat": 50.945,
+      "lon": 1.75,
+      "page": "https://www.youtube.com/watch?v=NZy8SQ9kdbk"
+    },
+    {
+      "id": "cam_calais-2-vues-viewsurf-calais-live-calais-la",
+      "name": "Calais — 2 vues Viewsurf (Calais Live, Calais La Plage)",
+      "place": "Calais (62100) — plage de Calais",
+      "lat": 50.97,
+      "lon": 1.84,
+      "page": "https://www.viewsurf.com/univers/plage/vue/18722-france-nord-pas-de-calais-calais-live",
+      "operatorContact": "noelle.drillaud@viewsurf.com"
+    },
+    {
+      "id": "cam_gravelines-2-webcams-municipales-anse-des-es",
+      "name": "Gravelines — 2 webcams municipales (Anse des Espagnols, Vue chenal)",
+      "place": "Gravelines / Petit-Fort-Philippe (59820) — chenal de l'Aa et plage",
+      "lat": 51.01,
+      "lon": 2.1,
+      "page": "https://www.ville-gravelines.fr/decouvrir-gravelines/gravelines-en-images/les-webcams/webcam-vue-chenal",
+      "operatorContact": "contact@ville-gravelines.fr"
+    },
+    {
+      "id": "cam_dunkerque-malo-les-bains-leffrinckoucke-13-v",
+      "name": "Dunkerque / Malo-les-Bains / Leffrinckoucke — ~13 vues Viewsurf",
+      "place": "Dunkerque, Malo-les-Bains, Leffrinckoucke (59) — digue et plage, spots kite",
+      "lat": 51.045,
+      "lon": 2.39,
+      "page": "https://www.viewsurf.com/univers/plage/vue/16806-france-nord-pas-de-calais-dunkerque-live",
+      "operatorContact": "contact@dunkerque-tourisme.fr"
+    },
+    {
+      "id": "cam_bray-dunes-8-vues-viewsurf-live-panoramique-",
+      "name": "Bray-Dunes — 8 vues Viewsurf (Live, Panoramique HD, Rotonde, Mer Ouest, Mer Est, Mer Nord, Digue Est, Digue Ouest)",
+      "place": "Bray-Dunes (59123) — plage et digue de mer, spot kite/wing frontalier",
+      "lat": 51.0725,
+      "lon": 2.523,
+      "page": "https://www.viewsurf.com/univers/plage/vue/16790-france-nord-pas-de-calais-bray-dunes-live",
+      "operatorContact": "noelle.drillaud@viewsurf.com"
+    }
+  ]
 }
