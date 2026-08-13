@@ -6,11 +6,20 @@ Marque : **précision, honnêteté, faible batterie**. 12 langues (fr source). M
 
 ## Compiler (sans booter de simulateur)
 ```bash
-xcodebuild build -scheme "Tide It" -project "Tide It.xcodeproj" -configuration Debug \
+xcodebuild build-for-testing -scheme "Tide It" -project "Tide It.xcodeproj" -configuration Debug \
   -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO
 ```
-Vérifier `BUILD SUCCEEDED` + zéro `error:`. Si `database is locked` (Xcode ouvert) : ajouter
-`-derivedDataPath /tmp/dd_iso`. **Compiler après chaque lot d'édits Swift, committer seulement vert.**
+Vérifier `** TEST BUILD SUCCEEDED **` + zéro `error:`. Si `database is locked` (Xcode ouvert) :
+ajouter `-derivedDataPath /tmp/dd_iso`. **Compiler après chaque lot d'édits Swift, committer
+seulement vert.**
+
+⚠️ **`build-for-testing` et NON `build`** — un seul mot, et c'est la différence entre un filet de
+sécurité vivant et un filet pourri. `build` ne construit que les cibles marquées « build for
+running » : les 55 tests unitaires en sont EXCLUS. Constaté le 13 août 2026 — la suite ne
+compilait plus depuis `2ef59ff` (5 jours, le commit qui a retiré `WindModelReading.weight`), et
+chaque build annonçait « SUCCEEDED » en toute bonne foi. `build-for-testing` couvre les deux,
+pour la même durée. Ne pas revenir à `build`.
+Aucun simulateur n'est booté : `generic/platform=iOS Simulator` compile seulement.
 
 ## Release App Store
 Runbook complet : `fastlane/README_DELIVER.md` (procédure générique + pièges vérifiés).

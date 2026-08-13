@@ -431,71 +431,120 @@ final class Tide_ItTests: XCTestCase {
 
     // MARK: - Ensemble vent multi-modèles (WindEnsemble.blend)
 
-    /// Moyenne PONDÉRÉE : AROME (0,5) prioritaire sur ICON (0,3) et GFS (0,2).
-    func testWindEnsembleWeightedSpeed() {
+    // Ces tests gardent la règle d'architecture de `CLAUDE.md`, § « Le vent : qui dit quoi ».
+    //
+    // Réécrits le 13 août 2026 : ils exigeaient encore la moyenne pondérée 0,50/0,30/0,20,
+    // supprimée depuis (2ef59ff), et ne compilaient donc plus — `WindModelReading` n'a plus de
+    // champ `weight`. Personne ne l'a vu parce que `xcodebuild build` ne construit PAS les
+    // cibles de test ; d'où le passage du runbook à `build-for-testing`.
+    //
+    // Pourquoi la moyenne est partie : mesurée sur 2 800 heures de vent réel, elle faisait 3,44
+    // de RMSE contre 3,29 pour le modèle fin seul. Elle DÉGRADAIT la prévision, en important
+    // l'incapacité d'ICON (11 km) et GFS (27 km) à résoudre un trait de côte. Au Cap Ferret,
+    // elle donnait 12,5 nds là où le modèle fin en voyait 18.
+
+    /// La valeur vient du PREMIER modèle qui répond, jamais d'une moyenne.
+    /// Ce test échouerait si quelqu'un réintroduisait un moyennage : c'est tout son rôle.
+    func testWindEnsembleTakesBestModelNotAverage() {
         let r = WindEnsemble.blend([
-            WindModelReading(weight: 0.50, speed: 20, gust: 30, dir: 270),
-            WindModelReading(weight: 0.30, speed: 10, gust: 18, dir: 270),
-            WindModelReading(weight: 0.20, speed: 0,  gust: 5,  dir: 270),
+            WindModelReading(speed: 20, gust: 30, dir: 270),
+            WindModelReading(speed: 10, gust: 18, dir: 270),
+            WindModelReading(speed: 0,  gust: 5,  dir: 270),
         ])
         XCTAssertNotNil(r)
-        // 0.5*20 + 0.3*10 + 0.2*0 = 13
-        XCTAssertEqual(r!.speed, 13, accuracy: 0.001)
-        // 0.5*30 + 0.3*18 + 0.2*5 = 21.4
-        XCTAssertEqual(r!.gust ?? -1, 21.4, accuracy: 0.001)
+        // L'ancienne moyenne pondérée donnait 13 et 21,4. Si ces valeurs reviennent, c'est
+        // que le moyennage a été réintroduit.
+        XCTAssertEqual(r!.speed, 20, accuracy: 0.001)
+        XCTAssertEqual(r!.gust ?? -1, 30, accuracy: 0.001)
+        // `count` reste le nombre de modèles qui ont RÉPONDU : il alimente la confiance,
+        // pas la valeur.
         XCTAssertEqual(r!.count, 3)
     }
 
-    /// Modèles d'accord (même vitesse) → fiabilité maximale.
+    /// Vitesse, rafale ET direction du MÊME modèle. Mélanger les directions donnait un cap
+    /// qu'aucun modèle n'avait prévu, alors que le on/off/side-shore décide d'une session.
+    func testWindEnsembleSpeedGustDirectionComeFromSameModel() {
+        let r = WindEnsemble.blend([
+            WindModelReading(speed: 20, gust: 30, dir: 270),   // plein ouest
+            WindModelReading(speed: 10, gust: 18, dir: 90),    // plein est
+        ])
+        XCTAssertEqual(r?.speed ?? -1, 20, accuracy: 0.001)
+        XCTAssertEqual(r?.gust ?? -1, 30, accuracy: 0.001)
+        // 180° serait la moyenne des deux caps : un vent de travers inventé de toutes pièces.
+        XCTAssertEqual(r?.dir ?? -1, 270, accuracy: 0.001)
+    }
+
+    /// Seule exception au « même modèle » : si le meilleur ne publie PAS de rafale, on
+    /// l'emprunte au suivant plutôt que de perdre l'information. La vitesse ne bouge pas.
+    func testWindEnsembleGustFallsBackWhenBestModelHasNone() {
+        let r = WindEnsemble.blend([
+            WindModelReading(speed: 18, gust: nil, dir: 270),
+            WindModelReading(speed: 12, gust: 25,  dir: 90),
+        ])
+        XCTAssertEqual(r?.speed ?? -1, 18, accuracy: 0.001)
+        XCTAssertEqual(r?.gust ?? -1, 25, accuracy: 0.001)
+        XCTAssertEqual(r?.dir ?? -1, 270, accuracy: 0.001)
+    }
+
+    /// Modèles d'accord → fiabilité maximale. La confiance est une JAUGE de l'accord ; elle
+    /// n'entre jamais dans la valeur affichée.
     func testWindEnsembleAgreementHighConfidence() {
         let r = WindEnsemble.blend([
-            WindModelReading(weight: 0.50, speed: 15, gust: nil, dir: 200),
-            WindModelReading(weight: 0.30, speed: 15, gust: nil, dir: 200),
-            WindModelReading(weight: 0.20, speed: 15, gust: nil, dir: 200),
+            WindModelReading(speed: 15, gust: nil, dir: 200),
+            WindModelReading(speed: 15, gust: nil, dir: 200),
+            WindModelReading(speed: 15, gust: nil, dir: 200),
         ])
         XCTAssertEqual(r?.speed ?? -1, 15, accuracy: 0.001)
         XCTAssertEqual(r?.confidence ?? -1, 1.0, accuracy: 0.001)  // écart nul → 1,0
-        XCTAssertNil(r?.gust)  // aucun modèle ne fournit de rafale
+        XCTAssertNil(r?.gust)  // aucun modèle ne fournit de rafale : aucune n'est inventée
     }
 
-    /// Fort désaccord (grand écart de vitesse) → fiabilité plancher (0,2).
+    /// Fort désaccord → fiabilité plancher (0,2).
     func testWindEnsembleDisagreementLowConfidence() {
         let r = WindEnsemble.blend([
-            WindModelReading(weight: 0.50, speed: 5,  gust: nil, dir: 0),
-            WindModelReading(weight: 0.30, speed: 40, gust: nil, dir: 0),
+            WindModelReading(speed: 5,  gust: nil, dir: 0),
+            WindModelReading(speed: 40, gust: nil, dir: 0),
         ])
-        // écart 35 km/h >> 18 → clamp à 0,2
+        // écart 35 km/h >> 18 → plancher à 0,2
         XCTAssertEqual(r?.confidence ?? -1, 0.2, accuracy: 0.001)
+        XCTAssertEqual(r?.speed ?? -1, 5, accuracy: 0.001)   // toujours le premier qui répond
     }
 
     /// Un seul modèle disponible → pas de recoupement → fiabilité neutre (0,55).
     func testWindEnsembleSingleModelNeutralConfidence() {
         let r = WindEnsemble.blend([
-            WindModelReading(weight: 0.50, speed: 22, gust: 33, dir: 315),
-            WindModelReading(weight: 0.30, speed: nil, gust: nil, dir: nil),
-            WindModelReading(weight: 0.20, speed: nil, gust: nil, dir: nil),
+            WindModelReading(speed: 22, gust: 33, dir: 315),
+            WindModelReading(speed: nil, gust: nil, dir: nil),
+            WindModelReading(speed: nil, gust: nil, dir: nil),
         ])
-        XCTAssertEqual(r?.speed ?? -1, 22, accuracy: 0.001)  // seul AROME compte
+        XCTAssertEqual(r?.speed ?? -1, 22, accuracy: 0.001)
         XCTAssertEqual(r?.confidence ?? -1, 0.55, accuracy: 0.001)
         XCTAssertEqual(r?.count, 1)
     }
 
-    /// Direction = moyenne CIRCULAIRE (gère le passage 360°/0°).
-    func testWindEnsembleCircularDirection() {
+    /// PLAFOND À 0,5 QUAND LE MODÈLE FIN A DISPARU (au-delà de ~J+5).
+    ///
+    /// N'était couvert par AUCUN test, alors que c'est la garde la plus subtile de `blend` :
+    /// ICON et GFS s'accordent souvent parce qu'ils commettent la MÊME erreur de maille sur un
+    /// trait de côte. Leur accord est un angle mort partagé, pas une preuve. Sans ce plafond,
+    /// l'app annonçait sa plus grande confiance pile là où elle en avait le moins, et le
+    /// repérage anticipé préférait J+6 à J+3.
+    func testWindEnsembleConfidenceCappedWhenFineModelMissing() {
         let r = WindEnsemble.blend([
-            WindModelReading(weight: 0.50, speed: 12, gust: nil, dir: 350),
-            WindModelReading(weight: 0.30, speed: 12, gust: nil, dir: 10),
+            WindModelReading(speed: nil, gust: nil, dir: nil),   // le modèle fin s'est tu
+            WindModelReading(speed: 25, gust: 38, dir: 240),
+            WindModelReading(speed: 25, gust: 37, dir: 242),     // accord parfait → 1,0 sans plafond
         ])
-        let dir = r?.dir ?? -1
-        // moyenne autour de 0°, pas ~180° (preuve que ce n'est pas une moyenne arithmétique)
-        XCTAssertTrue(dir > 345 || dir < 15, "Direction circulaire attendue près de 0°, obtenu \(dir)")
+        XCTAssertEqual(r?.speed ?? -1, 25, accuracy: 0.001)
+        XCTAssertEqual(r?.confidence ?? -1, 0.5, accuracy: 0.001)
     }
 
-    /// Aucun modèle avec vitesse → nil (heure ignorée).
+    /// Aucun modèle avec vitesse → nil (heure ignorée). Une rafale ou une direction orpheline
+    /// ne suffit pas à fabriquer une prévision.
     func testWindEnsembleEmptyReturnsNil() {
         let r = WindEnsemble.blend([
-            WindModelReading(weight: 0.50, speed: nil, gust: nil, dir: nil),
-            WindModelReading(weight: 0.30, speed: nil, gust: 20, dir: 180),
+            WindModelReading(speed: nil, gust: nil, dir: nil),
+            WindModelReading(speed: nil, gust: 20, dir: 180),
         ])
         XCTAssertNil(r)
     }
