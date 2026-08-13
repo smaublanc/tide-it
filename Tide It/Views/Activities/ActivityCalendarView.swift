@@ -323,9 +323,21 @@ struct ActivityCalendarView: View {
             if day.lanes.isEmpty {
                 HStack(spacing: laneSpacing) {
                     Color.clear.frame(width: iconColW)
-                    Text("pas de fenêtre")
+                    // Le POURQUOI, pas seulement le constat. Une journée vide sans explication
+                    // se lit comme une panne de l'app ; avec le pic de vent du jour, elle se
+                    // lit comme ce qu'elle est — il n'y a pas assez de vent.
+                    // `Text("max \(str)")` et non `Text(variable)` : littéral interpolé, donc
+                    // clé localisée « max %@ » (règle 1).
+                    HStack(spacing: 5) {
+                        Text("pas de fenêtre")
+                        if let peak = day.peakWindKmh {
+                            Text("max \(UnitFormatter.windSpeed(peak, unit: themeManager.windUnit))")
+                                .foregroundStyle(.gray.opacity(0.4))
+                        }
+                    }
                         .font(.scaled(size: DS.fontCaption))
                         .foregroundStyle(.gray.opacity(0.55))
+                        .lineLimit(1).minimumScaleFactor(0.8)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .frame(height: laneHeight)

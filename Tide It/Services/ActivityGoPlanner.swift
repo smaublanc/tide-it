@@ -25,6 +25,19 @@ struct DaySportPlan: Identifiable {
     var id: Date { day }        // identité STABLE entre recalculs
     let day: Date               // début de journée (tz du port)
     let lanes: [SportLane]
+    /// Vent le plus fort du jour, EN JOURNÉE (km/h). Sert uniquement à expliquer une journée
+    /// sans fenêtre : « pas de fenêtre · max 8 kt ».
+    ///
+    /// Pourquoi cette donnée existe : une journée vide ne disait rien, et l'utilisateur ne
+    /// pouvait qu'en conclure que l'app était cassée. Le cas réel qui l'a motivée — Lacanau
+    /// sans fenêtre pendant qu'Andernos en avait — venait d'une situation MÉTÉO exacte
+    /// (vérifiée aux deux balises, à la même minute : 5,9 nds contre 6,5), pas d'un défaut.
+    /// Mais rien ne le montrait. Une app qui se vend sur la précision doit dire pourquoi elle
+    /// ne propose rien, sinon son silence passe pour une panne.
+    ///
+    /// Restreint aux heures de JOUR, comme les fenêtres elles-mêmes : un pic à 3 h du matin
+    /// n'explique rien à quelqu'un qui cherche une session.
+    let peakWindKmh: Double?
 
     var isEmpty: Bool { lanes.allSatisfy { $0.windows.isEmpty } }
 }
@@ -127,7 +140,15 @@ enum ActivityGoPlanner {
                     .map { GoWindow(start: max($0.start, day), end: min($0.end, dayEnd)) }
                 return dayWins.isEmpty ? nil : SportLane(sport: sport, windows: dayWins)
             }
-            return DaySportPlan(day: day, lanes: lanes)
+            // Pic de vent DIURNE du jour — la raison affichée quand il n'y a aucune fenêtre.
+            // Même filtre `isDaylight` que `buildWindows`, sinon on expliquerait une journée
+            // vide par un vent qui souffle quand personne ne navigue.
+            let peak = forecasts
+                .filter { $0.time >= day && $0.time < dayEnd
+                          && WindTidePlanner.isDaylight($0.time, sunTimes: sunTimes) }
+                .map(\.windSpeedKmh)
+                .max()
+            return DaySportPlan(day: day, lanes: lanes, peakWindKmh: peak)
         }
     }
 
