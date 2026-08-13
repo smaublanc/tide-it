@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Vérification hebdomadaire des sources de données de Tide It.
+  Lundi 9 h. `--quiet` : n'écrit RIEN tant que tout va bien, donc le journal ne contient que
+  les vrais problèmes — c'est ce qui rend l'alerte crédible le jour où elle apparaît.
+
+  Installer :
+      cp tools/com.tideit.sources.plist ~/Library/LaunchAgents/
+      launchctl load ~/Library/LaunchAgents/com.tideit.sources.plist
+
+  Lire le dernier rapport :   cat /tmp/tideit-sources.log
+  Désinstaller :              launchctl unload ~/Library/LaunchAgents/com.tideit.sources.plist
+
+  RunAtLoad est à false : le chargement ne doit pas déclencher une vérification immédiate,
+  sinon le journal se remplit à chaque ouverture de session et l'alerte se noie.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.tideit.sources</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/maublanc/Desktop/Tide It 18/tools/check_sources.py</string>
+        <string>--quiet</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Weekday</key><integer>1</integer>
+        <key>Hour</key><integer>9</integer>
+        <key>Minute</key><integer>0</integer>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/tideit-sources.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/tideit-sources.log</string>
+</dict>
+</plist>

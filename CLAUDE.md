@@ -239,12 +239,42 @@ gates) ont été appliqués, parce qu'ils tiennent à la nature des données, pa
   aussi pour le `DateFormatter` des libellés : sinon un minuit « port » se formate à la veille.
 
 ## Risques connus (surveiller, pas de fix code possible)
-- **Licence Open-Meteo** : usage commercial = LE point juridique ouvert (self-host = solution).
-- **Clés API hardcodées** (`APIKeys.swift`, gitignoré) : quota partagé ; à terme proxy.
-  Vieilles clés WorldTides/TideCheck livrées en 4.x : à révoquer côté fournisseurs.
-- **Balises tierces** (Pioupiou, winds.mobi, Weameter slugs `andernos/pauillac/lachanau`, METAR,
-  NDBC) : mort silencieuse acceptée — l'app dégrade sans balise, mais vérifier après incident.
+- **Licence Open-Meteo — LE point juridique ouvert, et il n'est PAS gris.** Termes relevés le
+  13 août 2026, mot pour mot : « You may only use the free API services for **non-commercial**
+  purposes », et la liste des usages COMMERCIAUX cite explicitement « Operating websites or
+  **apps that have subscriptions** or display advertisements ». Tide It a un abonnement premium :
+  l'app est donc en usage commercial sur un palier réservé au non-commercial. Le palier gratuit
+  n'offre par ailleurs « no uptime guarantee » — ce qui contredit la promesse de fiabilité.
+  Trois issues, une seule décision à prendre :
+  1. **Palier payant** (API Standard, 1 M appels/mois ; tarif non publié, passer par le
+     checkout ou `info@open-meteo.com`). Conforme immédiatement, apporte une clé, un point
+     d'entrée dédié et 99,9 % d'uptime. **C'est l'option cohérente avec le mode maintenance.**
+  2. **Self-host** : serveur open source en **AGPLv3**, données en **CC BY 4.0**. Lève la
+     restriction commerciale, mais demande d'ingérer AROME + ICON + GFS — du disque, du cron
+     et de l'exploitation permanente, soit l'inverse du mode maintenance. L'AGPL n'est PAS un
+     obstacle tant que le serveur reste non modifié (il suffit de pointer le dépôt amont).
+  3. Changer de fournisseur — mais l'audit a mesuré qu'aucun autre modèle ne vaut celui-là.
+- **Aucune clé API n'est embarquée** (vérifié le 13 août 2026) : `APIKeys.resolve` renvoie `""`
+  sauf clé fournie par l'utilisateur via UserDefaults/Info.plist, donc `isConfigured` est false
+  et WorldTides/TideCheck ne sont JAMAIS appelés dans l'app livrée. Les vieilles clés 4.x ont
+  été révoquées côté fournisseurs (13 août 2026) : sans effet sur l'app, comme prévu. Chaque
+  chemin de marée retombe sur le moteur harmonique embarqué — les ports français ne touchent
+  même pas le réseau.
+- **Balises tierces** (Pioupiou, winds.mobi, Weameter slugs `andernos/pauillac/lachanau/
+  kiteschool-leucate`, METAR, NDBC) : mort silencieuse acceptée — l'app dégrade sans balise.
+  Surveillées par `tools/check_sources.py` (voir ci-dessous) : c'est ce qui évite de l'apprendre
+  par un utilisateur.
 - Premium debug : `debugForcePremium` est `#if DEBUG` uniquement (jamais en App Store).
+
+## Surveiller les sources (`tools/`)
+```bash
+python3 tools/check_sources.py          # tableau des 11 sources
+```
+Contrôle de CONTENU, pas seulement le code HTTP : une page d'erreur ou une station retirée
+répondent 200 tout en étant inexploitables. Sortie 0 = tout va bien, 1 = une source secondaire
+est morte, 2 = une source CRITIQUE est morte (l'app perd une fonction entière).
+Planification hebdomadaire : `tools/com.tideit.sources.plist` (mode d'emploi dans l'en-tête).
+Relevé de référence du 13 août 2026 : **11/11 vivantes**.
 
 ## Contact / comptes
 Support : tideitapp@icloud.com · App Store id 6743555259 (`seb.Tide-It`) ·

@@ -47,3 +47,22 @@ c'est précisément ce pour quoi `stations.json` devait exister.
 
 `resultats-profond.json` conserve les 11 conclusions de l'audit profond du 10 août 2026
 (bootstrap par blocs jour × station), y compris celles qui ont **refusé** un changement.
+
+## Réplication du 13 août 2026
+
+`audit_modeles.py` rejoué de bout en bout sur une fenêtre DIFFÉRENTE (7 jours, 1 200 couples,
+les mêmes 17 stations) après reconstitution de `stations.json`. Le classement et les ordres de
+grandeur tiennent :
+
+| modèle | biais | RMSE (13 août) | RMSE (audit d'origine) |
+|---|---|---|---|
+| **meteofrance_seamless** | −0,55 | **3,35** | 3,29 |
+| meteofrance_arome_france_hd | −0,56 | 4,18 | 4,02 |
+| best_match | −1,68 | 4,27 | 4,08 |
+| icon_seamless | −3,29 | 5,42 | 5,04 |
+| gfs_seamless | −0,88 | 5,62 | 5,23 |
+| ecmwf_ifs025 | −3,55 | 6,44 | 5,79 |
+
+Deux semaines indépendantes, même verdict — y compris la sous-estimation d'ICON (−3,3 km/h) et
+d'ECMWF (−3,6). Ça valide à la fois les conclusions et le fichier de stations reconstitué.
+**Toujours de l'été** : la réserve sur le vent fort reste entière.
