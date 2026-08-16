@@ -13,7 +13,8 @@ Sortie : audit/resultats_rugosite.json
 import json, math, subprocess, sys, time, urllib.parse
 from statistics import median
 
-NEIGHBOURHOOD_KM = 2.0
+import os
+NEIGHBOURHOOD_KM = float(os.environ.get("RAYON_KM", "2.0"))
 PAST_DAYS = 14
 
 # ---------------------------------------------------------------- spots
@@ -201,7 +202,7 @@ def main():
                 print(f"  {name:28s} - pas de donnee", flush=True)
             time.sleep(2.5)
         result[model] = rows
-    with open(f"audit/resultats_rugosite_{'_'.join(models)}.json", "w") as f:
+    with open(f"audit/resultats_rugosite_{'_'.join(models)}_{int(NEIGHBOURHOOD_KM)}km.json", "w") as f:
         json.dump(result, f, indent=1, ensure_ascii=False)
     print("\n-> ecrit", flush=True)
 

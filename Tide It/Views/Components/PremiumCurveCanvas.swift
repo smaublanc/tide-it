@@ -40,6 +40,15 @@ struct PremiumCurveCanvas: View {
     var openMeteoForecasts: [HourlyForecast] = []
     var observedWindKmh: Double? = nil
     var observedGustKmh: Double? = nil
+    /// Trace du vent RÉELLEMENT mesuré sur 48 h, en SEGMENTS continus (cf.
+    /// `ForecastBiasService.trace(for:)`). Superposée à la prévision, elle transforme la courbe
+    /// en audit permanent : l'écart entre ce qui était annoncé et ce qui a soufflé se lit à
+    /// l'œil, jour après jour, sans qu'on ait à croire personne sur parole.
+    ///
+    /// Découpée en segments et non en série unique : un trou de plusieurs heures (téléphone
+    /// éteint, réveil de fond refusé par iOS) ou un changement de balise coupent le trait.
+    /// Relier ces points dessinerait un vent que personne n'a mesuré.
+    var observedTrace: [[ForecastBiasService.TracePoint]] = []
     var observedWindDirection: Double? = nil
     var observedWindAgeMinutes: Int? = nil
     var riderMinKmh: Double = 12
@@ -1447,6 +1456,48 @@ struct PremiumCurveCanvas: View {
                                                  startPoint: CGPoint(x: 0, y: size.height / 2),
                                                  endPoint: CGPoint(x: size.width, y: size.height / 2)),
                            style: StrokeStyle(lineWidth: lw, lineCap: .round, lineJoin: .round))
+        }
+
+        // TRACE DU RÉEL — ce que la balise a effectivement mesuré ces 48 h, sous la prévision
+        // qui avait été annoncée pour les mêmes heures. Même violet que l'anneau « maintenant » :
+        // une seule couleur pour une seule notion, le RÉEL.
+        //
+        // Chaque segment se dessine séparément : entre deux segments il y a soit un silence,
+        // soit un changement de balise, et dans les deux cas on ne relie RIEN.
+        if !observedTrace.isEmpty {
+            let v = Color(red: 0.61, green: 0.5, blue: 0.88)
+            for seg in observedTrace where seg.count >= 2 {
+                // Vitesse moyenne : trait plein, plus fin que la prévision — le réel accompagne
+                // la courbe, il ne la remplace pas.
+                var p = Path()
+                p.move(to: CGPoint(x: windX(seg[0].t, width: size.width), y: wy(seg[0].speedKmh)))
+                for pt in seg.dropFirst() {
+                    p.addLine(to: CGPoint(x: windX(pt.t, width: size.width), y: wy(pt.speedKmh)))
+                }
+                context.stroke(p, with: .color(v.opacity(isLight ? 0.85 : 0.9)),
+                               style: StrokeStyle(lineWidth: 1.8, lineCap: .round, lineJoin: .round))
+
+                // Rafale mesurée : pointillé, comme la rafale prévue — même grammaire visuelle.
+                // Découpée à son tour sur les points SANS rafale : toutes les balises n'en
+                // publient pas, et sauter par-dessus un trou inventerait une rafale.
+                var courant: [CGPoint] = []
+                func vider() {
+                    if courant.count >= 2 {
+                        var g = Path(); g.move(to: courant[0])
+                        for q in courant.dropFirst() { g.addLine(to: q) }
+                        context.stroke(g, with: .color(v.opacity(isLight ? 0.45 : 0.5)),
+                                       style: StrokeStyle(lineWidth: 1.2, lineCap: .round,
+                                                          lineJoin: .round, dash: [2, 3]))
+                    }
+                    courant = []
+                }
+                for pt in seg {
+                    if let g = pt.gustKmh {
+                        courant.append(CGPoint(x: windX(pt.t, width: size.width), y: wy(g)))
+                    } else { vider() }
+                }
+                vider()
+            }
         }
 
         // Vent OBSERVÉ (réel, ancré à « maintenant ») : anneau violet seul. La VALEUR est

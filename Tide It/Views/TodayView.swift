@@ -293,6 +293,11 @@ struct TodayView: View {
                             openMeteoForecasts: openMeteoForecasts,
                             observedWindKmh: observedWind?.reading.speedAvgKmh,
                             observedGustKmh: observedWind?.reading.gustKmh,
+                            // Trace du réel : recalculée à chaque rendu, mais `bandsClock` la
+                            // quantifie à 15 min — le tampon ne bouge qu'à la cadence d'une
+                            // balise (~10 min), donc aucun recalcul inutile pendant le scroll.
+                            observedTrace: tideService.selectedPort
+                                .map { ForecastBiasService.shared.trace(for: $0.id, now: bandsClock) } ?? [],
                             observedWindDirection: observedWind?.reading.directionDegrees,
                             observedWindAgeMinutes: observedWind?.reading.ageMinutes,
                             riderMinKmh: themeManager.riderMinWindKmh,
@@ -544,8 +549,13 @@ struct TodayView: View {
             // (Tout ce qui est AFFICHÉ passe en revanche par `openMeteoForecasts`, source unique.)
             if let obs = observedWind, let model = rawModelNow()?.windSpeedKmh,
                let pid = tideService.selectedPort?.id {
+                // La RAFALE et l'IDENTIFIANT de balise ne servent pas à la jauge de biais : ils
+                // alimentent la trace du réel dessinée sur la courbe (`trace(for:)`). L'identifiant
+                // est ce qui permet de couper le trait quand la station arbitrée change.
                 ForecastBiasService.shared.record(portId: pid, modelKmh: model,
-                    observedKmh: obs.reading.speedAvgKmh, distanceKm: obs.distanceKm, at: obs.reading.date)
+                    observedKmh: obs.reading.speedAvgKmh, distanceKm: obs.distanceKm,
+                    at: obs.reading.date,
+                    gustKmh: obs.reading.gustKmh, stationID: obs.station.id)
             }
         }
         // Activer/désactiver un sport — ou éditer ses conditions / sa sensibilité — doit recalculer
@@ -966,6 +976,8 @@ struct PremiumTideGraphView: View {
     var openMeteoForecasts: [HourlyForecast] = []
     var observedWindKmh: Double? = nil
     var observedGustKmh: Double? = nil
+    /// Trace du réel (48 h) — simple passe-plat vers `PremiumCurveCanvas`.
+    var observedTrace: [[ForecastBiasService.TracePoint]] = []
     var observedWindDirection: Double? = nil
     var observedWindAgeMinutes: Int? = nil
     var riderMinKmh: Double = 12
@@ -1076,6 +1088,7 @@ struct PremiumTideGraphView: View {
                             openMeteoForecasts: openMeteoForecasts,
                             observedWindKmh: observedWindKmh,
                             observedGustKmh: observedGustKmh,
+                            observedTrace: observedTrace,
                             observedWindDirection: observedWindDirection,
                             observedWindAgeMinutes: observedWindAgeMinutes,
                             riderMinKmh: riderMinKmh,

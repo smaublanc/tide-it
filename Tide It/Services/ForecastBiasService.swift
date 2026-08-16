@@ -22,9 +22,28 @@ final class ForecastBiasService: ObservableObject {
 
     struct Sample: Codable {
         let t: Date
-        let model: Double      // vent prévu (km/h) à cette heure
+        /// Vent PRÉVU (km/h) à cette heure, quand on l'avait sous la main.
+        ///
+        /// Optionnel depuis l'ajout de la trace : les échantillons pris lors d'un réveil de fond
+        /// n'ont pas de prévision disponible, et aller la chercher coûterait une requête réseau
+        /// — soit exactement ce que cette fonction s'interdit. Une MESURE existe indépendamment
+        /// du fait qu'on ait eu une prévision à lui apparier ; la jauge de biais écarte
+        /// simplement ces échantillons (`usableSamples`), la trace les garde.
+        var model: Double?
         let observed: Double   // vent mesuré balise (km/h)
         let dist: Double       // distance de la balise (km)
+        /// Rafale MESURÉE (km/h). Optionnelle à deux titres : toutes les balises n'en publient
+        /// pas, et le champ est arrivé après coup — le `Codable` synthétisé décode donc les
+        /// anciens tampons intacts (clé absente = nil), comme `SpotConfig` l'a déjà fait.
+        var gust: Double? = nil
+        /// Identifiant de la balise qui a fourni CETTE mesure.
+        ///
+        /// Indispensable au tracé : la station arbitrée peut changer d'un échantillon à l'autre
+        /// (celle qui se tait sort des 30 min, une autre prend le relais). Deux stations n'ont
+        /// pas la même exposition, et relier leurs points d'un trait continu ferait passer un
+        /// CHANGEMENT DE SOURCE pour une bascule de vent. Le tracé coupe donc le trait quand cet
+        /// identifiant change — cf. `trace(for:)`.
+        var station: String? = nil
     }
 
     struct BiasReadout {
@@ -75,7 +94,20 @@ final class ForecastBiasService: ObservableObject {
     }
 
     private var buffers: [String: [Sample]] = [:]
-    private let maxSamples = 24
+    /// 300 échantillons ≈ 48 h à la cadence de publication d'une balise (une mesure toutes les
+    /// ~10 min). Était 24, ce qui suffisait à la JAUGE de biais mais couvrait à peine 4 h — donc
+    /// pas de quoi dessiner la trace du réel sur la courbe.
+    ///
+    /// Relever ce plafond ne fausse pas la jauge : `usableSamples` filtrait déjà sur 48 h et 8 km,
+    /// et le cap de 24 ne faisait que TRONQUER arbitrairement cette fenêtre aux 24 derniers
+    /// relevés. La moyenne porte désormais sur toute la fenêtre que la jauge dit utiliser — elle
+    /// devient plus fidèle à sa propre définition, et moins bruitée.
+    private let maxSamples = 300
+    /// Nombre de ports dont on garde un tampon. Chaque port visité en ouvrait un, purgé
+    /// seulement à la suppression du favori : parcourir le catalogue en accumulait indéfiniment.
+    /// Invisible tant qu'un tampon pesait 24 échantillons, plus du tout à 300 avec la rafale.
+    /// On conserve les plus RÉCEMMENT alimentés — ceux qu'on regarde vraiment.
+    private let maxPorts = 8
     private let storeKey = "forecastBiasBuffers_v1"
 
     private init() { load() }
@@ -83,15 +115,35 @@ final class ForecastBiasService: ObservableObject {
     // MARK: - Écriture
 
     /// Enregistre un échantillon (appelé à chaque nouveau relevé balise). Anti-doublon par minute.
-    func record(portId: String, modelKmh: Double, observedKmh: Double, distanceKm: Double, at: Date) {
-        guard !portId.isEmpty, modelKmh.isFinite, observedKmh.isFinite, observedKmh >= 0, modelKmh >= 0 else { return }
+    func record(portId: String, modelKmh: Double?, observedKmh: Double, distanceKm: Double,
+                at: Date, gustKmh: Double? = nil, stationID: String? = nil) {
+        guard !portId.isEmpty, observedKmh.isFinite, observedKmh >= 0 else { return }
+        // Une prévision aberrante est écartée, mais SANS jeter la mesure : la trace du réel
+        // reste valable, seule la jauge de biais perd cet échantillon.
+        let m = modelKmh.flatMap { $0.isFinite && $0 >= 0 ? $0 : nil }
         var arr = buffers[portId] ?? []
         if let last = arr.last, abs(last.t.timeIntervalSince(at)) < 60 { return }   // 1 échantillon/min max
-        arr.append(Sample(t: at, model: modelKmh, observed: observedKmh, dist: distanceKm))
+        // Une rafale INFÉRIEURE à la moyenne est impossible : la balise a publié un champ
+        // aberrant. On garde la mesure et on jette la seule rafale, plutôt que de tracer une
+        // courbe de rafale qui passerait sous celle du vent moyen.
+        let g = gustKmh.flatMap { $0.isFinite && $0 >= observedKmh ? $0 : nil }
+        arr.append(Sample(t: at, model: m, observed: observedKmh, dist: distanceKm,
+                          gust: g, station: stationID))
         if arr.count > maxSamples { arr.removeFirst(arr.count - maxSamples) }       // borné
         buffers[portId] = arr
+        trimPorts(keeping: portId)
         objectWillChange.send()
         save()
+    }
+
+    /// Ne garde que les `maxPorts` tampons les plus récemment alimentés. Le port qu'on vient
+    /// d'écrire est toujours conservé — c'est celui qu'on regarde.
+    private func trimPorts(keeping portId: String) {
+        guard buffers.count > maxPorts else { return }
+        let ordre = buffers
+            .filter { $0.key != portId }
+            .sorted { ($0.value.last?.t ?? .distantPast) > ($1.value.last?.t ?? .distantPast) }
+        for (cle, _) in ordre.dropFirst(maxPorts - 1) { buffers.removeValue(forKey: cle) }
     }
 
     /// Purge l'état d'un spot (à appeler dans TideService.purgePortState).
@@ -109,7 +161,12 @@ final class ForecastBiasService: ObservableObject {
     /// l'app annonce « calibration : 6 échantillons » puis rend un verdict fondé sur 2.
     private func usableSamples(for portId: String, now: Date = Date()) -> [Sample] {
         (buffers[portId] ?? []).filter {
-            now.timeIntervalSince($0.t) <= BiasReadout.maxSampleAge && $0.dist <= BiasReadout.maxStationKm
+            // `model != nil` : un échantillon pris en arrière-plan n'a pas de prévision appariée
+            // (cf. `Sample.model`). Il nourrit la TRACE, jamais le calcul d'un écart — sans quoi
+            // la jauge comparerait une mesure à rien.
+            $0.model != nil
+                && now.timeIntervalSince($0.t) <= BiasReadout.maxSampleAge
+                && $0.dist <= BiasReadout.maxStationKm
         }
     }
 
@@ -118,7 +175,8 @@ final class ForecastBiasService: ObservableObject {
         let now = Date()
         let arr = usableSamples(for: portId, now: now)
         guard arr.count >= 2, let last = arr.last else { return nil }
-        let diffs = arr.map { $0.model - $0.observed }
+        // `usableSamples` a déjà écarté les échantillons sans prévision : le déballage est sûr.
+        let diffs = arr.compactMap { s in s.model.map { $0 - s.observed } }
         let mean = diffs.reduce(0, +) / Double(diffs.count)
         let variance = diffs.reduce(0) { $0 + ($1 - mean) * ($1 - mean) } / Double(diffs.count)
         return BiasReadout(
@@ -134,6 +192,62 @@ final class ForecastBiasService: ObservableObject {
 
     /// Nombre d'échantillons accumulés (pour l'état "calibration…") — même filtre que le verdict.
     func sampleCount(for portId: String) -> Int { usableSamples(for: portId).count }
+
+    // MARK: - Trace du réel (superposée à la courbe de vent)
+
+    /// Un point de la trace : ce que la balise a RÉELLEMENT mesuré à cet instant.
+    struct TracePoint {
+        let t: Date
+        let speedKmh: Double
+        let gustKmh: Double?
+    }
+
+    /// Au-delà de ce silence entre deux mesures, le trait se COUPE.
+    ///
+    /// 40 min : une balise publie toutes les ~10 min, et l'app n'échantillonne qu'au premier
+    /// plan ou lors d'un réveil de fond dont iOS décide seul. Les trous sont donc la règle, pas
+    /// l'exception — téléphone éteint, app fermée, réveil refusé. Relier deux points distants de
+    /// six heures dessinerait un vent qui n'a jamais été mesuré : c'est précisément ce que la
+    /// règle d'honnêteté interdit. Le trou se voit, et c'est ce qu'on veut.
+    static let traceMaxGap: TimeInterval = 40 * 60
+
+    /// Trace du vent réellement mesuré sur les 48 dernières heures, découpée en SEGMENTS
+    /// CONTINUS. Chaque segment se dessine d'un trait ; entre deux segments, on ne relie rien.
+    ///
+    /// Une coupure survient pour deux raisons, et les deux comptent :
+    /// 1. un SILENCE de plus de `traceMaxGap` (cf. ci-dessus) ;
+    /// 2. un CHANGEMENT DE BALISE — la station arbitrée peut changer quand la plus proche se
+    ///    tait. Deux stations n'ont pas la même exposition ; relier leurs points ferait passer
+    ///    un changement de source pour une bascule de vent, ce qui est un mensonge plus subtil
+    ///    et plus grave qu'un trou.
+    ///
+    /// Pas de filtre de distance ici, contrairement à `usableSamples` : la trace doit montrer
+    /// EXACTEMENT ce que l'app a affiché comme « réel » (rayon 15 km), pas le sous-ensemble
+    /// plus strict que la jauge de biais s'impose (8 km). Sinon la courbe et la pastille se
+    /// contrediraient sous les yeux de l'utilisateur.
+    func trace(for portId: String, now: Date = Date()) -> [[TracePoint]] {
+        let arr = (buffers[portId] ?? [])
+            .filter { now.timeIntervalSince($0.t) <= BiasReadout.maxSampleAge }
+            .sorted { $0.t < $1.t }
+        guard !arr.isEmpty else { return [] }
+
+        var segments: [[TracePoint]] = []
+        var courant: [TracePoint] = []
+        var precedent: Sample?
+        for s in arr {
+            if let p = precedent,
+               s.t.timeIntervalSince(p.t) > Self.traceMaxGap || s.station != p.station {
+                if courant.count >= 2 { segments.append(courant) }
+                courant = []
+            }
+            courant.append(TracePoint(t: s.t, speedKmh: s.observed, gustKmh: s.gust))
+            precedent = s
+        }
+        if courant.count >= 2 { segments.append(courant) }
+        // Un segment d'UN point ne se dessine pas comme une ligne : il est écarté ci-dessus.
+        // La pastille « réel » de l'en-tête montre déjà la mesure isolée du moment.
+        return segments
+    }
 
     // ⚠️ AUCUNE FONCTION DE CORRECTION ICI, ET C'EST VOULU.
     //

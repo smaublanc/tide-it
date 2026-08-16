@@ -60,7 +60,22 @@ final class WindEstablishingService {
               let lat = p["lat"] as? Double, let lon = p["lon"] as? Double else { return }
         let coord = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         await WindStationAggregator.shared.refresh(around: coord, force: true)
-        let reading = WindStationAggregator.shared.nearestReading(forCoordinate: coord)
+        let station = WindStationAggregator.shared.nearestStationWithDistance(to: coord)
+        let reading = station?.station.reading
+        // TRACE DU RÉEL — on enregistre au passage la mesure qu'on vient de toute façon de
+        // télécharger pour évaluer l'alerte. ZÉRO requête réseau de plus : c'est ce qui rend la
+        // trace tenable côté batterie, et ce qui la limite naturellement aux spots NOTIFIÉS,
+        // seuls pour lesquels ce réveil de fond a lieu.
+        //
+        // Pas de `modelKmh` ici, et c'est délibéré : aller chercher la prévision coûterait
+        // l'appel réseau qu'on vient d'éviter. L'échantillon nourrit donc la trace, pas la jauge
+        // de biais (cf. `ForecastBiasService.Sample.model`).
+        if let r = reading, let s = station {
+            ForecastBiasService.shared.record(
+                portId: id, modelKmh: nil, observedKmh: r.speedAvgKmh,
+                distanceKm: s.distance / 1000, at: r.date,
+                gustKmh: r.gustKmh, stationID: s.station.id)
+        }
         await evaluate(reading: reading, portId: id, portName: name, now: now)
     }
 
