@@ -4,6 +4,7 @@ AHE_TENUKUPARA:Ahe (Archipel des Tuamotu):-14.538:-146.357167
 AIGUILLON_SUR_MER:L'Aiguillon-sur-Mer:46.335:-1.316389
 AJACCIO:Ajaccio:41.922703:8.762839
 ALPHA-BAIE_DE_SEINE:Alpha-Baie de Seine:49.859731:-0.388656
+ANDERNOS_LE_BETEY:Andernos-les-Bains (Le Betey):44.7565:-1.1090
 ANSE_LONGUE_NAMAOURA:Anse Longue Namaoura (Grande Terre):-22.14:166.218333
 ANTIFER:Le Havre-Antifer (Terminal pétrolier):49.65:0.15
 ARCACHON_EYRAC:Arcachon:44.664333:-1.163667
