@@ -214,14 +214,60 @@ Scripts de l'audit : `audit/audit_modeles.py`, `audit_poids.py`, `audit_valid.py
     1,9 % à > 15 nds, **0 % à > 20 et > 25 nds**. La thermique inverse l'ordre quand il n'y a
     pas de vent, le synoptique le rétablit dès qu'il s'établit. **En vent navigable, l'app a
     raison** — il n'y avait pas d'artefact d'échantillonnage à réparer.
-  - Si le masque d'élévation est un jour utilisé pour autre chose : **`elevation == 0` EXACTEMENT**,
-    jamais `<= 0` ni `< 0.5`. Les valeurs sont toujours entières et la terre littorale basse lit
-    un petit entier NÉGATIF (polders −5, Camargue −1, Pô −2, Fens −1) : `< 0.5` transforme tout
-    polder en eau (transect néerlandais : 21 erreurs contre 8). Angle mort assumé : l'eau
-    d'ALTITUDE (Léman 368 m, Michigan 174, Garde 65) est classée terre — faux négatif, donc sans
-    danger. Piège corrigé dans `audit/audit_rugosite_maille.py`.
-  - **`cell_selection=sea` (paramètre Open-Meteo) : NON.** Mesuré à Tarifa, 2,1 → 17,6 nds (×8,4).
-    C'est le décalage vers le large sous un troisième déguisement.
+  - **LA RAISON MÉCANIQUE, à citer avant tout intervalle de confiance : Open-Meteo applique DÉJÀ
+    ce critère, en amont et mieux.** Son `cell_selection` par défaut vaut `land` — il choisit la
+    maille dont l'altitude ressemble à celle du point demandé, à l'aide d'un MNT 90 m. Filtrer
+    nous-mêmes sur `elevation` REAPPLIQUE en aval le travail du fournisseur. D'où le +0,05 km/h :
+    il n'y a rien à gagner parce que c'est déjà fait. Vérifiable en une requête, en toute saison.
+  - **⚠️ `elevation` n'est PAS un classifieur de maille, et le « 99,8 % de fiabilité » ne répond
+    pas à la bonne question.** Ce taux dit « le POINT est-il de l'eau dans un MNT 90 m ». La
+    question opérante est « la MAILLE servie par le modèle est-elle de la mer ». Mesuré sur les
+    épingles RÉELLES du catalogue surf, contre `cell_selection=sea` : parmi les épingles à
+    `elevation == 0` que la règle GARDE, **15 % ne reçoivent pas la maille mer** (Nazaré +4,92 km/h) ;
+    parmi celles à `elevation > 0` qu'elle JETTE, **90 % lisent déjà la maille mer**. 15 % de faux
+    positifs, 90 % de faux négatifs.
+  - **`elevation` décrit le point DEMANDÉ ; la vitesse décrit une maille dont le centre est
+    ailleurs.** Distance point demandé → centre de maille servi : 0,48 km en médiane en France
+    (AROME 1,3 km) mais **8,44 km hors de France, jusqu'à 18,58 km** (ARPEGE 0,25°). Preuve
+    directe : Playa Guiones, MÊME maille pour les 5 points, élévations [0, 0, 0, 14, 0], séries
+    identiques à la décimale. Le filtre est donc **structurellement inapplicable hors du domaine
+    AROME** — soit l'essentiel de la planète.
+  - **Le filtre DÉTRUIT la robustesse au pointage qu'il prétend servir.** Dans **60 % des croix**
+    (12,2 % des entrées de catalogue, 18,6 % des spots surf), les points « eau » ne recouvrent
+    qu'UNE maille distincte : « médiane des mailles eau » dégénère alors en lecture d'un point
+    unique — exactement l'état d'avant le voisinage, celui où « déplacer une épingle de 2 km
+    changeait la prévision de 13 nœuds ». Ce n'est pas un cas de repli, c'est son fonctionnement
+    normal.
+  - **LA BORNE QUI TRANCHE TOUT RETOUR DU SUJET.** La maille « eau » à 2 km capte **73 % du
+    gradient côte → pleine mer** (Lacanau 16,41 → 24,28 → 27,12 km/h à 0 / 2 / 40 km ;
+    Wijk aan Zee 73 % ; Westkapelle 63 %). Or le déficit RÉELLEMENT mesuré au bord de l'eau, sur
+    24 capteurs posés à la laisse de mer, n'est que de **0,46 à 1,53 km/h**. Surcorrection d'un
+    facteur 2 à 17. Et le surplus est POSITIF DANS TOUS LES SECTEURS de vent (Lacanau : onshore
+    +7,17, side +8,77, offshore +5,96) : c'est un décalage à signe unique, incapable d'encoder un
+    abri qui change de signe avec la direction.
+  - **Là où navigue le rider, la maille est DÉJÀ la bonne.** À Lacanau, le point à 0,3 km au large
+    lit EXACTEMENT la même série que le centre (16,41 km/h en heures ventées). La maille côtière du
+    modèle EST celle du rider. L'app n'a pas 8 nœuds de retard au bord de l'eau, elle a 0,5 à 1,5.
+  - **`cell_selection=sea` : REFUSÉ, pas « prometteur ».** Le ×8,4 initialement relevé à Tarifa
+    était UNE heure. Sur un mois complet (janvier 2026) : 6,77 → 17,48 km/h, soit **+10,71 km/h
+    soutenus**, ×2,58 — plus gros que les 8-9 nœuds qui ont fait retirer le décalage vers le large.
+    Troisième déguisement du même geste, troisième refus.
+  - **NE PAS décoder `elevation` dans `WindEnsembleResponse`.** Tant qu'aucune décision de code
+    n'en dépend, une révision de MNT chez Open-Meteo est sans effet. Dès qu'elle pilote un filtre,
+    elle devient une entrée **non versionnée et non surveillée** du vent affiché : `check_sources.py`
+    ne la regarde pas, et un changement silencieux déplacerait le vent de milliers de spots sans
+    mise à jour de l'app. Si ce champ doit servir un jour, qu'il serve HORS LIGNE — verdict calculé
+    à l'audit et ÉCRIT dans le catalogue livré, jamais lu en direct.
+  - Si le masque est malgré tout utilisé hors ligne : **`elevation == 0` EXACTEMENT**, jamais
+    `<= 0` ni `< 0.5`. Les valeurs sont toujours entières et la terre littorale basse lit un petit
+    entier NÉGATIF (polders −5, Camargue −1, Pô −2, Fens −1) : `< 0.5` transforme tout polder en
+    eau (transect néerlandais : 21 erreurs contre 8). Angle mort assumé : l'eau d'ALTITUDE
+    (Léman 368 m, Michigan 174, Garde 65) est classée terre — faux négatif, donc sans danger.
+    Piège corrigé dans `audit/audit_rugosite_maille.py`.
+  - ⚠️ **Réserve d'honnêteté sur le chiffre le plus spectaculaire** : le « C fait passer
+    l'inversion de 1,9 % à 32,7 % » porte sur UNE paire, celle de la découverte. Il illustre le
+    mécanisme, il ne doit pas servir de motif principal — les motifs solides sont les quatre points
+    ci-dessus, indépendants de tout échantillon.
 - **Réordonner ICON/GFS dans le repli.** GFS bat ICON de +0,70 km/h à J+5 *en France* — mais
   l'audit est FRANÇAIS, et le repli sert surtout le RESTE DU MONDE, où l'ordre doit rester celui
   de la résolution (ICON 11 km avant GFS 27 km). Et GFS est catastrophique sur la rafale
