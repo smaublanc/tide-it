@@ -419,7 +419,15 @@ class MarineWeatherService: ObservableObject {
     // On interroge donc le point du spot, tel qu'il est. Si un spot est manifestement mal placé,
     // c'est SA COORDONNÉE qu'il faut corriger dans le catalogue — pas la façon de l'interroger.
     func fetchHourlyForecast(for port: Port) async -> [HourlyForecast] {
-        await fetchHourlyForecast(latitude: port.latitude, longitude: port.longitude)
+        // RATTACHEMENT MÉTÉO des ports CUSTOM à l'épingle de catalogue la plus proche (≤ 8 km).
+        // Une épingle posée à la main tombe souvent sur l'eau, et le vent 10 m d'un modèle suit
+        // la rugosité de la maille : 9 nœuds au large d'un bassin contre 7 au bord de l'eau.
+        // C'est ce seul écart qui faisait passer un plan d'eau abrité devant un front de mer.
+        // Les épingles du catalogue sont vérifiées ; celles des ports custom, non.
+        // Point d'entrée UNIQUE : toutes les vues (courbe, calendrier GO, widgets) passent par
+        // ici, donc aucune ne peut lire une coordonnée différente d'une autre.
+        let c = PortCatalog.shared.weatherCoordinate(for: port)
+        return await fetchHourlyForecast(latitude: c.lat, longitude: c.lon)
     }
 
     /// Pré-charge (BORNÉ) la prévision d'une coordonnée si le cache est absent/périmé ; no-op si frais.

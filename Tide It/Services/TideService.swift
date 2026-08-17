@@ -140,6 +140,11 @@ class TideService: ObservableObject {
         // (SHOM, ≈17 Ko). Le port par défaut/sauvegardé étant français dans l'immense
         // majorité des cas, l'app est immédiatement utilisable.
         self.ports = PortCatalog.shared.loadFrenchPorts()
+        // Épingles VÉRIFIÉES servant de référence météo aux ports custom (cf.
+        // `PortCatalog.weatherCoordinate`). Enregistrées dès le chargement synchrone : un port
+        // custom sélectionné au lancement doit déjà pouvoir se rattacher, sinon il lirait sa
+        // propre épingle une fois puis basculerait à l'arrivée des ports mondiaux.
+        PortCatalog.shared.registerWeatherReferences(self.ports)
         // Capté AVANT toute persistance : aucun port sauvegardé = tout premier lancement
         // → on attend la localisation pour choisir le port le plus proche.
         awaitingInitialLocationPort = UserDefaults.standard.string(forKey: "selectedPortId") == nil
@@ -219,6 +224,9 @@ class TideService: ObservableObject {
             guard let self else { return }
             PortCatalog.shared.register(world.harmonics)
             self.ports.append(contentsOf: world.ports)
+            // Les ports MONDIAUX rejoignent l'index de référence : un spot custom hors de France
+            // doit pouvoir se rattacher à sa ville, comme en France.
+            PortCatalog.shared.registerWeatherReferences(world.ports)
             // RÉAPPLIQUER les favoris aux ports mondiaux fraîchement ajoutés : `loadFavorites()`
             // ne voyait que les ports FR au lancement, donc un favori étranger (NOAA/TICON)
             // perdait son drapeau à CHAQUE lancement (« les favoris sautent »). Purement additif

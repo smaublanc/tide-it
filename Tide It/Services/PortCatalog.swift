@@ -156,6 +156,68 @@ final class PortCatalog {
     /// Open-Meteo (réservé aux ports rattachés LOIN de leur station).
     private(set) var frenchLinkDistanceKm: [String: Double] = [:]
 
+    // MARK: - Rattachement météo des ports CUSTOM
+
+    /// Coordonnées de RÉFÉRENCE pour la météo : uniquement les ports du CATALOGUE, dont
+    /// l'épingle a été vérifiée. Alimenté au chargement, jamais par un port custom.
+    private var weatherRefs: [(id: String, name: String, lat: Double, lon: Double)] = []
+
+    /// Au-delà, on garde l'épingle de l'utilisateur : importer la météo d'une ville trop
+    /// lointaine serait pire que de lire un point approximatif.
+    ///
+    /// 8 km, le MÊME seuil que `ForecastBiasService.BiasReadout.maxStationKm`, et pour la même
+    /// raison : c'est la distance au-delà de laquelle une mesure ne décrit plus ce spot. Ce qui
+    /// vaut pour un anémomètre vaut pour une ville.
+    nonisolated static let customSnapMaxKm = 8.0
+
+    /// À appeler quand des ports de catalogue sont chargés.
+    func registerWeatherReferences(_ ports: [Port]) {
+        let ajout = ports.filter { !$0.isCustom }
+            .map { (id: $0.id, name: $0.name, lat: $0.latitude, lon: $0.longitude) }
+        guard !ajout.isEmpty else { return }
+        weatherRefs.append(contentsOf: ajout)
+    }
+
+    /// Coordonnée à interroger pour la météo d'un port.
+    ///
+    /// POURQUOI CE RATTACHEMENT EXISTE
+    /// Un port CUSTOM est épinglé à la main, souvent sur l'eau. Or le vent 10 m d'un modèle
+    /// dépend de la rugosité de la maille : une épingle posée à 3 km au large dans un bassin lit
+    /// une maille d'eau libre et annonce 9 nœuds là où le bord de l'eau en donne 7. C'est ce qui
+    /// faisait passer un plan d'eau abrité devant un front de mer océanique — sans qu'aucune
+    /// ligne de code soit en cause : l'épingle seule produisait l'écart.
+    ///
+    /// Les épingles du CATALOGUE, elles, sont vérifiées. On rattache donc la météo d'un port
+    /// custom à la plus proche d'entre elles, dans la limite de `customSnapMaxKm`. Les MARÉES ne
+    /// sont pas concernées : elles gardent leur propre rattachement harmonique.
+    ///
+    /// Au-delà du seuil, on ne rattache PAS — un spot isolé garde son épingle, parce que la
+    /// météo d'une ville à 30 km décrirait un autre régime. Mieux vaut un point approximatif que
+    /// le bon point d'un autre endroit.
+    func weatherCoordinate(for port: Port) -> (lat: Double, lon: Double, snappedTo: String?) {
+        guard port.isCustom, !weatherRefs.isEmpty else {
+            return (port.latitude, port.longitude, nil)
+        }
+        var meilleur: (km: Double, ref: (id: String, name: String, lat: Double, lon: Double))?
+        for r in weatherRefs {
+            let km = Self.haversineKm(port.latitude, port.longitude, r.lat, r.lon)
+            if meilleur == nil || km < meilleur!.km { meilleur = (km, r) }
+        }
+        guard let m = meilleur, m.km <= Self.customSnapMaxKm else {
+            return (port.latitude, port.longitude, nil)
+        }
+        return (m.ref.lat, m.ref.lon, m.ref.name)
+    }
+
+    nonisolated static func haversineKm(_ lat1: Double, _ lon1: Double,
+                                       _ lat2: Double, _ lon2: Double) -> Double {
+        let r = 6371.0
+        let dLat = (lat2 - lat1) * .pi / 180, dLon = (lon2 - lon1) * .pi / 180
+        let a = sin(dLat / 2) * sin(dLat / 2)
+            + cos(lat1 * .pi / 180) * cos(lat2 * .pi / 180) * sin(dLon / 2) * sin(dLon / 2)
+        return r * 2 * atan2(sqrt(a), sqrt(1 - a))
+    }
+
     /// Niveau moyen au-dessus du ZÉRO HYDROGRAPHIQUE (m), publié par le SHOM (via maree.info,
     /// licence SHOM), pour les ports de référence vérifiés. Sert de Z₀ exact : le Z₀ dérivé
     /// (LAT sur fenêtre 425 j) sous-estime le datum de ~0,1-0,44 m → hauteurs trop basses.
