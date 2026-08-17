@@ -22,6 +22,9 @@ struct ActivityCalendarView: View {
 
     // Données chargées par port
     @State private var forecasts: [HourlyForecast] = []
+    /// Le dernier chargement a-t-il échoué sur le QUOTA du fournisseur plutôt que sur le réseau ?
+    /// Relevé à la fin de `load()`, pour que l'écran vide dise la vraie raison.
+    @State private var quotaHit = false
     @State private var sunTimes: [(sunrise: Date, sunset: Date)] = []
     @State private var loading = true
     @State private var lastComputed: Date?
@@ -459,7 +462,12 @@ struct ActivityCalendarView: View {
             Text("Prévisions indisponibles")
                 .font(.scaled(size: DS.fontHeadline, weight: .semibold))
                 .foregroundStyle(.primary)
-            Text("Les fenêtres GO ont besoin des prévisions de vent et de mer. Vérifie ta connexion.")
+            // DEUX CAUSES, DEUX MESSAGES. Un quota atteint ne se répare pas en vérifiant son
+            // WiFi, et « Réessayer » y échouera à l'identique : envoyer l'utilisateur chercher
+            // là où il n'y a rien est pire que de ne rien dire.
+            (quotaHit
+                ? Text("Le service de prévision a atteint sa limite du jour. Les prévisions reviennent d'elles-mêmes — rien à faire de ton côté.")
+                : Text("Les fenêtres GO ont besoin des prévisions de vent et de mer. Vérifie ta connexion."))
                 .font(.scaled(size: DS.fontFootnote))
                 .foregroundStyle(.gray)
                 .multilineTextAlignment(.center)
@@ -530,6 +538,9 @@ struct ActivityCalendarView: View {
         // TodayView) : le calendrier lit exactement ce que lisent la courbe et le moteur GO.
         forecasts = fc
         sunTimes = sun
+        // Relevé APRÈS la tentative et seulement si elle est revenue vide : un quota atteint
+        // pendant qu'on avait déjà du cache exploitable ne doit pas afficher d'alarme.
+        quotaHit = fc.isEmpty && MarineWeatherService.shared.quotaExceeded
         loading = false
         recomputePlan()
     }

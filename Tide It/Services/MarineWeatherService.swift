@@ -440,6 +440,10 @@ class MarineWeatherService: ObservableObject {
             return cached.forecasts
         }
 
+        // Remis à zéro AVANT la tentative : le drapeau décrit CET essai, pas l'historique.
+        // Sans ça, un 429 d'hier ferait mentir l'écran aujourd'hui.
+        quotaExceeded = false
+
         async let windData = fetchWindEnsemble(latitude: latitude, longitude: longitude)
         async let extrasData = fetchWeatherExtras(latitude: latitude, longitude: longitude)
         async let marineData = fetchMarineHourly(latitude: latitude, longitude: longitude)
@@ -567,6 +571,16 @@ class MarineWeatherService: ObservableObject {
     /// TROISIÈME fois que ce piège se présente dans ce dépôt (après
     /// `WindStationAggregator.defaultSearchRadius` et `WebcamCatalog.maxDistanceMeters`) :
     /// toute constante d'une classe @MainActor lue depuis un contexte nonisolated doit l'être.
+    /// Le dernier échec venait-il du QUOTA du fournisseur (HTTP 429) et non du réseau ?
+    ///
+    /// Sans cette distinction, l'écran des fenêtres GO affichait « Vérifie ta connexion » alors
+    /// que la connexion était parfaite — et son bouton « Réessayer » ne pouvait qu'échouer à
+    /// l'identique jusqu'au lendemain. Envoyer quelqu'un vérifier son WiFi quand le problème est
+    /// ailleurs, c'est le faire chercher là où il n'y a rien.
+    ///
+    /// Remis à false dès qu'une réponse aboutit : l'état ne survit pas au retour à la normale.
+    private(set) var quotaExceeded = false
+
     nonisolated private static let neighbourhoodKm = 2.0
 
     /// Le point du spot + 4 voisins cardinaux. Une SEULE requête (Open-Meteo accepte plusieurs
@@ -611,6 +625,10 @@ class MarineWeatherService: ObservableObject {
             let (data, response) = try await session.data(from: url)
             if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
                 if http.statusCode == 429 {
+                    // QUOTA, pas panne réseau — et la distinction compte pour l'utilisateur : un
+                    // 429 ne se répare pas en vérifiant sa connexion, et « Réessayer » échouera
+                    // à l'identique. On le retient pour que l'écran puisse le DIRE.
+                    quotaExceeded = true
                     appLogger.warning("Open-Meteo: limite de débit (429) — réessai différé, cache conservé")
                 } else {
                     appLogger.error("Open-Meteo: statut HTTP \(http.statusCode)")
@@ -656,6 +674,10 @@ class MarineWeatherService: ObservableObject {
             let (data, response) = try await session.data(from: url)
             if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
                 if http.statusCode == 429 {
+                    // QUOTA, pas panne réseau — et la distinction compte pour l'utilisateur : un
+                    // 429 ne se répare pas en vérifiant sa connexion, et « Réessayer » échouera
+                    // à l'identique. On le retient pour que l'écran puisse le DIRE.
+                    quotaExceeded = true
                     appLogger.warning("Open-Meteo: limite de débit (429) — réessai différé, cache conservé")
                 } else {
                     appLogger.error("Open-Meteo: statut HTTP \(http.statusCode)")
@@ -736,6 +758,10 @@ class MarineWeatherService: ObservableObject {
             let (data, response) = try await session.data(from: url)
             if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
                 if http.statusCode == 429 {
+                    // QUOTA, pas panne réseau — et la distinction compte pour l'utilisateur : un
+                    // 429 ne se répare pas en vérifiant sa connexion, et « Réessayer » échouera
+                    // à l'identique. On le retient pour que l'écran puisse le DIRE.
+                    quotaExceeded = true
                     appLogger.warning("Open-Meteo: limite de débit (429) — réessai différé, cache conservé")
                 } else {
                     appLogger.error("Open-Meteo: statut HTTP \(http.statusCode)")

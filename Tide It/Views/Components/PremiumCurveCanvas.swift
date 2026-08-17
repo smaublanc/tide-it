@@ -1114,12 +1114,23 @@ struct PremiumCurveCanvas: View {
                         Circle().stroke(v, lineWidth: 1.5).frame(width: 6, height: 6).position(x: nowX, y: gy)
                     }
 
-                    // Étiquette en BAS-gauche du point.
+                    // Étiquette en HAUT-gauche du point.
+                    //
+                    // Elle était en BAS pour éviter les rectangles de fenêtres GO, qui vivent en
+                    // haut de la région vent. Mais en bas elle recouvrait la prévision, la rafale
+                    // ET la trace du réel — autrement dit tout ce qu'on est venu lire. Le compromis
+                    // retenu : on remonte juste au-dessus du point le plus haut du groupe (mesure
+                    // ou rafale), pas jusqu'en haut de la région. Les fenêtres GO restent donc
+                    // au-dessus d'elle dans les cas courants, et le décalage horizontal de 96 pt
+                    // vers la gauche écarte ce qui reste.
                     let boxX = clampX(nowX - 96, 64)
-                    let boxY = min(py + 46, geo.size.height - 22)
+                    // La rafale est dessinée AU-DESSUS de la mesure quand elle existe : c'est donc
+                    // elle qui fixe le plafond à ne pas masquer.
+                    let topY = min(py, observedGustKmh.map { wy(max($0, obs)) } ?? py)
+                    let boxY = max(topY - 34, 16)
                     Path { p in
                         p.move(to: CGPoint(x: nowX, y: py))
-                        p.addLine(to: CGPoint(x: boxX + 8, y: boxY - 9))
+                        p.addLine(to: CGPoint(x: boxX + 8, y: boxY + 9))
                     }
                     .stroke(v.opacity(0.6), style: StrokeStyle(lineWidth: 0.8, lineCap: .round))
                     Circle().fill(v).frame(width: 3, height: 3).position(x: nowX, y: py)
@@ -1469,12 +1480,15 @@ struct PremiumCurveCanvas: View {
             for seg in observedTrace where seg.count >= 2 {
                 // Vitesse moyenne : trait plein, plus fin que la prévision — le réel accompagne
                 // la courbe, il ne la remplace pas.
-                var p = Path()
-                p.move(to: CGPoint(x: windX(seg[0].t, width: size.width), y: wy(seg[0].speedKmh)))
-                for pt in seg.dropFirst() {
-                    p.addLine(to: CGPoint(x: windX(pt.t, width: size.width), y: wy(pt.speedKmh)))
-                }
-                context.stroke(p, with: .color(v.opacity(isLight ? 0.85 : 0.9)),
+                //
+                // LISSÉE par `smoothPath`, la MÊME spline Catmull-Rom que la prévision et la
+                // rafale. Les segments droits entre relevés donnaient une ligne brisée qui
+                // jurait à côté de courbes lisses. Le lissage est INTERNE au segment : il
+                // n'invente rien entre deux mesures voisines de 10 min, il rend seulement la
+                // même grandeur avec la même grammaire. Ce qu'il ne fait PAS, c'est franchir
+                // une coupure — là, il n'y a pas de mesure à relier.
+                let pts = seg.map { CGPoint(x: windX($0.t, width: size.width), y: wy($0.speedKmh)) }
+                context.stroke(smoothPath(pts), with: .color(v.opacity(isLight ? 0.85 : 0.9)),
                                style: StrokeStyle(lineWidth: 1.8, lineCap: .round, lineJoin: .round))
 
                 // Rafale mesurée : pointillé, comme la rafale prévue — même grammaire visuelle.
@@ -1483,9 +1497,7 @@ struct PremiumCurveCanvas: View {
                 var courant: [CGPoint] = []
                 func vider() {
                     if courant.count >= 2 {
-                        var g = Path(); g.move(to: courant[0])
-                        for q in courant.dropFirst() { g.addLine(to: q) }
-                        context.stroke(g, with: .color(v.opacity(isLight ? 0.45 : 0.5)),
+                        context.stroke(smoothPath(courant), with: .color(v.opacity(isLight ? 0.45 : 0.5)),
                                        style: StrokeStyle(lineWidth: 1.2, lineCap: .round,
                                                           lineJoin: .round, dash: [2, 3]))
                     }
