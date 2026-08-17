@@ -1,12 +1,16 @@
-Un día sin ventana te dice por fin POR QUÉ: "sin ventana - máx 8 nudos". Así dos spots se comparan de un vistazo, sin abrir nada. Un silencio no debería parecer una avería.
+La traza del viento REALMENTE MEDIDO aparece ahora en la curva, bajo la previsión: velocidad y racha, tal como las registró el anemómetro. La diferencia entre lo anunciado y lo que sopló de verdad se lee de un vistazo, día tras día, sin tener que creernos.
 
-Apple Watch: el reloj aplica por fin las mismas reglas que el teléfono.
-- El viento real ya no puede venir de una estación situada a 30 km. El radio baja a 15 km, como en el iPhone: una confirmación que viene de otro sitio no confirma nada. Y es en la muñeca, en la playa y sin teléfono, donde más importa.
-- Cuando una estación no publica su dirección, la flecha ya no apunta al norte por defecto. Desaparece, y el reloj recupera el viento del teléfono en lugar de inventarse un rumbo.
-- Las etiquetas de las mareas y la antigüedad de la medida aparecen por fin en tu idioma. Se habían quedado en francés en todos los demás.
+Donde falta la medida, la línea se corta y los puntos siguen visibles. Un silencio de varias horas nunca se rellenará con una línea inventada.
 
-En el iPhone:
-- Las cifras de la cinta meteorológica siguen siendo legibles sobre las bandas más claras.
-- Cambio de spot más fluido: el cálculo de la previsión ya no retiene la pantalla.
+Spots personalizados:
+- Un spot que has marcado tú toma ahora la meteo del lugar verificado más cercano, en un radio de 8 km. Un pin puesto a unos kilómetros mar adentro leía viento de agua abierta, y podía poner una laguna resguardada por delante de una playa oceánica. Más allá de 8 km se conserva tu pin: la meteo de una ciudad lejana describiría otro régimen.
+
+Puertos:
+- Andernos-les-Bains (Le Betey), Hourtin-Plage y Lacanau Océan entran en el catálogo.
+- "Lacanau" pasa a "Lacanau (large)": este punto de referencia de marea está a 29 km mar adentro. Sus mareas son correctas, su viento no es el de la playa.
+
+Correcciones:
+- La etiqueta del viento real ya no tapa las curvas.
+- Cuando el servicio de previsión alcanza su límite diario, la app lo dice, en lugar de mandarte a revisar tu conexión.
 
 ¡Buen viento y buenas olas!

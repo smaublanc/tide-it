@@ -1,12 +1,16 @@
-A day with no slot now tells you WHY: "no window - max 8 knots". Two spots can be compared at a glance, without opening anything. Silence should never look like a breakdown.
+The trace of the wind ACTUALLY MEASURED now appears on the curve, beneath the forecast: speed and gusts, exactly as the anemometer recorded them. The gap between what was announced and what actually blew reads at a glance, day after day - without having to take our word for it.
 
-Apple Watch - the watch finally follows the same rules as the phone:
-- Real wind can no longer come from a station 30 km away. The radius is down to 15 km, matching the iPhone: a confirmation from somewhere else confirms nothing. And the wrist is exactly where it matters most, on the beach with no phone.
-- When a station does not publish its direction, the arrow no longer defaults to due north. It disappears, and the watch falls back to the phone's wind instead of inventing a heading.
-- Tide labels and the age of the reading now appear in your language. They had stayed in French everywhere else.
+Where a measurement is missing, the line breaks and the dots stay visible. A silence of several hours will never be filled in with an invented line.
 
-On iPhone:
-- The figures in the weather ribbon stay readable over the brightest bands.
-- Smoother spot switching: the forecast calculation no longer holds up the display.
+Custom spots:
+- A spot you pinned yourself now takes the weather of the nearest verified location, within 8 km. A pin dropped a few kilometres offshore was reading open-water wind, and could put a sheltered lagoon ahead of an ocean beach. Beyond 8 km your pin is kept: the weather of a distant town would describe another regime.
+
+Ports:
+- Andernos-les-Bains (Le Betey), Hourtin-Plage and Lacanau Ocean join the catalogue.
+- "Lacanau" becomes "Lacanau (large)": this tide reference point sits 29 km offshore. Its tides are correct, its wind is not the beach's.
+
+Fixes:
+- The real-wind label no longer covers the curves.
+- When the forecast service reaches its daily limit, the app says so - instead of sending you to check your connection.
 
 Fair winds and good waves!

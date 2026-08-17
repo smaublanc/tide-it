@@ -1,12 +1,16 @@
-Um dia sem janela diz-te finalmente PORQUÊ: "sem janela - máx 8 nós". Assim comparas dois spots num relance, sem abrir nada. Um silêncio nunca devia parecer uma avaria.
+O traço do vento REALMENTE MEDIDO aparece agora na curva, sob a previsão: velocidade e rajada, tal como o anemómetro as registou. A diferença entre o que foi anunciado e o que soprou de facto lê-se num relance, dia após dia, sem ter de acreditar na nossa palavra.
 
-Apple Watch - o relógio aplica finalmente as mesmas regras do telemóvel:
-- O vento real já não pode vir de uma estação a 30 km. O raio desce para 15 km, como no iPhone: uma confirmação que vem de outro sítio não confirma nada. E é no pulso, na praia e sem telemóvel, que isso mais conta.
-- Quando uma estação não publica a direção, a seta deixa de apontar a norte por omissão. Desaparece, e o relógio volta ao vento do telemóvel em vez de inventar um rumo.
-- As etiquetas das marés e a idade da medição aparecem finalmente na tua língua. Tinham ficado em francês em todo o lado.
+Onde falta a medição, o traço corta-se e os pontos continuam visíveis. Um silêncio de várias horas nunca será preenchido por uma linha inventada.
 
-No iPhone:
-- Os números da faixa meteorológica continuam legíveis sobre as faixas mais claras.
-- Mudança de spot mais fluida: o cálculo da previsão já não prende o ecrã.
+Spots personalizados:
+- Um spot que marcaste tu passa a usar a meteorologia do local verificado mais próximo, num raio de 8 km. Um pino colocado a alguns quilómetros ao largo lia vento de água aberta, e podia pôr um plano de água abrigado à frente de uma praia oceânica. Além dos 8 km o teu pino é mantido: a meteorologia de uma cidade distante descreveria outro regime.
+
+Portos:
+- Andernos-les-Bains (Le Betey), Hourtin-Plage e Lacanau Océan entram no catálogo.
+- "Lacanau" passa a "Lacanau (large)": este ponto de referência de maré está a 29 km ao largo. As marés estão certas, o vento não é o da praia.
+
+Correções:
+- A etiqueta do vento real já não tapa as curvas.
+- Quando o serviço de previsão atinge o limite diário, a app di-lo, em vez de te mandar verificar a ligação.
 
 Bom vento e boas ondas!

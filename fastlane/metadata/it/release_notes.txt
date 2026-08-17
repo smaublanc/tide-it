@@ -1,12 +1,16 @@
-Una giornata senza finestra ti dice finalmente PERCHÉ: "nessuna finestra - max 8 nodi". Due spot si confrontano così a colpo d'occhio, senza aprire nulla. Un silenzio non dovrebbe mai sembrare un guasto.
+La traccia del vento REALMENTE MISURATO appare ora sulla curva, sotto la previsione: velocità e raffica, come le ha registrate l'anemometro. La differenza tra ciò che era annunciato e ciò che ha soffiato davvero si legge a colpo d'occhio, giorno dopo giorno, senza doverci credere sulla parola.
 
-Apple Watch: l'orologio applica finalmente le stesse regole del telefono.
-- Il vento reale non può più arrivare da una stazione a 30 km. Il raggio scende a 15 km, come su iPhone: una conferma che viene da altrove non conferma nulla. Ed è al polso, in spiaggia e senza telefono, che conta di più.
-- Quando una stazione non pubblica la direzione, la freccia non punta più a nord per difetto. Sparisce, e l'orologio riprende il vento del telefono invece di inventare una rotta.
-- Le etichette delle maree e l'età della misura appaiono finalmente nella tua lingua. Erano rimaste in francese ovunque.
+Dove la misura manca, il tratto si interrompe e i punti restano visibili. Un silenzio di più ore non sarà mai colmato da una linea inventata.
 
-Su iPhone:
-- I numeri del nastro meteo restano leggibili sulle bande più chiare.
-- Cambio di spot più fluido: il calcolo della previsione non trattiene più la schermata.
+Spot personalizzati:
+- Uno spot che hai posizionato tu prende ora il meteo del luogo verificato più vicino, entro 8 km. Un segnaposto messo qualche chilometro al largo leggeva vento di acqua aperta, e poteva mettere uno specchio d'acqua riparato davanti a una spiaggia oceanica. Oltre gli 8 km il tuo segnaposto resta: il meteo di una città lontana descriverebbe un altro regime.
+
+Porti:
+- Andernos-les-Bains (Le Betey), Hourtin-Plage e Lacanau Océan entrano nel catalogo.
+- "Lacanau" diventa "Lacanau (large)": questo punto di riferimento di marea è a 29 km al largo. Le sue maree sono giuste, il suo vento non è quello della spiaggia.
+
+Correzioni:
+- L'etichetta del vento reale non copre più le curve.
+- Quando il servizio di previsione raggiunge il limite giornaliero, l'app lo dice, invece di mandarti a controllare la connessione.
 
 Buon vento e buone onde!

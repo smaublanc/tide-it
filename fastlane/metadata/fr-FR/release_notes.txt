@@ -1,12 +1,16 @@
-Une journée sans créneau vous dit enfin POURQUOI : « pas de fenêtre · max 8 nœuds ». Deux spots se comparent alors d'un coup d'oeil, sans rien ouvrir. Un silence ne devrait jamais passer pour une panne.
+La trace du vent RÉELLEMENT MESURÉ s'affiche maintenant sur la courbe, sous la prévision : vitesse et rafale, telles que l'anémomètre les a relevées. L'écart entre ce qui était annoncé et ce qui a soufflé se lit d'un coup d'oeil, jour après jour — sans avoir à nous croire sur parole.
 
-Apple Watch — la montre applique enfin les mêmes règles que le téléphone :
-- Le vent réel ne peut plus venir d'une balise située à 30 km. Rayon ramené à 15 km, comme sur l'iPhone : une confirmation qui vient d'ailleurs ne confirme rien. Et c'est au poignet, sur la plage et sans téléphone, que ça compte le plus.
-- Quand une balise ne publie pas sa direction, la flèche ne pointe plus le nord par défaut. Elle s'efface, et la montre reprend le vent du téléphone plutôt que d'inventer un cap.
-- Les libellés des marées et l'âge de la mesure s'affichent enfin dans votre langue. Ils étaient restés en français partout ailleurs.
+Là où la mesure manque, le trait se coupe et les points restent visibles. Un silence de plusieurs heures ne sera jamais comblé par une ligne inventée.
 
-Sur l'iPhone :
-- Les chiffres du bandeau météo restent lisibles sur les bandes les plus claires.
-- Changement de spot plus fluide : le calcul de la prévision ne retient plus l'affichage.
+Spots personnalisés :
+- Un spot que vous avez épinglé vous-même prend désormais la météo du lieu vérifié le plus proche, dans un rayon de 8 km. Une épingle posée à quelques kilomètres au large lisait un vent de pleine eau, et pouvait faire passer un plan d'eau abrité devant un front de mer océanique. Au-delà de 8 km votre épingle est conservée : la météo d'une ville lointaine décrirait un autre régime.
+
+Ports :
+- Andernos-les-Bains (Le Betey), Hourtin-Plage et Lacanau Océan rejoignent le catalogue.
+- « Lacanau » devient « Lacanau (large) » : ce point de référence de marée est à 29 km au large. Les marées y sont justes, le vent n'y est pas celui de la plage.
+
+Corrections :
+- L'étiquette du vent réel ne masque plus les courbes.
+- Quand le service de prévision atteint sa limite du jour, l'app le dit — au lieu de vous envoyer vérifier votre connexion.
 
 Bon vent et bonnes vagues !

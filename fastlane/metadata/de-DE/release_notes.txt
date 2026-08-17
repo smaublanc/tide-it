@@ -1,12 +1,16 @@
-Ein Tag ohne Zeitfenster sagt jetzt WARUM: "kein Fenster - max. 8 Knoten". Zwei Spots lassen sich so auf einen Blick vergleichen, ohne etwas zu öffnen. Schweigen darf nie wie ein Defekt aussehen.
+Die Spur des TATSÄCHLICH GEMESSENEN Windes erscheint jetzt auf der Kurve, unter der Vorhersage: Geschwindigkeit und Böen, genau wie das Anemometer sie aufgezeichnet hat. Der Unterschied zwischen dem, was angekündigt war, und dem, was wirklich wehte, ist auf einen Blick lesbar - Tag für Tag, ohne uns glauben zu müssen.
 
-Apple Watch - die Uhr folgt endlich denselben Regeln wie das Telefon:
-- Der reale Wind darf nicht mehr von einer Station in 30 km Entfernung stammen. Der Radius liegt jetzt bei 15 km wie auf dem iPhone: Eine Bestätigung von anderswo bestätigt gar nichts. Und genau am Handgelenk zählt sie am meisten, am Strand und ohne Telefon.
-- Wenn eine Station keine Richtung liefert, zeigt der Pfeil nicht mehr ersatzweise nach Norden. Er verschwindet, und die Uhr greift auf den Wind des Telefons zurück, statt eine Richtung zu erfinden.
-- Die Gezeiten-Beschriftungen und das Alter der Messung erscheinen endlich in deiner Sprache. Sie waren überall sonst auf Französisch geblieben.
+Wo eine Messung fehlt, bricht die Linie ab und die Punkte bleiben sichtbar. Ein Schweigen von mehreren Stunden wird nie mit einer erfundenen Linie gefüllt.
 
-Auf dem iPhone:
-- Die Zahlen im Wetterband bleiben auch über den hellsten Streifen lesbar.
-- Flüssigerer Spot-Wechsel: Die Berechnung der Vorhersage bremst die Anzeige nicht mehr.
+Eigene Spots:
+- Ein Spot, den du selbst gesetzt hast, übernimmt jetzt das Wetter des nächsten geprüften Ortes, im Umkreis von 8 km. Eine Nadel, die einige Kilometer vor der Küste liegt, las den Wind des offenen Wassers und konnte ein geschütztes Gewässer vor einen Ozeanstrand setzen. Über 8 km bleibt deine Nadel erhalten: Das Wetter einer fernen Stadt würde ein anderes Regime beschreiben.
+
+Häfen:
+- Andernos-les-Bains (Le Betey), Hourtin-Plage und Lacanau Ocean kommen in den Katalog.
+- "Lacanau" wird zu "Lacanau (large)": Dieser Gezeiten-Referenzpunkt liegt 29 km vor der Küste. Seine Gezeiten sind richtig, sein Wind ist nicht der des Strandes.
+
+Korrekturen:
+- Die Beschriftung des realen Windes verdeckt die Kurven nicht mehr.
+- Wenn der Wetterdienst sein Tageslimit erreicht, sagt die App es - anstatt dich deine Verbindung prüfen zu lassen.
 
 Guten Wind und gute Wellen!
