@@ -1,0 +1,2813 @@
+[
+ {
+  "spot": "Lacanau Ocean (FR)",
+  "zone": "Europe-Atlantique",
+  "elevations": [
+   0.0,
+   0.0,
+   18.0,
+   18.0,
+   0.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 18.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 5,
+    "vent_moyen_centre_kn": 5.2,
+    "etendue_mediane_kn": 2.8,
+    "etendue_p90_kn": 7.7,
+    "etendue_max_kn": 15.7,
+    "etendue_mediane_ventee_kn": 7.7,
+    "heures_ventees": 33,
+    "eau_moy_kn": 5.59,
+    "terre_moy_kn": 5.47,
+    "ecart_eau_terre_kn": 0.118,
+    "ratio_eau_terre": 1.022,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 4.85,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 17,
+    "eau_moy_kn": 4.85,
+    "terre_moy_kn": 4.85,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 6.51,
+    "etendue_mediane_kn": 1.45,
+    "etendue_p90_kn": 2.9,
+    "etendue_max_kn": 8.0,
+    "etendue_mediane_ventee_kn": 2.1,
+    "heures_ventees": 95,
+    "eau_moy_kn": 6.51,
+    "terre_moy_kn": 5.79,
+    "ecart_eau_terre_kn": 0.714,
+    "ratio_eau_terre": 1.123,
+    "ratio_horaire_median": 1.124
+   }
+  }
+ },
+ {
+  "spot": "Andernos, Bassin (FR)",
+  "zone": "Europe-Atlantique",
+  "elevations": [
+   5.0,
+   15.0,
+   0.0,
+   13.0,
+   0.0
+  ],
+  "eau": 2,
+  "terre": 3,
+  "mixte": true,
+  "elev_etendue_m": 15.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 4,
+    "vent_moyen_centre_kn": 4.82,
+    "etendue_mediane_kn": 2.6,
+    "etendue_p90_kn": 4.8,
+    "etendue_max_kn": 8.8,
+    "etendue_mediane_ventee_kn": 4.7,
+    "heures_ventees": 40,
+    "eau_moy_kn": 6.34,
+    "terre_moy_kn": 4.82,
+    "ecart_eau_terre_kn": 1.517,
+    "ratio_eau_terre": 1.315,
+    "ratio_horaire_median": 1.318
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 5.03,
+    "etendue_mediane_kn": 0.4,
+    "etendue_p90_kn": 1.01,
+    "etendue_max_kn": 4.7,
+    "etendue_mediane_ventee_kn": 0.45,
+    "heures_ventees": 50,
+    "eau_moy_kn": 5.03,
+    "terre_moy_kn": 5.03,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 5.69,
+    "etendue_mediane_kn": 0.8,
+    "etendue_p90_kn": 1.9,
+    "etendue_max_kn": 7.4,
+    "etendue_mediane_ventee_kn": 1.4,
+    "heures_ventees": 77,
+    "eau_moy_kn": 5.69,
+    "terre_moy_kn": 5.69,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Cap Ferret (FR)",
+  "zone": "Europe-Atlantique",
+  "elevations": [
+   8.0,
+   6.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 8.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 5,
+    "vent_moyen_centre_kn": 7.13,
+    "etendue_mediane_kn": 1.9,
+    "etendue_p90_kn": 4.2,
+    "etendue_max_kn": 13.4,
+    "etendue_mediane_ventee_kn": 2.4,
+    "heures_ventees": 144,
+    "eau_moy_kn": 7.88,
+    "terre_moy_kn": 6.85,
+    "ecart_eau_terre_kn": 1.031,
+    "ratio_eau_terre": 1.151,
+    "ratio_horaire_median": 1.14
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 4.44,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 19,
+    "eau_moy_kn": 4.44,
+    "terre_moy_kn": 4.44,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 5.79,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 58,
+    "eau_moy_kn": 5.79,
+    "terre_moy_kn": 5.79,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Guincho (PT)",
+  "zone": "Europe-Atlantique",
+  "elevations": [
+   4.0,
+   44.0,
+   56.0,
+   76.0,
+   0.0
+  ],
+  "eau": 1,
+  "terre": 4,
+  "mixte": true,
+  "elev_etendue_m": 76.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 8.43,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 212,
+    "eau_moy_kn": 8.43,
+    "terre_moy_kn": 8.43,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 8.28,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 209,
+    "eau_moy_kn": 8.28,
+    "terre_moy_kn": 8.28,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 9.98,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 252,
+    "eau_moy_kn": 9.98,
+    "terre_moy_kn": 9.98,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Brandon Bay (IE)",
+  "zone": "Europe-Atlantique",
+  "elevations": [
+   4.0,
+   19.0,
+   31.0,
+   0.0,
+   6.0
+  ],
+  "eau": 1,
+  "terre": 4,
+  "mixte": true,
+  "elev_etendue_m": 31.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 4,
+    "vent_moyen_centre_kn": 6.97,
+    "etendue_mediane_kn": 3.55,
+    "etendue_p90_kn": 5.4,
+    "etendue_max_kn": 8.2,
+    "etendue_mediane_ventee_kn": 4.0,
+    "heures_ventees": 132,
+    "eau_moy_kn": 7.63,
+    "terre_moy_kn": 7.17,
+    "ecart_eau_terre_kn": 0.462,
+    "ratio_eau_terre": 1.065,
+    "ratio_horaire_median": 1.039
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 7.2,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 113,
+    "eau_moy_kn": 7.2,
+    "terre_moy_kn": 7.2,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 6.02,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 60,
+    "eau_moy_kn": 6.02,
+    "terre_moy_kn": 6.02,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Westkapelle (NL)",
+  "zone": "Europe-Atlantique",
+  "elevations": [
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "eau": 4,
+  "terre": 1,
+  "mixte": true,
+  "elev_etendue_m": 1.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 5,
+    "vent_moyen_centre_kn": 10.11,
+    "etendue_mediane_kn": 3.3,
+    "etendue_p90_kn": 5.9,
+    "etendue_max_kn": 13.1,
+    "etendue_mediane_ventee_kn": 3.95,
+    "heures_ventees": 214,
+    "eau_moy_kn": 10.57,
+    "terre_moy_kn": 10.11,
+    "ecart_eau_terre_kn": 0.458,
+    "ratio_eau_terre": 1.045,
+    "ratio_horaire_median": 1.037
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 8.67,
+    "etendue_mediane_kn": 1.5,
+    "etendue_p90_kn": 3.3,
+    "etendue_max_kn": 4.7,
+    "etendue_mediane_ventee_kn": 2.25,
+    "heures_ventees": 174,
+    "eau_moy_kn": 8.67,
+    "terre_moy_kn": 8.67,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 9.06,
+    "etendue_mediane_kn": 0.9,
+    "etendue_p90_kn": 2.4,
+    "etendue_max_kn": 3.4,
+    "etendue_mediane_ventee_kn": 1.3,
+    "heures_ventees": 215,
+    "eau_moy_kn": 9.06,
+    "terre_moy_kn": 9.06,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Sylt / Westerland (DE)",
+  "zone": "Europe-Atlantique",
+  "elevations": [
+   10.0,
+   0.0,
+   4.0,
+   8.0,
+   0.0
+  ],
+  "eau": 2,
+  "terre": 3,
+  "mixte": true,
+  "elev_etendue_m": 10.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 4,
+    "vent_moyen_centre_kn": 10.7,
+    "etendue_mediane_kn": 2.8,
+    "etendue_p90_kn": 5.01,
+    "etendue_max_kn": 6.6,
+    "etendue_mediane_ventee_kn": 3.3,
+    "heures_ventees": 247,
+    "eau_moy_kn": 12.23,
+    "terre_moy_kn": 10.7,
+    "ecart_eau_terre_kn": 1.535,
+    "ratio_eau_terre": 1.144,
+    "ratio_horaire_median": 1.142
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 3,
+    "vent_moyen_centre_kn": 9.31,
+    "etendue_mediane_kn": 2.5,
+    "etendue_p90_kn": 5.11,
+    "etendue_max_kn": 10.1,
+    "etendue_mediane_ventee_kn": 3.05,
+    "heures_ventees": 200,
+    "eau_moy_kn": 10.48,
+    "terre_moy_kn": 9.31,
+    "ecart_eau_terre_kn": 1.168,
+    "ratio_eau_terre": 1.125,
+    "ratio_horaire_median": 1.128
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 12.75,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 300,
+    "eau_moy_kn": 12.75,
+    "terre_moy_kn": 12.75,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Tarifa (ES)",
+  "zone": "Europe-Atlantique",
+  "elevations": [
+   15.0,
+   6.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 15.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 3,
+    "vent_moyen_centre_kn": 4.7,
+    "etendue_mediane_kn": 3.3,
+    "etendue_p90_kn": 5.6,
+    "etendue_max_kn": 7.0,
+    "etendue_mediane_ventee_kn": 5.5,
+    "heures_ventees": 19,
+    "eau_moy_kn": 5.46,
+    "terre_moy_kn": 4.7,
+    "ecart_eau_terre_kn": 0.76,
+    "ratio_eau_terre": 1.162,
+    "ratio_horaire_median": 1.149
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 5.43,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 77,
+    "eau_moy_kn": 5.43,
+    "terre_moy_kn": 5.43,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 7.72,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 198,
+    "eau_moy_kn": 7.72,
+    "terre_moy_kn": 7.72,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Hvide Sande (DK)",
+  "zone": "Europe-Atlantique",
+  "elevations": [
+   2.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "eau": 4,
+  "terre": 1,
+  "mixte": true,
+  "elev_etendue_m": 2.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 12.45,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 283,
+    "eau_moy_kn": 12.45,
+    "terre_moy_kn": 12.45,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 12.25,
+    "etendue_mediane_kn": 1.1,
+    "etendue_p90_kn": 2.0,
+    "etendue_max_kn": 3.2,
+    "etendue_mediane_ventee_kn": 1.2,
+    "heures_ventees": 274,
+    "eau_moy_kn": 12.25,
+    "terre_moy_kn": 12.25,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 13.14,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 297,
+    "eau_moy_kn": 13.14,
+    "terre_moy_kn": 13.14,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "La Franqui, Leucate (FR)",
+  "zone": "Mediterranee",
+  "elevations": [
+   42.0,
+   5.0,
+   8.0,
+   45.0,
+   0.0
+  ],
+  "eau": 1,
+  "terre": 4,
+  "mixte": true,
+  "elev_etendue_m": 45.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 4,
+    "vent_moyen_centre_kn": 7.02,
+    "etendue_mediane_kn": 1.3,
+    "etendue_p90_kn": 2.4,
+    "etendue_max_kn": 9.2,
+    "etendue_mediane_ventee_kn": 1.2,
+    "heures_ventees": 130,
+    "eau_moy_kn": 7.09,
+    "terre_moy_kn": 7.0,
+    "ecart_eau_terre_kn": 0.091,
+    "ratio_eau_terre": 1.013,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 6.73,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 115,
+    "eau_moy_kn": 6.73,
+    "terre_moy_kn": 6.73,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 6.16,
+    "etendue_mediane_kn": 1.1,
+    "etendue_p90_kn": 2.8,
+    "etendue_max_kn": 6.2,
+    "etendue_mediane_ventee_kn": 1.7,
+    "heures_ventees": 95,
+    "eau_moy_kn": 6.16,
+    "terre_moy_kn": 6.16,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Hyeres, Almanarre (FR)",
+  "zone": "Mediterranee",
+  "elevations": [
+   -1.0,
+   4.0,
+   -1.0,
+   0.0,
+   0.0
+  ],
+  "eau": 4,
+  "terre": 1,
+  "mixte": true,
+  "elev_etendue_m": 5.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 5,
+    "vent_moyen_centre_kn": 7.54,
+    "etendue_mediane_kn": 2.2,
+    "etendue_p90_kn": 5.9,
+    "etendue_max_kn": 13.7,
+    "etendue_mediane_ventee_kn": 2.85,
+    "heures_ventees": 136,
+    "eau_moy_kn": 7.84,
+    "terre_moy_kn": 6.66,
+    "ecart_eau_terre_kn": 1.179,
+    "ratio_eau_terre": 1.177,
+    "ratio_horaire_median": 1.096
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 4.63,
+    "etendue_mediane_kn": 0.2,
+    "etendue_p90_kn": 0.6,
+    "etendue_max_kn": 2.7,
+    "etendue_mediane_ventee_kn": 0.3,
+    "heures_ventees": 50,
+    "eau_moy_kn": 4.63,
+    "terre_moy_kn": 4.63,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 5.36,
+    "etendue_mediane_kn": 1.0,
+    "etendue_p90_kn": 1.9,
+    "etendue_max_kn": 9.0,
+    "etendue_mediane_ventee_kn": 0.7,
+    "heures_ventees": 72,
+    "eau_moy_kn": 5.36,
+    "terre_moy_kn": 5.36,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Vassiliki (GR)",
+  "zone": "Mediterranee",
+  "elevations": [
+   0.0,
+   80.0,
+   0.0,
+   177.0,
+   553.0
+  ],
+  "eau": 2,
+  "terre": 3,
+  "mixte": true,
+  "elev_etendue_m": 553.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 4.7,
+    "etendue_mediane_kn": 1.3,
+    "etendue_p90_kn": 3.0,
+    "etendue_max_kn": 5.4,
+    "etendue_mediane_ventee_kn": 1.75,
+    "heures_ventees": 26,
+    "eau_moy_kn": 4.7,
+    "terre_moy_kn": 4.7,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 4.29,
+    "etendue_mediane_kn": 0.8,
+    "etendue_p90_kn": 2.81,
+    "etendue_max_kn": 4.1,
+    "etendue_mediane_ventee_kn": 1.85,
+    "heures_ventees": 20,
+    "eau_moy_kn": 4.29,
+    "terre_moy_kn": 4.29,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 5.15,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 65,
+    "eau_moy_kn": 5.15,
+    "terre_moy_kn": 5.15,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Alacati (TR)",
+  "zone": "Mediterranee",
+  "elevations": [
+   111.0,
+   36.0,
+   28.0,
+   17.0,
+   151.0
+  ],
+  "eau": 0,
+  "terre": 5,
+  "mixte": false,
+  "elev_etendue_m": 134.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 13.88,
+    "etendue_mediane_kn": 2.2,
+    "etendue_p90_kn": 5.21,
+    "etendue_max_kn": 8.3,
+    "etendue_mediane_ventee_kn": 2.1,
+    "heures_ventees": 328
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 9.94,
+    "etendue_mediane_kn": 2.2,
+    "etendue_p90_kn": 3.8,
+    "etendue_max_kn": 4.8,
+    "etendue_mediane_ventee_kn": 2.4,
+    "heures_ventees": 260
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 10.26,
+    "etendue_mediane_kn": 2.4,
+    "etendue_p90_kn": 5.11,
+    "etendue_max_kn": 10.5,
+    "etendue_mediane_ventee_kn": 2.4,
+    "heures_ventees": 236
+   }
+  }
+ },
+ {
+  "spot": "Tarbena / Rosas (ES)",
+  "zone": "Mediterranee",
+  "elevations": [
+   0.0,
+   14.0,
+   0.0,
+   140.0,
+   0.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 140.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 5,
+    "vent_moyen_centre_kn": 7.77,
+    "etendue_mediane_kn": 4.9,
+    "etendue_p90_kn": 8.0,
+    "etendue_max_kn": 13.9,
+    "etendue_mediane_ventee_kn": 5.9,
+    "heures_ventees": 160,
+    "eau_moy_kn": 8.04,
+    "terre_moy_kn": 5.81,
+    "ecart_eau_terre_kn": 2.227,
+    "ratio_eau_terre": 1.383,
+    "ratio_horaire_median": 1.361
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 3.78,
+    "etendue_mediane_kn": 1.2,
+    "etendue_p90_kn": 3.8,
+    "etendue_max_kn": 7.1,
+    "etendue_mediane_ventee_kn": 2.4,
+    "heures_ventees": 50,
+    "eau_moy_kn": 3.78,
+    "terre_moy_kn": 3.91,
+    "ecart_eau_terre_kn": -0.131,
+    "ratio_eau_terre": 0.967,
+    "ratio_horaire_median": 1.031
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 4.95,
+    "etendue_mediane_kn": 1.4,
+    "etendue_p90_kn": 4.7,
+    "etendue_max_kn": 7.6,
+    "etendue_mediane_ventee_kn": 3.0,
+    "heures_ventees": 32,
+    "eau_moy_kn": 6.02,
+    "terre_moy_kn": 4.95,
+    "ecart_eau_terre_kn": 1.073,
+    "ratio_eau_terre": 1.217,
+    "ratio_horaire_median": 1.17
+   }
+  }
+ },
+ {
+  "spot": "Dakhla lagune (MA)",
+  "zone": "Afrique",
+  "elevations": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "eau": 5,
+  "terre": 0,
+  "mixte": false,
+  "elev_etendue_m": 0.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 15.87,
+    "etendue_mediane_kn": 2.0,
+    "etendue_p90_kn": 3.5,
+    "etendue_max_kn": 8.7,
+    "etendue_mediane_ventee_kn": 2.0,
+    "heures_ventees": 346
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 14.66,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 333
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 15.45,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 343
+   }
+  }
+ },
+ {
+  "spot": "Essaouira (MA)",
+  "zone": "Afrique",
+  "elevations": [
+   0.0,
+   0.0,
+   6.0,
+   11.0,
+   0.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 11.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 12.19,
+    "etendue_mediane_kn": 3.6,
+    "etendue_p90_kn": 5.7,
+    "etendue_max_kn": 7.0,
+    "etendue_mediane_ventee_kn": 3.45,
+    "heures_ventees": 308,
+    "eau_moy_kn": 12.19,
+    "terre_moy_kn": 13.9,
+    "ecart_eau_terre_kn": -1.711,
+    "ratio_eau_terre": 0.877,
+    "ratio_horaire_median": 0.872
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 11.79,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 333,
+    "eau_moy_kn": 11.79,
+    "terre_moy_kn": 11.79,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 16.76,
+    "etendue_mediane_kn": 1.7,
+    "etendue_p90_kn": 3.71,
+    "etendue_max_kn": 5.9,
+    "etendue_mediane_ventee_kn": 1.8,
+    "heures_ventees": 356,
+    "eau_moy_kn": 16.76,
+    "terre_moy_kn": 16.76,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Langebaan (ZA)",
+  "zone": "Afrique",
+  "elevations": [
+   1.0,
+   0.0,
+   0.0,
+   36.0,
+   0.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 36.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 7.37,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 164,
+    "eau_moy_kn": 7.37,
+    "terre_moy_kn": 7.37,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 5.07,
+    "etendue_mediane_kn": 0.3,
+    "etendue_p90_kn": 0.7,
+    "etendue_max_kn": 4.3,
+    "etendue_mediane_ventee_kn": 0.4,
+    "heures_ventees": 62,
+    "eau_moy_kn": 5.07,
+    "terre_moy_kn": 5.07,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 8.63,
+    "etendue_mediane_kn": 1.6,
+    "etendue_p90_kn": 5.51,
+    "etendue_max_kn": 10.2,
+    "etendue_mediane_ventee_kn": 2.3,
+    "heures_ventees": 181,
+    "eau_moy_kn": 10.23,
+    "terre_moy_kn": 8.63,
+    "ecart_eau_terre_kn": 1.599,
+    "ratio_eau_terre": 1.185,
+    "ratio_horaire_median": 1.156
+   }
+  }
+ },
+ {
+  "spot": "Blouberg, Le Cap (ZA)",
+  "zone": "Afrique",
+  "elevations": [
+   0.0,
+   16.0,
+   0.0,
+   11.0,
+   0.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 16.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 5.5,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 71,
+    "eau_moy_kn": 5.5,
+    "terre_moy_kn": 5.5,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 4.17,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 41,
+    "eau_moy_kn": 4.17,
+    "terre_moy_kn": 4.17,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 5.43,
+    "etendue_mediane_kn": 1.55,
+    "etendue_p90_kn": 3.8,
+    "etendue_max_kn": 10.1,
+    "etendue_mediane_ventee_kn": 2.6,
+    "heures_ventees": 71,
+    "eau_moy_kn": 5.43,
+    "terre_moy_kn": 5.97,
+    "ecart_eau_terre_kn": -0.536,
+    "ratio_eau_terre": 0.91,
+    "ratio_horaire_median": 0.898
+   }
+  }
+ },
+ {
+  "spot": "Paje, Zanzibar (TZ)",
+  "zone": "Afrique",
+  "elevations": [
+   7.0,
+   16.0,
+   14.0,
+   0.0,
+   6.0
+  ],
+  "eau": 1,
+  "terre": 4,
+  "mixte": true,
+  "elev_etendue_m": 16.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 4.55,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 1,
+    "eau_moy_kn": 4.55,
+    "terre_moy_kn": 4.55,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 5.86,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 67,
+    "eau_moy_kn": 5.86,
+    "terre_moy_kn": 5.86,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 8.11,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 188,
+    "eau_moy_kn": 8.11,
+    "terre_moy_kn": 8.11,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Safaga (EG)",
+  "zone": "Afrique",
+  "elevations": [
+   5.0,
+   8.0,
+   0.0,
+   0.0,
+   127.0
+  ],
+  "eau": 2,
+  "terre": 3,
+  "mixte": true,
+  "elev_etendue_m": 127.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 5.22,
+    "etendue_mediane_kn": 2.2,
+    "etendue_p90_kn": 5.8,
+    "etendue_max_kn": 11.0,
+    "etendue_mediane_ventee_kn": 3.0,
+    "heures_ventees": 77,
+    "eau_moy_kn": 6.51,
+    "terre_moy_kn": 5.22,
+    "ecart_eau_terre_kn": 1.29,
+    "ratio_eau_terre": 1.247,
+    "ratio_horaire_median": 1.164
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 5.46,
+    "etendue_mediane_kn": 1.2,
+    "etendue_p90_kn": 2.7,
+    "etendue_max_kn": 5.5,
+    "etendue_mediane_ventee_kn": 1.6,
+    "heures_ventees": 87,
+    "eau_moy_kn": 5.46,
+    "terre_moy_kn": 6.02,
+    "ecart_eau_terre_kn": -0.559,
+    "ratio_eau_terre": 0.907,
+    "ratio_horaire_median": 0.811
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 7.23,
+    "etendue_mediane_kn": 1.6,
+    "etendue_p90_kn": 4.71,
+    "etendue_max_kn": 14.0,
+    "etendue_mediane_ventee_kn": 3.3,
+    "heures_ventees": 133,
+    "eau_moy_kn": 7.23,
+    "terre_moy_kn": 7.23,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Cabarete (DO)",
+  "zone": "Caraibes",
+  "elevations": [
+   0.0,
+   0.0,
+   1.0,
+   0.0,
+   3.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 3.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 7.56,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 146,
+    "eau_moy_kn": 7.56,
+    "terre_moy_kn": 7.56,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 8.02,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 156,
+    "eau_moy_kn": 8.02,
+    "terre_moy_kn": 8.02,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 9.3,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 201,
+    "eau_moy_kn": 9.3,
+    "terre_moy_kn": 9.3,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Sorobon, Bonaire (BQ)",
+  "zone": "Caraibes",
+  "elevations": [
+   0.0,
+   5.0,
+   0.0,
+   0.0,
+   7.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 7.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 17.37,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 360,
+    "eau_moy_kn": 17.37,
+    "terre_moy_kn": 17.37,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 14.74,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 355,
+    "eau_moy_kn": 14.74,
+    "terre_moy_kn": 14.74,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 17.87,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 355,
+    "eau_moy_kn": 17.87,
+    "terre_moy_kn": 17.87,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Silver Rock (BB)",
+  "zone": "Caraibes",
+  "elevations": [
+   58.0,
+   98.0,
+   17.0,
+   60.0,
+   23.0
+  ],
+  "eau": 0,
+  "terre": 5,
+  "mixte": false,
+  "elev_etendue_m": 81.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 14.42,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 355
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 10.32,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 287
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 13.57,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 354
+   }
+  }
+ },
+ {
+  "spot": "Cape Hatteras (US)",
+  "zone": "Amerique-Nord",
+  "elevations": [
+   4.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "eau": 4,
+  "terre": 1,
+  "mixte": true,
+  "elev_etendue_m": 4.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 11.88,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 330,
+    "eau_moy_kn": 11.88,
+    "terre_moy_kn": 11.88,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 12.34,
+    "etendue_mediane_kn": 1.7,
+    "etendue_p90_kn": 3.2,
+    "etendue_max_kn": 4.0,
+    "etendue_mediane_ventee_kn": 1.8,
+    "heures_ventees": 327,
+    "eau_moy_kn": 12.34,
+    "terre_moy_kn": 12.34,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 4,
+    "vent_moyen_centre_kn": 9.52,
+    "etendue_mediane_kn": 0.6,
+    "etendue_p90_kn": 1.51,
+    "etendue_max_kn": 4.3,
+    "etendue_mediane_ventee_kn": 0.6,
+    "heures_ventees": 252,
+    "eau_moy_kn": 9.52,
+    "terre_moy_kn": 9.52,
+    "ecart_eau_terre_kn": 0.001,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Hood River (US)",
+  "zone": "Amerique-Nord",
+  "elevations": [
+   29.0,
+   121.0,
+   107.0,
+   22.0,
+   84.0
+  ],
+  "eau": 0,
+  "terre": 5,
+  "mixte": false,
+  "elev_etendue_m": 99.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 2.24,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": null,
+    "heures_ventees": 0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 5.1,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 66
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 3,
+    "vent_moyen_centre_kn": 6.42,
+    "etendue_mediane_kn": 1.9,
+    "etendue_p90_kn": 3.8,
+    "etendue_max_kn": 8.6,
+    "etendue_mediane_ventee_kn": 1.6,
+    "heures_ventees": 116
+   }
+  }
+ },
+ {
+  "spot": "La Ventana (MX)",
+  "zone": "Amerique-Nord",
+  "elevations": [
+   12.0,
+   18.0,
+   13.0,
+   0.0,
+   110.0
+  ],
+  "eau": 1,
+  "terre": 4,
+  "mixte": true,
+  "elev_etendue_m": 110.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 3.9,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 6,
+    "eau_moy_kn": 3.9,
+    "terre_moy_kn": 3.9,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 5.47,
+    "etendue_mediane_kn": 1.8,
+    "etendue_p90_kn": 3.2,
+    "etendue_max_kn": 10.6,
+    "etendue_mediane_ventee_kn": 2.65,
+    "heures_ventees": 52,
+    "eau_moy_kn": 5.47,
+    "terre_moy_kn": 5.47,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 5.61,
+    "etendue_mediane_kn": 1.2,
+    "etendue_p90_kn": 2.81,
+    "etendue_max_kn": 6.5,
+    "etendue_mediane_ventee_kn": 1.25,
+    "heures_ventees": 90,
+    "eau_moy_kn": 5.61,
+    "terre_moy_kn": 5.61,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Sherman Island (US)",
+  "zone": "Amerique-Nord",
+  "elevations": [
+   -5.0,
+   -5.0,
+   0.0,
+   -3.0,
+   0.0
+  ],
+  "eau": 5,
+  "terre": 0,
+  "mixte": false,
+  "elev_etendue_m": 5.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 8.16,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 193
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 5.7,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 52
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 4,
+    "vent_moyen_centre_kn": 11.79,
+    "etendue_mediane_kn": 3.6,
+    "etendue_p90_kn": 6.4,
+    "etendue_max_kn": 10.3,
+    "etendue_mediane_ventee_kn": 3.7,
+    "heures_ventees": 327
+   }
+  }
+ },
+ {
+  "spot": "Long Beach, NY (US)",
+  "zone": "Amerique-Nord",
+  "elevations": [
+   0.0,
+   3.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "eau": 4,
+  "terre": 1,
+  "mixte": true,
+  "elev_etendue_m": 3.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 9.16,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 211,
+    "eau_moy_kn": 9.16,
+    "terre_moy_kn": 9.16,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 5.75,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 69,
+    "eau_moy_kn": 5.75,
+    "terre_moy_kn": 5.75,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 6.35,
+    "etendue_mediane_kn": 0.5,
+    "etendue_p90_kn": 1.3,
+    "etendue_max_kn": 2.9,
+    "etendue_mediane_ventee_kn": 0.65,
+    "heures_ventees": 88,
+    "eau_moy_kn": 6.35,
+    "terre_moy_kn": 6.35,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Cumbuco (BR)",
+  "zone": "Amerique-Sud",
+  "elevations": [
+   0.0,
+   0.0,
+   23.0,
+   0.0,
+   27.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 27.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 18.32,
+    "etendue_mediane_kn": 8.5,
+    "etendue_p90_kn": 10.9,
+    "etendue_max_kn": 13.4,
+    "etendue_mediane_ventee_kn": 8.5,
+    "heures_ventees": 360,
+    "eau_moy_kn": 18.32,
+    "terre_moy_kn": 13.98,
+    "ecart_eau_terre_kn": 4.34,
+    "ratio_eau_terre": 1.31,
+    "ratio_horaire_median": 1.315
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 10.46,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 324,
+    "eau_moy_kn": 10.46,
+    "terre_moy_kn": 10.46,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 12.42,
+    "etendue_mediane_kn": 2.7,
+    "etendue_p90_kn": 3.31,
+    "etendue_max_kn": 4.2,
+    "etendue_mediane_ventee_kn": 2.8,
+    "heures_ventees": 357,
+    "eau_moy_kn": 12.42,
+    "terre_moy_kn": 11.08,
+    "ecart_eau_terre_kn": 1.341,
+    "ratio_eau_terre": 1.121,
+    "ratio_horaire_median": 1.123
+   }
+  }
+ },
+ {
+  "spot": "Jericoacoara (BR)",
+  "zone": "Amerique-Sud",
+  "elevations": [
+   29.0,
+   0.0,
+   8.0,
+   16.0,
+   0.0
+  ],
+  "eau": 2,
+  "terre": 3,
+  "mixte": true,
+  "elev_etendue_m": 29.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 18.61,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 360,
+    "eau_moy_kn": 18.61,
+    "terre_moy_kn": 18.61,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 11.55,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 352,
+    "eau_moy_kn": 11.55,
+    "terre_moy_kn": 11.55,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 9.88,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 267,
+    "eau_moy_kn": 9.88,
+    "terre_moy_kn": 9.88,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Paracas (PE)",
+  "zone": "Amerique-Sud",
+  "elevations": [
+   0.0,
+   0.0,
+   7.0,
+   34.0,
+   0.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 34.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 3.32,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 6,
+    "eau_moy_kn": 3.32,
+    "terre_moy_kn": 3.32,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 7.18,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 146,
+    "eau_moy_kn": 7.18,
+    "terre_moy_kn": 7.18,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 6.32,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 117,
+    "eau_moy_kn": 6.32,
+    "terre_moy_kn": 6.32,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Punta Chame (PA)",
+  "zone": "Amerique-Sud",
+  "elevations": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "eau": 5,
+  "terre": 0,
+  "mixte": false,
+  "elev_etendue_m": 0.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 10.76,
+    "etendue_mediane_kn": 1.4,
+    "etendue_p90_kn": 5.21,
+    "etendue_max_kn": 9.9,
+    "etendue_mediane_ventee_kn": 1.4,
+    "heures_ventees": 285
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 6.81,
+    "etendue_mediane_kn": 2.6,
+    "etendue_p90_kn": 4.8,
+    "etendue_max_kn": 6.8,
+    "etendue_mediane_ventee_kn": 2.5,
+    "heures_ventees": 136
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 7.66,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 175
+   }
+  }
+ },
+ {
+  "spot": "Lago Los Barreales (AR)",
+  "zone": "Amerique-Sud",
+  "elevations": [
+   456.0,
+   410.0,
+   577.0,
+   540.0,
+   410.0
+  ],
+  "eau": 0,
+  "terre": 5,
+  "mixte": false,
+  "elev_etendue_m": 167.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 6.33,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 113
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 7.79,
+    "etendue_mediane_kn": 1.5,
+    "etendue_p90_kn": 4.5,
+    "etendue_max_kn": 9.9,
+    "etendue_mediane_ventee_kn": 1.95,
+    "heures_ventees": 152
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 3,
+    "vent_moyen_centre_kn": 12.67,
+    "etendue_mediane_kn": 2.6,
+    "etendue_p90_kn": 5.91,
+    "etendue_max_kn": 9.3,
+    "etendue_mediane_ventee_kn": 2.7,
+    "heures_ventees": 265
+   }
+  }
+ },
+ {
+  "spot": "Mui Ne (VN)",
+  "zone": "Asie",
+  "elevations": [
+   18.0,
+   57.0,
+   0.0,
+   83.0,
+   0.0
+  ],
+  "eau": 2,
+  "terre": 3,
+  "mixte": true,
+  "elev_etendue_m": 83.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 11.17,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 332,
+    "eau_moy_kn": 11.17,
+    "terre_moy_kn": 11.17,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 8.9,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 182,
+    "eau_moy_kn": 8.9,
+    "terre_moy_kn": 8.9,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 12.89,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 348,
+    "eau_moy_kn": 12.89,
+    "terre_moy_kn": 12.89,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Bulabog, Boracay (PH)",
+  "zone": "Asie",
+  "elevations": [
+   0.0,
+   0.0,
+   8.0,
+   0.0,
+   0.0
+  ],
+  "eau": 4,
+  "terre": 1,
+  "mixte": true,
+  "elev_etendue_m": 8.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 13.92,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 356,
+    "eau_moy_kn": 13.92,
+    "terre_moy_kn": 13.92,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 11.71,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 340,
+    "eau_moy_kn": 11.71,
+    "terre_moy_kn": 11.71,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 11.34,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 311,
+    "eau_moy_kn": 11.34,
+    "terre_moy_kn": 11.34,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Kalpitiya (LK)",
+  "zone": "Asie",
+  "elevations": [
+   1.0,
+   0.0,
+   0.0,
+   5.0,
+   0.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 5.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 16.99,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 358,
+    "eau_moy_kn": 16.99,
+    "terre_moy_kn": 16.99,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 8.47,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 239,
+    "eau_moy_kn": 8.47,
+    "terre_moy_kn": 8.47,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 10.46,
+    "etendue_mediane_kn": 9.1,
+    "etendue_p90_kn": 10.9,
+    "etendue_max_kn": 14.2,
+    "etendue_mediane_ventee_kn": 9.2,
+    "heures_ventees": 329,
+    "eau_moy_kn": 10.46,
+    "terre_moy_kn": 10.46,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Ishigaki (JP)",
+  "zone": "Asie",
+  "elevations": [
+   5.0,
+   136.0,
+   22.0,
+   40.0,
+   0.0
+  ],
+  "eau": 1,
+  "terre": 4,
+  "mixte": true,
+  "elev_etendue_m": 136.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 10.8,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 144,
+    "eau_moy_kn": 10.8,
+    "terre_moy_kn": 10.8,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 10.77,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 164,
+    "eau_moy_kn": 10.77,
+    "terre_moy_kn": 10.77,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 13.75,
+    "etendue_mediane_kn": 0.3,
+    "etendue_p90_kn": 1.1,
+    "etendue_max_kn": 4.1,
+    "etendue_mediane_ventee_kn": 0.3,
+    "heures_ventees": 204,
+    "eau_moy_kn": 13.75,
+    "terre_moy_kn": 13.75,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Hayling / Muscat (OM)",
+  "zone": "Asie",
+  "elevations": [
+   130.0,
+   12.0,
+   170.0,
+   22.0,
+   156.0
+  ],
+  "eau": 0,
+  "terre": 5,
+  "mixte": false,
+  "elev_etendue_m": 158.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 3.94,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 22
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 3.44,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 5
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 5.71,
+    "etendue_mediane_kn": 2.0,
+    "etendue_p90_kn": 4.8,
+    "etendue_max_kn": 8.4,
+    "etendue_mediane_ventee_kn": 2.5,
+    "heures_ventees": 57
+   }
+  }
+ },
+ {
+  "spot": "Leighton, Perth (AU)",
+  "zone": "Oceanie",
+  "elevations": [
+   5.0,
+   0.0,
+   7.0,
+   32.0,
+   0.0
+  ],
+  "eau": 2,
+  "terre": 3,
+  "mixte": true,
+  "elev_etendue_m": 32.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 6.49,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 104,
+    "eau_moy_kn": 6.49,
+    "terre_moy_kn": 6.49,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 3,
+    "vent_moyen_centre_kn": 4.06,
+    "etendue_mediane_kn": 0.8,
+    "etendue_p90_kn": 1.9,
+    "etendue_max_kn": 4.9,
+    "etendue_mediane_ventee_kn": 1.35,
+    "heures_ventees": 32,
+    "eau_moy_kn": 4.22,
+    "terre_moy_kn": 4.06,
+    "ecart_eau_terre_kn": 0.166,
+    "ratio_eau_terre": 1.041,
+    "ratio_horaire_median": 1.018
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 9.18,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 173,
+    "eau_moy_kn": 9.18,
+    "terre_moy_kn": 9.18,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Currumbin (AU)",
+  "zone": "Oceanie",
+  "elevations": [
+   0.0,
+   0.0,
+   34.0,
+   0.0,
+   5.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 34.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 4.2,
+    "etendue_mediane_kn": 4.1,
+    "etendue_p90_kn": 8.1,
+    "etendue_max_kn": 11.4,
+    "etendue_mediane_ventee_kn": 9.8,
+    "heures_ventees": 6,
+    "eau_moy_kn": 4.2,
+    "terre_moy_kn": 4.2,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 4.91,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 51,
+    "eau_moy_kn": 4.91,
+    "terre_moy_kn": 4.91,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 4.92,
+    "etendue_mediane_kn": 1.1,
+    "etendue_p90_kn": 3.11,
+    "etendue_max_kn": 5.4,
+    "etendue_mediane_ventee_kn": 2.6,
+    "heures_ventees": 41,
+    "eau_moy_kn": 4.92,
+    "terre_moy_kn": 3.57,
+    "ecart_eau_terre_kn": 1.349,
+    "ratio_eau_terre": 1.378,
+    "ratio_horaire_median": 1.268
+   }
+  }
+ },
+ {
+  "spot": "New Plymouth (NZ)",
+  "zone": "Oceanie",
+  "elevations": [
+   0.0,
+   0.0,
+   45.0,
+   0.0,
+   0.0
+  ],
+  "eau": 4,
+  "terre": 1,
+  "mixte": true,
+  "elev_etendue_m": 45.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 13.39,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 282,
+    "eau_moy_kn": 13.39,
+    "terre_moy_kn": 13.39,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 6.58,
+    "etendue_mediane_kn": 1.8,
+    "etendue_p90_kn": 5.11,
+    "etendue_max_kn": 7.0,
+    "etendue_mediane_ventee_kn": 3.6,
+    "heures_ventees": 105,
+    "eau_moy_kn": 6.68,
+    "terre_moy_kn": 6.58,
+    "ecart_eau_terre_kn": 0.105,
+    "ratio_eau_terre": 1.016,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 6.32,
+    "etendue_mediane_kn": 1.75,
+    "etendue_p90_kn": 4.0,
+    "etendue_max_kn": 6.9,
+    "etendue_mediane_ventee_kn": 3.7,
+    "heures_ventees": 84,
+    "eau_moy_kn": 6.32,
+    "terre_moy_kn": 4.36,
+    "ecart_eau_terre_kn": 1.96,
+    "ratio_eau_terre": 1.449,
+    "ratio_horaire_median": 1.426
+   }
+  }
+ },
+ {
+  "spot": "Lake George (AU)",
+  "zone": "Oceanie",
+  "elevations": [
+   673.0,
+   673.0,
+   673.0,
+   673.0,
+   673.0
+  ],
+  "eau": 0,
+  "terre": 5,
+  "mixte": false,
+  "elev_etendue_m": 0.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 4.27,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 23
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 3,
+    "vent_moyen_centre_kn": 7.51,
+    "etendue_mediane_kn": 1.1,
+    "etendue_p90_kn": 2.7,
+    "etendue_max_kn": 8.6,
+    "etendue_mediane_ventee_kn": 1.7,
+    "heures_ventees": 145
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 8.11,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 159
+   }
+  }
+ },
+ {
+  "spot": "Le Morne (MU)",
+  "zone": "Iles",
+  "elevations": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "eau": 5,
+  "terre": 0,
+  "mixte": false,
+  "elev_etendue_m": 0.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 13.41,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 317
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 15.05,
+    "etendue_mediane_kn": 4.1,
+    "etendue_p90_kn": 6.0,
+    "etendue_max_kn": 7.2,
+    "etendue_mediane_ventee_kn": 4.3,
+    "heures_ventees": 340
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 7.46,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 145
+   }
+  }
+ },
+ {
+  "spot": "Pozo Izquierdo (ES)",
+  "zone": "Iles",
+  "elevations": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   23.0
+  ],
+  "eau": 4,
+  "terre": 1,
+  "mixte": true,
+  "elev_etendue_m": 23.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 12.03,
+    "etendue_mediane_kn": 10.7,
+    "etendue_p90_kn": 18.91,
+    "etendue_max_kn": 23.3,
+    "etendue_mediane_ventee_kn": 6.6,
+    "heures_ventees": 239,
+    "eau_moy_kn": 17.07,
+    "terre_moy_kn": 12.03,
+    "ecart_eau_terre_kn": 5.037,
+    "ratio_eau_terre": 1.419,
+    "ratio_horaire_median": 1.436
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 11.8,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 359,
+    "eau_moy_kn": 11.8,
+    "terre_moy_kn": 11.8,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 15.3,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 356,
+    "eau_moy_kn": 15.3,
+    "terre_moy_kn": 15.3,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Kite Beach, Maui (US)",
+  "zone": "Iles",
+  "elevations": [
+   0.0,
+   0.0,
+   20.0,
+   17.0,
+   0.0
+  ],
+  "eau": 3,
+  "terre": 2,
+  "mixte": true,
+  "elev_etendue_m": 20.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 13.01,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 330,
+    "eau_moy_kn": 13.01,
+    "terre_moy_kn": 13.01,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 7.15,
+    "etendue_mediane_kn": 0.8,
+    "etendue_p90_kn": 1.8,
+    "etendue_max_kn": 6.7,
+    "etendue_mediane_ventee_kn": 1.15,
+    "heures_ventees": 106,
+    "eau_moy_kn": 7.15,
+    "terre_moy_kn": 7.53,
+    "ecart_eau_terre_kn": -0.375,
+    "ratio_eau_terre": 0.95,
+    "ratio_horaire_median": 0.953
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 11.94,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 272,
+    "eau_moy_kn": 11.94,
+    "terre_moy_kn": 11.94,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Punta Preta, Sal (CV)",
+  "zone": "Iles",
+  "elevations": [
+   0.0,
+   0.0,
+   0.0,
+   1.0,
+   0.0
+  ],
+  "eau": 4,
+  "terre": 1,
+  "mixte": true,
+  "elev_etendue_m": 1.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 7.6,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 179,
+    "eau_moy_kn": 7.6,
+    "terre_moy_kn": 7.6,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 7.15,
+    "etendue_mediane_kn": 0.6,
+    "etendue_p90_kn": 1.2,
+    "etendue_max_kn": 3.2,
+    "etendue_mediane_ventee_kn": 0.7,
+    "heures_ventees": 159,
+    "eau_moy_kn": 7.15,
+    "terre_moy_kn": 6.86,
+    "ecart_eau_terre_kn": 0.287,
+    "ratio_eau_terre": 1.042,
+    "ratio_horaire_median": 1.056
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 7.71,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 168,
+    "eau_moy_kn": 7.71,
+    "terre_moy_kn": 7.71,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   }
+  }
+ },
+ {
+  "spot": "Anegada (VG)",
+  "zone": "Iles",
+  "elevations": [
+   10.0,
+   0.0,
+   0.0,
+   6.0,
+   3.0
+  ],
+  "eau": 2,
+  "terre": 3,
+  "mixte": true,
+  "elev_etendue_m": 10.0,
+  "modele_effectif": "meteofrance_seamless",
+  "modeles": {
+   "meteofrance_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 1,
+    "vent_moyen_centre_kn": 15.53,
+    "etendue_mediane_kn": 0.0,
+    "etendue_p90_kn": 0.0,
+    "etendue_max_kn": 0.0,
+    "etendue_mediane_ventee_kn": 0.0,
+    "heures_ventees": 358,
+    "eau_moy_kn": 15.53,
+    "terre_moy_kn": 15.53,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "icon_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 14.84,
+    "etendue_mediane_kn": 0.4,
+    "etendue_p90_kn": 0.9,
+    "etendue_max_kn": 1.8,
+    "etendue_mediane_ventee_kn": 0.4,
+    "heures_ventees": 360,
+    "eau_moy_kn": 14.84,
+    "terre_moy_kn": 14.84,
+    "ecart_eau_terre_kn": 0.0,
+    "ratio_eau_terre": 1.0,
+    "ratio_horaire_median": 1.0
+   },
+   "gfs_seamless": {
+    "heures": 360,
+    "mailles_distinctes": 2,
+    "vent_moyen_centre_kn": 15.83,
+    "etendue_mediane_kn": 0.2,
+    "etendue_p90_kn": 0.7,
+    "etendue_max_kn": 1.5,
+    "etendue_mediane_ventee_kn": 0.2,
+    "heures_ventees": 360,
+    "eau_moy_kn": 15.8,
+    "terre_moy_kn": 15.83,
+    "ecart_eau_terre_kn": -0.029,
+    "ratio_eau_terre": 0.998,
+    "ratio_horaire_median": 0.997
+   }
+  }
+ }
+]

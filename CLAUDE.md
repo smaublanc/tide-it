@@ -174,6 +174,54 @@ Scripts de l'audit : `audit/audit_modeles.py`, `audit_poids.py`, `audit_valid.py
   ICON-D2, ARPAE, GEM, JMA) : aucun ne bat `meteofrance_seamless`, écart au deuxième +0,60 km/h
   [IC95 +0,44 ; +0,77]. Les paris régionaux sont réfutés : UKMO 2 km perd 1,54 km/h sur la
   Manche et la Bretagne.
+- **Filtrer le voisinage par un masque TERRE/MER (`elevation`).** L'audit le plus complet du
+  dépôt — 93 stations dans 14 pays (France 6 % de l'échantillon), 26 spots sur tous les
+  continents, 8 paires front-de-mer / plan-d'eau, été ET hiver, 17 août 2026. Six méthodes de
+  réduction comparées : centre seul, médiane des 5 (ACTUELLE), médiane des mailles eau, moyenne
+  des mailles eau, maximum, médiane pondérée par l'élévation.
+  - **Le choix de la méthode est du BRUIT devant l'erreur du modèle.** Les six tiennent dans
+    **0,13 km/h de RMSE** les unes des autres, quand le modèle se trompe de 2,0 à 4,3. La
+    médiane des mailles eau contre l'actuelle : **+0,032 RMSE, non significatif**
+    (IC95 [−0,004 ; +0,078], P(meilleure) = 4,3 %). Hors de France : identique.
+  - **⚠️ LE CLASSEMENT S'INVERSE AVEC LA RÉFÉRENCE, et c'est la leçon méthodologique.** Le
+    maximum des 5 finit DERNIER contre les stations METAR (capteur à terre) et PREMIER contre
+    les bouées (capteur en mer). Une référence ne juge pas la justesse : elle juge **la
+    ressemblance au sol sur lequel on l'a posée**. Tout classement d'échantillonnage validé sur
+    une seule famille de capteurs est donc à jeter.
+  - **Le « maximum du voisinage » EST le décalage de 2 km vers le large, par un autre chemin.**
+    Il gagne le test de stabilité (3,3× meilleur) mais achète cette stabilité en lisant toujours
+    la maille la plus ventée : +0,97 km/h en moyenne, +2,49 sur les spots discriminants, et à
+    Lacanau en hiver **9,37 → 15,04 nds (+61 %)**. La maille responsable a été nommée : le point
+    Ouest de la croix, 2 km au large. Même geste, même chiffre, même refus.
+  - **La médiane des mailles eau AGGRAVE le cas qui l'avait motivée.** Sur Lacanau/Andernos, le
+    taux d'inversion passe de **1,9 % à 32,7 %** (hiver, > 15 nds). Parce que les deux mailles
+    « eau » d'Andernos sont l'eau LIBRE du Bassin, donc ses mailles les plus ventées : le filtre
+    gonfle l'abrité de +36 % contre +9 % le front de mer. L'anomalie n'est pas atténuée, elle est
+    **fabriquée**. Le leave-one-pair-out le confirme : toute la pénalité vient de cette seule
+    paire — celle que le correctif devait réparer.
+  - **RAISON CONCEPTUELLE, définitive : l'élévation décrit le POINT échantillonné, pas le FETCH.**
+    L'abri est une propriété AMONT et DIRECTIONNELLE. Or un plan d'eau abrité EST de l'eau : un
+    filtre d'élévation y sélectionne son eau libre. Le filtre ne peut pas encoder l'abri, il ne
+    peut que l'effacer. **Aucun réglage de seuil ne changera ça — le défaut est dans la grandeur
+    choisie.** Ne pas retenter avec un autre seuil, une autre pondération, un autre rayon.
+  - **Le problème n'existe pas pour la plupart des spots** : sur 26, **16 ont σ = 0,000 pour les
+    six méthodes** — la croix entière tombe dans UNE maille de modèle. Et le modèle de terrain
+    résout à 90 m ce que le modèle météo résout à 1,3 km (AROME) ou 25 km (ARPEGE monde) : une
+    maille « eau » et une maille « terre » lisent donc très souvent la MÊME série.
+  - **ET LA RÉPONSE POSITIVE : l'ordre se rétablit tout seul avec la méthode actuelle.** Taux
+    d'inversion abrité > front de mer : 44,7 % toutes heures → **23,9 % au-delà de 15 nds →
+    7,4 % au-delà de 20** (hiver) ; 43,3 % → 8,3 % → **0,0 %** (été). Sur Lacanau/Andernos :
+    1,9 % à > 15 nds, **0 % à > 20 et > 25 nds**. La thermique inverse l'ordre quand il n'y a
+    pas de vent, le synoptique le rétablit dès qu'il s'établit. **En vent navigable, l'app a
+    raison** — il n'y avait pas d'artefact d'échantillonnage à réparer.
+  - Si le masque d'élévation est un jour utilisé pour autre chose : **`elevation == 0` EXACTEMENT**,
+    jamais `<= 0` ni `< 0.5`. Les valeurs sont toujours entières et la terre littorale basse lit
+    un petit entier NÉGATIF (polders −5, Camargue −1, Pô −2, Fens −1) : `< 0.5` transforme tout
+    polder en eau (transect néerlandais : 21 erreurs contre 8). Angle mort assumé : l'eau
+    d'ALTITUDE (Léman 368 m, Michigan 174, Garde 65) est classée terre — faux négatif, donc sans
+    danger. Piège corrigé dans `audit/audit_rugosite_maille.py`.
+  - **`cell_selection=sea` (paramètre Open-Meteo) : NON.** Mesuré à Tarifa, 2,1 → 17,6 nds (×8,4).
+    C'est le décalage vers le large sous un troisième déguisement.
 - **Réordonner ICON/GFS dans le repli.** GFS bat ICON de +0,70 km/h à J+5 *en France* — mais
   l'audit est FRANÇAIS, et le repli sert surtout le RESTE DU MONDE, où l'ordre doit rester celui
   de la résolution (ICON 11 km avant GFS 27 km). Et GFS est catastrophique sur la rafale
