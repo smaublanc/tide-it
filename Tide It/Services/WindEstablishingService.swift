@@ -54,28 +54,38 @@ final class WindEstablishingService {
     /// Point d'entrée ARRIÈRE-PLAN (BGAppRefreshTask) : rafraîchit la balise du port suivi,
     /// puis avance la machine à états. La cadence des réveils est dictée par iOS.
     func evaluateInBackground(now: Date = Date()) async {
-        guard Self.hasActiveAlert(),
-              let p = UserDefaults.standard.dictionary(forKey: portKey),
+        // ⚠️ LA GARDE `hasActiveAlert()` A ÉTÉ DESCENDUE, et c'est le correctif des « coupures ».
+        //
+        // Elle était en tête : sans alerte « le vent s'établit », cette fonction sortait
+        // immédiatement — donc AUCUNE balise lue et AUCUN échantillon écrit, alors que le réveil
+        // de fond avait bien eu lieu (toutes les 30 min demandées, cadence réelle décidée par
+        // iOS). La trace du réel ne se remplissait qu'aux heures où l'app était OUVERTE, d'où des
+        // îlots séparés par des heures de vide sur la courbe.
+        //
+        // La lecture de balise est donc désormais INCONDITIONNELLE pour le port suivi ; seule la
+        // machine à états des alertes reste derrière la garde, en bas. Un port, une petite requête
+        // par réveil, vers les balises tierces et non vers la prévision — c'est le prix minimal
+        // d'une trace continue, et c'est le même que payait déjà le chemin des alertes.
+        guard let p = UserDefaults.standard.dictionary(forKey: portKey),
               let id = p["id"] as? String, let name = p["name"] as? String,
               let lat = p["lat"] as? Double, let lon = p["lon"] as? Double else { return }
         let coord = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         await WindStationAggregator.shared.refresh(around: coord, force: true)
         let station = WindStationAggregator.shared.nearestStationWithDistance(to: coord)
         let reading = station?.station.reading
-        // TRACE DU RÉEL — on enregistre au passage la mesure qu'on vient de toute façon de
-        // télécharger pour évaluer l'alerte. ZÉRO requête réseau de plus : c'est ce qui rend la
-        // trace tenable côté batterie, et ce qui la limite naturellement aux spots NOTIFIÉS,
-        // seuls pour lesquels ce réveil de fond a lieu.
+        // TRACE DU RÉEL — la mesure qu'on vient de télécharger est enregistrée au passage.
         //
-        // Pas de `modelKmh` ici, et c'est délibéré : aller chercher la prévision coûterait
-        // l'appel réseau qu'on vient d'éviter. L'échantillon nourrit donc la trace, pas la jauge
-        // de biais (cf. `ForecastBiasService.Sample.model`).
+        // Pas de `modelKmh` ici, et c'est délibéré : aller chercher la prévision coûterait un
+        // second appel réseau. L'échantillon nourrit donc la trace, pas la jauge de biais
+        // (cf. `ForecastBiasService.Sample.model`, optionnel exactement pour ce cas).
         if let r = reading, let s = station {
             ForecastBiasService.shared.record(
                 portId: id, modelKmh: nil, observedKmh: r.speedAvgKmh,
                 distanceKm: s.distance / 1000, at: r.date,
                 gustKmh: r.gustKmh, stationID: s.station.id)
         }
+        // Machine à états des alertes : elle, reste conditionnée à une alerte active.
+        guard Self.hasActiveAlert() else { return }
         await evaluate(reading: reading, portId: id, portName: name, now: now)
     }
 
