@@ -35,6 +35,12 @@ struct TodayView: View {
     @State private var sunTimes: [(sunrise: Date, sunset: Date)] = []
     @State private var showPremiumPaywall = false
     @State private var openMeteoForecasts: [HourlyForecast] = []
+    /// La série affichée vient-elle du REPLI WeatherKit plutôt que d'Open-Meteo ?
+    /// Le nom `openMeteoForecasts` est trompeur depuis toujours : le repli y met du WeatherKit
+    /// sans rien changer d'autre. Ce drapeau rend la bascule lisible — d'abord pour le debug,
+    /// et parce qu'une app qui se vend sur l'honnêteté doit savoir répondre à « quel modèle
+    /// m'a répondu ? ».
+    @State private var forecastSourceIsWeatherKit = false
     /// TOUTES les fenêtres GO (tous sports) calculées via le MÊME `ActivityGoPlanner.plan` que le
     /// calendrier → la courbe (vent + surf) affiche exactement les fenêtres du calendrier.
     @State private var goWindows: [GoCurveWindow] = []
@@ -555,7 +561,15 @@ struct TodayView: View {
                 ForecastBiasService.shared.record(portId: pid, modelKmh: model,
                     observedKmh: obs.reading.speedAvgKmh, distanceKm: obs.distanceKm,
                     at: obs.reading.date,
-                    gustKmh: obs.reading.gustKmh, stationID: obs.station.id)
+                    gustKmh: obs.reading.gustKmh, stationID: obs.station.id,
+                    // SECOND MODÈLE, apparié à la MÊME mesure : Apple WeatherKit, pris à l'heure
+                    // la plus proche du relevé. C'est ce qui permet de savoir lequel des deux
+                    // fournisseurs est le plus juste ICI (cf. `modelDuel`) — même spot, même
+                    // heure, même anémomètre, aucune excuse pour le perdant.
+                    modelWKKmh: weatherService.hourlyForecast
+                        .min { abs($0.date.timeIntervalSince(obs.reading.date))
+                             < abs($1.date.timeIntervalSince(obs.reading.date)) }
+                        .map { $0.wind.speed.converted(to: .kilometersPerHour).value })
             }
         }
         // Activer/désactiver un sport — ou éditer ses conditions / sa sensibilité — doit recalculer
@@ -709,7 +723,19 @@ struct TodayView: View {
             // (réseau / point inland) → le bandeau météo reste toujours affiché.
             let om = await MarineWeatherService.shared.fetchHourlyForecast(for: port)
             guard !Task.isCancelled, tideService.selectedPort?.id == port.id else { return }
-            openMeteoForecasts = om.isEmpty
+            // ⚠️ CE REPLI CHANGE DE MODÈLE, et il le faisait SANS LE DIRE.
+            // Open-Meteo muet (quota, hors ligne) → tout l'écran passe sur WeatherKit : vent,
+            // rafale ET direction. C'est un QUATRIÈME modèle, absent du tableau de CLAUDE.md, et
+            // sans le voisinage 5 points ni la médiane — donc sans la robustesse au pointage que
+            // le reste de la chaîne garantit. La variable garde son nom `openMeteoForecasts`,
+            // ce qui achève de masquer la bascule à quiconque relit le code.
+            // On la TRACE désormais, pour que « quel modèle m'a répondu ? » ait une réponse.
+            let repli = om.isEmpty
+            forecastSourceIsWeatherKit = repli
+            if repli {
+                appLogger.warning("[Prévision] Open-Meteo muet → repli WeatherKit (modèle différent, sans voisinage)")
+            }
+            openMeteoForecasts = repli
                 ? Self.forecastsFromWeatherKit(weatherService.hourlyForecast)
                 : om
 

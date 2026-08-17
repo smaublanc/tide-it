@@ -30,6 +30,14 @@ final class ForecastBiasService: ObservableObject {
         /// du fait qu'on ait eu une prévision à lui apparier ; la jauge de biais écarte
         /// simplement ces échantillons (`usableSamples`), la trace les garde.
         var model: Double?
+        /// Vent prévu (km/h) par le SECOND modèle, à la même heure et apparié à la même mesure.
+        ///
+        /// L'app a deux fournisseurs de prévision : Open-Meteo (`model`, sous-échantillonné par
+        /// voisinage) et Apple WeatherKit (`modelWK`, point unique), ce dernier servant de repli
+        /// quand le premier est muet — silencieusement, jusqu'ici. Les stocker CÔTE À CÔTE contre
+        /// la même mesure de balise est le seul moyen honnête de savoir lequel est le plus juste :
+        /// même spot, même heure, même anémomètre, aucune excuse possible pour le perdant.
+        var modelWK: Double? = nil
         let observed: Double   // vent mesuré balise (km/h)
         let dist: Double       // distance de la balise (km)
         /// Rafale MESURÉE (km/h). Optionnelle à deux titres : toutes les balises n'en publient
@@ -116,7 +124,8 @@ final class ForecastBiasService: ObservableObject {
 
     /// Enregistre un échantillon (appelé à chaque nouveau relevé balise). Anti-doublon par minute.
     func record(portId: String, modelKmh: Double?, observedKmh: Double, distanceKm: Double,
-                at: Date, gustKmh: Double? = nil, stationID: String? = nil) {
+                at: Date, gustKmh: Double? = nil, stationID: String? = nil,
+                modelWKKmh: Double? = nil) {
         guard !portId.isEmpty, observedKmh.isFinite, observedKmh >= 0 else { return }
         // Une prévision aberrante est écartée, mais SANS jeter la mesure : la trace du réel
         // reste valable, seule la jauge de biais perd cet échantillon.
@@ -127,7 +136,8 @@ final class ForecastBiasService: ObservableObject {
         // aberrant. On garde la mesure et on jette la seule rafale, plutôt que de tracer une
         // courbe de rafale qui passerait sous celle du vent moyen.
         let g = gustKmh.flatMap { $0.isFinite && $0 >= observedKmh ? $0 : nil }
-        arr.append(Sample(t: at, model: m, observed: observedKmh, dist: distanceKm,
+        let wk = modelWKKmh.flatMap { $0.isFinite && $0 >= 0 ? $0 : nil }
+        arr.append(Sample(t: at, model: m, modelWK: wk, observed: observedKmh, dist: distanceKm,
                           gust: g, station: stationID))
         if arr.count > maxSamples { arr.removeFirst(arr.count - maxSamples) }       // borné
         buffers[portId] = arr
@@ -192,6 +202,57 @@ final class ForecastBiasService: ObservableObject {
 
     /// Nombre d'échantillons accumulés (pour l'état "calibration…") — même filtre que le verdict.
     func sampleCount(for portId: String) -> Int { usableSamples(for: portId).count }
+
+    // MARK: - Duel des deux modèles de prévision
+
+    /// Qui est le plus juste, Open-Meteo ou WeatherKit ? Jugés sur les MÊMES mesures.
+    struct ModelDuel {
+        let n: Int                 // échantillons où les DEUX modèles étaient présents
+        let biasOM: Double         // Open-Meteo − réel (> 0 = tape trop haut)
+        let rmseOM: Double
+        let biasWK: Double         // WeatherKit − réel
+        let rmseWK: Double
+        let firstSample: Date
+        let stationDistanceKm: Double
+
+        /// Écart de RMSE. > 0 = WeatherKit fait PIRE ; < 0 = WeatherKit fait mieux.
+        var rmseGapWKminusOM: Double { rmseWK - rmseOM }
+
+        /// Verdict prudent : sous 20 échantillons appariés, ou sous 0,5 km/h d'écart, on ne
+        /// tranche PAS. Le dépôt a déjà mesuré que départager deux modèles à moins de ça, c'est
+        /// trancher sur du bruit — l'audit des six méthodes d'échantillonnage tenait dans
+        /// 0,13 km/h et n'a rien départagé.
+        var verdict: String {
+            guard n >= 20 else { return "calibration" }
+            if abs(rmseGapWKminusOM) < 0.5 { return "égalité" }
+            return rmseGapWKminusOM > 0 ? "Open-Meteo" : "WeatherKit"
+        }
+    }
+
+    /// Compare les deux modèles sur les échantillons où TOUS DEUX étaient renseignés.
+    ///
+    /// L'appariement est la clé : un modèle jugé sur d'autres heures que son concurrent aurait
+    /// une excuse. Ici, même spot, même heure, même anémomètre — le perdant n'en a aucune.
+    /// Filtre de distance conservé (8 km) : une balise plus loin ne décrit plus ce spot, et
+    /// jugerait les deux modèles sur un vent qui n'est pas le leur.
+    func modelDuel(for portId: String, now: Date = Date()) -> ModelDuel? {
+        let arr = (buffers[portId] ?? []).filter {
+            $0.model != nil && $0.modelWK != nil
+                && now.timeIntervalSince($0.t) <= BiasReadout.maxSampleAge
+                && $0.dist <= BiasReadout.maxStationKm
+        }
+        guard arr.count >= 2, let first = arr.map(\.t).min() else { return nil }
+        func stats(_ pick: (Sample) -> Double?) -> (bias: Double, rmse: Double) {
+            let d = arr.compactMap { s in pick(s).map { $0 - s.observed } }
+            guard !d.isEmpty else { return (0, 0) }
+            return (d.reduce(0, +) / Double(d.count),
+                    (d.reduce(0) { $0 + $1 * $1 } / Double(d.count)).squareRoot())
+        }
+        let om = stats { $0.model }, wk = stats { $0.modelWK }
+        return ModelDuel(n: arr.count, biasOM: om.bias, rmseOM: om.rmse,
+                         biasWK: wk.bias, rmseWK: wk.rmse, firstSample: first,
+                         stationDistanceKm: arr.map(\.dist).max() ?? 0)
+    }
 
     // MARK: - Trace du réel (superposée à la courbe de vent)
 

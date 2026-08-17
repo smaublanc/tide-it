@@ -116,6 +116,45 @@ struct SettingsView: View {
                     }
                 }
             }
+
+            Divider().overlay(Color.glassHighlight.opacity(0.08))
+
+            // DUEL DES MODÈLES — Open-Meteo contre Apple WeatherKit, jugés sur les MÊMES relevés
+            // de balise. Instrument d'audit, pas fonctionnalité : il vit en DEBUG parce qu'il
+            // demande de comprendre biais et RMSE. Le tableau se remplit tout seul à mesure que
+            // le spot est consulté, à raison d'un échantillon par publication de balise.
+            modelDuelSection
+        }
+    }
+
+    @ViewBuilder
+    private var modelDuelSection: some View {
+        VStack(alignment: .leading, spacing: DS.spacingSM) {
+            Text("Duel des modèles de vent")
+                .font(.scaled(size: DS.fontCaption, weight: .semibold))
+                .foregroundStyle(.secondary)
+
+            if let pid = tideService.selectedPort?.id,
+               let d = ForecastBiasService.shared.modelDuel(for: pid) {
+                // « biais » = modèle − réel : positif, le modèle tape trop haut. « écart » = RMSE,
+                // la grandeur qui départage vraiment (elle pénalise les grosses erreurs).
+                Text(verbatim: "n = \(d.n) relevés appariés · balise ≤ \(String(format: "%.1f", d.stationDistanceKm)) km")
+                    .font(.system(size: 11, design: .monospaced)).foregroundStyle(.gray)
+                Text(verbatim: String(format: "Open-Meteo   biais %+.2f   écart %.2f km/h", d.biasOM, d.rmseOM))
+                    .font(.system(size: 12, weight: .medium, design: .monospaced))
+                Text(verbatim: String(format: "WeatherKit   biais %+.2f   écart %.2f km/h", d.biasWK, d.rmseWK))
+                    .font(.system(size: 12, weight: .medium, design: .monospaced))
+                Text(verbatim: "→ " + d.verdict)
+                    .font(.system(size: 13, weight: .bold, design: .monospaced))
+                    .foregroundStyle(d.verdict == "calibration" || d.verdict == "égalité" ? .orange : .green)
+                if d.verdict == "calibration" {
+                    Text(verbatim: "sous 20 relevés on ne tranche pas — trancher plus tôt, c'est trancher sur du bruit")
+                        .font(.system(size: 10)).foregroundStyle(.gray)
+                }
+            } else {
+                Text(verbatim: "Aucun relevé apparié pour ce spot. Il en faut une balise à moins de 8 km, et quelques heures d'accumulation.")
+                    .font(.system(size: 11)).foregroundStyle(.gray)
+            }
         }
     }
     #endif
