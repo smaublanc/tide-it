@@ -1477,6 +1477,25 @@ struct PremiumCurveCanvas: View {
         // soit un changement de balise, et dans les deux cas on ne relie RIEN.
         if !observedTrace.isEmpty {
             let v = Color(red: 0.61, green: 0.5, blue: 0.88)
+
+            // UN POINT PAR MESURE, tracé AVANT les lignes. C'est ce qui répare l'impression de
+            // « trous » : là où le trait se coupe — silence de plus de 40 min, changement de
+            // balise — les mesures restent visibles et l'œil suit la série. Sans eux, une mesure
+            // isolée n'apparaissait nulle part, et une coupure ressemblait à une donnée manquante
+            // alors qu'elle est une donnée PRÉSENTE que rien ne permet de relier.
+            for seg in observedTrace {
+                for pt in seg {
+                    let c = CGPoint(x: windX(pt.t, width: size.width), y: wy(pt.speedKmh))
+                    context.fill(Path(ellipseIn: CGRect(x: c.x - 1.5, y: c.y - 1.5, width: 3, height: 3)),
+                                 with: .color(v.opacity(isLight ? 0.9 : 0.95)))
+                    if let g = pt.gustKmh {
+                        let gc = CGPoint(x: c.x, y: wy(g))
+                        context.fill(Path(ellipseIn: CGRect(x: gc.x - 1, y: gc.y - 1, width: 2, height: 2)),
+                                     with: .color(v.opacity(isLight ? 0.5 : 0.55)))
+                    }
+                }
+            }
+
             for seg in observedTrace where seg.count >= 2 {
                 // Vitesse moyenne : trait plein, plus fin que la prévision — le réel accompagne
                 // la courbe, il ne la remplace pas.

@@ -298,15 +298,19 @@ final class ForecastBiasService: ObservableObject {
         for s in arr {
             if let p = precedent,
                s.t.timeIntervalSince(p.t) > Self.traceMaxGap || s.station != p.station {
-                if courant.count >= 2 { segments.append(courant) }
+                if !courant.isEmpty { segments.append(courant) }
                 courant = []
             }
             courant.append(TracePoint(t: s.t, speedKmh: s.observed, gustKmh: s.gust))
             precedent = s
         }
-        if courant.count >= 2 { segments.append(courant) }
-        // Un segment d'UN point ne se dessine pas comme une ligne : il est écarté ci-dessus.
-        // La pastille « réel » de l'en-tête montre déjà la mesure isolée du moment.
+        if !courant.isEmpty { segments.append(courant) }
+        // Les segments d'UN SEUL point sont CONSERVÉS, et c'est un correctif.
+        // Ils étaient écartés parce qu'un point ne fait pas une ligne — mais du coup une mesure
+        // isolée entre deux silences disparaissait purement et simplement : la donnée existait et
+        // n'était nulle part. Le rendu dessine désormais un point pour chaque échantillon, et ne
+        // relie que ce qui est continu. Une mesure isolée se voit donc, sans qu'on invente le
+        // trait qui la relierait à ses voisines.
         return segments
     }
 

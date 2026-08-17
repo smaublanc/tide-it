@@ -553,12 +553,20 @@ struct TodayView: View {
             // ⚠️ JAMAIS `openMeteoForecasts` ici : la série corrigée a déjà le biais en moins,
             // la réinjecter ferait converger le biais appris vers 0 — la jauge s'auto-annulerait.
             // (Tout ce qui est AFFICHÉ passe en revanche par `openMeteoForecasts`, source unique.)
-            if let obs = observedWind, let model = rawModelNow()?.windSpeedKmh,
-               let pid = tideService.selectedPort?.id {
+            // ⚠️ CONDITIONNÉ À LA SEULE MESURE, jamais à la prévision.
+            //
+            // C'était `let model = rawModelNow()?.windSpeedKmh` dans le `if let` : sans prévision,
+            // AUCUN échantillon n'était enregistré — y compris quand la balise, elle, publiait
+            // parfaitement. La trace du vent RÉEL dépendait donc de la disponibilité du MODÈLE,
+            // ce qui est exactement l'inverse du bon sens, et ça creusait des trous dans la
+            // courbe à chaque fois qu'Open-Meteo se taisait (quota, hors ligne).
+            // `Sample.model` est optionnel précisément pour ça : la mesure entre toujours, la
+            // jauge de biais écarte ensuite d'elle-même les échantillons sans prévision appariée.
+            if let obs = observedWind, let pid = tideService.selectedPort?.id {
                 // La RAFALE et l'IDENTIFIANT de balise ne servent pas à la jauge de biais : ils
                 // alimentent la trace du réel dessinée sur la courbe (`trace(for:)`). L'identifiant
                 // est ce qui permet de couper le trait quand la station arbitrée change.
-                ForecastBiasService.shared.record(portId: pid, modelKmh: model,
+                ForecastBiasService.shared.record(portId: pid, modelKmh: rawModelNow()?.windSpeedKmh,
                     observedKmh: obs.reading.speedAvgKmh, distanceKm: obs.distanceKm,
                     at: obs.reading.date,
                     gustKmh: obs.reading.gustKmh, stationID: obs.station.id,
