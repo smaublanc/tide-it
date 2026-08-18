@@ -19,6 +19,14 @@ struct MarineConditions: Codable, Equatable {
     let swellPeriod: Double?        // Période de la houle longue (s)
     let swellDirection: Double?     // Direction de la houle longue (°)
     let waterTemperature: Double?   // Température de l'eau (°C)
+    /// Période de PIC de la houle (s) — la grandeur dont parlent les surfeurs et les bouées.
+    ///
+    /// `var` avec défaut nil, pour deux raisons : le champ est arrivé après coup (le `Codable`
+    /// synthétisé décode donc les anciens blobs intacts), et il n'est PAS servi partout —
+    /// Open-Meteo ne le produit que dans le domaine du modèle européen. Son absence n'est pas une
+    /// anomalie : c'est le cas normal aux tropiques, et le score bascule alors sur l'échelle
+    /// moyenne avec ses propres seuils (cf. `surfMeanPeriodLoS`).
+    var swellPeakPeriod: Double? = nil
 
     /// Le modèle marine a-t-il réellement fourni une lecture de vague/houle ?
     /// `init(from:)` retombe sur 0 quand le point n'est pas couvert (spot très abrité, plan d'eau
@@ -82,6 +90,19 @@ extension MarineConditions {
             swellDirection: f.swellDirection,
             waterTemperature: f.waterTemperature
         )
+        // PÉRIODE DE PIC — elle était demandée à l'API, décodée, puis JETÉE ici.
+        //
+        // `swell_wave_peak_period` est bien dans la requête (fetchMarineHourly) et bien décodée
+        // (`HourlyForecast.swellPeakPeriod`), mais cet initialiseur ne recopiait que la période
+        // MOYENNE. Le score surf ne voyait donc jamais le pic — alors que `SurfMetrics.partitions`
+        // le préfère explicitement, ce qui faisait coexister DEUX définitions de la période dans
+        // le même calcul d'étoile.
+        //
+        // Mesuré sur 26 bouées : à hauteur égale, un clapot et une vraie houle longue étaient
+        // séparés par 2 points de note ; avec le pic, 12. Le recouvrement passe de 33 % à 5 %.
+        // C'est la première question qu'un surfeur pose — 1,5 m à 15 s ou à 7 s — et le moteur y
+        // répondait à deux points près, avec une donnée déjà payée dans le quota.
+        self.swellPeakPeriod = f.swellPeakPeriod
     }
 }
 

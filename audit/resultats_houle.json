@@ -1,0 +1,274 @@
+{
+ "protocole": "26 bouees NDBC/CDIP (Pacifique US, Atlantique US, Hawaii, Golfe du Mexique, Micronesie, Samoa hem. Sud, mer du Nord), 14 jours 5-18 aout 2026, pas horaire UTC, 7765 couples",
+ "modele_par_defaut": "best_match == meteofrance_wave (MFWAM) aux 26 points, ecart 0.0000 m",
+ "hauteur_Hs": {
+  "n": 7765,
+  "biais_m": -0.029,
+  "rmse_m": 0.186,
+  "mae_m": 0.134,
+  "err_rel_pct": 11.2,
+  "r": 0.967,
+  "IC95_rmse": [
+   0.172,
+   0.203
+  ],
+  "IC95_biais": [
+   -0.046,
+   -0.013
+  ]
+ },
+ "classement_hauteur_rmse_m": {
+  "meteofrance_wave (= defaut)": 0.179,
+  "ncep_gfswave016": 0.213,
+  "ecmwf_wam025": 0.226,
+  "gwam": 0.349,
+  "(moyenne des 4, pour memoire)": 0.176
+ },
+ "P_bat_le_defaut_pct": {
+  "meteofrance_wave": 0.0,
+  "ncep_gfswave016": 0.0,
+  "ecmwf_wam025": 0.0,
+  "gwam": 0.0
+ },
+ "echeance_rmse_m": {
+  "analyse": 0.198,
+  "J+1": 0.207,
+  "J+2": 0.21,
+  "J+3": 0.21,
+  "J+4": 0.216
+ },
+ "profondeur_err_rel_pct": {
+  "<30m": 12.5,
+  "30-120m": 11.5,
+  "120-600m": 12.2,
+  ">600m": 8.5
+ },
+ "periode_vs_DPD_s": {
+  "swell_wave_period (utilise par l'app)": {
+   "biais": -2.01,
+   "rmse": 3.3
+  },
+  "wave_period": {
+   "biais": -1.33,
+   "rmse": 2.63
+  },
+  "max(swell,wave)": {
+   "biais": -0.88,
+   "rmse": 2.37
+  },
+  "ncep_gfswave016 wave_period": {
+   "biais": 0.37,
+   "rmse": 2.57
+  }
+ },
+ "periode_vs_APD_s": {
+  "wave_period": {
+   "biais": 2.17,
+   "rmse": 2.51
+  },
+  "ecmwf_wam025": {
+   "biais": 1.79,
+   "rmse": 2.14
+  },
+  "ncep_gfswave016": {
+   "biais": 3.93,
+   "rmse": 5.18
+  }
+ },
+ "direction_MAE_deg": {
+  "ncep_gfswave016": 24.2,
+  "ecmwf_wam025": 29.4,
+  "defaut wave_direction": 29.5,
+  "defaut swell_wave_direction": 31.4,
+  "gwam": 36.5
+ },
+ "direction_mediane_err_deg": {
+  "ncep_gfswave016": 11.5,
+  "defaut swell_wave_direction": 16.0,
+  "ecmwf_wam025": 21.5,
+  "defaut wave_direction": 22.0,
+  "gwam": 29.0
+ },
+ "impact_moteur_surf": {
+  "seuil_10s_bouee_pct": 31.2,
+  "seuil_10s_app_pct": 15.4,
+  "houles_organisees_ratees_pct": 60.0,
+  "deficit_facteur_periode_points": 19.8,
+  "ratio_median_DPD_sur_swell_period": 1.29,
+  "recalibrage_leave_one_buoy_out_gain_points": 6.4,
+  "bouees_ameliorees": "20/24",
+  "seuils_recalibres_s": {
+   "5s_pic": 4.0,
+   "10s_pic": 7.6,
+   "13s_pic": 9.5
+  }
+ },
+ "variables_mortes": {
+  "wave_peak_period": "0/336 partout — n'existe pas",
+  "swell_wave_peak_period": "seulement aux 2 points mer du Nord (variable EWAM) — nil sur 24 points /26"
+ },
+ "reserves": [
+  "ete boreal, Hs max observe 4.9 m, aucune tempete",
+  "aucune bouee francaise ni mediterraneenne",
+  "DPD (pic) et wave_period (moyenne) ne mesurent pas la meme grandeur — c'est le coeur du resultat",
+  "past_days = analyse ; l'ecart analyse->J+4 mesure n'est que +0.018 m de RMSE"
+ ],
+ "bouees": {
+  "41047": {
+   "nom": "NE BAHAMAS - 350 NM ENE of Nassau, Bahamas",
+   "lat": 27.557,
+   "lon": -71.48,
+   "profondeur_m": 5328.0
+  },
+  "41110": {
+   "nom": "Masonboro Inlet, ILM2, NC (150)",
+   "lat": 34.144,
+   "lon": -77.715,
+   "profondeur_m": 17.0
+  },
+  "41113": {
+   "nom": "Cape Canaveral Nearshore, FL (143)",
+   "lat": 28.4,
+   "lon": -80.533,
+   "profondeur_m": 9.8
+  },
+  "42039": {
+   "nom": "PENSACOLA - 115NM SSE of Pensacola, FL",
+   "lat": 28.768,
+   "lon": -86.024,
+   "profondeur_m": 297.0
+  },
+  "44008": {
+   "nom": "NANTUCKET 54 NM Southeast of Nantucket",
+   "lat": 40.5,
+   "lon": -69.254,
+   "profondeur_m": 73.0
+  },
+  "44025": {
+   "nom": "LONG ISLAND - 30 NM South of Islip, NY",
+   "lat": 40.258,
+   "lon": -73.175,
+   "profondeur_m": 40.2
+  },
+  "44086": {
+   "nom": "Nags Head, NC (243)",
+   "lat": 36.001,
+   "lon": -75.421,
+   "profondeur_m": 21.0
+  },
+  "44097": {
+   "nom": "Block Island, RI  (154)",
+   "lat": 40.967,
+   "lon": -71.124,
+   "profondeur_m": 49.4
+  },
+  "44100": {
+   "nom": "Duck FRF 26m, NC (430)",
+   "lat": 36.257,
+   "lon": -75.593,
+   "profondeur_m": 25.0
+  },
+  "46042": {
+   "nom": "MONTEREY - 27NM WNW of Monterey, CA",
+   "lat": 36.787,
+   "lon": -122.408,
+   "profondeur_m": 1710.0
+  },
+  "46211": {
+   "nom": "Grays Harbor, WA (036)",
+   "lat": 46.857,
+   "lon": -124.243,
+   "profondeur_m": 39.0
+  },
+  "46213": {
+   "nom": "Cape Mendocino, CA (094)",
+   "lat": 40.291,
+   "lon": -124.748,
+   "profondeur_m": 346.0
+  },
+  "46214": {
+   "nom": "Point Reyes, CA (029)",
+   "lat": 37.944,
+   "lon": -123.466,
+   "profondeur_m": 600.0
+  },
+  "46215": {
+   "nom": "Diablo Canyon, CA (076)",
+   "lat": 35.204,
+   "lon": -120.859,
+   "profondeur_m": 27.4
+  },
+  "46222": {
+   "nom": "San Pedro, CA (092)",
+   "lat": 33.614,
+   "lon": -118.314,
+   "profondeur_m": 483.0
+  },
+  "46232": {
+   "nom": "Point Loma South, CA  (191)",
+   "lat": 32.517,
+   "lon": -117.425,
+   "profondeur_m": 1049.8
+  },
+  "46239": {
+   "nom": "Point Sur, CA (157)",
+   "lat": 36.342,
+   "lon": -122.11,
+   "profondeur_m": 366.0
+  },
+  "46243": {
+   "nom": "Clatsop Spit, OR (162)",
+   "lat": 46.215,
+   "lon": -124.129,
+   "profondeur_m": 24.4
+  },
+  "51201": {
+   "nom": "Waimea Bay, HI (106)",
+   "lat": 21.671,
+   "lon": -158.118,
+   "profondeur_m": 200.0
+  },
+  "51202": {
+   "nom": "Mokapu Point, HI (098)",
+   "lat": 21.414,
+   "lon": -157.681,
+   "profondeur_m": 81.0
+  },
+  "51205": {
+   "nom": "Pauwela, Maui, HI (187)",
+   "lat": 21.018,
+   "lon": -156.421,
+   "profondeur_m": 200.0
+  },
+  "51208": {
+   "nom": "Hanalei, Kauai, HI (202)",
+   "lat": 22.285,
+   "lon": -159.574,
+   "profondeur_m": 200.0
+  },
+  "51209": {
+   "nom": "Aunuu, American Samoa (189)",
+   "lat": -14.273,
+   "lon": -170.501,
+   "profondeur_m": 60.0
+  },
+  "52214": {
+   "nom": "Rumung, Yap, Micronesia (272)",
+   "lat": 9.678,
+   "lon": 138.176,
+   "profondeur_m": 650.0
+  },
+  "62144": {
+   "nom": "Clipper AWS",
+   "lat": 53.4,
+   "lon": 1.7,
+   "profondeur_m": null
+  },
+  "62165": {
+   "nom": "Ravenspurn North AWS",
+   "lat": 54.0,
+   "lon": 1.1,
+   "profondeur_m": null
+  }
+ }
+}

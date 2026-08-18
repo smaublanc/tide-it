@@ -333,6 +333,63 @@ class ActivityScoreService {
 
     /// Plateau — 1.0 entre lo et hi, retombe en gaussienne au-delà
     /// Usage : plage de valeurs idéales (ex: vent 15-25 km/h pour le kite)
+    // MARK: - Seuils SURF calés sur la réalité sportive (audit du 18 août 2026)
+
+    /// Vent au-delà duquel une session de surf n'a plus lieu, vent de MER (onshore).
+    ///
+    /// 30 km/h ≈ 16 nœuds. Au-delà, la houle est hachée avant de déferler : ce n'est plus une
+    /// vague, c'est du clapot qui casse. Tous les guides de spot s'accordent sur cet ordre de
+    /// grandeur, et c'est ce que dit n'importe quel surfeur devant une mer blanche.
+    static let surfWindGateOnshoreKmh = 30.0
+
+    /// Vent au-delà duquel une session n'a plus lieu, vent de TERRE (offshore).
+    ///
+    /// 45 km/h ≈ 24 nœuds. L'offshore creuse et lisse la face, donc on en tolère beaucoup plus
+    /// — mais pas indéfiniment : au-delà, il retient au take-off, décolle la lèvre et repousse
+    /// le surfeur par-dessus. Un offshore de tempête ne fait pas une bonne session, il fait une
+    /// vague inaccessible.
+    static let surfWindGateOffshoreKmh = 45.0
+
+    /// Seuil de coupure interpolé entre onshore et offshore.
+    ///
+    /// `offshoreness` vaut 1 en plein vent de terre, 0 dès 90° d'écart. Le seuil suit donc
+    /// linéairement de 30 à 45 km/h. Pas de troisième modèle de vent : on réutilise la grandeur
+    /// qui pilote déjà le grooming, pour que la note et le gate ne puissent pas se contredire.
+    static func surfWindGateKmh(offshoreness: Double) -> Double {
+        let o = min(max(offshoreness, 0), 1)
+        return surfWindGateOnshoreKmh + (surfWindGateOffshoreKmh - surfWindGateOnshoreKmh) * o
+    }
+
+    /// Bornes de la rampe « période », échelle de PIC — celle des surfeurs et des bouées.
+    /// 5 s : du clapot. 13 s : de la houle longue, propre, qui creuse. Inchangées : ce sont les
+    /// seuils d'origine, et ils étaient justes — appliqués à la mauvaise grandeur.
+    static let surfPeakPeriodLoS = 5.0
+    static let surfPeakPeriodHiS = 13.0
+
+    /// Les mêmes bornes transposées à l'échelle de la période MOYENNE, seule disponible hors du
+    /// domaine du modèle européen. Obtenues par correspondance de quantiles sur 26 bouées
+    /// (ratio médian pic/moyenne 1,29) : 5 s ↔ 4,0 · 10 s ↔ 7,6 · 13 s ↔ 9,5.
+    /// Validation croisée leave-one-buoy-out : l'écart au score de la bouée passe de 0,254 à
+    /// 0,190, soit +6,4 points HORS ÉCHANTILLON, avec amélioration sur 20 bouées sur 24.
+    ///
+    /// ⚠️ NE PAS unifier les deux jeux. C'est le même piège que les rafales prévision/balise :
+    /// deux grandeurs différentes portant le même nom, et un seul seuil qui ment à l'une des deux.
+    static let surfMeanPeriodLoS = 4.0
+    static let surfMeanPeriodHiS = 9.5
+
+    /// Hauteur de houle sous laquelle il n'y a PAS de vague surfable.
+    ///
+    /// 0,30 m. En dessous, la mer est plate : il n'y a rien à surfer, quelle que soit la période,
+    /// l'orientation ou la marée.
+    ///
+    /// Pourquoi un gate et pas un réglage de courbe : `plateau(swH, lo: 0,8, hi: …, falloff: 1,2)`
+    /// applique le MÊME falloff des deux côtés du plateau, alors qu'il n'y a que 0,8 m entre le
+    /// plateau et zéro — la gaussienne n'a pas le temps de décroître. Vérifié : Hs = 0,00 m
+    /// rendait **0,411**, soit 11,5 points sur les 28 du facteur Houle. Une journée flat
+    /// (0,10 m / 4 s, glassy, mi-marée) sortait à **68/100** — exactement le seuil GO du
+    /// débutant — pendant que le texte affiché juste à côté disait « Flat (0,1 m) ».
+    static let surfMinRideableSwellM = 0.30
+
     private static func plateau(_ v: Double, lo: Double, hi: Double, falloff: Double) -> Double {
         if v >= lo && v <= hi { return 1.0 }
         let d = v < lo ? (lo - v) / falloff : (v - hi) / falloff
@@ -886,6 +943,11 @@ class ActivityScoreService {
             // DÉFAUT — ne l'appliquait qu'en poids, si bien qu'un débutant recevait des fenêtres
             // GO à 2,5 m. Sans niveau renseigné : aucun gate, on ne devine pas la limite du rider.
             if let cap = currentRiderLevel?.surfMaxSwellM, swH > cap { hardCap = 0 }
+            // MER PLATE — il n'y a pas de vague, donc pas de note.
+            // Sans ce gate, `plateau` rendait 0,411 à Hs = 0 (falloff symétrique de 1,2 m alors
+            // qu'il n'y a que 0,8 m entre le plateau et zéro) : une journée flat sortait à 68/100,
+            // le seuil GO du débutant, avec « Flat (0,1 m) » écrit juste à côté.
+            if swH < Self.surfMinRideableSwellM { hardCap = 0 }
             let breaking = SurfMetrics.breakingHeightRange(height: swH, period: swP)
             let bucket = SurfHeightBucket.bucket(forMeters: (breaking.lowerBound + breaking.upperBound) / 2)
             let desc: String
@@ -898,12 +960,36 @@ class ActivityScoreService {
 
             // — Période (14%) — longue période = houle organisée. MarineConditions ne porte
             //   que la période MOYENNE (pas le pic) → on l'annonce comme « moyenne ».
-            let period = marine.swellPeriod ?? marine.wavePeriod
-            let pScore = Self.ramp(period, lo: 5, hi: 13)
+            // DEUX ÉCHELLES, DEUX JEUX DE SEUILS — exactement la leçon des rafales.
+            //
+            // La période de PIC est celle dont parlent les surfeurs, les bouées et les sites de
+            // prévision : « 1,5 m à 15 s ». La période MOYENNE que sert le modèle est une autre
+            // grandeur, systématiquement plus basse (ratio médian mesuré 1,29 sur 26 bouées).
+            // Leur appliquer les mêmes seuils 5–13 s revenait à juger le modèle sur une échelle
+            // qui n'est pas la sienne : la période moyenne servie ne dépasse JAMAIS 9,7 s dans
+            // l'échantillon, donc la moitié haute de la rampe était inatteignable et l'app ratait
+            // 60 % des heures de houle réellement organisée.
+            //
+            // Le pic n'est servi que dans le domaine du modèle européen (7 spots sur 10 mesurés,
+            // absent à Uluwatu, Jeffreys Bay, Playa Guiones). On ne peut donc pas simplement
+            // « préférer le pic » : il faut porter les DEUX échelles, sans quoi l'Europe et les
+            // tropiques seraient jugés différemment. Seuils moyens obtenus par transposition en
+            // quantiles, validés en leave-one-buoy-out : +6,4 points hors échantillon, 20 bouées
+            // sur 24 améliorées.
+            let peak = marine.swellPeakPeriod
+            let period = peak ?? marine.swellPeriod ?? marine.wavePeriod
+            let pScore = peak != nil
+                ? Self.ramp(period, lo: Self.surfPeakPeriodLoS, hi: Self.surfPeakPeriodHiS)
+                : Self.ramp(period, lo: Self.surfMeanPeriodLoS, hi: Self.surfMeanPeriodHiS)
+            // Le libellé dit LAQUELLE des deux on montre : afficher « 8 s » sans préciser
+            // l'échelle laisserait le rider comparer une moyenne au pic annoncé ailleurs.
+            let pHaute = peak != nil ? 11.0 : 8.5
+            let pBasse = peak != nil ? 8.0 : 6.0
+            let pUnite = peak != nil ? "s" : "s moy."
             let pDesc: String
-            if period >= 10 { pDesc = "Longue période moyenne (\(Int(period))s) : houle organisée" }
-            else if period >= 7 { pDesc = "Période moyenne (\(Int(period))s)" }
-            else { pDesc = "Courte période (\(Int(period))s) : clapot" }
+            if period >= pHaute { pDesc = "Longue période (\(Int(period))\(pUnite)) : houle organisée" }
+            else if period >= pBasse { pDesc = "Période correcte (\(Int(period))\(pUnite))" }
+            else { pDesc = "Courte période (\(Int(period))\(pUnite)) : clapot" }
             factors.append(ScoringFactor(name: "Période", weight: 0.14, score: pScore, detail: pDesc))
 
             // — Pureté (8%) — houle / (houle + mer du vent) : plus la houle domine, plus c'est propre.
@@ -969,6 +1055,25 @@ class ActivityScoreService {
                 else if groom > 0.5 { desc = "Vent gérable (\(fmtWind(wind)))" }
                 else { desc = "Onshore / vent fort (\(fmtWind(wind))) : surface dégradée" }
                 factors.append(ScoringFactor(name: "Vent", weight: 0.18, score: groom, detail: desc))
+
+                // GATE DUR DE VENT — il manquait, et c'était le défaut le plus grave du moteur.
+                //
+                // Mesuré le 18 août 2026 sur le code lui-même : à houle constante (1,5 m, spot
+                // orienté), la note passait de 78 à 75 quand l'onshore montait de 10 à 80 km/h.
+                // Trois points. Une tempête onshore de 43 nœuds sortait donc à 75/100, « Bon »,
+                // et ouvrait une fenêtre GO pour les QUATRE niveaux de rider. Le moteur kite met
+                // 0 dans exactement les mêmes conditions — le commentaire en tête de cette
+                // fonction revendiquait des « gates DURS symétriques du moteur vent », mais la
+                // symétrie n'avait jamais été faite côté vent.
+                //
+                // Le seuil est DIRECTIONNEL, parce que la réalité sportive l'est : un onshore de
+                // 30 km/h transforme la houle en mousse, quand un offshore de 30 km/h creuse et
+                // lisse la face. Interpolé entre les deux selon `offshoreness`, la même grandeur
+                // qui pilote déjà le grooming — pas un second modèle de vent.
+                if wind >= Self.surfWindGateKmh(offshoreness: SurfMetrics.offshoreness(
+                        windDirection: windDir, shoreOrientation: spot?.shoreOrientation)) {
+                    hardCap = 0
+                }
             } else {
                 // Cap inconnu : on ne peut pas juger l'offshore → seul le vent faible est favorable.
                 let s = Self.plateau(wind, lo: 0, hi: 12, falloff: 15)
@@ -978,6 +1083,13 @@ class ActivityScoreService {
                 else if wind < 30 { desc = "Vent modéré (\(fmtWind(wind))) : surface dégradée" }
                 else { desc = "Vent fort (\(fmtWind(wind))) : conditions hachées" }
                 factors.append(ScoringFactor(name: "Vent", weight: 0.18, score: s, detail: desc))
+
+                // Sans orientation de spot, on ne SAIT PAS si ce vent nettoie ou détruit. On
+                // applique donc le seuil le plus PERMISSIF (celui de l'offshore) : couper à
+                // 30 km/h sans connaître la direction supprimerait les meilleurs jours offshore
+                // d'un spot dont l'utilisateur n'a jamais saisi le cap. Ne rien savoir doit
+                // rendre prudent dans le verdict, pas arbitraire dans le refus.
+                if wind >= Self.surfWindGateOffshoreKmh { hardCap = 0 }
             }
         }
 

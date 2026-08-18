@@ -307,12 +307,27 @@ enum SurfMetrics {
     /// Grooming du vent 0–1, POLARITÉ INVERSE du kite : pour le surf l'offshore est PROPRE (bon).
     /// Vent faible (< ~8 km/h) = glassy quelle que soit la direction ; offshore léger = nettoie
     /// la face ; onshore dégrade (plancher 0,15) ; vent fort lessive tout. nil si cap inconnu.
+    /// À quel point ce vent vient de la TERRE : 1 = plein offshore, 0 dès 90° d'écart.
+    ///
+    /// EXTRAITE de `windGrooming`, où elle était calculée en ligne, pour que le gate dur de vent
+    /// du moteur surf lise EXACTEMENT la même grandeur que la note. Deux définitions de
+    /// l'offshore auraient permis au gate de couper une heure que la note trouvait bonne — et le
+    /// dépôt porte déjà TROIS définitions concurrentes de l'offshore (kite /50, grooming /90,
+    /// texte < 50°), ce qui est précisément le genre de divergence à ne pas aggraver.
+    ///
+    /// Renvoie 0 quand l'orientation ou la direction manque : on ne sait pas, donc on ne suppose
+    /// aucun offshore. L'appelant décide ce qu'il fait de cette ignorance.
+    static func offshoreness(windDirection: Double?, shoreOrientation: Double?) -> Double {
+        guard let orient = shoreOrientation, let dir = windDirection else { return 0 }
+        let offshoreDir = (orient + 180).truncatingRemainder(dividingBy: 360)
+        return max(0, 1 - angularDistance(dir, offshoreDir) / 90)
+    }
+
     static func windGrooming(windDirection: Double?, windSpeedKmh: Double, shoreOrientation: Double?) -> Double? {
         guard let orient = shoreOrientation else { return nil }
         let glassy = max(0, 1 - windSpeedKmh / 12)                       // ~glassy sous 12 km/h
         guard let dir = windDirection else { return glassy }
-        let offshoreDir = (orient + 180).truncatingRemainder(dividingBy: 360)   // l'offshore vient de la terre
-        let offshoreness = max(0, 1 - angularDistance(dir, offshoreDir) / 90)    // 1 = plein offshore, 0 = onshore
+        let offshoreness = offshoreness(windDirection: dir, shoreOrientation: orient)
         let blownPenalty = max(0, (windSpeedKmh - 25) / 25)             // dégrade au-delà de ~25, nul vers 50 km/h
         let directional = (0.15 + 0.85 * offshoreness) * max(0, 1 - blownPenalty)
         return max(0, min(1, max(glassy, directional)))
