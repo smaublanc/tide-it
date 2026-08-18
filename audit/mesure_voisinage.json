@@ -1,0 +1,722 @@
+[
+ {
+  "nom": "Andernos-les-Bains (Le Betey)",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.011111111111111115,
+  "ecart_abs_moy": 0.011111111111111115,
+  "ecart_max": 0.20000000000000018,
+  "vent_moy": 4.2444444444444445
+ },
+ {
+  "nom": "Fécamp",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.033333333333333354,
+  "ecart_abs_moy": 0.033333333333333354,
+  "ecart_max": 0.7000000000000002,
+  "vent_moy": 11.063888888888888
+ },
+ {
+  "nom": "Mtiti (Mayotte)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 7.529166666666667
+ },
+ {
+  "nom": "Concón (La Boca)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 2.5
+ },
+ {
+  "nom": "Fos-sur-Mer",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.21666666666666665,
+  "ecart_abs_moy": 0.21666666666666665,
+  "ecart_max": 2.4000000000000004,
+  "vent_moy": 9.309722222222222
+ },
+ {
+  "nom": "Boucau-Bayonne",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.00555555555555554,
+  "ecart_abs_moy": 0.013888888888888893,
+  "ecart_max": 0.4,
+  "vent_moy": 5.884722222222222
+ },
+ {
+  "nom": "Raivavae (Polynésie française)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 15.279166666666667
+ },
+ {
+  "nom": "Base Dumont d'Urville (Terre Adélie)",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 12.052777777777777
+ },
+ {
+  "nom": "Teahupoo",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 3.1694444444444443
+ },
+ {
+  "nom": "Lahinch",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.07777777777777779,
+  "ecart_abs_moy": 0.07777777777777779,
+  "ecart_max": 1.0,
+  "vent_moy": 13.784722222222221
+ },
+ {
+  "nom": "Chicama",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 13.0875
+ },
+ {
+  "nom": "Jailbreaks",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 6.905555555555556
+ },
+ {
+  "nom": "Boulders",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 7.091666666666667
+ },
+ {
+  "nom": "Saint-Gilles-Croix-de-Vie",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.07083333333333333,
+  "ecart_abs_moy": 0.07083333333333333,
+  "ecart_max": 0.5,
+  "vent_moy": 7.001388888888889
+ },
+ {
+  "nom": "Palomino",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 2.2888888888888888
+ },
+ {
+  "nom": "Fromentine (embarcadère)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.26388888888888895,
+  "ecart_abs_moy": 0.2694444444444445,
+  "ecart_max": 1.1000000000000014,
+  "vent_moy": 8.47638888888889
+ },
+ {
+  "nom": "Saint-Malo",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": -0.2972222222222222,
+  "ecart_abs_moy": 0.2972222222222222,
+  "ecart_max": 1.5,
+  "vent_moy": 9.623611111111112
+ },
+ {
+  "nom": "Nouméa - Chaleix (Grande Terre)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 9.797222222222222
+ },
+ {
+  "nom": "Île-Rousse",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": -0.04861111111111111,
+  "ecart_abs_moy": 0.11250000000000004,
+  "ecart_max": 0.5999999999999996,
+  "vent_moy": 5.2125
+ },
+ {
+  "nom": "Banyans",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 2.9402777777777778
+ },
+ {
+  "nom": "Tiga (Île Tiga)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 20.658333333333335
+ },
+ {
+  "nom": "Brehec",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.21944444444444444,
+  "ecart_abs_moy": 0.22222222222222227,
+  "ecart_max": 1.0999999999999996,
+  "vent_moy": 9.394444444444444
+ },
+ {
+  "nom": "Malibu (Surfrider)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 4.008333333333333
+ },
+ {
+  "nom": "Lennox Head",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 3.136111111111111
+ },
+ {
+  "nom": "Le Dellec",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.10833333333333335,
+  "ecart_abs_moy": 0.16666666666666663,
+  "ecart_max": 0.6999999999999993,
+  "vent_moy": 7.269444444444444
+ },
+ {
+  "nom": "Wissant",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.019444444444444486,
+  "ecart_abs_moy": 0.019444444444444486,
+  "ecart_max": 0.7000000000000002,
+  "vent_moy": 12.613888888888889
+ },
+ {
+  "nom": "Punta Carola",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 10.983333333333333
+ },
+ {
+  "nom": "Port Boisé (Grande Terre)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 13.144444444444444
+ },
+ {
+  "nom": "Morgat",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.5888888888888889,
+  "ecart_abs_moy": 0.5888888888888889,
+  "ecart_max": 2.200000000000001,
+  "vent_moy": 7.2444444444444445
+ },
+ {
+  "nom": "Playa Guiones (Nosara)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 5.611111111111112
+ },
+ {
+  "nom": "Baie de Gomen (Grande Terre)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 4.644444444444445
+ },
+ {
+  "nom": "Longoni (Mayotte)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 6.6375
+ },
+ {
+  "nom": "Port-Navalo",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": -0.0611111111111111,
+  "ecart_abs_moy": 0.06666666666666664,
+  "ecart_max": 1.0999999999999979,
+  "vent_moy": 9.029166666666667
+ },
+ {
+  "nom": "Mavericks",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 5.102777777777778
+ },
+ {
+  "nom": "Faratea Taravao (Archipel de la Société)",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 3.1694444444444443
+ },
+ {
+  "nom": "Makemo (Archipel des Tuamotu)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 10.175
+ },
+ {
+  "nom": "Concarneau",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.008333333333333335,
+  "ecart_abs_moy": 0.13611111111111104,
+  "ecart_max": 0.8000000000000007,
+  "vent_moy": 7.0777777777777775
+ },
+ {
+  "nom": "Hossegor - La Graviere",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": -0.06805555555555554,
+  "ecart_abs_moy": 0.06805555555555554,
+  "ecart_max": 0.5,
+  "vent_moy": 6.690277777777777
+ },
+ {
+  "nom": "Supertubos (Peniche)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 5.1819444444444445
+ },
+ {
+  "nom": "Kourou (Guyane)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 4.831944444444445
+ },
+ {
+  "nom": "Bells Beach",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 8.852777777777778
+ },
+ {
+  "nom": "Flameballs (Lavanono)",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 4.743055555555555
+ },
+ {
+  "nom": "Saint-Pierre (Martinique)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 7.008333333333334
+ },
+ {
+  "nom": "Tofinho (Tofo)",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 8.4
+ },
+ {
+  "nom": "Matavera",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 10.840277777777779
+ },
+ {
+  "nom": "Playa Grande (Mar del Plata)",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 11.347222222222221
+ },
+ {
+  "nom": "Baie de Lampaul (Île d'Ouessant)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.19861111111111107,
+  "ecart_abs_moy": 0.20972222222222225,
+  "ecart_max": 1.5000000000000009,
+  "vent_moy": 10.179166666666667
+ },
+ {
+  "nom": "Calais",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.015277777777777772,
+  "ecart_abs_moy": 0.03194444444444441,
+  "ecart_max": 0.40000000000000036,
+  "vent_moy": 11.966666666666667
+ },
+ {
+  "nom": "Kisakihama",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 4.973611111111111
+ },
+ {
+  "nom": "Victoria Bay",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 3.397222222222222
+ },
+ {
+  "nom": "Hendaye",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": -0.052777777777777785,
+  "ecart_abs_moy": 0.21666666666666667,
+  "ecart_max": 1.9999999999999998,
+  "vent_moy": 4.279166666666667
+ },
+ {
+  "nom": "Vaiare (Archipel de la Société)",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 5.116666666666667
+ },
+ {
+  "nom": "Pascuales",
+  "centre_terre": true,
+  "eau_dans_croix": false,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 1.1277777777777778
+ },
+ {
+  "nom": "Omonville-la-Rogue",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.08888888888888892,
+  "ecart_abs_moy": 0.08888888888888892,
+  "ecart_max": 0.3000000000000007,
+  "vent_moy": 14.172222222222222
+ },
+ {
+  "nom": "Papara",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 3.326388888888889
+ },
+ {
+  "nom": "Jeju Jungmun",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 3.5125
+ },
+ {
+  "nom": "Île Eiao (Îles Marquises)",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 12.75
+ },
+ {
+  "nom": "Baie Ouinné (Grande Terre)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 11.781944444444445
+ },
+ {
+  "nom": "Fort Espagnol",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": -0.06388888888888887,
+  "ecart_abs_moy": 0.07777777777777777,
+  "ecart_max": 0.7999999999999998,
+  "vent_moy": 7.080555555555556
+ },
+ {
+  "nom": "Weligama",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 9.070833333333333
+ },
+ {
+  "nom": "Buraco da Velha",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 3.6333333333333333
+ },
+ {
+  "nom": "Desert Point",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 8.519444444444444
+ },
+ {
+  "nom": "Saint-Germain-sur-Ay",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.011111111111111103,
+  "ecart_abs_moy": 0.05277777777777777,
+  "ecart_max": 1.1,
+  "vent_moy": 13.8125
+ },
+ {
+  "nom": "Tréguier",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.2958333333333334,
+  "ecart_abs_moy": 0.2958333333333334,
+  "ecart_max": 2.2,
+  "vent_moy": 8.383333333333333
+ },
+ {
+  "nom": "Saint-Cast",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.13611111111111115,
+  "ecart_abs_moy": 0.15555555555555556,
+  "ecart_max": 1.6000000000000014,
+  "vent_moy": 9.304166666666667
+ },
+ {
+  "nom": "Mui Ne",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 12.741666666666667
+ },
+ {
+  "nom": "Poingam (Grande Terre)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 14.705555555555556
+ },
+ {
+  "nom": "Anse Intendance",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 14.193055555555556
+ },
+ {
+  "nom": "Locmariaquer",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": -0.17916666666666667,
+  "ecart_abs_moy": 0.18194444444444444,
+  "ecart_max": 0.8000000000000007,
+  "vent_moy": 8.359722222222222
+ },
+ {
+  "nom": "Lower Trestles",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 2.1569444444444446
+ },
+ {
+  "nom": "Le Marin (Martinique)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 11.02361111111111
+ },
+ {
+  "nom": "Pointe de Saint-Gildas",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": -0.044444444444444425,
+  "ecart_abs_moy": 0.058333333333333265,
+  "ecart_max": 0.5999999999999996,
+  "vent_moy": 10.406944444444445
+ },
+ {
+  "nom": "Gravelines",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": -0.0027777777777778048,
+  "ecart_abs_moy": 0.0027777777777778048,
+  "ecart_max": 0.10000000000000142,
+  "vent_moy": 12.791666666666666
+ },
+ {
+  "nom": "Roscoff",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.46805555555555567,
+  "ecart_abs_moy": 0.46805555555555567,
+  "ecart_max": 1.4000000000000004,
+  "vent_moy": 10.375
+ },
+ {
+  "nom": "Mahamaté (Grande Terre)",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 15.408333333333333
+ },
+ {
+  "nom": "Da Nang My Khe",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 4.372222222222223
+ },
+ {
+  "nom": "Mirissa",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.0,
+  "ecart_abs_moy": 0.0,
+  "ecart_max": 0.0,
+  "vent_moy": 9.070833333333333
+ },
+ {
+  "nom": "Saint-Jean-de-Luz",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.15138888888888885,
+  "ecart_abs_moy": 0.17916666666666664,
+  "ecart_max": 0.7999999999999998,
+  "vent_moy": 5.1875
+ },
+ {
+  "nom": "Herqueville",
+  "centre_terre": false,
+  "eau_dans_croix": true,
+  "ecart_moy": -0.01111111111111117,
+  "ecart_abs_moy": 0.1277777777777778,
+  "ecart_max": 1.0,
+  "vent_moy": 12.719444444444445
+ },
+ {
+  "nom": "Audierne (Quai Pelletan)",
+  "centre_terre": true,
+  "eau_dans_croix": true,
+  "ecart_moy": 0.1111111111111111,
+  "ecart_abs_moy": 0.11666666666666665,
+  "ecart_max": 1.2999999999999998,
+  "vent_moy": 6.741666666666666
+ }
+]

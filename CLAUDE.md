@@ -126,7 +126,27 @@ Scripts de l'audit : `audit/audit_modeles.py`, `audit_poids.py`, `audit_valid.py
   zéro heure au-delà de 25 nds. Le régime qui compte vraiment pour le kite n'est PAS dans
   l'échantillon — rejouer les scripts en hiver avant toute conclusion sur le vent fort.
 
-- **Échantillonnage par VOISINAGE (`MarineWeatherService.neighbourhood`, rayon 2 km, MÉDIANE).**
+- ⚠️ **VOISINAGE RETIRÉ le 18 août 2026 — `neighbourhood` ne renvoie plus QUE le point
+  central.** Mesuré sur 80 entrées RÉELLES du catalogue livré (spots surf + ports FR), 72 h
+  chacune : écart |médiane des 5 − centre| **médian 0,000 kn, p90 0,217, MAX 0,589**. Dans
+  **61 % des cas la croix entière tombe dans UNE SEULE maille** de modèle. Et le CAS FONDATEUR —
+  épingle sur une maille de TERRE avec de l'eau ailleurs dans la croix, 31 entrées sur 80 —
+  donne un écart **médian 0,000 kn, maximum 0,468** (Roscoff +0,47).
+  La médiane ne réparait donc PAS le cas pour lequel elle avait été introduite : elle prend le
+  régime majoritaire de la croix, or le modèle résout à 1,3 km (AROME) ou 25 km (ARPEGE monde)
+  ce que le point échantillonné distingue à 90 m.
+  **Ce qu'elle coûtait : CINQ fois le quota** du fournisseur, qui facture à la localisation —
+  c'est elle qui épuisait le palier gratuit. Contrepartie assumée du retrait : **+0,011 kn de
+  RMSE** (B 2,71 → A 2,72 sur 47 stations METAR). Un centième de nœud contre cinq fois moins de
+  quota.
+  Le « 9,3 nds au point contre 18,1 à 1,1 km » de Lacanau reste vrai, mais il compare deux LIEUX.
+  Un mauvais pointage se corrige dans le CATALOGUE — ce qui a été fait (Andernos Le Betey,
+  Lacanau Océan, Hourtin-Plage) — et par le rattachement des ports CUSTOM à l'épingle vérifiée la
+  plus proche (`PortCatalog.weatherCoordinate`, 8 km). Ne pas réintroduire la croix sans refaire
+  CETTE mesure : `audit/mesure_voisinage.py`.
+
+- *(historique, pour comprendre le retrait ci-dessus)* **Échantillonnage par VOISINAGE
+  (`MarineWeatherService.neighbourhood`, rayon 2 km, MÉDIANE).**
   Un modèle classe chaque maille TERRE ou MER : la rugosité change le vent d'un facteur deux
   d'une maille à l'autre, et un spot dont la coordonnée tombe du mauvais côté lit le vent de la
   forêt. Mesuré à Lacanau : 9,3 nds au point du spot contre 18,1 à 1,1 km — la bascule tient à

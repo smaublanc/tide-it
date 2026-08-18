@@ -589,6 +589,9 @@ class MarineWeatherService: ObservableObject {
     /// Remis à false dès qu'une réponse aboutit : l'état ne survit pas au retour à la normale.
     private(set) var quotaExceeded = false
 
+    /// Rayon de la croix. INUTILISE depuis le 18 aout 2026 : `neighbourhood` ne renvoie plus
+    /// que le point central (voir sa documentation et la mesure qui l'a decide). Conserve pour
+    /// que le retour en arriere tienne dans une seule fonction, si une mesure le justifiait.
     nonisolated private static let neighbourhoodKm = 2.0
 
     /// Le point du spot + 4 voisins cardinaux. Une SEULE requête (Open-Meteo accepte plusieurs
@@ -606,12 +609,36 @@ class MarineWeatherService: ObservableObject {
         return all.count > 1 ? WindEnsembleResponse.medianOfNeighbourhood(all, centre: centre) : centre
     }
 
+    /// ⚠️ RAMENÉ À UN SEUL POINT le 18 août 2026, après mesure. Ce n'était plus un voisinage.
+    ///
+    /// La croix de 5 points à 2 km coûtait CINQ fois le quota du fournisseur, qui facture à la
+    /// localisation — c'est elle qui épuisait le palier gratuit. Mesuré sur 80 entrées RÉELLES
+    /// du catalogue livré (spots surf + ports français), 72 h chacune :
+    ///
+    ///   écart |médiane des 5 − point central| : médiane 0,000 kn · p90 0,217 · MAX 0,589
+    ///   entrées où la croix entière tombe dans UNE SEULE maille : 49/80, soit 61 %
+    ///   entrées dont l'écart moyen dépasse 1 kn : 0/80
+    ///
+    /// Et surtout le CAS FONDATEUR, celui qui avait justifié le voisinage — une épingle posée
+    /// sur une maille de TERRE avec de l'eau ailleurs dans la croix : 31 entrées sur 80, écart
+    /// MÉDIAN 0,000 kn, maximum 0,468 (Roscoff +0,47). La médiane ne répare pas ce cas, parce
+    /// qu'elle prend le régime MAJORITAIRE de la croix — et que le modèle résout à 1,3 km
+    /// (AROME) ou 25 km (ARPEGE monde) ce que le point échantillonné distingue à 90 m.
+    ///
+    /// Le « 9,3 nds au point contre 18,1 à 1,1 km » de Lacanau reste vrai, mais il compare deux
+    /// LIEUX différents. Aucune moyenne sur 5 points voisins ne corrige un mauvais pointage : ça
+    /// se corrige dans le CATALOGUE, et c'est ce qui a été fait (Andernos Le Betey, Lacanau
+    /// Océan, Hourtin-Plage), plus le rattachement des ports custom à l'épingle vérifiée la plus
+    /// proche.
+    ///
+    /// Contrepartie assumée : +0,011 kn de RMSE contre les 47 stations METAR de l'audit du
+    /// 17 août (B 2,71 → A 2,72). Un centième de nœud, pour cinq fois moins de quota.
+    ///
+    /// La fonction et `medianOfNeighbourhood` sont CONSERVÉES : elles gèrent le cas à un point
+    /// sans détour, et le retour en arrière tient dans cette seule fonction si un jour une mesure
+    /// le justifiait. Ne pas revenir en arrière sans refaire CETTE mesure-là.
     nonisolated static func neighbourhood(latitude: Double, longitude: Double) -> [(lat: Double, lon: Double)] {
-        let dLat = neighbourhoodKm / 111.0
-        let dLon = neighbourhoodKm / (111.0 * max(0.1, cos(latitude * .pi / 180)))
-        return [(latitude, longitude),
-                (latitude + dLat, longitude), (latitude - dLat, longitude),
-                (latitude, longitude + dLon), (latitude, longitude - dLon)]
+        [(latitude, longitude)]
     }
 
     private func fetchWindEnsemble(latitude: Double, longitude: Double) async -> WindEnsembleResponse? {
