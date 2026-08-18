@@ -211,6 +211,11 @@ final class WindStationAggregator: ObservableObject {
             // L'identifiant local porte le préfixe `wm_` (cf. `rebuildDedup`) ; l'API veut l'id nu.
             let nu = st.id.hasPrefix("wm_") ? String(st.id.dropFirst(3)) : st.id
             return await WindsMobiService.shared.history(stationId: nu, hours: hours)
+        case .weameter, .weewx:
+            // Stations WeeWX : `<racine>/json/day.json`, ~3 min de pas — la meilleure résolution
+            // dont on dispose. La racine est celle du catalogue, pas l'identifiant local.
+            guard let base = WeameterService.stationURL(forID: st.id) else { return [] }
+            return await WeameterService.history(stationURL: base)
         default:
             return []
         }
@@ -367,7 +372,8 @@ final class WeameterService: ObservableObject {
     ///
     /// `montamer` figure aussi dans le sitemap mais renvoie 404 sur le JSON comme sur sa page :
     /// entree perimee, NE PAS l'ajouter — ce serait un 404 toutes les 3 minutes pour rien.
-    private let catalog: [WeeWXStation] = [
+    // `static` : constant, et consulté depuis `stationURL(forID:)` qui est nonisolated.
+    nonisolated static let catalog: [WeeWXStation] = [
         .init(id: "weameter_andernos",           url: "https://weameter.com/stations/andernos",           source: .weameter, homepage: "https://weameter.com/stations/andernos"),
         .init(id: "weameter_pauillac",           url: "https://weameter.com/stations/pauillac",           source: .weameter, homepage: "https://weameter.com/stations/pauillac"),
         .init(id: "weameter_lachanau",           url: "https://weameter.com/stations/lachanau",           source: .weameter, homepage: "https://weameter.com/stations/lachanau"),
@@ -394,7 +400,7 @@ final class WeameterService: ObservableObject {
             return
         }
 
-        let list = catalog
+        let list = Self.catalog
         let fetched = await withTaskGroup(of: WindStation?.self) { group -> [WindStation] in
             for st in list {
                 group.addTask { await WeameterService.fetchStation(st) }
@@ -463,6 +469,64 @@ final class WeameterService: ObservableObject {
         } catch {
             return nil
         }
+    }
+
+    /// Racine d'une station à partir de son identifiant local, pour aller chercher son
+    /// historique. La liste `stations` est la source unique : pas de reconstruction d'URL à
+    /// partir d'un slug, qui casserait dès qu'une station est auto-hébergée.
+    nonisolated static func stationURL(forID id: String) -> String? {
+        catalog.first { $0.id == id }?.url
+    }
+
+    /// HISTORIQUE 24 h publié par une station WeeWX (thème Belchertown) : `<racine>/json/day.json`.
+    ///
+    /// Découvert le 18 août 2026. Le thème génère les séries de ses propres graphes Highcharts,
+    /// et `chart2` porte exactement ce qu'il nous faut : `windSpeed`, `windGust`, `windDir`,
+    /// ~485 points sur 24 h — soit un pas de 3 min, la meilleure résolution de toutes nos
+    /// sources. Chaque point est `[timestamp_ms, valeur]`.
+    ///
+    /// L'UNITÉ est lue dans `yAxis_label` de la série et passée à `toKmh`, le même convertisseur
+    /// que le live : une station peut publier en nœuds, m/s ou mph, et supposer les km/h
+    /// fabriquerait un vent faux d'un facteur deux.
+    ///
+    /// Vitesse ET direction restent exigées, comme partout : un point sans cap est écarté plutôt
+    /// que complété par un zéro qui se dessinerait plein nord.
+    nonisolated static func history(stationURL: String) async -> [WindReading] {
+        guard let url = URL(string: "\(stationURL)/json/day.json") else { return [] }
+        let cfg = URLSessionConfiguration.ephemeral
+        cfg.timeoutIntervalForRequest = 25
+        guard let (data, response) = try? await URLSession(configuration: cfg).data(from: url),
+              let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode),
+              let root = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+        else { return [] }
+
+        // La série vent n'est pas toujours dans `chart2` : on cherche le graphe qui la porte.
+        var serie: [String: Any]?
+        for (cle, valeur) in root where cle.hasPrefix("chart") {
+            guard let g = valeur as? [String: Any],
+                  let s = g["series"] as? [String: Any], s["windSpeed"] != nil else { continue }
+            serie = s; break
+        }
+        guard let s = serie,
+              let vitesse = (s["windSpeed"] as? [String: Any])?["data"] as? [[Any]] else { return [] }
+        let unite = (s["windSpeed"] as? [String: Any])?["yAxis_label"] as? String
+        func serieParTemps(_ nom: String) -> [Double: Double] {
+            guard let d = (s[nom] as? [String: Any])?["data"] as? [[Any]] else { return [:] }
+            return Dictionary(uniqueKeysWithValues: d.compactMap { p -> (Double, Double)? in
+                guard p.count == 2, let t = p[0] as? Double, let v = p[1] as? Double else { return nil }
+                return (t, v)
+            })
+        }
+        let rafales = serieParTemps("windGust"), caps = serieParTemps("windDir")
+
+        return vitesse.compactMap { p -> WindReading? in
+            guard p.count == 2, let ms = p[0] as? Double, let v = p[1] as? Double,
+                  let cap = caps[ms] else { return nil }
+            return WindReading(date: Date(timeIntervalSince1970: ms / 1000),
+                               speedAvgKmh: toKmh(v, unitLabel: unite),
+                               gustKmh: rafales[ms].map { toKmh($0, unitLabel: unite) },
+                               minKmh: nil, directionDegrees: cap)
+        }.sorted { $0.date < $1.date }
     }
 
     /// Convertit une vitesse vers km/h selon l'unité libellée par la station
