@@ -966,23 +966,11 @@ struct TodayView: View {
     /// d'honnêteté sur ses trous.
     static func traceFromHistory(_ readings: [WindReading],
                                  now: Date) -> [[ForecastBiasService.TracePoint]] {
-        let recents = readings
-            .filter { now.timeIntervalSince($0.date) <= ForecastBiasService.BiasReadout.maxSampleAge }
-            .sorted { $0.date < $1.date }
-        guard !recents.isEmpty else { return [] }
-        var segments: [[ForecastBiasService.TracePoint]] = []
-        var courant: [ForecastBiasService.TracePoint] = []
-        var precedent: Date?
-        for r in recents {
-            if let p = precedent, r.date.timeIntervalSince(p) > ForecastBiasService.traceMaxGap {
-                if !courant.isEmpty { segments.append(courant) }
-                courant = []
-            }
-            courant.append(.init(t: r.date, speedKmh: r.speedAvgKmh, gustKmh: r.gustKmh))
-            precedent = r.date
-        }
-        if !courant.isEmpty { segments.append(courant) }
-        return segments
+        ForecastBiasService.resample(
+            readings
+                .filter { now.timeIntervalSince($0.date) <= ForecastBiasService.BiasReadout.maxSampleAge }
+                .sorted { $0.date < $1.date }
+                .map { (t: $0.date, speed: $0.speedAvgKmh, gust: $0.gustKmh) })
     }
 
     static func forecastsFromWeatherKit(_ hours: [HourWeather]) -> [HourlyForecast] {

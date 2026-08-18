@@ -272,6 +272,54 @@ final class ForecastBiasService: ObservableObject {
     /// règle d'honnêteté interdit. Le trou se voit, et c'est ce qu'on veut.
     static let traceMaxGap: TimeInterval = 40 * 60
 
+    /// Pas du rééchantillonnage de la trace. 30 min.
+    ///
+    /// Une balise publie toutes les 3 à 10 min : sur 48 h ça fait des centaines de points, et la
+    /// courbe devenait un trait velu illisible. Or cette trace ne sert PAS à lire une valeur
+    /// instantanée — la pastille « réel » le fait déjà, à la minute près. Elle sert à voir une
+    /// TENDANCE PASSÉE, et une tendance n'a pas besoin de définition.
+    ///
+    /// Ce n'est pas une perte d'honnêteté : c'est de la RÉDUCTION, pas de l'invention. Chaque
+    /// point rendu est la moyenne des mesures réelles de sa demi-heure — et la rafale y est le
+    /// MAXIMUM, parce qu'une rafale moyennée n'est plus une rafale.
+    static let traceStep: TimeInterval = 30 * 60
+
+    /// Ramène une série de mesures à un point toutes les 30 min, en segments continus.
+    ///
+    /// Un créneau sans aucune mesure reste VIDE — on ne le comble pas. Le trait se coupe quand
+    /// deux créneaux remplis sont séparés de plus d'une heure : au-delà, relier reviendrait à
+    /// dessiner une tendance qu'aucune mesure ne soutient.
+    static func resample(_ pts: [(t: Date, speed: Double, gust: Double?)]) -> [[TracePoint]] {
+        guard !pts.isEmpty else { return [] }
+        // Regroupement par créneau de 30 min, ancré sur l'epoch : deux spots, deux sources et
+        // deux ouvertures d'app tombent ainsi sur la MÊME grille, donc les courbes sont
+        // comparables entre elles.
+        var seaux: [Int: (n: Int, somme: Double, rafale: Double?)] = [:]
+        for p in pts {
+            let k = Int(p.t.timeIntervalSince1970 / traceStep)
+            var e = seaux[k] ?? (0, 0, nil)
+            e.n += 1; e.somme += p.speed
+            if let g = p.gust { e.rafale = max(e.rafale ?? g, g) }
+            seaux[k] = e
+        }
+        var segments: [[TracePoint]] = []
+        var courant: [TracePoint] = []
+        var precedent: Int?
+        for k in seaux.keys.sorted() {
+            // Plus d'un créneau vide entre deux mesures (> 1 h) → on coupe.
+            if let p = precedent, k - p > 2 {
+                if !courant.isEmpty { segments.append(courant) }
+                courant = []
+            }
+            let e = seaux[k]!
+            courant.append(TracePoint(t: Date(timeIntervalSince1970: Double(k) * traceStep + traceStep / 2),
+                                      speedKmh: e.somme / Double(e.n), gustKmh: e.rafale))
+            precedent = k
+        }
+        if !courant.isEmpty { segments.append(courant) }
+        return segments
+    }
+
     /// Trace du vent réellement mesuré sur les 48 dernières heures, découpée en SEGMENTS
     /// CONTINUS. Chaque segment se dessine d'un trait ; entre deux segments, on ne relie rien.
     ///
@@ -291,27 +339,21 @@ final class ForecastBiasService: ObservableObject {
             .filter { now.timeIntervalSince($0.t) <= BiasReadout.maxSampleAge }
             .sorted { $0.t < $1.t }
         guard !arr.isEmpty else { return [] }
-
-        var segments: [[TracePoint]] = []
-        var courant: [TracePoint] = []
-        var precedent: Sample?
-        for s in arr {
-            if let p = precedent,
-               s.t.timeIntervalSince(p.t) > Self.traceMaxGap || s.station != p.station {
-                if !courant.isEmpty { segments.append(courant) }
-                courant = []
+        // Le CHANGEMENT DE BALISE coupe avant tout rééchantillonnage : moyenner dans un même
+        // créneau deux stations d'exposition différente fabriquerait une mesure qui n'existe
+        // nulle part. On découpe d'abord par station, on rééchantillonne ensuite chaque bloc.
+        var blocs: [[Sample]] = []
+        var courant: [Sample] = []
+        for sm in arr {
+            if let p = courant.last, sm.station != p.station {
+                blocs.append(courant); courant = []
             }
-            courant.append(TracePoint(t: s.t, speedKmh: s.observed, gustKmh: s.gust))
-            precedent = s
+            courant.append(sm)
         }
-        if !courant.isEmpty { segments.append(courant) }
-        // Les segments d'UN SEUL point sont CONSERVÉS, et c'est un correctif.
-        // Ils étaient écartés parce qu'un point ne fait pas une ligne — mais du coup une mesure
-        // isolée entre deux silences disparaissait purement et simplement : la donnée existait et
-        // n'était nulle part. Le rendu dessine désormais un point pour chaque échantillon, et ne
-        // relie que ce qui est continu. Une mesure isolée se voit donc, sans qu'on invente le
-        // trait qui la relierait à ses voisines.
-        return segments
+        if !courant.isEmpty { blocs.append(courant) }
+        return blocs.flatMap { bloc in
+            Self.resample(bloc.map { (t: $0.t, speed: $0.observed, gust: $0.gust) })
+        }
     }
 
     // ⚠️ AUCUNE FONCTION DE CORRECTION ICI, ET C'EST VOULU.
