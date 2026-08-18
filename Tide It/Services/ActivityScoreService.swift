@@ -366,16 +366,25 @@ class ActivityScoreService {
     static let surfPeakPeriodLoS = 5.0
     static let surfPeakPeriodHiS = 13.0
 
-    /// Les mêmes bornes transposées à l'échelle de la période MOYENNE, seule disponible hors du
-    /// domaine du modèle européen. Obtenues par correspondance de quantiles sur 26 bouées
-    /// (ratio médian pic/moyenne 1,29) : 5 s ↔ 4,0 · 10 s ↔ 7,6 · 13 s ↔ 9,5.
-    /// Validation croisée leave-one-buoy-out : l'écart au score de la bouée passe de 0,254 à
-    /// 0,190, soit +6,4 points HORS ÉCHANTILLON, avec amélioration sur 20 bouées sur 24.
+    /// ⚠️ SEUILS TRANSPOSÉS RETIRÉS LE 18 AOÛT 2026, APRÈS MESURE — ne pas les réintroduire.
     ///
-    /// ⚠️ NE PAS unifier les deux jeux. C'est le même piège que les rafales prévision/balise :
-    /// deux grandeurs différentes portant le même nom, et un seul seuil qui ment à l'une des deux.
-    static let surfMeanPeriodLoS = 4.0
-    static let surfMeanPeriodHiS = 9.5
+    /// J'avais transposé ces bornes vers l'échelle MOYENNE (4,0–9,5 s) par correspondance de
+    /// quantiles sur 26 bouées, avec une validation croisée qui annonçait +6,4 points hors
+    /// échantillon. Mesuré ensuite sur 12 spots RÉELS du catalogue, 8 jours : facteur période
+    /// médian **0,43 en Europe** (échelle pic) contre **0,97 hors d'Europe** (échelle
+    /// transposée), et TROIS spots saturés à 1,00 — Uluwatu, Raglan, Playa Guiones.
+    ///
+    /// La transposition était calibrée sur des bouées majoritairement américaines, où le régime
+    /// de houle diffère : sous les tropiques la période moyenne servie dépasse constamment
+    /// 9,5 s. Elle créait donc exactement ce que la réfutation annonçait — deux échelles
+    /// invisibles séparées par une longitude, la tropicale toujours au maximum.
+    ///
+    /// Ce qui reste : UN seul jeu de seuils, celui du PIC, appliqué à la meilleure grandeur
+    /// disponible. Là où le pic est servi (domaine européen), on le lit — c'est la grandeur pour
+    /// laquelle 5 et 13 s ont été écrits, et c'est un gain net. Ailleurs on lit la moyenne comme
+    /// avant, avec le même défaut d'échelle qu'avant : connu, borné, et pas aggravé.
+    /// Une vraie transposition demanderait une calibration PAR RÉGIME de houle, sur des bouées
+    /// tropicales — elle n'existe pas, donc on ne l'invente pas.
 
     /// Hauteur de houle sous laquelle il n'y a PAS de vague surfable.
     ///
@@ -883,7 +892,16 @@ class ActivityScoreService {
 
         // — État de la mer (10%) —
         // Mer calme = meilleur confort et meilleure visibilité pour la pêche côtière.
-        if let marine = marine {
+        // GARDE `hasWaveData` — sans elle, ce facteur notait 1,0 sur une donnée ABSENTE.
+        // `MarineConditions.init(from:)` fabrique `waveHeight = f.waveHeight ?? f.swellHeight ?? 0`
+        // quand le point n'est pas couvert par le modèle marine ; `rampDown(0)` rend alors 1,0,
+        // et l'app affichait « idéal » avec un score parfait sur une mer dont elle ne savait
+        // rien. `if let marine` ne protège de rien ici : sur le chemin `scoreHour`,
+        // `MarineConditions(from: f)` n'est JAMAIS nil.
+        // Règle 3 du dépôt : nil → l'élément DISPARAÎT, il ne vaut pas 0 ni 1.
+        // Le témoin existait, était documenté pour ce cas précis, et n'était utilisé que
+        // par le surf — un seul des quatre facteurs de mer.
+        if let marine = marine, marine.hasWaveData {
             let s = Self.rampDown(marine.waveHeight, lo: 0.3, hi: 2.5)
             let desc: String
             if marine.waveHeight < 0.5 { desc = "Mer calme : idéal" }
@@ -978,13 +996,12 @@ class ActivityScoreService {
             // sur 24 améliorées.
             let peak = marine.swellPeakPeriod
             let period = peak ?? marine.swellPeriod ?? marine.wavePeriod
-            let pScore = peak != nil
-                ? Self.ramp(period, lo: Self.surfPeakPeriodLoS, hi: Self.surfPeakPeriodHiS)
-                : Self.ramp(period, lo: Self.surfMeanPeriodLoS, hi: Self.surfMeanPeriodHiS)
+            let pScore = Self.ramp(period, lo: Self.surfPeakPeriodLoS, hi: Self.surfPeakPeriodHiS)
             // Le libellé dit LAQUELLE des deux on montre : afficher « 8 s » sans préciser
             // l'échelle laisserait le rider comparer une moyenne au pic annoncé ailleurs.
-            let pHaute = peak != nil ? 11.0 : 8.5
-            let pBasse = peak != nil ? 8.0 : 6.0
+            let pHaute = 10.0, pBasse = 7.0
+            // Le libellé DIT laquelle des deux grandeurs il montre. Sans ça, le rider
+            // comparerait une période moyenne au pic annoncé partout ailleurs.
             let pUnite = peak != nil ? "s" : "s moy."
             let pDesc: String
             if period >= pHaute { pDesc = "Longue période (\(Int(period))\(pUnite)) : houle organisée" }
@@ -1338,7 +1355,16 @@ class ActivityScoreService {
         // — Vagues (25%) —
         // Mer calme (< 0.5m) = baignade sûre et agréable.
         // > 1.5m = déconseillé pour la baignade familiale.
-        if let marine = marine {
+        // GARDE `hasWaveData` — sans elle, ce facteur notait 1,0 sur une donnée ABSENTE.
+        // `MarineConditions.init(from:)` fabrique `waveHeight = f.waveHeight ?? f.swellHeight ?? 0`
+        // quand le point n'est pas couvert par le modèle marine ; `rampDown(0)` rend alors 1,0,
+        // et l'app affichait « idéal » avec un score parfait sur une mer dont elle ne savait
+        // rien. `if let marine` ne protège de rien ici : sur le chemin `scoreHour`,
+        // `MarineConditions(from: f)` n'est JAMAIS nil.
+        // Règle 3 du dépôt : nil → l'élément DISPARAÎT, il ne vaut pas 0 ni 1.
+        // Le témoin existait, était documenté pour ce cas précis, et n'était utilisé que
+        // par le surf — un seul des quatre facteurs de mer.
+        if let marine = marine, marine.hasWaveData {
             let h = marine.waveHeight
             let s = Self.rampDown(h, lo: 0.3, hi: 2.0)
             let desc: String
@@ -1484,7 +1510,16 @@ class ActivityScoreService {
 
         // — Vagues (20%) —
         // La houle rend le lancement depuis la cale difficile et dangereux.
-        if let marine = marine {
+        // GARDE `hasWaveData` — sans elle, ce facteur notait 1,0 sur une donnée ABSENTE.
+        // `MarineConditions.init(from:)` fabrique `waveHeight = f.waveHeight ?? f.swellHeight ?? 0`
+        // quand le point n'est pas couvert par le modèle marine ; `rampDown(0)` rend alors 1,0,
+        // et l'app affichait « idéal » avec un score parfait sur une mer dont elle ne savait
+        // rien. `if let marine` ne protège de rien ici : sur le chemin `scoreHour`,
+        // `MarineConditions(from: f)` n'est JAMAIS nil.
+        // Règle 3 du dépôt : nil → l'élément DISPARAÎT, il ne vaut pas 0 ni 1.
+        // Le témoin existait, était documenté pour ce cas précis, et n'était utilisé que
+        // par le surf — un seul des quatre facteurs de mer.
+        if let marine = marine, marine.hasWaveData {
             let s = Self.rampDown(marine.waveHeight, lo: 0.3, hi: 2.0)
             let desc: String
             if marine.waveHeight < 0.5 { desc = "Mer calme : lancement facile" }
