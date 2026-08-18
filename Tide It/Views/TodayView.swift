@@ -41,6 +41,10 @@ struct TodayView: View {
     /// et parce qu'une app qui se vend sur l'honnêteté doit savoir répondre à « quel modèle
     /// m'a répondu ? ».
     @State private var forecastSourceIsWeatherKit = false
+    /// Historique PUBLIÉ par la balise elle-même (24 h). Prioritaire sur le tampon accumulé :
+    /// la station a enregistré en continu pendant que l'app dormait, donc cette série n'a pas
+    /// les trous de la nôtre. Vide si le fournisseur n'archive pas (METAR, bouées, Pioupiou).
+    @State private var stationHistory: [WindReading] = []
     /// TOUTES les fenêtres GO (tous sports) calculées via le MÊME `ActivityGoPlanner.plan` que le
     /// calendrier → la courbe (vent + surf) affiche exactement les fenêtres du calendrier.
     @State private var goWindows: [GoCurveWindow] = []
@@ -302,8 +306,12 @@ struct TodayView: View {
                             // Trace du réel : recalculée à chaque rendu, mais `bandsClock` la
                             // quantifie à 15 min — le tampon ne bouge qu'à la cadence d'une
                             // balise (~10 min), donc aucun recalcul inutile pendant le scroll.
-                            observedTrace: tideService.selectedPort
-                                .map { ForecastBiasService.shared.trace(for: $0.id, now: bandsClock) } ?? [],
+                            // L'historique de la STATION prime quand il existe : continu par
+                            // construction. Sinon, le tampon accumulé par l'app prend le relais.
+                            observedTrace: stationHistory.isEmpty
+                                ? (tideService.selectedPort
+                                    .map { ForecastBiasService.shared.trace(for: $0.id, now: bandsClock) } ?? [])
+                                : Self.traceFromHistory(stationHistory, now: bandsClock),
                             observedWindDirection: observedWind?.reading.directionDegrees,
                             observedWindAgeMinutes: observedWind?.reading.ageMinutes,
                             riderMinKmh: themeManager.riderMinWindKmh,
@@ -750,6 +758,9 @@ struct TodayView: View {
             // Rafraîchir les stations d'anémomètres temps réel (toutes sources)
             let portCoord = CLLocationCoordinate2D(latitude: port.latitude, longitude: port.longitude)
             await WindStationAggregator.shared.refresh(around: portCoord)
+            // HISTORIQUE de la balise — un appel, 24 h en continu. Il REMPLACE l'accumulation
+            // lente de l'app là où le fournisseur archive : c'est ce qui supprime les coupures.
+            stationHistory = await WindStationAggregator.shared.history(around: portCoord)
             guard !Task.isCancelled, tideService.selectedPort?.id == port.id else { return }
 
             // Données marine + balises désormais en cache → réécrire le snapshot widget (le widget
@@ -949,6 +960,31 @@ struct TodayView: View {
     /// Convertit les prévisions horaires WeatherKit en `HourlyForecast` afin que
     /// le bandeau météo reste affiché même quand Open-Meteo renvoie un tableau vide
     /// (réseau, point inland, quota). Les champs houle restent nil (non fournis ici).
+    /// Convertit l'historique d'une balise en segments traçables, avec les MÊMES règles de
+    /// coupure que le tampon local : au-delà de `traceMaxGap` de silence, le trait s'interrompt.
+    /// Une station peut avoir ses propres pannes — l'origine de la série ne dispense pas
+    /// d'honnêteté sur ses trous.
+    static func traceFromHistory(_ readings: [WindReading],
+                                 now: Date) -> [[ForecastBiasService.TracePoint]] {
+        let recents = readings
+            .filter { now.timeIntervalSince($0.date) <= ForecastBiasService.BiasReadout.maxSampleAge }
+            .sorted { $0.date < $1.date }
+        guard !recents.isEmpty else { return [] }
+        var segments: [[ForecastBiasService.TracePoint]] = []
+        var courant: [ForecastBiasService.TracePoint] = []
+        var precedent: Date?
+        for r in recents {
+            if let p = precedent, r.date.timeIntervalSince(p) > ForecastBiasService.traceMaxGap {
+                if !courant.isEmpty { segments.append(courant) }
+                courant = []
+            }
+            courant.append(.init(t: r.date, speedKmh: r.speedAvgKmh, gustKmh: r.gustKmh))
+            precedent = r.date
+        }
+        if !courant.isEmpty { segments.append(courant) }
+        return segments
+    }
+
     static func forecastsFromWeatherKit(_ hours: [HourWeather]) -> [HourlyForecast] {
         hours.map { h in
             HourlyForecast(

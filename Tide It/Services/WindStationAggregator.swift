@@ -195,6 +195,27 @@ final class WindStationAggregator: ObservableObject {
         return result
     }
 
+    /// HISTORIQUE de la balise arbitrée pour ce point, tel que la STATION l'a enregistré.
+    ///
+    /// Retourne une série vide si le fournisseur n'archive pas — c'est le cas de METAR, des
+    /// bouées NDBC et de Pioupiou. L'appelant retombe alors sur le tampon accumulé par l'app.
+    ///
+    /// Pourquoi ça prime sur l'accumulation : l'app ne peut échantillonner que lorsqu'elle est
+    /// ouverte, ou lors d'un réveil de fond qu'iOS accorde quand il veut. La station, elle, a
+    /// enregistré sans discontinuer. Les « trous » de la trace n'étaient donc pas des données
+    /// manquantes mais des données jamais demandées — et un seul appel les récupère toutes.
+    func history(around coord: CLLocationCoordinate2D, hours: Int = 24) async -> [WindReading] {
+        guard let st = nearestStationWithDistance(to: coord)?.station else { return [] }
+        switch st.source {
+        case .windsMobi:
+            // L'identifiant local porte le préfixe `wm_` (cf. `rebuildDedup`) ; l'API veut l'id nu.
+            let nu = st.id.hasPrefix("wm_") ? String(st.id.dropFirst(3)) : st.id
+            return await WindsMobiService.shared.history(stationId: nu, hours: hours)
+        default:
+            return []
+        }
+    }
+
     // MARK: - Lookup
 
     /// Station la plus proche (toutes sources, fraîche < 30 min)
@@ -653,6 +674,39 @@ final class WindsMobiService: ObservableObject {
         } catch {
             appLogger.warning("[WindsMobi] fetch: \(error.localizedDescription)")
         }
+    }
+
+    /// HISTORIQUE publié par la station elle-même — `/historic/?duration=<secondes>`.
+    ///
+    /// Découvert le 18 août 2026 : winds.mobi archive ses mesures et les sert en UN appel.
+    /// 138 mesures sur 24 h, 965 sur 7 jours (pas de ~10 min), et surtout au FORMAT EXACT du
+    /// live — mêmes clés `_id` / `w-dir` / `w-avg` / `w-max`, donc le décodeur existant suffit.
+    ///
+    /// Pourquoi ça change tout pour la trace du réel : l'app l'accumulait échantillon par
+    /// échantillon, au fil de ses ouvertures et des réveils que voulait bien lui accorder iOS.
+    /// D'où des trous de plusieurs heures — non pas des données manquantes, mais des données
+    /// JAMAIS DEMANDÉES. La station, elle, enregistrait sans discontinuer pendant ce temps.
+    /// Un appel, et la courbe est complète dès la première ouverture.
+    nonisolated func history(stationId: String, hours: Int) async -> [WindReading] {
+        guard let url = URL(string:
+            "https://winds.mobi/api/2.3/stations/\(stationId)/historic/?duration=\(hours * 3600)")
+        else { return [] }
+        // Session locale éphémère : `session` est une propriété d'INSTANCE et cette fonction est
+        // `nonisolated` (elle doit tourner hors du main thread, l'historique fait ~200 Ko).
+        let cfg = URLSessionConfiguration.ephemeral
+        cfg.timeoutIntervalForRequest = 20
+        guard let (data, response) = try? await URLSession(configuration: cfg).data(from: url),
+              let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode),
+              let mesures = try? JSONDecoder().decode([Measure].self, from: data)
+        else { return [] }
+        // Mêmes exigences d'honnêteté que le live : vitesse ET direction obligatoires, aucune
+        // valeur fabriquée pour combler un champ absent.
+        return mesures.compactMap { m in
+            guard let avg = m.wAvg, let dir = m.wDir else { return nil }
+            return WindReading(date: Date(timeIntervalSince1970: TimeInterval(m._id)),
+                               speedAvgKmh: avg, gustKmh: m.wMax, minKmh: nil,
+                               directionDegrees: Double(dir), temperatureC: m.temp)
+        }.sorted { $0.date < $1.date }
     }
 
     private func fetchNearby(_ coord: CLLocationCoordinate2D) async throws -> [WindStation] {
