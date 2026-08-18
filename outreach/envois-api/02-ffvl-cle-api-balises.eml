@@ -1,0 +1,69 @@
+From: tideitapp@icloud.com
+To: informatique@ffvl.fr
+Subject: Demande de =?utf-8?b?Y2zDqSBBUEkg4oCUIHLDqXNlYXU=?= de balises FFVL
+ (application Tide It)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Bonjour,
+
+Je d=C3=A9veloppe Tide It, une application iOS de mar=C3=A9es, vent et surf p=
+our les riders
+(kitesurf, windsurf, wing, surf). Elle est publi=C3=A9e sur l'App Store et ma=
+intenue par une
+seule personne.
+
+Je souhaiterais demander une cl=C3=A9 API pour le r=C3=A9seau de balises FFVL.
+
+L'USAGE PR=C3=89VU, pr=C3=A9cis=C3=A9ment :
+L'application affiche, =C3=A0 c=C3=B4t=C3=A9 de la pr=C3=A9vision de vent, la=
+ mesure R=C3=89ELLE de la balise la
+plus proche du spot consult=C3=A9 =E2=80=94 dans un rayon de 15 km maximum. A=
+u-del=C3=A0, une mesure d=C3=A9crit
+un autre r=C3=A9gime de vent et je pr=C3=A9f=C3=A8re ne rien afficher plut=C3=
+=B4t qu'induire en erreur.
+L'=C3=A2ge de la mesure est toujours indiqu=C3=A9. J'affiche aussi une trace =
+de l'historique des
+derni=C3=A8res 24 h, qui permet de comparer ce qui avait =C3=A9t=C3=A9 annonc=
+=C3=A9 =C3=A0 ce qui a souffl=C3=A9.
+
+POURQUOI VOTRE R=C3=89SEAU :
+Je viens de mesurer la couverture sur les 284 spots de mon catalogue : 34 % s=
+eulement ont
+une balise =C3=A0 moins de 15 km, et une bonne partie de celles-ci sont des c=
+apteurs
+d'a=C3=A9rodrome. Vos balises sont pos=C3=A9es l=C3=A0 o=C3=B9 l'on pratique,=
+ sur le littoral comme en
+montagne. C'est pr=C3=A9cis=C3=A9ment ce qui manque.
+
+CE QUE JE M'ENGAGE =C3=80 FAIRE :
+- afficher =C2=AB FFVL =C2=BB comme source sous chaque mesure issue de votre =
+r=C3=A9seau, avec un lien
+  vers votre site ;
+- ne jamais revendre ni rediffuser les donn=C3=A9es, uniquement les afficher =
+dans l'app ;
+- respecter les cadences d'appel que vous fixerez (mon usage est de l'ordre d=
+'une requ=C3=AAte
+  toutes les 3 minutes par spot consult=C3=A9, avec cache) ;
+- retirer une balise ou l'ensemble du r=C3=A9seau imm=C3=A9diatement sur simp=
+le demande =E2=80=94 j'ai une
+  liste de retrait distante que l'app relit =C3=A0 chaque lancement, sans n=
+=C3=A9cessiter de mise =C3=A0
+  jour App Store.
+
+Je pr=C3=A9cise que j'acc=C3=A8de d=C3=A9j=C3=A0 =C3=A0 une partie de vos bal=
+ises via l'agr=C3=A9gateur winds.mobi. Si
+cet usage indirect pose un probl=C3=A8me, dites-le moi et je le corrige imm=
+=C3=A9diatement =E2=80=94 c'est
+aussi une des raisons pour lesquelles je pr=C3=A9f=C3=A8re vous =C3=A9crire e=
+n direct.
+
+Je reste =C3=A0 votre disposition pour toute pr=C3=A9cision, et je signe volo=
+ntiers une convention
+d'utilisation si vous en avez une.
+
+Bien cordialement,
+S=C3=A9bastien Maublanc
+Tide It =E2=80=94 tideitapp@icloud.com
+App Store : https://apps.apple.com/app/id6743555259

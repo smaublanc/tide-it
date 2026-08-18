@@ -1,0 +1,68 @@
+From: tideitapp@icloud.com
+To: contact@winds-up.com
+Subject: Tide It =?utf-8?b?4oCU?= vos stations de vent : une API existe-t-elle
+ ?
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Bonjour Jean-Louis,
+
+Merci encore pour votre accord du 13 ao=C3=BBt concernant les webcams de Hy=
+=C3=A8res. Il est
+appliqu=C3=A9 exactement dans les termes que vous avez pos=C3=A9s : votre nom=
+ affich=C3=A9 sous la
+cam=C3=A9ra, un lien qui ouvre votre site, et AUCUNE rediffusion du flux dans=
+ l'application.
+La restriction est inscrite dans la donn=C3=A9e elle-m=C3=AAme, pas seulement=
+ dans un fichier de
+suivi, pour qu'une mise =C3=A0 jour future ne puisse pas l'effacer par inadve=
+rtance.
+
+Je reviens vers vous pour une question diff=C3=A9rente : vos STATIONS DE VENT.
+
+Tide It affiche, =C3=A0 c=C3=B4t=C3=A9 de la pr=C3=A9vision, le vent r=C3=A9e=
+llement mesur=C3=A9 par la balise la plus
+proche du spot =E2=80=94 =C3=A0 15 km maximum, au-del=C3=A0 la mesure d=C3=A9=
+crit un autre r=C3=A9gime et je pr=C3=A9f=C3=A8re
+ne rien montrer. J'ai aussi ajout=C3=A9 r=C3=A9cemment une trace de l'histori=
+que 24 h, qui permet
+de voir l'=C3=A9cart entre ce qui avait =C3=A9t=C3=A9 annonc=C3=A9 et ce qui =
+a r=C3=A9ellement souffl=C3=A9.
+
+Je viens de mesurer la couverture de ce dispositif sur les 284 spots de surf =
+du
+catalogue : seulement 34 % ont une balise exploitable =C3=A0 moins de 15 km. =
+Et la moiti=C3=A9 de
+celles-ci sont des capteurs d'a=C3=A9rodrome, pos=C3=A9s sur une piste =E2=80=
+=94 utiles, mais qui ne
+mesurent pas le spot.
+
+Vos stations, elles, sont pos=C3=A9es SUR les spots. C'est exactement ce qui =
+manque.
+
+Ma question est simple : exposez-vous une API, m=C3=AAme non document=C3=A9e,=
+ donnant la mesure
+courante et si possible l'historique de vos stations ? Un point d'acc=C3=A8s =
+JSON suffirait.
+
+Ce que je m'engage =C3=A0 faire en retour, dans les m=C3=AAmes termes que pou=
+r les webcams :
+- votre nom affich=C3=A9 sous chaque mesure, avec un lien vers la page du spo=
+t sur votre site ;
+- aucune revente ni rediffusion des donn=C3=A9es, uniquement l'affichage dans=
+ l'app ;
+- un retrait imm=C3=A9diat sur simple demande, sans passer par une mise =C3=
+=A0 jour : j'ai une
+  liste de retrait distante que l'app relit =C3=A0 chaque lancement, c'est ce=
+ qui rend le
+  =C2=AB imm=C3=A9diatement =C2=BB vrai ;
+- et si vous pr=C3=A9f=C3=A9rez un accord =C3=A9crit pr=C3=A9alable, je le si=
+gne.
+
+Si la r=C3=A9ponse est non, ce sera not=C3=A9 sans insistance et rien ne chan=
+gera pour les webcams.
+
+Bien cordialement,
+S=C3=A9bastien Maublanc
+Tide It =E2=80=94 tideitapp@icloud.com

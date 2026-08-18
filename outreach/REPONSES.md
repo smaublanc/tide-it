@@ -61,3 +61,33 @@ pas la fonctionnalité.
 Ajouter les deux identifiants ci-dessus au tableau `webcams` de `docs/blocklist.json`. Ils
 disparaissent de tous les téléphones au prochain lancement, sans mise à jour App Store — c'est
 ce qui rend tenable le « révocable à tout moment » qu'on leur a promis.
+
+---
+
+## Demandes d'accès API — 18 août 2026 — EN ATTENTE
+
+Deux courriers prêts dans `outreach/envois-api/`, **non envoyés** (je ne peux pas envoyer,
+seulement préparer). Ouvrir le `.eml` dans Mail, relire, envoyer.
+
+| # | destinataire | objet |
+|---|---|---|
+| 01 | contact@winds-up.com | leurs stations de vent exposent-elles une API ? |
+| 02 | informatique@ffvl.fr | demande de clé API (gratuite sur demande) |
+
+**Pourquoi ces deux-là.** L'audit du 17-18 août a mesuré que **34 % seulement** des 284 spots
+de surf ont une balise à moins de 15 km, et que la moitié de ces balises sont des capteurs
+d'AÉRODROME — utiles, mais qui mesurent la piste et non le spot. Winds-Up et la FFVL posent
+leurs balises là où l'on pratique : ce sont les deux réseaux qui peuvent réellement faire
+bouger ce chiffre sans rien payer.
+
+**Points à surveiller dans les réponses :**
+- Winds-Up : l'accord webcam du 13 août ne couvre PAS les données de stations. Un refus ici ne
+  remet rien en cause pour les webcams, et l'inverse est vrai aussi — ne pas confondre les deux.
+- FFVL : le courrier signale explicitement que l'app accède déjà à une partie de leurs balises
+  via l'agrégateur winds.mobi. C'est délibéré — mieux vaut le dire soi-même que le laisser
+  découvrir. Si cet usage indirect les gêne, il faudra le couper, et c'est faisable
+  immédiatement par la liste de retrait (`sources: ["windsMobi"]` dans docs/blocklist.json).
+
+**Si l'un accepte :** l'intégration est courte, la chaîne d'historique existe déjà
+(`WindStationAggregator.history(around:)` aiguille par source). Il reste à ajouter le
+fournisseur et son parseur, comme pour winds.mobi et WeeWX.
