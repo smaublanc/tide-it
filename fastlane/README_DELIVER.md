@@ -1,25 +1,30 @@
 # Pousser les textes App Store (7 langues) en une commande — Fastlane `deliver`
 
-## 🚀 RUNBOOK — publier la prochaine version X.Y.Z (générique, validé jusqu'à 5.2.3)
+## 🚀 RUNBOOK — publier la prochaine version X.Y.Z (générique, validé jusqu’à 5.3.1)
 
 1. **Bump** : `MARKETING_VERSION` + `CURRENT_PROJECT_VERSION` dans le pbxproj (12 configs,
    remplacement global), `plutil -lint` pour valider.
 2. **Notes de maj** : `fastlane/metadata/<locale>/release_notes.txt` pour les 12 locales
    (fr-FR, en-US, de-DE, es-ES, it, nl-NL, pt-PT, zh-Hans, zh-Hant, ja, ko, hi).
-3. **Métadonnées** (crée la version + pousse les 12 langues) — la version précédente doit être
+3. **Garde-fou des notes** — emoji (rejet Apple), nom de fournisseur (règle 3 du guide),
+   4 000 caractères. À passer AVANT l'envoi, pas après :
+```
+python3 tools/check_notes.py
+```
+4. **Métadonnées** (crée la version + pousse les 12 langues) — la version précédente doit être
    EN LIGNE (une seule version éditable à la fois) :
 ```
-cd "/Users/maublanc/Desktop/Tide It 18"
+cd "/Users/maublanc/Desktop/Tide It 5.3"
 export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 fastlane deliver --api_key_path "$HOME/.appstoreconnect/key.json" \
   --app_version "X.Y.Z" --skip_binary_upload --skip_screenshots \
   --run_precheck_before_submit false --force
 ```
-4. **Archive** dans Xcode (Product ▸ Archive ▸ Distribute ▸ App Store Connect), attendre
+5. **Archive** dans Xcode (Product ▸ Archive ▸ Distribute ▸ App Store Connect), attendre
    l'état VALID (~10 min).
-5. **Attacher le build** — `deliver --build_number` NE l'attache PAS (raté connu) → spaceship :
+6. **Attacher le build** — `deliver --build_number` NE l'attache PAS (raté connu) → spaceship :
    `version.select_build(build_id:)` (ruby bundlé fastlane, GEM_HOME=/usr/local/Cellar/fastlane/*/libexec).
-6. **Soumettre** :
+7. **Soumettre** :
 ```
 fastlane deliver --api_key_path "$HOME/.appstoreconnect/key.json" \
   --app_version "X.Y.Z" --build_number "N" --skip_metadata --skip_screenshots \
@@ -39,7 +44,7 @@ fastlane deliver --api_key_path "$HOME/.appstoreconnect/key.json" \
 ## ✅ COMMANDE QUI MARCHE (validée juin 2026) — à réutiliser
 La clé API est déjà configurée dans `~/.appstoreconnect/key.json`. Pour repousser après avoir édité un .txt :
 ```
-cd "/Users/maublanc/Desktop/Tide It 18"
+cd "/Users/maublanc/Desktop/Tide It 5.3"
 export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 fastlane deliver --api_key_path "$HOME/.appstoreconnect/key.json" \
   --app_version "5.1.0" --skip_binary_upload --skip_screenshots \
