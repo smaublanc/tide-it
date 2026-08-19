@@ -1,16 +1,30 @@
-O traço do vento REALMENTE MEDIDO aparece agora na curva, sob a previsão: velocidade e rajada, tal como o anemómetro as registou. A diferença entre o que foi anunciado e o que soprou de facto lê-se num relance, dia após dia, sem ter de acreditar na nossa palavra.
+As notas de surf ficam mais severas — e mais justas.
 
-Onde falta a medição, o traço corta-se e os pontos continuam visíveis. Um silêncio de várias horas nunca será preenchido por uma linha inventada.
+O motor podia dar 75/100 a uma tempestade. Entram em serviço três salvaguardas:
+- Vento demasiado forte fecha a sessão. O limiar depende da direção: um offshore mantém a onda de pé, um onshore desfá-la. A mesma velocidade deixa de contar igual venha de onde vier.
+- Um mar chato deixa de ser pontuado. Abaixo de 30 cm de ondulação não há nada para surfar.
+- O período usado é o período de PICO, aquele de que os surfistas falam, quando esse dado existe. Um período longo é ondulação que viajou; um curto é marulho levantado pelo vento local.
 
-Spots personalizados:
-- Um spot que marcaste tu passa a usar a meteorologia do local verificado mais próximo, num raio de 8 km. Um pino colocado a alguns quilómetros ao largo lia vento de água aberta, e podia pôr um plano de água abrigado à frente de uma praia oceânica. Além dos 8 km o teu pino é mantido: a meteorologia de uma cidade distante descreveria outro regime.
+Spots que mostravam quatro estrelas passarão a mostrar duas, e algumas janelas GO vão desaparecer. É esse o objetivo: uma nota que diz sim a tudo não serve de nada.
 
-Portos:
+O vento REALMENTE MEDIDO aparece na curva, por baixo da previsão: velocidade e rajada, tal como o anemómetro as registou. A diferença entre o anunciado e o que soprou lê-se num relance, sem ter de acreditar na nossa palavra.
+
+Esse traço é agora reconstituído a partir do histórico que as próprias estações publicam, em passos de 30 minutos: acabaram-se as ilhas de pontos soltos. Onde falta a medição, a linha corta-se. Um silêncio de várias horas nunca será preenchido por uma linha inventada.
+
+Honestidade:
+- Três índices (pesca, banhos, colocação na água) anunciavam "mar de espelho, ideal" onde não existia qualquer medição de ondas. Sem dados, o fator desaparece em vez de inventar a calmaria.
+
+Spots:
 - Andernos-les-Bains (Le Betey), Hourtin-Plage e Lacanau Océan entram no catálogo.
-- "Lacanau" passa a "Lacanau (large)": este ponto de referência de maré está a 29 km ao largo. As marés estão certas, o vento não é o da praia.
+- "Lacanau" passa a "Lacanau (ao largo)": esse ponto de referência de marés está a 29 km da costa. As marés lá estão certas; o vento não é o da praia.
+- Um spot que fixou você mesmo passa a tomar a meteorologia geral do local verificado mais próximo, num raio de 8 km. Um alfinete colocado alguns quilómetros ao largo lia vento de mar aberto, e podia colocar uma baía abrigada à frente de uma frente oceânica.
+
+A faixa meteorológica retoma o espectro de cores da fita de vento acima dela, em plena intensidade.
+
+A aplicação consome menos rede e menos bateria em cada atualização.
 
 Correções:
-- A etiqueta do vento real já não tapa as curvas.
-- Quando o serviço de previsão atinge o limite diário, a app di-lo, em vez de te mandar verificar a ligação.
+- A etiqueta do vento real deixa de tapar as curvas.
+- Quando o serviço de previsão atinge o limite diário, a aplicação di-lo — em vez de o mandar verificar a ligação.
 
 Bom vento e boas ondas!

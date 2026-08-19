@@ -1,16 +1,30 @@
-Die Spur des TATSÄCHLICH GEMESSENEN Windes erscheint jetzt auf der Kurve, unter der Vorhersage: Geschwindigkeit und Böen, genau wie das Anemometer sie aufgezeichnet hat. Der Unterschied zwischen dem, was angekündigt war, und dem, was wirklich wehte, ist auf einen Blick lesbar - Tag für Tag, ohne uns glauben zu müssen.
+Die Surf-Bewertungen werden strenger — und ehrlicher.
 
-Wo eine Messung fehlt, bricht die Linie ab und die Punkte bleiben sichtbar. Ein Schweigen von mehreren Stunden wird nie mit einer erfundenen Linie gefüllt.
+Bisher konnte ein Sturm 75/100 bekommen. Drei Sperren greifen jetzt:
+- Zu viel Wind beendet die Session. Die Schwelle hängt von der Richtung ab: Offshore hält die Welle aufrecht, Onshore zerhackt sie. Dieselbe Geschwindigkeit zählt also nicht mehr gleich, egal woher sie kommt.
+- Eine flache See wird nicht mehr bewertet. Unter 30 cm Dünung gibt es nichts zu surfen.
+- Als Periode gilt die PEAK-Periode, von der Surfer wirklich sprechen, sofern dieser Wert vorliegt. Eine lange Periode heißt gereiste Dünung, eine kurze heißt Kabbelwasser vom lokalen Wind.
 
-Eigene Spots:
-- Ein Spot, den du selbst gesetzt hast, übernimmt jetzt das Wetter des nächsten geprüften Ortes, im Umkreis von 8 km. Eine Nadel, die einige Kilometer vor der Küste liegt, las den Wind des offenen Wassers und konnte ein geschütztes Gewässer vor einen Ozeanstrand setzen. Über 8 km bleibt deine Nadel erhalten: Das Wetter einer fernen Stadt würde ein anderes Regime beschreiben.
+Spots, die vier Sterne zeigten, werden zwei zeigen, und manche GO-Fenster verschwinden. Genau das ist der Zweck: eine Bewertung, die zu allem Ja sagt, ist wertlos.
 
-Häfen:
-- Andernos-les-Bains (Le Betey), Hourtin-Plage und Lacanau Ocean kommen in den Katalog.
-- "Lacanau" wird zu "Lacanau (large)": Dieser Gezeiten-Referenzpunkt liegt 29 km vor der Küste. Seine Gezeiten sind richtig, sein Wind ist nicht der des Strandes.
+Der TATSÄCHLICH GEMESSENE Wind erscheint in der Kurve, unter der Vorhersage: Geschwindigkeit und Bö, so wie das Anemometer sie aufgezeichnet hat. Der Abstand zwischen Angekündigtem und Geblasenem ist auf einen Blick lesbar — Sie müssen uns nicht glauben.
+
+Diese Spur wird jetzt aus dem Verlauf rekonstruiert, den die Stationen selbst veröffentlichen, in 30-Minuten-Schritten: keine Inseln aus einzelnen Punkten mehr. Wo die Messung fehlt, bricht die Linie ab. Ein Schweigen von mehreren Stunden wird nie mit einer erfundenen Linie gefüllt.
+
+Ehrlichkeit:
+- Drei Indizes (Angeln, Baden, Zuwasserlassen) meldeten "spiegelglatt, ideal", wo überhaupt keine Wellenmessung vorlag. Ohne Daten verschwindet der Faktor jetzt, statt Ruhe zu erfinden.
+
+Spots:
+- Andernos-les-Bains (Le Betey), Hourtin-Plage und Lacanau Océan kommen in den Katalog.
+- Aus "Lacanau" wird "Lacanau (seewärts)": dieser Gezeiten-Referenzpunkt liegt 29 km vor der Küste. Seine Gezeiten stimmen, sein Wind ist nicht der Wind am Strand.
+- Ein selbst gesetzter Spot übernimmt jetzt das allgemeine Wetter des nächsten geprüften Ortes im Umkreis von 8 km. Eine Nadel wenige Kilometer vor der Küste las offenen Seewind und konnte eine geschützte Bucht vor eine Atlantikküste setzen.
+
+Das Wetterband übernimmt das Farbspektrum des Windbands darüber, in voller Intensität.
+
+Die App verbraucht bei jeder Aktualisierung weniger Netz und weniger Akku.
 
 Korrekturen:
-- Die Beschriftung des realen Windes verdeckt die Kurven nicht mehr.
-- Wenn der Wetterdienst sein Tageslimit erreicht, sagt die App es - anstatt dich deine Verbindung prüfen zu lassen.
+- Die Beschriftung des Echtwinds verdeckt die Kurven nicht mehr.
+- Wenn der Vorhersagedienst sein Tageslimit erreicht, sagt die App das — statt Sie Ihre Verbindung prüfen zu schicken.
 
 Guten Wind und gute Wellen!

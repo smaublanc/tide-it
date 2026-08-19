@@ -1,16 +1,30 @@
-The trace of the wind ACTUALLY MEASURED now appears on the curve, beneath the forecast: speed and gusts, exactly as the anemometer recorded them. The gap between what was announced and what actually blew reads at a glance, day after day - without having to take our word for it.
+Surf ratings get stricter — and truer.
 
-Where a measurement is missing, the line breaks and the dots stay visible. A silence of several hours will never be filled in with an invented line.
+The engine could score a storm 75/100. Three guards now apply:
+- Too much wind closes the session. The threshold depends on direction: offshore holds a wave up, onshore tears it apart. The same speed no longer counts the same regardless of where it comes from.
+- A flat sea scores nothing. Below 30 cm of swell there is nothing to surf.
+- Period is now PEAK period, the one surfers actually talk about, whenever that data exists. A long period means swell that has travelled; a short one means chop raised by local wind.
 
-Custom spots:
-- A spot you pinned yourself now takes the weather of the nearest verified location, within 8 km. A pin dropped a few kilometres offshore was reading open-water wind, and could put a sheltered lagoon ahead of an ocean beach. Beyond 8 km your pin is kept: the weather of a distant town would describe another regime.
+Spots that showed four stars will show two, and some GO windows will disappear. That is the point: a rating that says yes to everything is worthless.
 
-Ports:
+The wind ACTUALLY MEASURED is drawn on the chart, beneath the forecast: speed and gust, exactly as the anemometer recorded them. The gap between what was announced and what blew reads at a glance — no need to take our word for it.
+
+That trace is now rebuilt from the history the stations publish themselves, in 30-minute steps: no more islands of isolated points. Where measurement is missing, the line breaks. A silence of several hours will never be filled with an invented line.
+
+Honesty:
+- Three indices (fishing, swimming, launching) announced "glassy, ideal" where no wave measurement existed at all. With no data the factor now disappears instead of inventing calm.
+
+Spots:
 - Andernos-les-Bains (Le Betey), Hourtin-Plage and Lacanau Ocean join the catalogue.
-- "Lacanau" becomes "Lacanau (large)": this tide reference point sits 29 km offshore. Its tides are correct, its wind is not the beach's.
+- "Lacanau" becomes "Lacanau (offshore)": that tide reference point sits 29 km out to sea. Its tides are right; its wind is not the wind on the beach.
+- A spot you pinned yourself now takes the general weather of the nearest verified location, within 8 km. A pin dropped a few kilometres offshore was reading open-water wind, and could rank a sheltered bay ahead of an ocean beach.
+
+The weather strip now uses the colour spectrum of the wind ribbon above it, at full intensity.
+
+The app uses less network and less battery on every refresh.
 
 Fixes:
-- The real-wind label no longer covers the curves.
-- When the forecast service reaches its daily limit, the app says so - instead of sending you to check your connection.
+- The live wind label no longer hides the curves.
+- When the forecast service hits its daily limit, the app says so — instead of sending you off to check your connection.
 
 Fair winds and good waves!

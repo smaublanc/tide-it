@@ -1,16 +1,30 @@
-Het spoor van de ECHT GEMETEN wind staat nu op de curve, onder de verwachting: snelheid en vlagen, precies zoals de windmeter ze heeft opgetekend. Het verschil tussen wat werd aangekondigd en wat er werkelijk waaide lees je in één oogopslag, dag na dag - zonder ons op ons woord te hoeven geloven.
+De surfscores worden strenger — en eerlijker.
 
-Waar een meting ontbreekt, breekt de lijn af en blijven de punten zichtbaar. Een stilte van meerdere uren wordt nooit opgevuld met een verzonnen lijn.
+De motor kon een storm 75/100 geven. Er komen drie beveiligingen bij:
+- Te veel wind sluit de sessie. De drempel hangt af van de richting: aflandig houdt de golf overeind, aanlandig hakt hem stuk. Dezelfde snelheid telt dus niet meer hetzelfde, waar hij ook vandaan komt.
+- Een vlakke zee krijgt geen score meer. Onder 30 cm deining valt er niets te surfen.
+- De gebruikte periode is de PIEKperiode, waar surfers het echt over hebben, als dat gegeven bestaat. Een lange periode is deining die gereisd heeft; een korte is kabbeling die de plaatselijke wind opzet.
 
-Eigen spots:
-- Een spot die je zelf hebt gezet neemt nu het weer van de dichtstbijzijnde gecontroleerde plaats, binnen 8 km. Een speld een paar kilometer uit de kust las de wind van open water, en kon een beschut water voor een oceaanstrand zetten. Boven 8 km blijft jouw speld staan: het weer van een verre stad zou een ander regime beschrijven.
+Spots die vier sterren toonden, tonen er twee, en sommige GO-vensters verdwijnen. Dat is precies de bedoeling: een score die overal ja op zegt, is waardeloos.
 
-Havens:
+De ECHT GEMETEN wind verschijnt op de grafiek, onder de verwachting: snelheid en vlaag, precies zoals de anemometer ze heeft vastgelegd. Het verschil tussen wat was aangekondigd en wat er woei, leest u in één oogopslag — zonder ons op ons woord te hoeven geloven.
+
+Dat spoor wordt nu opgebouwd uit de historie die de stations zelf publiceren, in stappen van 30 minuten: geen eilandjes van losse punten meer. Waar de meting ontbreekt, breekt de lijn af. Een stilte van meerdere uren wordt nooit opgevuld met een verzonnen lijn.
+
+Eerlijkheid:
+- Drie indexen (vissen, zwemmen, te water gaan) meldden "spiegelglad, ideaal" waar helemaal geen golfmeting bestond. Zonder gegeven verdwijnt de factor nu, in plaats van rust te verzinnen.
+
+Spots:
 - Andernos-les-Bains (Le Betey), Hourtin-Plage en Lacanau Océan komen in de catalogus.
-- "Lacanau" wordt "Lacanau (large)": dit getijde-referentiepunt ligt 29 km uit de kust. De getijden zijn er juist, de wind is niet die van het strand.
+- "Lacanau" wordt "Lacanau (buitengaats)": dat getijdenreferentiepunt ligt 29 km uit de kust. De getijden kloppen er, de wind is niet die van het strand.
+- Een spot die u zelf hebt vastgezet, neemt nu het algemene weer van de dichtstbijzijnde geverifieerde plaats binnen 8 km. Een speld een paar kilometer uit de kust las open-zeewind, en kon een beschutte baai voor een oceaanstrand zetten.
 
-Opgelost:
-- Het label van de echte wind bedekt de curven niet meer.
-- Als de weerdienst zijn daglimiet bereikt, zegt de app het - in plaats van je je verbinding te laten controleren.
+De weerbalk neemt het kleurenspectrum over van het windlint erboven, op volle sterkte.
 
-Goede wind en mooie golven!
+De app gebruikt bij elke verversing minder netwerk en minder batterij.
+
+Correcties:
+- Het label van de echte wind bedekt de curves niet meer.
+- Als de verwachtingsdienst zijn daglimiet bereikt, zegt de app dat — in plaats van u uw verbinding te laten controleren.
+
+Goede wind en goede golven!

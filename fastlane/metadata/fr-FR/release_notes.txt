@@ -1,13 +1,27 @@
-La trace du vent RÉELLEMENT MESURÉ s'affiche maintenant sur la courbe, sous la prévision : vitesse et rafale, telles que l'anémomètre les a relevées. L'écart entre ce qui était annoncé et ce qui a soufflé se lit d'un coup d'oeil, jour après jour — sans avoir à nous croire sur parole.
+Les notes surf deviennent plus sévères — et plus justes.
 
-Là où la mesure manque, le trait se coupe et les points restent visibles. Un silence de plusieurs heures ne sera jamais comblé par une ligne inventée.
+Le moteur pouvait noter une tempête 75/100. Trois garde-fous entrent en service :
+- Un vent trop fort ferme la session. Le seuil dépend de sa direction : un offshore tient la vague debout, un onshore la hache. La même vitesse ne compte donc pas pareil selon d'où elle vient.
+- Une mer plate ne se note plus. Sous 30 cm de houle, il n'y a rien à surfer.
+- La période retenue est la période de PIC, celle dont parlent les surfeurs, quand la donnée existe. Une longue période, c'est une houle qui a voyagé ; une courte, un clapot levé par le vent local.
 
-Spots personnalisés :
-- Un spot que vous avez épinglé vous-même prend désormais la météo du lieu vérifié le plus proche, dans un rayon de 8 km. Une épingle posée à quelques kilomètres au large lisait un vent de pleine eau, et pouvait faire passer un plan d'eau abrité devant un front de mer océanique. Au-delà de 8 km votre épingle est conservée : la météo d'une ville lointaine décrirait un autre régime.
+Des spots qui affichaient quatre étoiles en afficheront deux, et des fenêtres GO vont disparaître. C'est le but : une note qui dit oui à tout ne sert à rien.
 
-Ports :
+Le vent RÉELLEMENT MESURÉ s'affiche sur la courbe, sous la prévision : vitesse et rafale, telles que l'anémomètre les a relevées. L'écart entre ce qui était annoncé et ce qui a soufflé se lit d'un coup d'oeil — sans avoir à nous croire sur parole.
+
+Cette trace est désormais reconstituée depuis l'historique publié par les balises elles-mêmes, par pas de 30 minutes : fini les îlots de points isolés. Là où la mesure manque, le trait se coupe. Un silence de plusieurs heures ne sera jamais comblé par une ligne inventée.
+
+Honnêteté :
+- Trois indices (pêche, baignade, mise à l'eau) annonçaient « mer d'huile, idéal » là où aucune mesure de vague n'existait. Sans donnée, le facteur disparaît au lieu d'inventer le calme.
+
+Spots :
 - Andernos-les-Bains (Le Betey), Hourtin-Plage et Lacanau Océan rejoignent le catalogue.
 - « Lacanau » devient « Lacanau (large) » : ce point de référence de marée est à 29 km au large. Les marées y sont justes, le vent n'y est pas celui de la plage.
+- Un spot que vous avez épinglé vous-même prend la météo du lieu vérifié le plus proche, dans un rayon de 8 km. Une épingle posée quelques kilomètres au large lisait un vent de pleine eau, et pouvait faire passer un plan d'eau abrité devant un front de mer océanique.
+
+Le bandeau météo reprend le spectre de couleurs du ruban de vent, à pleine intensité.
+
+L'app consomme moins de réseau et de batterie à chaque rafraîchissement.
 
 Corrections :
 - L'étiquette du vent réel ne masque plus les courbes.
