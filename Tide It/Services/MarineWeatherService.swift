@@ -24,8 +24,8 @@ struct MarineConditions: Codable, Equatable {
     /// `var` avec défaut nil, pour deux raisons : le champ est arrivé après coup (le `Codable`
     /// synthétisé décode donc les anciens blobs intacts), et il n'est PAS servi partout —
     /// Open-Meteo ne le produit que dans le domaine du modèle européen. Son absence n'est pas une
-    /// anomalie : c'est le cas normal aux tropiques, et le score bascule alors sur l'échelle
-    /// moyenne avec ses propres seuils (cf. `surfMeanPeriodLoS`).
+    /// anomalie : c'est le cas normal aux tropiques. Le score lit alors la période MOYENNE,
+    /// avec les mêmes seuils — défaut d'échelle connu et borné, cf. `surfPeakPeriodLoS`.
     var swellPeakPeriod: Double? = nil
 
     /// Le modèle marine a-t-il réellement fourni une lecture de vague/houle ?
@@ -140,8 +140,15 @@ private struct MarineHourlyResponse: Codable {
 // On interroge 3 modèles indépendants en une requête : AROME HD 1,3 km (Météo-France,
 // le plus fin pour le vent côtier/thermique en France), ICON (DWD, Europe/monde) et GFS
 // (NOAA, monde + HRRR US). Open-Meteo suffixe alors chaque variable par le nom du modèle.
-// On combine ensuite par moyenne pondérée (AROME 0,5 · ICON 0,3 · GFS 0,2) et on dérive
-// un indice de FIABILITÉ à partir de l'accord entre modèles → « Sorties Parfaites » plus juste.
+//
+// ⚠️ CE COMMENTAIRE DÉCRIVAIT UNE MOYENNE PONDÉRÉE (AROME 0,5 · ICON 0,3 · GFS 0,2) QUI A ÉTÉ
+// SUPPRIMÉE, et que CLAUDE.md interdit explicitement de réintroduire. Mesurée sur 2 800 heures,
+// elle faisait 3,44 de RMSE contre 3,29 pour le modèle fin seul : elle DÉGRADAIT la prévision en
+// important l'incapacité d'ICON (11 km) et GFS (27 km) à résoudre un trait de côte.
+// Le comportement RÉEL est celui de `blend` : le PREMIER modèle qui répond donne vitesse, rafale
+// ET direction — les trois du MÊME modèle. Les deux autres ne servent qu'à mesurer l'accord,
+// d'où l'indice de confiance. Une doc qui décrit du code supprimé est pire qu'une absence de doc :
+// c'est le seul filet d'un mainteneur seul, et celle-ci décrivait un piège documenté.
 private struct WindEnsembleResponse: Codable {
     let hourly: Hourly?
 
@@ -671,7 +678,13 @@ class MarineWeatherService: ObservableObject {
             URLQueryItem(name: "hourly", value: "wind_speed_10m,wind_gusts_10m,wind_direction_10m"),
             URLQueryItem(name: "models", value: "meteofrance_seamless,icon_seamless,gfs_seamless"),
             URLQueryItem(name: "wind_speed_unit", value: "kmh"),
-            URLQueryItem(name: "forecast_days", value: "14"),
+            // 9 JOURS, ET SURTOUT PAS 7. L'app affiche 7 jours, mais `timezone` est fixé ici
+            // alors que `ActivityGoPlanner.plan(days: 7)` compte depuis MAINTENANT : le
+            // fournisseur, lui, compte `forecast_days` depuis MINUIT dans le fuseau demandé.
+            // Le plancher arithmétique est donc 8, et 9 laisse un jour de marge — vérifiable en
+            // ouvrant l'app à 23 h locale, le seul cas de bord qui compte.
+            // Était 14 : quatre à cinq jours étaient téléchargés, décodés et jamais affichés.
+            URLQueryItem(name: "forecast_days", value: "9"),
             URLQueryItem(name: "past_days", value: "1"),   // hier inclus → la courbe vent/rafale garde son historique après minuit
 
             URLQueryItem(name: "timezone", value: "Europe/Paris")
@@ -719,8 +732,8 @@ class MarineWeatherService: ObservableObject {
         components.queryItems = [
             URLQueryItem(name: "latitude", value: String(format: "%.4f", latitude)),
             URLQueryItem(name: "longitude", value: String(format: "%.4f", longitude)),
-            URLQueryItem(name: "hourly", value: "temperature_2m,weather_code,relative_humidity_2m,pressure_msl,uv_index,precipitation,precipitation_probability"),
-            URLQueryItem(name: "forecast_days", value: "14"),
+            URLQueryItem(name: "hourly", value: "temperature_2m,weather_code,relative_humidity_2m,pressure_msl,uv_index,precipitation_probability"),
+            URLQueryItem(name: "forecast_days", value: "9"),
             URLQueryItem(name: "past_days", value: "1"),   // hier inclus → la courbe vent/rafale garde son historique après minuit
 
             URLQueryItem(name: "timezone", value: "Europe/Paris")
@@ -803,8 +816,17 @@ class MarineWeatherService: ObservableObject {
         components.queryItems = [
             URLQueryItem(name: "latitude", value: String(format: "%.4f", latitude)),
             URLQueryItem(name: "longitude", value: String(format: "%.4f", longitude)),
-            URLQueryItem(name: "hourly", value: "wave_height,wave_period,wave_direction,swell_wave_height,swell_wave_period,swell_wave_direction,swell_wave_peak_period,wind_wave_height,wind_wave_period,secondary_swell_wave_height,secondary_swell_wave_period,secondary_swell_wave_direction,tertiary_swell_wave_height,tertiary_swell_wave_period,tertiary_swell_wave_direction,sea_surface_temperature"),
-            URLQueryItem(name: "forecast_days", value: "14"),
+            // ⚠️ CINQ VARIABLES RETIRÉES le 18 août 2026, mesure à l'appui — ne pas les
+            // remettre sans refaire CETTE mesure (8 spots, 4 continents, 48 h chacun) :
+            //   tertiary_swell_wave_{height,period,direction} : servies 0 fois sur 48 PARTOUT.
+            //     Le mapping et la struct sont CONSERVÉS — ils lisent nil, ce qu'ils lisaient
+            //     déjà. `SurfMetrics.partitions` continue donc de fonctionner à l'identique,
+            //     avec deux trains de houle au lieu de trois annoncés.
+            //   wind_wave_period : servie 48/48, mais JAMAIS mappée vers `HourlyForecast` —
+            //     payée au quota et jetée au décodage.
+            // Le SECONDAIRE est servi 48/48 partout : il reste, il alimente les partitions.
+            URLQueryItem(name: "hourly", value: "wave_height,wave_period,wave_direction,swell_wave_height,swell_wave_period,swell_wave_direction,swell_wave_peak_period,wind_wave_height,secondary_swell_wave_height,secondary_swell_wave_period,secondary_swell_wave_direction,sea_surface_temperature"),
+            URLQueryItem(name: "forecast_days", value: "9"),
             URLQueryItem(name: "past_days", value: "1"),   // hier inclus → la courbe vent/rafale garde son historique après minuit
 
             URLQueryItem(name: "timezone", value: "Europe/Paris")

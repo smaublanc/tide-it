@@ -477,9 +477,15 @@ struct ContentView: View {
         }
         Task {
             await tideService.fetchTideData()
-            if let port = tideService.selectedPort {
-                await marineService.fetchForPort(port)
-            }
+            // ⚠️ `marineService.fetchForPort(port)` RETIRÉ d'ici le 18 août 2026.
+            //
+            // `TodayView` est rendu inconditionnellement (l.50) et son `.onAppear` appelle
+            // `loadPortData()`, qui fait déjà exactement cet appel. Les deux partaient donc en
+            // PARALLÈLE au lancement à froid — trop tôt pour que le cache de l'un serve l'autre :
+            // six requêtes réseau au lieu de trois, à chaque démarrage.
+            // Le retrait supprime la course PAR CONSTRUCTION, sans avoir à écrire de coalescence.
+            // Ne pas le remettre : si un écran a besoin des conditions marines, qu'il les demande
+            // lui-même — c'est ce que fait déjà TodayView.
             // Démarrer le monitoring périodique des alertes
             tideService.startAlertMonitoring()
         }
