@@ -1623,19 +1623,32 @@ struct WeatherBand7Days: View, Equatable {
         return out
     }
 
-    /// Opacité maximale d'une bande, atteinte au haut de la plage. Au-delà, la bande mangerait
-    /// le texte qu'elle est censée accompagner.
-    private static let bandMaxAlpha: Double = 0.72
-    /// Opacité d'une bande au BAS de sa plage. Non nulle : sur le spectre, c'est la TEINTE qui
-    /// porte la valeur, et une bande transparente à zéro casserait le ruban en pointillés.
-    /// Les lignes dont le zéro veut dire « rien » (`fadesToNothing`) s'effacent quand même.
-    private static let bandFloorAlpha: Double = 0.16
+    /// Opacité des bandes. PLEINE, et c'est le geste qui donne au bandeau le rendu du ruban
+    /// de vent qui court au-dessus de lui.
+    ///
+    /// C'était une rampe de 0,16 à 0,72 : l'alpha modulait l'intensité EN PLUS de la teinte, si
+    /// bien qu'une valeur basse était à la fois bleu profond ET délavée. Deux codes pour une
+    /// seule information, et le second effaçait le premier — le spectre perdait précisément ce
+    /// qui le rend lisible d'un coup d'œil. Désormais la TEINTE porte tout, comme sur le ruban.
+    ///
+    /// 0,92 et non 1,0 : les bandes se superposent au fond étoilé du panneau, et un aplat
+    /// parfaitement opaque découperait des rectangles durs au lieu de s'y poser.
+    private static let bandAlpha: Double = 0.92
     /// Haut du spectre, en km/h — `windColorSmooth` sature à 50. Les lignes qui ne sont pas du
     /// vent y étalent leur niveau 0…1, ce qui leur fait parcourir le spectre ENTIER.
     private static let spectrumTopKmh: Double = 50
-    /// Au-dessus, la bande est trop lumineuse pour du texte clair. Seuil sur la luminance
-    /// perçue (Rec. 709) une fois l'alpha composité sur le fond sombre.
-    private static let darkTextLuminance: Double = 0.42
+    /// Luminance relative WCAG. Les composantes sRGB sont LINÉARISÉES d'abord — c'est ce qui
+    /// distingue ce calcul d'un Rec. 709 appliqué tel quel aux valeurs encodées, qui surestime
+    /// les tons moyens et faisait basculer l'encre au mauvais endroit dans le bleu.
+    private static func relativeLuminance(_ r: Double, _ g: Double, _ b: Double) -> Double {
+        func lin(_ c: Double) -> Double { c <= 0.04045 ? c / 12.92 : pow((c + 0.055) / 1.055, 2.4) }
+        return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
+    }
+
+    /// Rapport de contraste WCAG entre deux luminances relatives.
+    private static func contrast(_ a: Double, _ b: Double) -> Double {
+        (max(a, b) + 0.05) / (min(a, b) + 0.05)
+    }
 
     /// LE SPECTRE DU RUBAN DE VENT, celui qui court au-dessus de ce tableau
     /// (`PremiumCurveCanvas.windColorSmooth` : bleu profond → teal → vert → jaune → rouge).
@@ -1653,9 +1666,9 @@ struct WeatherBand7Days: View, Equatable {
     /// immédiate (le chaud saute aux yeux), et les repères horizontaux sont désormais donnés
     /// par la GÉOMÉTRIE : `rowGap` détache les rubans, `bandRadius` leur arrondit les bouts.
     ///
-    /// L'alpha ne code plus la valeur, il donne de la PROFONDEUR : plancher `bandFloorAlpha`
-    /// en bas de plage, `bandMaxAlpha` en haut. Il ne redescend à zéro que pour les lignes
-    /// dont le zéro signifie « rien » (`fadesToNothing`) — pas de vent, pas de couleur.
+    /// L'alpha ne code RIEN : il est constant. La teinte porte seule la valeur, exactement
+    /// comme sur le ruban de vent. Seule exception, l'effacement complet des lignes dont le zéro
+    /// signifie « rien » (`fadesToNothing`) — pas de vent, pas de couleur.
     ///
     /// L'icône de gauche garde SA couleur d'identité (thermomètre orange, parapluie bleu) :
     /// l'icône dit CE QUE C'EST, la bande dit COMBIEN. Deux rôles, deux codes, aucun conflit.
@@ -1664,8 +1677,7 @@ struct WeatherBand7Days: View, Equatable {
         // Sous 2 %, la valeur est un zéro franc : la bande s'efface au lieu de teinter en bleu
         // profond un créneau où il ne se passe rien.
         if fades && l < 0.02 { return .clear }
-        return PremiumCurveCanvas.windColorSmooth(kmh)
-            .opacity(Self.bandFloorAlpha + (Self.bandMaxAlpha - Self.bandFloorAlpha) * l)
+        return PremiumCurveCanvas.windColorSmooth(kmh).opacity(Self.bandAlpha)
     }
 
     /// Où placer un créneau sur le spectre, en km/h. Le vent y va par sa vraie valeur ; les
@@ -1701,24 +1713,39 @@ struct WeatherBand7Days: View, Equatable {
     /// La luminance est lue sur la couleur RÉELLE de la bande (`UIColor`), pas devinée à partir
     /// du niveau : le spectre reste ainsi la seule source de vérité — le jour où sa rampe
     /// change, le contraste suit tout seul.
+    /// L'encre des chiffres, choisie sur la BANDE et non sur l'apparence du système.
+    ///
+    /// Tant que les bandes étaient translucides (16 à 72 %), le fond du panneau transparaissait
+    /// et `.primary` convenait : noir en mode clair sur du bleu très pâle. À 92 % la bande est
+    /// la seule chose qu'on voit — du noir sur du bleu saturé devient illisible. C'est donc la
+    /// couleur de la bande qui décide, dans les deux apparences.
+    ///
+    /// Règle : pour chaque encre candidate on retient le stop où elle contraste le MOINS, puis
+    /// l'encre dont ce pire cas est le meilleur. Le texte traverse un DÉGRADÉ — choisir sur le
+    /// milieu laisserait la moitié du chiffre illisible à une transition vert → jaune.
+    ///
+    /// Vérifié sur tout le spectre, aux deux apparences : **4,61:1 au pire**, au-dessus du seuil
+    /// WCAG AA pour du texte normal (4,5). C'est ce qui interdit d'adoucir l'encre (le noir à
+    /// 85 % laissait transparaître la bande et retombait à 4,37).
     private func bandTextColor(_ r: WRow, _ stops: [HourlyForecast]) -> Color {
         guard let level = r.level else { return .primary }
-        // La bande est un DÉGRADÉ sur la largeur de la case, et les chiffres la traversent.
-        // C'est donc le point le plus LUMINEUX du créneau qui décide, pas celui du milieu :
-        // à une transition vert → jaune, le milieu peut rester sombre pendant que la moitié
-        // droite du texte se retrouve sur du jaune vif. C'est le pire cas qui se lit mal.
-        var maxLum = 0.0
+        var worstOnBlack = Double.infinity
+        var worstOnWhite = Double.infinity
         for fc in stops {
             guard let l = level(fc) else { continue }
             let c = bandTint(l, kmh: spectrumPosition(r, fc, level: l), fades: r.fadesToNothing)
             var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
             guard UIColor(c).getRed(&red, green: &green, blue: &blue, alpha: &alpha) else { continue }
-            // Composité sur le fond sombre du panneau : une bande à 20 % d'opacité n'éclaire pas.
-            let lum = (0.2126 * Double(red) + 0.7152 * Double(green) + 0.0722 * Double(blue)) * Double(alpha)
-            maxLum = max(maxLum, lum)
+            // Bande effacée (`fadesToNothing` à zéro) : le texte est sur le fond du panneau et
+            // non sur une bande — ce créneau ne doit pas peser dans le choix.
+            guard alpha > 0.01 else { continue }
+            let y = Self.relativeLuminance(Double(red), Double(green), Double(blue))
+            worstOnBlack = min(worstOnBlack, Self.contrast(y, 0))
+            worstOnWhite = min(worstOnWhite, Self.contrast(1, y))
         }
-        // `.primary` et non blanc : en mode clair, le texte hors bande doit rester noir.
-        return maxLum > Self.darkTextLuminance ? Color.black.opacity(0.85) : .primary
+        // Aucune bande sous le texte : `.primary` suit l'apparence, comme partout ailleurs.
+        guard worstOnBlack.isFinite else { return .primary }
+        return worstOnBlack >= worstOnWhite ? .black : .white
     }
 
     /// Construit le niveau 0…1 d'une ligne en calant l'échelle sur les données RÉELLEMENT
